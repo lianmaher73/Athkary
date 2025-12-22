@@ -1,0 +1,15 @@
+{
+  "name": "اعمل للجنة",
+  "short_name": "للجنة",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f1fcef",
+  "theme_color": "#4CAF50",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2913/2913520.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
