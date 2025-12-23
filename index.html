@@ -307,6 +307,16 @@
           />
         </div>
         <div class="setting-row">
+          <span>صوت التسبيح</span>
+          <input
+            type="checkbox"
+            id="sound-toggle"
+            checked
+            style="width: 20px"
+            onclick="toggleSound()"
+          />
+        </div>
+        <div class="setting-row">
           <span>الوضع الداكن</span>
           <input
             type="checkbox"
@@ -534,9 +544,32 @@
         if (!fromBackBtn) window.history.replaceState(null, "Main", "");
         buildGrid();
       }
+      // تعريف الصوت
+      const clickSound = new Audio(
+        "https://www.soundjay.com/buttons/button-16.mp3"
+      );
+
+      // دالة تشغيل الصوت داخل الـ increment
+      function playSound() {
+        const isSoundEnabled = document.getElementById("sound-toggle").checked;
+        if (isSoundEnabled) {
+          clickSound.currentTime = 0;
+          clickSound.play().catch((e) => console.log("تحتاج لتفاعل أولاً"));
+        }
+      }
+
+      // دالة الحفظ
+      function toggleSound() {
+        const isEnabled = document.getElementById("sound-toggle").checked;
+        localStorage.setItem("soundEnabled", isEnabled);
+      }
+
+      // تعديل دالة الـ increment لتشمل الصوت
 
       function increment() {
         data[currentType]++;
+        playSound(); // استدعاء دالة الصوت هنا
+
         document.getElementById("counter-display").innerText =
           data[currentType];
         if (document.getElementById("vibrate-toggle").checked) {
@@ -548,7 +581,10 @@
         createParticle();
         localStorage.setItem("heavenData", JSON.stringify(data));
       }
-
+      const savedSound = localStorage.getItem("soundEnabled");
+      if (savedSound !== null) {
+        document.getElementById("sound-toggle").checked = savedSound === "true";
+      }
       function createParticle() {
         const container = document.querySelector(".circle-frame");
         for (let i = 0; i < 6; i++) {
@@ -573,6 +609,21 @@
           "notifications-toggle"
         ).checked;
         localStorage.setItem("notificationsEnabled", isEnabled);
+
+        if (isEnabled) {
+          // طلب إذن إضافي وإرسال إشعار فوري عند النقر
+          Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+              navigator.serviceWorker.ready.then((reg) => {
+                reg.showNotification("تم تفعيل التذكيرات ✨", {
+                  body: "ستصلك اقتراحات للأجر كل 30 دقيقة",
+                  icon: "img/Logo.png",
+                  badge: "img/Logo.png",
+                });
+              });
+            }
+          });
+        }
       }
 
       function resetAll() {
@@ -747,6 +798,22 @@
           }, 4000);
         }
       };
+      // صوت "تكة" خفيف جداً
+      const tka = new Audio("https://www.soundjay.com/buttons/button-16.mp3");
+
+      function playTka() {
+        tka.currentTime = 0; // لإعادة الصوت من البداية عند الضغط السريع
+        tka.play();
+      }
+
+      // أضيفي استدعاء الدالة داخل دالة increment()
+      function increment() {
+        data[currentType]++;
+        playTka(); // تشغيل الصوت
+        document.getElementById("counter-display").innerText =
+          data[currentType];
+        // ... باقي الكود الخاص بالاهتزاز والجزيئات
+      }
 
       buildGrid();
     </script>
