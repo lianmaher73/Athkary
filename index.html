@@ -19,18 +19,16 @@
         --text-color: #2b0b15;
       }
 
-      /* الوضع الداكن (عكس الألوان) */
+      /* الوضع المعكوس (الداكن الجديد) */
       body.dark-theme {
-        --main-color: rgb(184, 130, 144); /* عنابي أفتح للوضوح */
-        --light-color: #250b21; /* خلفية غامقة */
-        --white: #371533; /* كروت رمادية غامقة */
-        --text-color: #ffffff; /* خط أبيض */
+        --main-color: #ffffff; /* العناصر التي كانت عنابية تصبح بيضاء */
+        --light-color: #4f1a2a; /* الخلفية تصبح بلونك العنابي */
+        --white: #632537; /* الكروت تصبح عنابي أفتح قليلاً للتميز */
+        --text-color: #ffffff; /* الخط يصبح أبيض */
       }
 
       html {
-        background-color: var(
-          --main-color
-        ); /* يمنع ظهور اللون الأخضر عند السحب */
+        background-color: var(--main-color);
       }
 
       body {
@@ -46,7 +44,7 @@
 
       .header {
         background-color: var(--main-color);
-        color: white;
+        color: var(--white); /* يتغير حسب الثيم */
         padding: 0 15px;
         display: flex;
         justify-content: space-between;
@@ -55,6 +53,12 @@
         position: sticky;
         top: 0;
         z-index: 1000;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* في الثيم المعكوس نجعل لون أيقونات الهيدر عنابي */
+      body.dark-theme .header {
+        color: #4f1a2a;
       }
 
       .header-side {
@@ -74,7 +78,7 @@
       .back-btn {
         cursor: pointer;
         font-size: 24px;
-        display: none; /* يتم التحكم به عبر الجافاسكربت */
+        display: none;
         margin-left: 10px;
       }
 
@@ -107,15 +111,17 @@
         color: var(--main-color);
       }
 
+      /* في الوضع المعكوس النص داخل الكرت أبيض */
       body.dark-theme .card-title {
         color: white;
       }
 
       .card-action {
         background: var(--main-color);
-        color: white;
+        color: var(--light-color); /* عكس اللون داخل الزر */
         padding: 10px;
         font-size: 14px;
+        font-weight: bold;
       }
 
       #sub-page,
@@ -130,13 +136,6 @@
         border-radius: 15px;
         margin-bottom: 20px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-      }
-
-      .hadith-text {
-        font-size: 1rem;
-        line-height: 1.6;
-        font-weight: 500;
-        margin: 0;
       }
 
       .circle-frame {
@@ -163,13 +162,9 @@
         z-index: 10;
       }
 
-      body.dark-theme #counter-display {
-        color: white;
-      }
-
       .highlight {
         background-color: var(--main-color);
-        color: white;
+        color: var(--light-color);
         padding: 2px 8px;
         border-radius: 5px;
         display: inline-block;
@@ -188,10 +183,6 @@
         color: var(--main-color);
       }
 
-      body.dark-theme .setting-row {
-        color: white;
-      }
-
       .footer {
         margin-top: 30px;
         display: flex;
@@ -201,11 +192,12 @@
 
       .reset-btn {
         background: var(--main-color);
-        color: white;
+        color: var(--light-color);
         border: none;
         padding: 10px 20px;
         border-radius: 8px;
         cursor: pointer;
+        font-weight: bold;
       }
 
       .particle {
@@ -232,10 +224,11 @@
         width: 100%;
         padding: 12px;
         border-radius: 10px;
-        border: 1px solid #ddd;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: var(--white);
+        color: var(--text-color);
         margin-bottom: 15px;
         box-sizing: border-box;
-        font-family: inherit;
       }
     </style>
   </head>
@@ -279,7 +272,11 @@
 
       <div id="sub-page">
         <div class="hadith-box">
-          <p id="hadith-content" class="hadith-text"></p>
+          <p
+            id="hadith-content"
+            class="hadith-text"
+            style="color: var(--text-color)"
+          ></p>
         </div>
         <div class="circle-frame" onclick="increment()">
           <div id="counter-display">0</div>
@@ -287,15 +284,6 @@
       </div>
 
       <div id="settings-page">
-        <!-- <div class="setting-row">
-          <span>صوت التسبيح</span>
-          <input
-            type="checkbox"
-            id="sound-toggle"
-            checked
-            style="width: 20px"
-          />
-        </div> -->
         <div class="setting-row">
           <span>الاهتزاز</span>
           <input
@@ -306,7 +294,7 @@
           />
         </div>
         <div class="setting-row">
-          <span> الوضع الداكن</span>
+          <span>الوضع الداكن</span>
           <input
             type="checkbox"
             id="dark-mode-toggle"
@@ -315,9 +303,10 @@
           />
         </div>
         <div
+          id="total-sum-box"
           style="
             background: var(--main-color);
-            color: white;
+            color: var(--light-color);
             padding: 20px;
             border-radius: 15px;
             font-size: 1.2rem;
@@ -331,7 +320,7 @@
 
       <div id="feedback-page">
         <h3 style="color: var(--main-color)">صدقة جارية.. اذكروني بدعوة</h3>
-        <p style="color: var(--main-color)">تسعدني اقتراحاتكم لتحسين التجربة</p>
+        <p>تسعدني اقتراحاتكم لتحسين التجربة</p>
         <form
           id="suggestion-form"
           action="https://formspree.io/f/mlgrznlk"
@@ -347,7 +336,7 @@
             type="submit"
             style="
               background: var(--main-color);
-              color: white;
+              color: var(--light-color);
               border: none;
               padding: 12px;
               border-radius: 10px;
@@ -401,13 +390,14 @@
             margin: 20px 0;
             line-height: 2;
             font-size: 1.1rem;
+            color: var(--text-color);
           "
         ></div>
         <button
           onclick="closeBalance()"
           style="
             background: var(--main-color);
-            color: white;
+            color: var(--light-color);
             border: none;
             padding: 12px;
             border-radius: 10px;
@@ -586,7 +576,7 @@
         });
         if (res.ok) {
           status.style.display = "block";
-          status.innerText = "تم الإرسال بنجاح! ";
+          status.innerText = "تم الإرسال بنجاح! ❤️";
           e.target.reset();
           setTimeout(() => {
             status.style.display = "none";
