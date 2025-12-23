@@ -10,6 +10,10 @@
     <link rel="manifest" href="manifest.json" />
     <link rel="icon" type="image/png" href="img/Logo.png" />
     <link rel="apple-touch-icon" href="img/Logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
     <style>
       :root {
         --main-color: #4f1a2a;
@@ -19,6 +23,11 @@
         --text-color: #2b0b15;
       }
 
+      .material-symbols-outlined {
+        color: inherit; /* تجعل الأيقونة تأخذ نفس لون النص المحيط بها */
+        display: inline-block;
+        user-select: none;
+      }
       /* الوضع المعكوس (الداكن الجديد) */
       body.dark-theme {
         --main-color: #ffffff; /* العناصر التي كانت عنابية تصبح بيضاء */
@@ -237,9 +246,13 @@
       <div
         class="header-side"
         onclick="openSettings()"
-        style="text-align: right; font-size: 24px"
+        style="text-align: right"
       >
-        ⚙️
+        <span
+          class="material-symbols-outlined"
+          style="font-size: 28px; vertical-align: middle"
+          >settings</span
+        >
       </div>
       <div class="header-center">
         <div id="back-icon" class="back-btn" onclick="showMain()">→</div>
@@ -589,6 +602,82 @@
         if (savedDarkMode) {
           document.getElementById("dark-mode-toggle").checked = true;
           document.body.classList.add("dark-theme");
+        }
+      });
+      // تسجيل الـ Service Worker وطلب الإذن
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js").then(function (reg) {
+          console.log("Service Worker Registered");
+
+          // طلب الإذن بالإشعارات
+          Notification.requestPermission().then((permission) => {
+            if (permission === "granted") {
+              startSmartReminders(reg);
+            }
+          });
+        });
+      }
+
+      function startSmartReminders(registration) {
+        const reminders = [
+          {
+            title: "ابنِ قصراً في الجنة",
+            body: "قراءة سورة الإخلاص عشر مرات تبني لك قصراً في الجنة",
+            type: "palace",
+          },
+          {
+            title: "ازرع نخلة في الجنة",
+            body: "قل سبحان الله العظيم وبحمده لتغرس لك نخلة",
+            type: "palm",
+          },
+          {
+            title: "اجمع كنزاً ثميناً",
+            body: "لا حول ولا قوة إلا بالله كنز من كنوز الجنة",
+            type: "kanz",
+          },
+          {
+            title: "غفران الخطايا",
+            body: "قل سبحان الله وبحمده مائة مرة لتغفر خطاياك",
+            type: "ghofran",
+          },
+          {
+            title: "الخمس جوائز",
+            body: "مائة مرة من ذكر التوحيد تعادل عتق عشر رقاب وتكتب لك مائة حسنة",
+            type: "jwa2z",
+          },
+          {
+            title: "ازرع شجرة في الجنة",
+            body: "سبحان الله والحمد لله ولا إله إلا الله والله أكبر يغرس لك بكل واحدة شجرة",
+            type: "tree",
+          },
+          {
+            title: "الذكر المضاعف",
+            body: "ضاعف حسناتك بكلمات تعدل عبادة ساعات طويلة",
+            type: "ager",
+          },
+        ];
+
+        // وظيفة لإرسال إشعار عشوائي كل 30 دقيقة
+        setInterval(() => {
+          const randomReminder =
+            reminders[Math.floor(Math.random() * reminders.length)];
+
+          registration.showNotification(randomReminder.title, {
+            body: randomReminder.body,
+            icon: "img/Logo.png",
+            badge: "img/Logo.png",
+            data: { type: randomReminder.type }, // نرسل نوع الذكر هنا
+            vibrate: [200, 100, 200],
+          });
+        }, 30 * 60 * 1000); // 30 دقيقة
+      }
+
+      // كود إضافي: لجعل التطبيق يفتح صفحة الذكر تلقائياً عند الدخول من الإشعار
+      window.addEventListener("load", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get("type");
+        if (type && dhikrSettings[type]) {
+          openDhikr(type); // سيفتح صفحة الذكر (مثل القصر) فوراً
         }
       });
 
