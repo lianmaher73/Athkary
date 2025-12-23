@@ -2,7 +2,10 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>اعمل للجنة</title>
     <link rel="manifest" href="manifest.json" />
     <link
@@ -22,6 +25,8 @@
         background-color: var(--light-color);
         margin: 0;
         overflow-x: hidden;
+        user-select: none;
+        -webkit-user-select: none;
       }
 
       .header {
@@ -64,7 +69,7 @@
 
       .card-title {
         padding: 15px 10px;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
         color: var(--main-color);
       }
@@ -72,6 +77,7 @@
         background: var(--main-color);
         color: white;
         padding: 10px;
+        font-size: 14px;
       }
 
       #sub-page {
@@ -80,51 +86,43 @@
 
       .hadith-box {
         background: white;
-        padding: 20px;
+        padding: 15px;
         border-radius: 15px;
         margin-bottom: 20px;
-        border-top: 2px solid #eee;
-        border-bottom: 2px solid #eee;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
       }
 
       .hadith-text {
-        font-size: 1.1rem;
+        font-size: 1rem;
         line-height: 1.6;
         font-weight: 500;
-      }
-      .highlight {
-        color: var(--main-color);
-        font-weight: bold;
+        margin: 0;
       }
 
+      /* تعديل الدائرة والعداد */
       .circle-frame {
         position: relative;
         overflow: hidden;
-        width: 300px; /* جعلتها دائرة متناسقة */
-        height: 300px;
-        border: 5px solid var(--main-color);
+        width: 250px;
+        height: 250px;
+        border: 10px solid var(--main-color);
         border-radius: 50%;
-        margin: 20px auto;
+        margin: 90px auto;
         display: flex;
         align-items: center;
         justify-content: center;
         background: white;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         cursor: pointer;
+        touch-action: manipulation; /* يمنع الزوم عند النقر السريع */
       }
 
-      .circle-frame img {
-        width: 85%;
-        height: 85%;
-        object-fit: contain;
-        transition: transform 0.2s;
-        z-index: 10; /* لتبقى الصور فوق المطر */
-      }
-
-      .big-counter {
-        font-size: 80px;
-        font-weight: bold;
+      #counter-display {
+        font-size: 6.5rem;
+        font-weight: 400;
         color: var(--main-color);
-        margin-top: 10px;
+        z-index: 10;
+        transition: transform 0.1s ease;
       }
 
       .footer {
@@ -143,29 +141,31 @@
         cursor: pointer;
       }
 
-      /* أنيميشن المطر */
+      /* أنيميشن المطر (النجوم) */
       .particle {
         position: absolute;
         pointer-events: none;
-        top: -30px;
-        animation: rain-animation 1.5s linear forwards;
-        font-size: 22px;
-        z-index: 5;
+        top: -20px;
+        z-index: 1;
+        animation: rain-animation 1.2s linear forwards;
+      }
+      .highlight {
+        background-color: var(--main-color); /* اللون العنابي #4f1a2a */
+        color: white; /* لون الخط أبيض للوضوح */
+        padding: 2px 8px; /* مساحة صغيرة حول الكلمة */
+        border-radius: 5px; /* حواف ناعمة */
+        font-weight: normal;
+        display: inline-block; /* لضمان ظهور الخلفية بشكل مرتب */
+        margin: 2px;
       }
 
       @keyframes rain-animation {
         0% {
           transform: translateY(0);
-          opacity: 0;
-        }
-        10% {
-          opacity: 1;
-        }
-        90% {
           opacity: 1;
         }
         100% {
-          transform: translateY(350px);
+          transform: translateY(320px);
           opacity: 0;
         }
       }
@@ -175,8 +175,12 @@
     <div class="header">
       <div id="back-icon" class="back-btn" onclick="showMain()">→</div>
       <div id="page-title">اعمل للجنة</div>
-      <div style="visibility: hidden">من أنا؟</div>
-      <div hidden>من أنا؟</div>
+      <div
+        style="cursor: pointer; font-size: 0.8rem; opacity: 0.8"
+        onclick="alert('هذا التطبيق صدقة جارية.. لا تنسونا من صالح دعائكم ✨')"
+      >
+        من أنا؟
+      </div>
     </div>
 
     <div class="container">
@@ -200,266 +204,11 @@
           <p id="hadith-content" class="hadith-text"></p>
         </div>
         <div class="circle-frame" onclick="increment()">
-          <img id="dhikr-image" src="" alt="icon" />
+          <div id="counter-display">0</div>
         </div>
-        <div id="counter-display" class="big-counter">0</div>
       </div>
     </div>
 
-    <script>
-      // 1. لوحة التحكم: أي شيء تضيفينه هنا سيظهر فوراً كبوكس جديد في الصفحة
-      const dhikrSettings = {
-        palm: {
-          title: "نخلة",
-          limit: 1, // كل واحدة بنخلة، لذا يهز عند كل ضغطة
-          btn: "ازرع نخلة 🌴",
-          steps: ["img/nakhel1.png", "img/nakhel2.png", "img/nakhel3.png"],
-          text: "قال رسول الله ﷺ:<br> من قال: سبحان الله العظيم وبحمده، غرست له نخلة في الجنة",
-        },
-        palace: {
-          title: "قصر",
-          limit: 10, // القصر بعد 10 مرات
-          btn: "عمّر قصراً 🏰",
-          steps: ["img/castel1.png", "img/castel2.png", "img/castel3.png"],
-          text: "قال رسول الله ﷺ:<br> من قرأ قُلْ هُوَ اللهُ أَحَدٌ عشرَ مراتٍ، بنى اللهُ له قصراً في الجنَّةِ",
-        },
-        kanz: {
-          title: "كنز",
-          limit: 1,
-          btn: "اجمع كنزاً 💰",
-          steps: ["img/kanz1.png", "img/kanz2.png", "img/kanz3.png"],
-          text: "لا حول ولا قوة إلا بالله كنز من كنوز الجنة",
-        },
-        house: {
-          title: "بيت",
-          limit: 8, // الضحى 4 وقبلها 4 كما في الحديث
-          btn: "ابنِ بيتاً 🏠",
-          steps: ["img/house1.png", "img/house2.png", "img/house3.png"],
-          text: "من صلى الضحى أربعاً وقبل الأولى أربعاً بني له بها بيت في الجنة",
-        },
-        ghofran: {
-          title: "غفران",
-          limit: 100, // غفران الخطايا بعد 100 مرة
-          btn: "غفران الخطايا ✨",
-          steps: ["img/face1.png", "img/face2.png", "img/face3.png"],
-          text: "يقول النبي ﷺ:<br> من قال سبحان الله وبحمده مائة مرة غفرت خطاياه وإن كانت مثل زبد البحر",
-        },
-        jwa2z: {
-          title: "الخمسُ جوائز",
-          limit: 100, // مائة مرة للحصول على الجوائز
-          btn: "5 جوائز في ذكر 🛡️",
-          steps: ["img/face1.png", "img/face2.png", "img/face3.png"],
-          text: "من قال لا إله إلا الله.. مائة مرة؛ كانت له عدل عشر رقاب، وكتب له مائة حسنة، ومحيت عنه مائة سيئة...",
-        },
-        tree: {
-          title: "شجر",
-          limit: 1, // كل كلمة بشجرة
-          btn: "ازرع شجر 🌳",
-          steps: ["img/nakhel1.png", "img/nakhel2.png", "img/nakhel3.png"],
-          text: "سبحان الله والحمد لله ولا إله إلا الله والله أكبر يغرس لك بكل واحدة شجرة في الجنة",
-        },
-        ager: {
-          title: "الذكرُ المضاعف",
-          limit: 3, // النبي ﷺ قالها 3 مرات
-          btn: "ضاعف حسناتك ⚖️",
-          steps: ["img/face1.png", "img/face2.png", "img/face3.png"],
-          text: "لقد قلتُ بعدكِ أربع كلمات، ثلاث مرات، لو وُزنت بما قلتِ منذ اليوم لوزنتهن...",
-        },
-
-        // هل تريدين إضافة بوكس جديد؟ فقط انسخي السطر بالأعلى وغيري الاسم!
-      };
-
-      let currentType = "";
-      let data = JSON.parse(localStorage.getItem("heavenData")) || {};
-
-      // تهيئة العدادات المفقودة (عشان لو أضفتِ نوع جديد ما يضرب الكود)
-      Object.keys(dhikrSettings).forEach((key) => {
-        if (!data[key]) data[key] = 0;
-      });
-
-      // 2. دالة بناء الواجهة تلقائياً (عشان ما تلمسي الـ HTML)
-      function buildGrid() {
-        const grid = document.querySelector(".grid");
-        grid.innerHTML = ""; // مسح الشبكة القديمة
-
-        Object.keys(dhikrSettings).forEach((key) => {
-          const item = dhikrSettings[key];
-          grid.innerHTML += `
-              <div class="card" onclick="openDhikr('${key}')">
-                  <div class="card-title" id="main-${key}">${data[key]} ${item.title}</div>
-                  <div class="card-action">${item.btn}</div>
-              </div>
-          `;
-        });
-      }
-
-      function openDhikr(type) {
-        currentType = type;
-        document.getElementById("main-page").style.display = "none";
-        document.getElementById("sub-page").style.display = "block";
-        document.getElementById("back-icon").style.visibility = "visible";
-
-        document.getElementById("page-title").innerText =
-          dhikrSettings[type].title;
-        document.getElementById("hadith-content").innerHTML =
-          dhikrSettings[type].text;
-        updateSubPageUI();
-      }
-
-      function updateSubPageUI() {
-        const count = data[currentType];
-        const item = dhikrSettings[currentType];
-        document.getElementById("counter-display").innerText = count;
-
-        const imgElement = document.getElementById("dhikr-image");
-        // منطق الصور: 0 يعطي الصورة الأولى، أكثر من 0 يعطي الصورة الأخيرة
-        imgElement.src = count > 0 ? item.steps[2] : item.steps[0];
-      }
-      function showMain() {
-        document.getElementById("main-page").style.display = "block";
-        document.getElementById("sub-page").style.display = "none";
-        document.getElementById("back-icon").style.visibility = "hidden";
-        document.getElementById("page-title").innerText = "اعمل للجنة";
-
-        // إعادة بناء الشبكة لتحديث الأرقام في الصفحة الرئيسية عند الرجوع
-        buildGrid();
-      }
-      function updateMainCards() {
-        buildGrid();
-      }
-
-      function increment() {
-        data[currentType]++;
-        updateSubPageUI();
-
-        const count = data[currentType];
-        const limit = dhikrSettings[currentType].limit || 100; // الافتراضي 100 إذا لم يحدد
-        const imgElement = document.getElementById("dhikr-image");
-
-        // 1. منطق الاهتزاز والتمييز عند الوصول للهدف
-        if (count % limit === 0) {
-          // اهتزاز طويل ومميز للتنبيه بالوصول للرقم المطلوب
-          if (navigator.vibrate) navigator.vibrate([400, 100, 400]);
-
-          // تغيير لون العداد للذهبي مؤقتاً كنوع من المكافأة البصرية
-          document.getElementById("counter-display").style.color = "#d4af37";
-          setTimeout(() => {
-            document.getElementById("counter-display").style.color =
-              "var(--main-color)";
-          }, 1000);
-        } else {
-          // اهتزاز خفيف جداً مع الضغطات العادية
-          if (navigator.vibrate) navigator.vibrate(40);
-        }
-
-        // 2. أنيميشن النمو السينمائي
-        const steps = dhikrSettings[currentType].steps;
-        imgElement.src = steps[0];
-        setTimeout(() => {
-          imgElement.src = steps[1];
-        }, 100);
-        setTimeout(() => {
-          imgElement.src = steps[2];
-        }, 250);
-
-        // 3. مطر النجوم والتخزين
-        createParticle();
-        localStorage.setItem("heavenData", JSON.stringify(data));
-      }
-      function createParticle() {
-        // نتأكد أننا نمسك الدائرة الموجودة في الصفحة الفرعية
-        const container = document.querySelector("#sub-page .circle-frame");
-        if (!container) return; // حماية للكود في حال لم يجد الدائرة
-
-        for (let i = 0; i < 10; i++) {
-          setTimeout(() => {
-            const particle = document.createElement("div");
-            particle.className = "particle";
-            particle.innerText = "✨";
-
-            // توزيع عشوائي
-            const randomX = Math.random() * 100;
-            particle.style.left = `${randomX}%`;
-
-            const duration = 1 + Math.random() * 0.5;
-            particle.style.animationDuration = `${duration}s`;
-
-            container.appendChild(particle);
-
-            // حذف النجمة بعد انتهاء الحركة
-            setTimeout(() => particle.remove(), 1500);
-          }, i * 50);
-        }
-      }
-      function resetAll() {
-        if (confirm("هل تريد تصفير جميع العدادات؟")) {
-          // تصفير جميع القيم بناءً على المفاتيح الموجودة في dhikrSettings
-          Object.keys(dhikrSettings).forEach((key) => {
-            data[key] = 0;
-          });
-          localStorage.setItem("heavenData", JSON.stringify(data));
-          buildGrid(); // إعادة بناء البطاقات لتظهر الأصفار
-        }
-      }
-
-      function showBalance() {
-        const modal = document.getElementById("balance-modal");
-        const listContainer = document.getElementById("balance-list");
-        const closeBtn = modal.querySelector("button"); // إمساك الزر داخل المودال
-
-        listContainer.innerHTML = "";
-        let hasSomething = false;
-
-        Object.keys(dhikrSettings).forEach((key) => {
-          const count = data[key];
-          if (count > 0) {
-            hasSomething = true;
-            listContainer.innerHTML += `<div>✅ ${count} ${dhikrSettings[key].title}</div>`;
-          }
-        });
-
-        if (!hasSomething) {
-          listContainer.innerHTML =
-            "<div style='text-align:center; color:gray;'>رصيدك فارغ حالياً.. ابدأ بالذكر لتملأ ميزانك! 🤍</div>";
-          closeBtn.innerText = "سأبدأ الآن 💪🏻"; // نص تحفيزي إذا كان الرصيد 0
-        } else {
-          closeBtn.innerText = "تقبل الله 🙏🏻🤍"; // النص الإيماني إذا وجد رصيد
-        }
-
-        modal.style.display = "flex";
-      }
-
-      function closeBalance() {
-        document.getElementById("balance-modal").style.display = "none";
-      }
-      function checkDailyReset() {
-        const lastResetDate = localStorage.getItem("lastResetDate");
-        const today = new Date().toLocaleDateString(); // يعطي تاريخ اليوم بصيغة نصية
-
-        if (lastResetDate !== today) {
-          // إذا كان التاريخ المخزن مختلف عن تاريخ اليوم (يعني دخلنا في يوم جديد)
-          Object.keys(data).forEach((key) => {
-            data[key] = 0;
-          });
-          localStorage.setItem("heavenData", JSON.stringify(data));
-          localStorage.setItem("lastResetDate", today); // تحديث تاريخ آخر تصفير
-          console.log("تم تصفير العدادات ليوم جديد ✨");
-        }
-      }
-      // إغلاق النافذة عند الضغط على الخلفية السوداء
-      window.onclick = function (event) {
-        const modal = document.getElementById("balance-modal");
-        if (event.target == modal) {
-          closeBalance();
-        }
-      };
-
-      // استدعاء الدالة فور تشغيل التطبيق
-      checkDailyReset();
-
-      // تشغيل النظام عند التحميل
-      buildGrid();
-    </script>
     <div
       id="balance-modal"
       style="
@@ -483,7 +232,6 @@
           width: 80%;
           max-width: 350px;
           text-align: center;
-          position: relative;
           box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         "
       >
@@ -506,7 +254,7 @@
             background: var(--main-color);
             color: white;
             border: none;
-            padding: 10px 25px;
+            padding: 12px;
             border-radius: 10px;
             cursor: pointer;
             width: 100%;
@@ -517,6 +265,186 @@
         </button>
       </div>
     </div>
+
+    <script>
+      const dhikrSettings = {
+        palm: {
+          title: "نخلة",
+          limit: 1,
+          btn: "ازرع نخلة ",
+          text: "قال رسول الله ﷺ:<br> من قال: <span class='highlight'>سبحان الله العظيم وبحمده</span>، غرست له نخلة في الجنة",
+        },
+        palace: {
+          title: "قصر",
+          limit: 10,
+          btn: "عمّر قصراً ",
+          text: "قال رسول الله ﷺ:<br> من قرأ <span class='highlight'>قُلْ هُوَ اللهُ أَحَدٌ</span> <span class='highlight'>عشرَ مراتٍ</span>، بنى اللهُ له قصراً في الجنَّةِ",
+        },
+        kanz: {
+          title: "كنز",
+          limit: 1,
+          btn: "اجمع كنزاً ",
+          text: "قال رسول الله ﷺ:<br><span class='highlight'>لا حول ولا قوة إلا بالله</span> كنز من كنوز الجنة",
+        },
+
+        ghofran: {
+          title: "غفران",
+          limit: 100,
+          btn: "غفران الخطايا ",
+          text: "قال رسول الله ﷺ:<br> من قال <span class='highlight'>سبحان الله وبحمده</span> <span class='highlight'>مائة مرة</span> غفرت خطاياه وإن كانت مثل زبد البحر",
+        },
+        jwa2z: {
+          title: "الخمسُ جوائز",
+          limit: 100,
+          btn: "5 جوائز في ذكر ",
+          text: "قال رسول الله ﷺ:<br>من قال <span class='highlight'>لا إله إلا الله وحده لا شريك له..</span> <span class='highlight'>مائة مرة</span>؛ كانت له عدل عشر رقاب، وكتب له مائة حسنة، ومحيت عنه مائة سيئة...",
+        },
+        tree: {
+          title: "شجر",
+          limit: 1,
+          btn: "ازرع شجر ",
+          text: "قال رسول الله ﷺ:<br> قل <span class='highlight'>سبحان الله والحمد لله ولا إله إلا الله والله أكبر</span> يغرس لك بكل واحدة شجرة في الجنة",
+        },
+        ager: {
+          title: "الذكرُ المضاعف",
+          limit: 3,
+          btn: "ضاعف حسناتك ",
+          text: "عن جويرية -رضي الله عنها-: أن النبي ﷺ خرج من عندها، ثم رجع بعد أن أضحى وهي جالسة، فقال: 'ما زلتِ على الحال التي فارقتكِ عليها؟' قالت: نعم. قال النبي ﷺ: لقد قلتُ بعدكِ أربع كلمات، <span class='highlight'>ثلاث مرات</span>، لو وزنت بما قلتِ منذ اليوم لوزنتهن:<br><span class='highlight'>سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته</span>.",
+        },
+      };
+
+      let currentType = "";
+      let data = JSON.parse(localStorage.getItem("heavenData")) || {};
+
+      Object.keys(dhikrSettings).forEach((key) => {
+        if (!data[key]) data[key] = 0;
+      });
+
+      function buildGrid() {
+        const grid = document.querySelector(".grid");
+        grid.innerHTML = "";
+        Object.keys(dhikrSettings).forEach((key) => {
+          const item = dhikrSettings[key];
+          grid.innerHTML += `
+              <div class="card" onclick="openDhikr('${key}')">
+                  <div class="card-title">"${data[key]}" ${item.title}</div>
+                  <div class="card-action">${item.btn}</div>
+              </div>
+          `;
+        });
+      }
+
+      function openDhikr(type) {
+        currentType = type;
+        document.getElementById("main-page").style.display = "none";
+        document.getElementById("sub-page").style.display = "block";
+        document.getElementById("back-icon").style.visibility = "visible";
+        document.getElementById("page-title").innerText =
+          dhikrSettings[type].title;
+        document.getElementById("hadith-content").innerHTML =
+          dhikrSettings[type].text;
+        document.getElementById("counter-display").innerText = data[type];
+      }
+
+      function showMain() {
+        document.getElementById("main-page").style.display = "block";
+        document.getElementById("sub-page").style.display = "none";
+        document.getElementById("back-icon").style.visibility = "hidden";
+        document.getElementById("page-title").innerText = "اعمل للجنة";
+        buildGrid();
+      }
+
+      function increment() {
+        if (!currentType) return;
+        data[currentType]++;
+
+        const display = document.getElementById("counter-display");
+        display.innerText = data[currentType];
+
+        const limit = dhikrSettings[currentType].limit || 100;
+        if (data[currentType] % limit === 0) {
+          if (navigator.vibrate) navigator.vibrate([400, 100, 400]);
+          display.style.color = "#d4af37";
+          setTimeout(() => (display.style.color = "var(--main-color)"), 1000);
+        } else {
+          if (navigator.vibrate) navigator.vibrate(40);
+        }
+
+        createParticle();
+        localStorage.setItem("heavenData", JSON.stringify(data));
+      }
+
+      function createParticle() {
+        const container = document.querySelector(".circle-frame");
+        if (!container) return;
+
+        for (let i = 0; i < 8; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.innerText = "✨";
+          const randomX = Math.random() * 100;
+          particle.style.left = `${randomX}%`;
+          const duration = 0.8 + Math.random() * 0.7;
+          particle.style.animationDuration = `${duration}s`;
+          particle.style.fontSize = Math.random() * 10 + 15 + "px";
+          container.appendChild(particle);
+          setTimeout(() => particle.remove(), 1200);
+        }
+      }
+
+      function resetAll() {
+        if (confirm("هل تريد تصفير جميع العدادات؟")) {
+          Object.keys(dhikrSettings).forEach((key) => (data[key] = 0));
+          localStorage.setItem("heavenData", JSON.stringify(data));
+          buildGrid();
+        }
+      }
+
+      function showBalance() {
+        const modal = document.getElementById("balance-modal");
+        const listContainer = document.getElementById("balance-list");
+        const closeBtn = modal.querySelector("button");
+        listContainer.innerHTML = "";
+        let hasSomething = false;
+
+        Object.keys(dhikrSettings).forEach((key) => {
+          if (data[key] > 0) {
+            hasSomething = true;
+            listContainer.innerHTML += `<div>✅ ${data[key]} ${dhikrSettings[key].title}</div>`;
+          }
+        });
+
+        if (!hasSomething) {
+          listContainer.innerHTML =
+            "<div style='text-align:center; color:gray;'>رصيدك فارغ حالياً.. ابدأ بالذكر لتملأ ميزانك! 🤍</div>";
+          closeBtn.innerText = "سأبدأ الآن 💪🏻";
+        } else {
+          closeBtn.innerText = "تقبل الله 🙏🏻🤍";
+        }
+        modal.style.display = "flex";
+      }
+
+      function closeBalance() {
+        document.getElementById("balance-modal").style.display = "none";
+      }
+
+      function checkDailyReset() {
+        const lastResetDate = localStorage.getItem("lastResetDate");
+        const today = new Date().toLocaleDateString();
+        if (lastResetDate !== today) {
+          Object.keys(data).forEach((key) => (data[key] = 0));
+          localStorage.setItem("heavenData", JSON.stringify(data));
+          localStorage.setItem("lastResetDate", today);
+        }
+      }
+
+      window.onclick = function (event) {
+        const modal = document.getElementById("balance-modal");
+        if (event.target == modal) closeBalance();
+      };
+
+      checkDailyReset();
+      buildGrid();
+    </script>
   </body>
 </html>
-
