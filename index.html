@@ -485,6 +485,7 @@
         if (!data[key]) data[key] = 0;
       });
 
+      // --- وظائف الواجهة الأساسية ---
       function buildGrid() {
         const grid = document.querySelector(".grid");
         grid.innerHTML = "";
@@ -567,6 +568,13 @@
         localStorage.setItem("darkMode", isDark);
       }
 
+      function toggleNotifications() {
+        const isEnabled = document.getElementById(
+          "notifications-toggle"
+        ).checked;
+        localStorage.setItem("notificationsEnabled", isEnabled);
+      }
+
       function resetAll() {
         if (confirm("تصفير العدادات؟")) {
           Object.keys(data).forEach((k) => (data[k] = 0));
@@ -574,6 +582,7 @@
           showMain();
         }
       }
+
       function showBalance() {
         const list = document.getElementById("balance-list");
         list.innerHTML = "";
@@ -583,43 +592,15 @@
         });
         document.getElementById("balance-modal").style.display = "flex";
       }
+
       function closeBalance() {
         document.getElementById("balance-modal").style.display = "none";
       }
 
-      window.onpopstate = () => showMain(true);
-
-      document.getElementById("suggestion-form").onsubmit = async (e) => {
-        e.preventDefault();
-        const status = document.getElementById("form-status");
-        const res = await fetch(e.target.action, {
-          method: "POST",
-          body: new FormData(e.target),
-          headers: { Accept: "application/json" },
-        });
-        if (res.ok) {
-          status.style.display = "block";
-          status.innerText = "تم الإرسال بنجاح! ";
-          e.target.reset();
-          setTimeout(() => {
-            status.style.display = "none";
-          }, 4000);
-        }
-      };
-
-      window.addEventListener("load", () => {
-        const savedDarkMode = localStorage.getItem("darkMode") === "true";
-        if (savedDarkMode) {
-          document.getElementById("dark-mode-toggle").checked = true;
-          document.body.classList.add("dark-theme");
-        }
-      });
-      // تسجيل الـ Service Worker وطلب الإذن
+      // --- نظام الإشعارات والتذكير ---
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("sw.js").then(function (reg) {
           console.log("Service Worker Registered");
-
-          // طلب الإذن بالإشعارات
           Notification.requestPermission().then((permission) => {
             if (permission === "granted") {
               startSmartReminders(reg);
@@ -628,9 +609,8 @@
         });
       }
 
-      // وظيفة تشغيل التذكيرات الذكية
       function startSmartReminders(registration) {
-        const reminders = [
+        const remindersList = [
           {
             title: "ابنِ قصراً في الجنة",
             body: "قراءة سورة الإخلاص عشر مرات تبني لك قصراً في الجنة",
@@ -668,16 +648,31 @@
           },
         ];
 
-        setInterval(() => {
-          // فحص هل المستخدم مفعل الخيار من الإعدادات
+        // 1. اختبار فوري بعد 5 ثوانٍ
+        console.log("اختبار فوري سيعمل بعد 5 ثوانٍ...");
+        setTimeout(() => {
           const isEnabled = document.getElementById(
             "notifications-toggle"
           ).checked;
+          if (isEnabled) {
+            registration.showNotification(remindersList[0].title, {
+              body: remindersList[0].body,
+              icon: "img/Logo.png",
+              badge: "img/Logo.png",
+              data: { type: remindersList[0].type },
+              vibrate: [200, 100, 200],
+            });
+          }
+        }, 5000);
 
+        // 2. تذكير دوري كل 30 دقيقة
+        setInterval(() => {
+          const isEnabled = document.getElementById(
+            "notifications-toggle"
+          ).checked;
           if (isEnabled && Notification.permission === "granted") {
             const randomReminder =
-              reminders[Math.floor(Math.random() * reminders.length)];
-
+              remindersList[Math.floor(Math.random() * remindersList.length)];
             registration.showNotification(randomReminder.title, {
               body: randomReminder.body,
               icon: "img/Logo.png",
@@ -686,106 +681,53 @@
               vibrate: [200, 100, 200],
             });
           }
-        }, 30 * 60 * 1000); // كل 30 دقيقة
+        }, 30 * 60 * 1000);
       }
 
-      // وظيفة حفظ حالة الخيار في الذاكرة المحلية
-      function toggleNotifications() {
-        const isEnabled = document.getElementById(
-          "notifications-toggle"
-        ).checked;
-        localStorage.setItem("notificationsEnabled", isEnabled);
-      }
+      // --- أحداث التحميل والتنقل ---
+      window.onpopstate = () => showMain(true);
 
-      // عند تحميل الصفحة، استرجاع الحالة المحفوظة
       window.addEventListener("load", () => {
+        // استعادة الوضع الداكن
+        const savedDarkMode = localStorage.getItem("darkMode") === "true";
+        if (savedDarkMode) {
+          document.getElementById("dark-mode-toggle").checked = true;
+          document.body.classList.add("dark-theme");
+        }
+
+        // استعادة وضع الإشعارات
         const savedNotify = localStorage.getItem("notificationsEnabled");
         if (savedNotify !== null) {
           document.getElementById("notifications-toggle").checked =
             savedNotify === "true";
         }
-      });
-      const reminders = [
-        {
-          title: "ابنِ قصراً في الجنة",
-          body: "قراءة سورة الإخلاص عشر مرات تبني لك قصراً في الجنة",
-          type: "palace",
-        },
-        {
-          title: "ازرع نخلة في الجنة",
-          body: "قل سبحان الله العظيم وبحمده لتغرس لك نخلة",
-          type: "palm",
-        },
-        {
-          title: "اجمع كنزاً ثميناً",
-          body: "لا حول ولا قوة إلا بالله كنز من كنوز الجنة",
-          type: "kanz",
-        },
-        {
-          title: "غفران الخطايا",
-          body: "قل سبحان الله وبحمده مائة مرة لتغفر خطاياك",
-          type: "ghofran",
-        },
-        {
-          title: "الخمس جوائز",
-          body: "مائة مرة من ذكر التوحيد تعادل عتق عشر رقاب وتكتب لك مائة حسنة",
-          type: "jwa2z",
-        },
-        {
-          title: "ازرع شجرة في الجنة",
-          body: "سبحان الله والحمد لله ولا إله إلا الله والله أكبر يغرس لك بكل واحدة شجرة",
-          type: "tree",
-        },
-        {
-          title: "الذكر المضاعف",
-          body: "ضاعف حسناتك بكلمات تعدل عبادة ساعات طويلة",
-          type: "ager",
-        },
-      ];
-      // --- كود للاختبار الفوري ---
-      console.log("سيتم إرسال إشعار اختبار بعد 5 ثوانٍ...");
-      setTimeout(() => {
-        const testReminder = reminders[0]; // سيختار "قصر" للاختبار
-        registration.showNotification(testReminder.title, {
-          body: testReminder.body,
-          icon: "img/Logo.png",
-          badge: "img/Logo.png",
-          data: { type: testReminder.type },
-          vibrate: [200, 100, 200],
-        });
-      }, 5000); // 5 ثوانٍ فقط بدلاً من 30 دقيقة
-      // -------------------------
-      // وظيفة لإرسال إشعار عشوائي كل 30 دقيقة
-      setInterval(() => {
-        const randomReminder =
-          reminders[Math.floor(Math.random() * reminders.length)];
 
-        registration.showNotification(randomReminder.title, {
-          body: randomReminder.body,
-          icon: "img/Logo.png",
-          badge: "img/Logo.png",
-          data: { type: randomReminder.type }, // نرسل نوع الذكر هنا
-          vibrate: [200, 100, 200],
-        });
-      }, 30 * 60 * 1000); // 30 دقيقة
-
-      // كود إضافي: لجعل التطبيق يفتح صفحة الذكر تلقائياً عند الدخول من الإشعار
-      window.addEventListener("load", () => {
+        // معالجة الدخول من الإشعار (Deep Linking)
         const urlParams = new URLSearchParams(window.location.search);
         const type = urlParams.get("type");
         if (type && dhikrSettings[type]) {
-          openDhikr(type); // سيفتح صفحة الذكر (مثل القصر) فوراً
-        }
-      });
-
-      window.addEventListener("load", () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const type = urlParams.get("type");
-        if (type && dhikrSettings[type]) {
-          // تأخير بسيط لضمان تحميل الواجهة قبل فتح الصفحة الفرعية
           setTimeout(() => openDhikr(type), 500);
         }
       });
+
+      // معالجة نموذج الاقتراحات
+      document.getElementById("suggestion-form").onsubmit = async (e) => {
+        e.preventDefault();
+        const status = document.getElementById("form-status");
+        const res = await fetch(e.target.action, {
+          method: "POST",
+          body: new FormData(e.target),
+          headers: { Accept: "application/json" },
+        });
+        if (res.ok) {
+          status.style.display = "block";
+          status.innerText = "تم الإرسال بنجاح! ❤️";
+          e.target.reset();
+          setTimeout(() => {
+            status.style.display = "none";
+          }, 4000);
+        }
+      };
 
       buildGrid();
     </script>
