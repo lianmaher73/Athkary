@@ -6,16 +6,13 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>اعمل للجنة</title>
+    <title>أجر</title>
     <link rel="manifest" href="manifest.json" />
-    <link
-      rel="apple-touch-icon"
-      href="https://cdn-icons-png.flaticon.com/512/2913/2913520.png"
-    />
+    <link rel="apple-touch-icon" href="img/Logo.png" />
     <style>
       :root {
         --main-color: #4f1a2a;
-        --light-color: #f1fcef;
+        --light-color: #fceffc;
         --dark-color: #2b0b15;
         --white: #ffffff;
       }
@@ -196,15 +193,50 @@
     </style>
   </head>
   <body>
-    <div class="header">
-      <div id="back-icon" class="back-btn" onclick="showMain()">→</div>
-      <div onclick="openSettings()" style="cursor: pointer; font-size: 20px">
+    <div
+      class="header"
+      style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+      "
+    >
+      <div
+        onclick="openSettings()"
+        style="cursor: pointer; font-size: 22px; width: 40px; text-align: right"
+      >
         ⚙️
       </div>
-      <div id="page-title">اعمل للجنة</div>
 
       <div
-        style="cursor: pointer; font-size: 0.8rem; opacity: 0.8"
+        style="
+          flex-grow: 1;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        <div
+          id="back-icon"
+          class="back-btn"
+          onclick="showMain()"
+          style="margin-left: 10px"
+        >
+          →
+        </div>
+        <span id="page-title">اعمل للجنة</span>
+      </div>
+
+      <div
+        style="
+          cursor: pointer;
+          font-size: 0.8rem;
+          opacity: 0.9;
+          width: 60px;
+          text-align: left;
+        "
         onclick="openFeedback()"
       >
         من أنا؟
@@ -238,7 +270,7 @@
 
       <div id="settings-page">
         <div class="setting-row">
-          <span>🔊 صوت التسبيح</span>
+          <span> صوت التسبيح</span>
           <input
             type="checkbox"
             id="sound-toggle"
@@ -247,7 +279,7 @@
           />
         </div>
         <div class="setting-row">
-          <span>📳 الاهتزاز</span>
+          <span> الاهتزاز</span>
           <input
             type="checkbox"
             id="vibrate-toggle"
@@ -257,11 +289,11 @@
         </div>
         <div
           style="
-            background: #2ecc71;
+            background: #4f1a2a;
             color: white;
             padding: 20px;
             border-radius: 15px;
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: bold;
             margin-top: 20px;
           "
@@ -271,9 +303,11 @@
       </div>
 
       <div id="feedback-page">
-        <h3 style="color: var(--main-color)">يسعدنا سماع اقتراحاتك ✨</h3>
+        <h3 style="color: var(--main-color)">
+          هذا تطبيق صدقة جارية لا تنسوني من صالح دعائكم
+        </h3>
         <p style="font-size: 0.9rem; color: #666">
-          رأيك يساعدنا في تطوير التطبيق ليكون صدقة جارية أفضل.
+          رأيك يساعدني في تطوير التطبيق ليعمل بشكل أفضل.
         </p>
         <form
           id="suggestion-form"
@@ -299,7 +333,7 @@
               cursor: pointer;
             "
           >
-            إرسال الاقتراح 🚀
+            إرسال الاقتراح
           </button>
         </form>
         <p
@@ -440,6 +474,8 @@
 
       function openFeedback() {
         switchPage("feedback-page", "الاقتراحات");
+        // إخفاء رسالة الحالة عند فتح الصفحة من جديد
+        document.getElementById("form-status").style.display = "none";
       }
 
       function switchPage(pageId, title) {
@@ -512,8 +548,22 @@
         document.getElementById("balance-modal").style.display = "none";
       }
 
-      window.onpopstate = () => showMain(true);
+      // مراقبة زر الرجوع في الجهاز (أندرويد أو آيفون)
+      window.onpopstate = function (event) {
+        // نتحقق من أي صفحة فرعية مفتوحة حالياً
+        const subPage = document.getElementById("sub-page");
+        const settingsPage = document.getElementById("settings-page");
+        const feedbackPage = document.getElementById("feedback-page");
 
+        // إذا كانت أي واحدة منهم مفتوحة (display ليس none)
+        if (
+          subPage.style.display === "block" ||
+          settingsPage.style.display === "block" ||
+          feedbackPage.style.display === "block"
+        ) {
+          showMain(true); // نرجعه للرئيسية
+        }
+      };
       // معالجة نموذج الاقتراحات
       document.getElementById("suggestion-form").onsubmit = async (e) => {
         e.preventDefault();
@@ -525,9 +575,15 @@
         });
         status.style.display = "block";
         if (res.ok) {
+          status.style.display = "block";
           status.innerText = "تم الإرسال بنجاح! ❤️";
           e.target.reset();
-        } else status.innerText = "خطأ في الإرسال";
+
+          // إخفاء الرسالة تلقائياً بعد 4 ثوانٍ
+          setTimeout(() => {
+            status.style.display = "none";
+          }, 4000);
+        }
       };
 
       buildGrid();
