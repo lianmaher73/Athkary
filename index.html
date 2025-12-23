@@ -610,6 +610,15 @@
       }
 
       function startSmartReminders(registration) {
+        // تنبيه للتأكد أن الدالة تعمل
+        alert("بدأ نظام التذكير.. انتظر 5 ثوانٍ للإشعار");
+
+        // محاولة إرسال إشعار بدون انتظار الـ Service Worker (للاختبار فقط)
+        if (Notification.permission === "granted") {
+          new Notification("تنبيه فوري", {
+            body: "هذا اختبار مباشر بدون Service Worker",
+          });
+        }
         const remindersList = [
           {
             title: "ابنِ قصراً في الجنة",
