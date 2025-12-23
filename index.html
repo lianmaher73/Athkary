@@ -80,7 +80,10 @@
         font-size: 14px;
       }
 
-      #sub-page {
+      /* تنسيق الصفحات المخفية */
+      #sub-page,
+      #settings-page,
+      #feedback-page {
         display: none;
       }
 
@@ -99,7 +102,6 @@
         margin: 0;
       }
 
-      /* تعديل الدائرة والعداد */
       .circle-frame {
         position: relative;
         overflow: hidden;
@@ -107,14 +109,14 @@
         height: 250px;
         border: 10px solid var(--main-color);
         border-radius: 50%;
-        margin: 90px auto;
+        margin: 60px auto;
         display: flex;
         align-items: center;
         justify-content: center;
         background: white;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         cursor: pointer;
-        touch-action: manipulation; /* يمنع الزوم عند النقر السريع */
+        touch-action: manipulation;
       }
 
       #counter-display {
@@ -123,6 +125,28 @@
         color: var(--main-color);
         z-index: 10;
         transition: transform 0.1s ease;
+      }
+
+      .highlight {
+        background-color: var(--main-color);
+        color: white;
+        padding: 2px 8px;
+        border-radius: 5px;
+        display: inline-block;
+        margin: 2px;
+      }
+
+      /* ستايل صفحة الإعدادات */
+      .setting-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background: white;
+        margin-bottom: 10px;
+        border-radius: 12px;
+        font-weight: bold;
+        color: var(--main-color);
       }
 
       .footer {
@@ -141,22 +165,12 @@
         cursor: pointer;
       }
 
-      /* أنيميشن المطر (النجوم) */
       .particle {
         position: absolute;
         pointer-events: none;
         top: -20px;
         z-index: 1;
         animation: rain-animation 1.2s linear forwards;
-      }
-      .highlight {
-        background-color: var(--main-color); /* اللون العنابي #4f1a2a */
-        color: white; /* لون الخط أبيض للوضوح */
-        padding: 2px 8px; /* مساحة صغيرة حول الكلمة */
-        border-radius: 5px; /* حواف ناعمة */
-        font-weight: normal;
-        display: inline-block; /* لضمان ظهور الخلفية بشكل مرتب */
-        margin: 2px;
       }
 
       @keyframes rain-animation {
@@ -169,15 +183,29 @@
           opacity: 0;
         }
       }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+      }
     </style>
   </head>
   <body>
     <div class="header">
       <div id="back-icon" class="back-btn" onclick="showMain()">→</div>
+      <div onclick="openSettings()" style="cursor: pointer; font-size: 20px">
+        ⚙️
+      </div>
       <div id="page-title">اعمل للجنة</div>
+
       <div
         style="cursor: pointer; font-size: 0.8rem; opacity: 0.8"
-        onclick="alert('هذا التطبيق صدقة جارية.. لا تنسونا من صالح دعائكم ✨')"
+        onclick="openFeedback()"
       >
         من أنا؟
       </div>
@@ -207,6 +235,78 @@
           <div id="counter-display">0</div>
         </div>
       </div>
+
+      <div id="settings-page">
+        <div class="setting-row">
+          <span>🔊 صوت التسبيح</span>
+          <input
+            type="checkbox"
+            id="sound-toggle"
+            checked
+            style="width: 20px"
+          />
+        </div>
+        <div class="setting-row">
+          <span>📳 الاهتزاز</span>
+          <input
+            type="checkbox"
+            id="vibrate-toggle"
+            checked
+            style="width: 20px"
+          />
+        </div>
+        <div
+          style="
+            background: #2ecc71;
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+          "
+        >
+          المجموع: <span id="total-sum">0</span>
+        </div>
+      </div>
+
+      <div id="feedback-page">
+        <h3 style="color: var(--main-color)">يسعدنا سماع اقتراحاتك ✨</h3>
+        <p style="font-size: 0.9rem; color: #666">
+          رأيك يساعدنا في تطوير التطبيق ليكون صدقة جارية أفضل.
+        </p>
+        <form
+          id="suggestion-form"
+          action="https://formspree.io/f/mlgrznlk"
+          method="POST"
+        >
+          <input type="email" name="email" placeholder="إيميلك (اختياري)" />
+          <textarea
+            name="message"
+            required
+            placeholder="اكتب اقتراحك هنا..."
+          ></textarea>
+          <button
+            type="submit"
+            style="
+              background: var(--main-color);
+              color: white;
+              border: none;
+              padding: 12px;
+              border-radius: 10px;
+              width: 100%;
+              font-weight: bold;
+              cursor: pointer;
+            "
+          >
+            إرسال الاقتراح 🚀
+          </button>
+        </form>
+        <p
+          id="form-status"
+          style="margin-top: 15px; font-weight: bold; display: none"
+        ></p>
+      </div>
     </div>
 
     <div
@@ -232,7 +332,6 @@
           width: 80%;
           max-width: 350px;
           text-align: center;
-          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         "
       >
         <h3 style="color: var(--main-color); margin-top: 0">
@@ -245,7 +344,6 @@
             margin: 20px 0;
             line-height: 2;
             font-size: 1.1rem;
-            color: var(--dark-color);
           "
         ></div>
         <button
@@ -256,7 +354,6 @@
             border: none;
             padding: 12px;
             border-radius: 10px;
-            cursor: pointer;
             width: 100%;
             font-weight: bold;
           "
@@ -271,45 +368,44 @@
         palm: {
           title: "نخلة",
           limit: 1,
-          btn: "ازرع نخلة ",
+          btn: "ازرع نخلة",
           text: "قال رسول الله ﷺ:<br> من قال: <span class='highlight'>سبحان الله العظيم وبحمده</span>، غرست له نخلة في الجنة",
         },
         palace: {
           title: "قصر",
           limit: 10,
-          btn: "عمّر قصراً ",
+          btn: "عمّر قصراً",
           text: "قال رسول الله ﷺ:<br> من قرأ <span class='highlight'>قُلْ هُوَ اللهُ أَحَدٌ</span> <span class='highlight'>عشرَ مراتٍ</span>، بنى اللهُ له قصراً في الجنَّةِ",
         },
         kanz: {
           title: "كنز",
           limit: 1,
-          btn: "اجمع كنزاً ",
+          btn: "اجمع كنزاً",
           text: "قال رسول الله ﷺ:<br><span class='highlight'>لا حول ولا قوة إلا بالله</span> كنز من كنوز الجنة",
         },
-
         ghofran: {
           title: "غفران",
           limit: 100,
-          btn: "غفران الخطايا ",
-          text: "قال رسول الله ﷺ:<br> من قال <span class='highlight'>سبحان الله وبحمده</span> <span class='highlight'>مائة مرة</span> غفرت خطاياه وإن كانت مثل زبد البحر",
+          btn: "غفران الخطايا",
+          text: "قال رسول الله ﷺ:<br> من قال <span class='highlight'>سبحان الله وبحمده</span> <span class='highlight'>مائة مرة</span> غفرت خطاياه",
         },
         jwa2z: {
           title: "الخمسُ جوائز",
           limit: 100,
-          btn: "5 جوائز في ذكر ",
-          text: "قال رسول الله ﷺ:<br>من قال <span class='highlight'>لا إله إلا الله وحده لا شريك له..</span> <span class='highlight'>مائة مرة</span>؛ كانت له عدل عشر رقاب، وكتب له مائة حسنة، ومحيت عنه مائة سيئة...",
+          btn: "5 جوائز في ذكر",
+          text: "قال رسول الله ﷺ:<br>من قال <span class='highlight'>لا إله إلا الله وحده لا شريك له..</span> <span class='highlight'>مائة مرة</span>؛ كانت له عدل عشر رقاب...",
         },
         tree: {
           title: "شجر",
           limit: 1,
-          btn: "ازرع شجر ",
-          text: "قال رسول الله ﷺ:<br> قل <span class='highlight'>سبحان الله والحمد لله ولا إله إلا الله والله أكبر</span> يغرس لك بكل واحدة شجرة في الجنة",
+          btn: "ازرع شجر",
+          text: "قال رسول الله ﷺ:<br> قل <span class='highlight'>سبحان الله والحمد لله ولا إله إلا الله والله أكبر</span> يغرس لك بكل واحدة شجرة",
         },
         ager: {
           title: "الذكرُ المضاعف",
           limit: 3,
-          btn: "ضاعف حسناتك ",
-          text: "عن جويرية -رضي الله عنها-: أن النبي ﷺ خرج من عندها، ثم رجع بعد أن أضحى وهي جالسة، فقال: 'ما زلتِ على الحال التي فارقتكِ عليها؟' قالت: نعم. قال النبي ﷺ: لقد قلتُ بعدكِ أربع كلمات، <span class='highlight'>ثلاث مرات</span>، لو وزنت بما قلتِ منذ اليوم لوزنتهن:<br><span class='highlight'>سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته</span>.",
+          btn: "ضاعف حسناتك",
+          text: "عن جويرية رضي الله عنها أن النبي ﷺ قال: لقد قلتُ بعدكِ أربع كلمات، <span class='highlight'>ثلاث مرات</span>... <span class='highlight'>سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته</span>.",
         },
       };
 
@@ -324,140 +420,116 @@
         const grid = document.querySelector(".grid");
         grid.innerHTML = "";
         Object.keys(dhikrSettings).forEach((key) => {
-          const item = dhikrSettings[key];
-          grid.innerHTML += `
-              <div class="card" onclick="openDhikr('${key}')">
-                  <div class="card-title">"${data[key]}" ${item.title}</div>
-                  <div class="card-action">${item.btn}</div>
-              </div>
-          `;
+          grid.innerHTML += `<div class="card" onclick="openDhikr('${key}')"><div class="card-title">"${data[key]}" ${dhikrSettings[key].title}</div><div class="card-action">${dhikrSettings[key].btn}</div></div>`;
         });
       }
 
       function openDhikr(type) {
         currentType = type;
-        document.getElementById("main-page").style.display = "none";
-        document.getElementById("sub-page").style.display = "block";
-        document.getElementById("back-icon").style.visibility = "visible";
-        document.getElementById("page-title").innerText =
-          dhikrSettings[type].title;
+        switchPage("sub-page", dhikrSettings[type].title);
         document.getElementById("hadith-content").innerHTML =
           dhikrSettings[type].text;
         document.getElementById("counter-display").innerText = data[type];
-        window.history.pushState({ page: "sub" }, "Sub Page", "");
+      }
+
+      function openSettings() {
+        switchPage("settings-page", "الإعدادات");
+        const total = Object.values(data).reduce((a, b) => a + b, 0);
+        document.getElementById("total-sum").innerText = total;
+      }
+
+      function openFeedback() {
+        switchPage("feedback-page", "الاقتراحات");
+      }
+
+      function switchPage(pageId, title) {
+        ["main-page", "sub-page", "settings-page", "feedback-page"].forEach(
+          (id) => (document.getElementById(id).style.display = "none")
+        );
+        document.getElementById(pageId).style.display = "block";
+        document.getElementById("back-icon").style.visibility = "visible";
+        document.getElementById("page-title").innerText = title;
+        window.history.pushState({ page: pageId }, title, "");
       }
 
       function showMain(fromBackBtn = false) {
+        ["sub-page", "settings-page", "feedback-page"].forEach(
+          (id) => (document.getElementById(id).style.display = "none")
+        );
         document.getElementById("main-page").style.display = "block";
-        document.getElementById("sub-page").style.display = "none";
         document.getElementById("back-icon").style.visibility = "hidden";
         document.getElementById("page-title").innerText = "اعمل للجنة";
-
-        // إذا ضغط المستخدم على السهم في الشاشة (وليس زر الهاتف)
-        if (!fromBackBtn) {
-          window.history.back(); // هذا يحذف السجل الذي أضفناه لكي لا يحتاج للضغط مرتين
-        }
-
+        if (!fromBackBtn) window.history.replaceState(null, "Main", "");
         buildGrid();
       }
 
       function increment() {
-        if (!currentType) return;
         data[currentType]++;
-
-        const display = document.getElementById("counter-display");
-        display.innerText = data[currentType];
-
-        const limit = dhikrSettings[currentType].limit || 100;
-        if (data[currentType] % limit === 0) {
-          if (navigator.vibrate) navigator.vibrate([400, 100, 400]);
-          display.style.color = "#d4af37";
-          setTimeout(() => (display.style.color = "var(--main-color)"), 1000);
-        } else {
-          if (navigator.vibrate) navigator.vibrate(40);
+        document.getElementById("counter-display").innerText =
+          data[currentType];
+        if (document.getElementById("vibrate-toggle").checked) {
+          const limit = dhikrSettings[currentType].limit || 100;
+          navigator.vibrate(
+            data[currentType] % limit === 0 ? [400, 100, 400] : 40
+          );
         }
-
         createParticle();
         localStorage.setItem("heavenData", JSON.stringify(data));
       }
 
       function createParticle() {
         const container = document.querySelector(".circle-frame");
-        if (!container) return;
-
-        for (let i = 0; i < 8; i++) {
-          const particle = document.createElement("div");
-          particle.className = "particle";
-          particle.innerText = "✨";
-          const randomX = Math.random() * 100;
-          particle.style.left = `${randomX}%`;
-          const duration = 0.8 + Math.random() * 0.7;
-          particle.style.animationDuration = `${duration}s`;
-          particle.style.fontSize = Math.random() * 10 + 15 + "px";
-          container.appendChild(particle);
-          setTimeout(() => particle.remove(), 1200);
+        for (let i = 0; i < 6; i++) {
+          const p = document.createElement("div");
+          p.className = "particle";
+          p.innerText = "✨";
+          p.style.left = Math.random() * 100 + "%";
+          p.style.animationDuration = 0.8 + Math.random() * 0.5 + "s";
+          container.appendChild(p);
+          setTimeout(() => p.remove(), 1200);
         }
       }
 
       function resetAll() {
-        if (confirm("هل تريد تصفير جميع العدادات؟")) {
-          Object.keys(dhikrSettings).forEach((key) => (data[key] = 0));
+        if (confirm("تصفير العدادات؟")) {
+          Object.keys(data).forEach((k) => (data[k] = 0));
           localStorage.setItem("heavenData", JSON.stringify(data));
-          buildGrid();
+          showMain();
         }
       }
 
       function showBalance() {
-        const modal = document.getElementById("balance-modal");
-        const listContainer = document.getElementById("balance-list");
-        const closeBtn = modal.querySelector("button");
-        listContainer.innerHTML = "";
-        let hasSomething = false;
-
-        Object.keys(dhikrSettings).forEach((key) => {
-          if (data[key] > 0) {
-            hasSomething = true;
-            listContainer.innerHTML += `<div>✅ ${data[key]} ${dhikrSettings[key].title}</div>`;
-          }
+        const list = document.getElementById("balance-list");
+        list.innerHTML = "";
+        Object.keys(data).forEach((k) => {
+          if (data[k] > 0)
+            list.innerHTML += `<div>✅ ${data[k]} ${dhikrSettings[k].title}</div>`;
         });
-
-        if (!hasSomething) {
-          listContainer.innerHTML =
-            "<div style='text-align:center; color:gray;'>رصيدك فارغ حالياً.. ابدأ بالذكر لتملأ ميزانك! 🤍</div>";
-          closeBtn.innerText = "سأبدأ الآن 💪🏻";
-        } else {
-          closeBtn.innerText = "تقبل الله 🙏🏻🤍";
-        }
-        modal.style.display = "flex";
+        document.getElementById("balance-modal").style.display = "flex";
       }
 
       function closeBalance() {
         document.getElementById("balance-modal").style.display = "none";
       }
 
-      function checkDailyReset() {
-        const lastResetDate = localStorage.getItem("lastResetDate");
-        const today = new Date().toLocaleDateString();
-        if (lastResetDate !== today) {
-          Object.keys(data).forEach((key) => (data[key] = 0));
-          localStorage.setItem("heavenData", JSON.stringify(data));
-          localStorage.setItem("lastResetDate", today);
-        }
-      }
+      window.onpopstate = () => showMain(true);
 
-      window.onclick = function (event) {
-        const modal = document.getElementById("balance-modal");
-        if (event.target == modal) closeBalance();
-      };
-      // مراقبة زر الرجوع في الهاتف
-      window.onpopstate = function (event) {
-        // إذا ضغط المستخدم رجوع وكان في صفحة العداد، نرجعه للرئيسية
-        if (document.getElementById("sub-page").style.display === "block") {
-          showMain(true); // نمرر true لنخبر الدالة أننا قمنا بالرجوع فعلياً
-        }
+      // معالجة نموذج الاقتراحات
+      document.getElementById("suggestion-form").onsubmit = async (e) => {
+        e.preventDefault();
+        const status = document.getElementById("form-status");
+        const res = await fetch(e.target.action, {
+          method: "POST",
+          body: new FormData(e.target),
+          headers: { Accept: "application/json" },
+        });
+        status.style.display = "block";
+        if (res.ok) {
+          status.innerText = "تم الإرسال بنجاح! ❤️";
+          e.target.reset();
+        } else status.innerText = "خطأ في الإرسال";
       };
 
-      checkDailyReset();
       buildGrid();
     </script>
   </body>
