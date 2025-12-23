@@ -344,13 +344,20 @@
         document.getElementById("hadith-content").innerHTML =
           dhikrSettings[type].text;
         document.getElementById("counter-display").innerText = data[type];
+        window.history.pushState({ page: "sub" }, "Sub Page", "");
       }
 
-      function showMain() {
+      function showMain(fromBackBtn = false) {
         document.getElementById("main-page").style.display = "block";
         document.getElementById("sub-page").style.display = "none";
         document.getElementById("back-icon").style.visibility = "hidden";
         document.getElementById("page-title").innerText = "اعمل للجنة";
+
+        // إذا ضغط المستخدم على السهم في الشاشة (وليس زر الهاتف)
+        if (!fromBackBtn) {
+          window.history.back(); // هذا يحذف السجل الذي أضفناه لكي لا يحتاج للضغط مرتين
+        }
+
         buildGrid();
       }
 
@@ -441,6 +448,13 @@
       window.onclick = function (event) {
         const modal = document.getElementById("balance-modal");
         if (event.target == modal) closeBalance();
+      };
+      // مراقبة زر الرجوع في الهاتف
+      window.onpopstate = function (event) {
+        // إذا ضغط المستخدم رجوع وكان في صفحة العداد، نرجعه للرئيسية
+        if (document.getElementById("sub-page").style.display === "block") {
+          showMain(true); // نمرر true لنخبر الدالة أننا قمنا بالرجوع فعلياً
+        }
       };
 
       checkDailyReset();
