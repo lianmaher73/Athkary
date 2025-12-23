@@ -599,14 +599,24 @@
 
       // --- نظام الإشعارات والتذكير ---
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("sw.js").then(function (reg) {
-          console.log("Service Worker Registered");
-          Notification.requestPermission().then((permission) => {
-            if (permission === "granted") {
-              startSmartReminders(reg);
-            }
+        navigator.serviceWorker
+          .register("sw.js")
+          .then(function (reg) {
+            console.log("Service Worker Registered");
+
+            // إجبار المتصفح على تحديث الـ Worker إذا وجد تغيير
+            reg.update();
+
+            Notification.requestPermission().then((permission) => {
+              if (permission === "granted") {
+                // استدعاء دالة التذكيرات
+                startSmartReminders(reg);
+              }
+            });
+          })
+          .catch(function (err) {
+            console.error("Service Worker registration failed:", err);
           });
-        });
       }
 
       function startSmartReminders(registration) {
