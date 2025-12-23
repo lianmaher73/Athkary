@@ -1,13 +1,13 @@
 {
-  "name": "اعمل للجنة",
-  "short_name": "للجنة",
+  "name": "أجر",
+  "short_name": "أجر",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#f1fcef",
-  "theme_color": "#4CAF50",
+  "background_color": "#fceffc",
+  "theme_color": "#4f1a2a",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/2913/2913520.png",
+      "src": "img/Logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }
