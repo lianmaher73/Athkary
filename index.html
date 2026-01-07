@@ -458,7 +458,7 @@
             title: "خصلتان",
             isTreasure: true,
             btn: "أتريد الجنة؟",
-            text: "عن النبي ﷺ قال <span class='highlight'>خصلتان لا يحافظ عليهما عبد مسلم...</span>",
+            text: "عن النبي صلى الله عليه وسلم قال خصلتان أو خلتان لا يحافظ عليهما عبد مسلم إلا دخل الجنة هما يسير ومن يعمل بهما قليل <span class='highlight'>يسبح</span> في دبر كل صلاة <span class='highlight'>عشرا</span> <span class='highlight'>ويحمد عشرا</span> <span class='highlight'>ويكبر عشرا</span> فذلك خمسون ومائة باللسان وألف وخمس مائة في الميزان <span class='highlight'>ويكبر أربعا وثلاثين إذا أخذ مضجعه</span> <span class='highlight'>ويحمد ثلاثا وثلاثين</span> <span class='highlight'>ويسبح ثلاثا وثلاثين</span> فذلك مائة باللسان وألف في الميزان فلقد رأيت رسول الله صلى الله عليه وسلم يعقدها بيده قالوا يا رسول الله كيف هما يسير ومن يعمل بهما قليل قال يأتي أحدكم يعني الشيطان في منامه فينومه قبل أن يقوله ويأتيه في صلاته فيذكره حاجة قبل أن يقولها",
           },
         },
         duaa: {
@@ -519,7 +519,7 @@
       function showSection(sectionId) {
         if (sectionId === "main") return showMain();
         currentSection = sectionId;
-        window.lastSection = sectionId; // تخزين آخر قسم للرجوع إليه
+        window.lastSection = sectionId;
         hideAllPages();
 
         const grid = document.getElementById("section-items-grid");
@@ -542,9 +542,11 @@
         document.getElementById("daily-actions").style.display =
           sectionId === "daily-counters" ? "flex" : "none";
         document.getElementById("back-icon").style.display = "inline-block";
+
+        // [تعديل للرجوع] إخبار المتصفح أننا انتقلنا لصفحة القسم
+        window.history.pushState({ page: sectionId }, "", "");
       }
 
-      /* فتح صفحة الذكر المختار */
       function openDhikr(type, sectionId) {
         currentSection = "sub-page";
         currentType = type;
@@ -553,13 +555,14 @@
         document.getElementById("sub-page").style.display = "block";
         document.getElementById("hadith-content").innerHTML = dhikr.text;
 
-        // إخفاء العداد إذا كان الذكر "كنز" (حديث طويل)
         document.getElementById("counter-area").style.display = dhikr.isTreasure
           ? "none"
           : "flex";
         document.getElementById("counter-display").innerText = data[type] || 0;
-      }
 
+        // [تعديل للرجوع] إخبار المتصفح أننا انتقلنا لصفحة الذكر
+        window.history.pushState({ page: "sub-page" }, "", "");
+      }
       /* زيادة العداد وحفظ البيانات */
       function increment() {
         data[currentType] = (data[currentType] || 0) + 1;
@@ -632,6 +635,35 @@
           document.body.classList.add("dark-theme");
         }
       });
+      // الاستماع لزر الرجوع في الهاتف
+      window.onpopstate = function (event) {
+        // تنفيذ دالة الرجوع البرمجية عند الضغط على زر الموبايل
+        goBack(true);
+      };
+
+      // تعديل بسيط على دالة goBack لتتوافق مع زر الهاتف
+      // تأكدي من تحديث دالة goBack الموجودة عندك لتصبح هكذا:
+      function goBack(isFromPhoneButton = false) {
+        // إذا كانت الإعدادات مفتوحة، نغلقها ونبقى في الصفحة
+        if (
+          document.getElementById("settings-page").style.display === "block"
+        ) {
+          toggleSettings();
+          // إذا كان الرجوع من زر الهاتف، نحتاج لتعويض السجل الذي حُذف
+          if (isFromPhoneButton)
+            window.history.pushState({ page: currentSection }, "", "");
+          return;
+        }
+
+        if (["sub-page", "feedback-page"].includes(currentSection)) {
+          showSection(window.lastSection || "main");
+          // إذا رجعنا عن طريق سهم التطبيق، نحتاج لحذف سجل من تاريخ المتصفح
+          if (!isFromPhoneButton) window.history.back();
+        } else if (currentSection !== "main") {
+          showMain();
+          if (!isFromPhoneButton) window.history.back();
+        }
+      }
     </script>
   </body>
 </html>
