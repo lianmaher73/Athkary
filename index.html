@@ -119,6 +119,53 @@
         top: 0;
         z-index: 2000; /* أعلى من الإعدادات ليبقى زر الترس ظاهراً */
       }
+      /* التعديلات المطلوبة داخل قسم الـ style */
+
+      .dhikr-container {
+        direction: rtl;
+        text-align: right;
+        padding: 5px;
+      }
+      .dhikr-item {
+        /* جعلنا السطر يستخدم لون النص المتغير ليظهر في الداكن */
+        border-bottom: 2px solid var(--text-color);
+        padding: 15px 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        opacity: 0.9;
+      }
+      .dhikr-item:last-child {
+        border-bottom: none;
+      }
+      .num-box {
+        /* جعلنا خلفية الرقم تتبع اللون الرئيسي المتغير */
+        background: var(--main-color);
+        color: var(
+          --white
+        ) !important; /* الأبيض هنا سيتغير حسب تعريفك في الوضع الداكن */
+        border-radius: 5px;
+        min-width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.95rem;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+      .dhikr-text {
+        /* هذا هو السطر الأهم: جعلنا لون النص يتبع المتغير --text-color */
+        color: var(--text-color);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        flex: 1;
+      }
+      .title-tag {
+        font-weight: bold;
+        /* جعلنا العنوان يتبع اللون الرئيسي المتغير */
+        color: var(--main-color);
+      }
 
       .header-side {
         width: 60px;
@@ -488,8 +535,183 @@
             text: "عن جويرية رضي الله عنها أن النبي ﷺ قال: لقد قلتُ بعدكِ أربع كلمات، <span class='highlight'>ثلاث مرات</span>... <span class='highlight'>سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته</span>.",
           },
         },
+
+        // [مكان إضافة أذكار الصباح والمساء]
+        // "morning-evening": {
+        //   morning_full: {
+        //     title: "أذكار الصباح (كاملة)",
+        //     isTreasure: true,
+        //     btn: "القراءة الوافية",
+        //     text: `
+        //       <div style="text-align: right; line-height: 1.9; font-size: 0.95rem;">
+        //         <p>١. <span class='highlight'>آية الكرسي</span>: (اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ).</p>
+        //         <p>٢. <span class='highlight'>المعوذات</span>: (الإخلاص، الفلق، الناس) [3 مرات].</p>
+        //         <p>٣. <span class='highlight'>أصبحنا وأصبح الملك لله</span> والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذا اليوم وخير ما بعده، وأعوذ بك من شر ما في هذا اليوم وشر ما بعده، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.</p>
+        //         <p>٤. <span class='highlight'>سيد الاستغفار</span>: اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</p>
+        //         <p>٥. <span class='highlight'>اللهم بك أصبحنا</span> وبك أمسينا، وبك نحيا وبك نموت، وإليك النشور.</p>
+        //         <p>٦. <span class='highlight'>اللهم إني أسألك العافية</span> في الدنيا والآخرة، اللهم إني أسألك العفو والعافية في ديني ودنياي وأهلي ومالي، اللهم استر عوراتي وآمن روعاتي، اللهم احفظني من بين يدي ومن خلفي وعن يميني وعن شمالي ومن فوقي، وأعوذ بعظمتك أن أغتال من تحتي.</p>
+        //         <p>٧. <span class='highlight'>اللهم أنت ربي لا إله إلا أنت</span> عليك توكلت وأنت رب العرش العظيم، ما شاء الله كان وما لم يشأ لم يكن، لا حول ولا قوة إلا بالله العلي العظيم، أعلم أن الله على كل شيء قدير، وأن الله قد أحاط بكل شيء علماً، اللهم إني أعوذ بك من شر نفسي، ومن شر كل دابة أنت آخذ بناصيتها، إن ربي على صراط مستقيم.</p>
+        //         <p>٨. <span class='highlight'>اللهم عالم الغيب والشهادة</span> فاطر السموات والأرض، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي، ومن شر الشيطان وشركه، وأن أقترف على نفسي سوءاً، أو أجره إلى مسلم.</p>
+        //         <p>٩. <span class='highlight'>بسم الله الذي لا يضر مع اسمه شيء</span> في الأرض ولا في السماء وهو السميع العليم [3 مرات].</p>
+        //         <p>١٠. <span class='highlight'>رضيت بالله رباً</span> وبالإسلام ديناً وبمحمد ﷺ نبياً [3 مرات].</p>
+        //         <p>١١. <span class='highlight'>يا حي يا قيوم برحمتك أستغيث</span> أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.</p>
+        //         <p>١٢. <span class='highlight'>حسبي الله لا إله إلا هو</span> عليه توكلت وهو رب العرش العظيم [7 مرات].</p>
+        //         <p>١٣. <span class='highlight'>سبحان الله وبحمده</span> [100 مرة].</p>
+        //       </div>
+        //     `,
+        //   },
+        //   morning_short: {
+        //     title: "أذكار الصباح (مختصرة)",
+        //     isTreasure: true,
+        //     btn: "قرا
+        // ءة سريعة",
+        //     text: `
+        //       <div style="text-align: right; line-height: 1.8;">
+        //         <p>بانتظار النص المختصر الذي ستعتمدينه لأضعه لكِ هنا.</p>
+        //       </div>
+        //     `,
+        //   },
+        //   evening_full: {
+        //     title: "أذكار المساء (كاملة)",
+        //     isTreasure: true,
+        //     btn: "القراءة الوافية",
+        //     text: `
+        //       <div style="text-align: right; line-height: 1.9; font-size: 0.95rem;">
+        //         <p>١. <span class='highlight'>آية الكرسي</span>: (اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ).</p>
+        //         <p>٢. <span class='highlight'>المعوذات</span>: (الإخلاص، الفلق، الناس) [3 مرات].</p>
+        //         <p>٣. <span class='highlight'>خواتيم سورة البقرة</span>: (آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِّن رُّسُلِهِ ۚ وَقَالُوا سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ * لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ ۖ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا ۚ أَنتَ مَوْلَانَا فَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ).</p>
+        //         <p>٤. <span class='highlight'>أمسينا وأمسى الملك لله</span> والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذه الليلة وخير ما بعدها، وأعوذ بك من شر ما في هذه الليلة وشر ما بعدها، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.</p>
+        //         <p>٥. <span class='highlight'>سيد الاستغفار</span>: اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</p>
+        //         <p>٦. <span class='highlight'>اللهم بك أمسينا</span> وبك أصبحنا، وبك نحيا وبك نموت، وإليك المصير.</p>
+        //         <p>٧. <span class='highlight'>أعوذ بكلمات الله التامات</span> من شر ما خلق [3 مرات].</p>
+        //         <p>٨. <span class='highlight'>اللهم إني أسألك العفو والعافية</span> في ديني ودنياي وأهلي ومالي...</p>
+        //         <p>٩. <span class='highlight'>بسم الله الذي لا يضر مع اسمه شيء</span> [3 مرات].</p>
+        //         <p>١٠. <span class='highlight'>رضيت بالله رباً</span> وبالإسلام ديناً وبمحمد ﷺ نبياً [3 مرات].</p>
+        //         <p>١١. <span class='highlight'>حسبي الله لا إله إلا هو</span> عليه توكلت وهو رب العرش العظيم [7 مرات].</p>
+        //       </div>
+        //     `,
+        //   },
+        //   evening_short: {
+        //     title: "أذكار المساء (مختصرة)",
+        //     isTreasure: true,
+        //     btn: "قراءة سريعة",
+        //     text: `
+        //       <div style="text-align: right; line-height: 1.8;">
+        //         <p>بانتظار النص المختصر للمساء.</p>
+        //       </div>
+        //     `,
+        //   },
+        // },
+
         "morning-evening": {
-          // [مكان إضافة أذكار الصباح والمساء]
+          morning_full: {
+            title: "أذكار الصباح (كاملة)",
+            isTreasure: true,
+            btn: "القراءة الوافية",
+            text: `
+             
+              <div class="dhikr-container">
+                <div class="dhikr-item"><div class="num-box">١</div><div class="dhikr-text"><span class="title-tag">آية الكرسي:</span> (اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ).</div></div>
+                <div class="dhikr-item"><div class="num-box">٢</div><div class="dhikr-text"><span class="title-tag">سورة الإخلاص:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٣</div><div class="dhikr-text"><span class="title-tag">سورة الفلق:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٤</div><div class="dhikr-text"><span class="title-tag">سورة الناس:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٥</div><div class="dhikr-text"><span class="title-tag">أصبحنا وأصبح الملك لله:</span> أصبحنا وأصبح الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذا اليوم وخير ما بعده، وأعوذ بك من شر ما في هذا اليوم وشر ما بعده، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.</div></div>
+                <div class="dhikr-item"><div class="num-box">٦</div><div class="dhikr-text"><span class="title-tag">سيد الاستغفار:</span> اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</div></div>
+                <div class="dhikr-item"><div class="num-box">٧</div><div class="dhikr-text"><span class="title-tag">رضيت بالله رباً:</span> رضيت بالله رباً وبالإسلام ديناً وبمحمد ﷺ نبياً [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">٨</span><div class="dhikr-text"><span class="title-tag">دعاء العافية:</span> اللهم إني أسألك العافية في الدنيا والآخرة، اللهم إني أسألك العفو والعافية في ديني ودنياي وأهلي ومالي، اللهم استر عوراتي وآمن روعاتي، اللهم احفظني من بين يدي ومن خلفي وعن يميني وعن شمالي ومن فوقي، وأعوذ بعظمتك أن أغتال من تحتي.</div></div>
+                <div class="dhikr-item"><span class="num-box">٩</span><div class="dhikr-text"><span class="title-tag">دعاء الحماية:</span> بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٠</span><div class="dhikr-text"><span class="title-tag">يا حي يا قيوم:</span> يا حي يا قيوم برحمتك أستغيث أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.</div></div>
+                <div class="dhikr-item"><span class="num-box">١١</span><div class="dhikr-text"><span class="title-tag">فطرة الإسلام:</span> أصبحنا على فطرة الإسلام وعلى كلمة الإخلاص وعلى دين نبينا محمد ﷺ وعلى ملة أبينا إبراهيم حنيفاً مسلماً وما كان من المشركين.</div></div>
+                <div class="dhikr-item"><span class="num-box">١٢</span><div class="dhikr-text"><span class="title-tag">سبحان الله وبحمده:</span> سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٣</span><div class="dhikr-text"><span class="title-tag">اللهم عافني:</span> اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري، لا إله إلا أنت [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٤</span><div class="dhikr-text"><span class="title-tag">الاستعاذة:</span> اللهم إني أعوذ بك من الكفر والفقر، وأعوذ بك من عذاب القبر، لا إله إلا أنت [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٥</span><div class="dhikr-text"><span class="title-tag">عالم الغيب:</span> اللهم عالم الغيب والشهادة فاطر السموات والأرض، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي، ومن شر الشيطان وشركه، وأن أقترف على نفسي سوءاً، أو أجره إلى مسلم.</div></div>
+                <div class="dhikr-item"><span class="num-box">١٦</span><div class="dhikr-text"><span class="title-tag">كلمات الله:</span> أعوذ بكلمات الله التامات من شر ما خلق [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٧</span><div class="dhikr-text"><span class="title-tag">الصلاة على النبي:</span> اللهم صل وسلم وبارك على نبينا محمد [10 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٨</span><div class="dhikr-text"><span class="title-tag">التوحيد:</span> لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير [100 مرة].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٩</span><div class="dhikr-text"><span class="title-tag">التسبيح:</span> سبحان الله وبحمده [100 مرة].</div></div>
+                <div class="dhikr-item"><span class="num-box">٢٠</span><div class="dhikr-text"><span class="title-tag">الاستغفار:</span> أستغفر الله وأتوب إليه [100 مرة].</div></div>
+                <div class="dhikr-item"><span class="num-box">٢١</span><div class="dhikr-text"><span class="title-tag">حسبي الله:</span> حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم [7 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">٢٢</span><div class="dhikr-text"><span class="title-tag">شهادة الخلق:</span> اللهم إني أصبحت أشهدك وأشهد حملة عرشك وملائكتك وجميع خلقك، أنك أنت الله لا إله إلا أنت وحدك لا شريك لك، وأن محمداً عبدك ورسولك [4 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">٢٣</span><div class="dhikr-text"><span class="title-tag">شكر النعمة:</span> اللهم ما أصبح بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.</div></div>
+              </div>
+            `,
+          },
+          morning_short: {
+            title: "أذكار الصباح (مختصرة)",
+            isTreasure: true,
+            btn: "قراءة سريعة",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item"><div class="num-box">١</div><div class="dhikr-text"><span class="title-tag">آية الكرسي:</span> (اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ).</div></div>
+                <div class="dhikr-item"><div class="num-box">٢</div><div class="dhikr-text"><span class="title-tag">سورة الإخلاص:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٣</div><div class="dhikr-text"><span class="title-tag">سورة الفلق:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٤</div><div class="dhikr-text"><span class="title-tag">سورة الناس:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٥</div><div class="dhikr-text"><span class="title-tag">أصبحنا وأصبح الملك لله:</span> أصبحنا وأصبح الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذا اليوم وخير ما بعده، وأعوذ بك من شر ما في هذا اليوم وشر ما بعده، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.</div></div>
+                <div class="dhikr-item"><div class="num-box">٦</div><div class="dhikr-text"><span class="title-tag">سيد الاستغفار:</span> اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</div></div>
+                <div class="dhikr-item"><span class="num-box">٧</span><div class="dhikr-text"><span class="title-tag">دعاء الحماية:</span> بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">٨</span><div class="dhikr-text"><span class="title-tag">الصلاة على النبي:</span> اللهم صل وسلم وبارك على نبينا محمد [10 مرات].</div></div>
+ 
+                </div>
+            `,
+          },
+          evening_full: {
+            title: "أذكار المساء (كاملة)",
+            isTreasure: true,
+            btn: "القراءة الوافية",
+            text: `
+              <style>
+                .dhikr-container { direction: rtl; text-align: right; padding: 5px; }
+                .dhikr-item { border-bottom: 2px solid #4f1a2a; padding: 15px 0; display: flex; align-items: flex-start; gap: 12px; }
+                .dhikr-item:last-child { border-bottom: none; }
+                .num-box { background: #4f1a2a; color: #ffffff !important; border-radius: 5px; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: bold; flex-shrink: 0; }
+                .dhikr-text { color: #333; font-size: 1.05rem; line-height: 1.7; flex: 1; }
+                .title-tag { font-weight: bold; color: #4f1a2a; }
+              </style>
+              <div class="dhikr-container">
+                <div class="dhikr-item"><div class="num-box">١</div><div class="dhikr-text"><span class="title-tag">آية الكرسي:</span> (اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ).</div></div>
+                <div class="dhikr-item"><div class="num-box">٢</div><div class="dhikr-text"><span class="title-tag">سورة الإخلاص:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٣</div><div class="dhikr-text"><span class="title-tag">سورة الفلق:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٤</div><div class="dhikr-text"><span class="title-tag">سورة الناس:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٥</div><div class="dhikr-text"><span class="title-tag">خواتيم سورة البقرة:</span> (آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِّن رُّسُلِهِ ۚ وَقَالُوا سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ * لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ ۖ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا ۚ أَنتَ مَوْلَانَا فَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ).</div></div>
+                <div class="dhikr-item"><div class="num-box">٦</div><div class="dhikr-text"><span class="title-tag">أمسينا وأمسى الملك لله:</span> أمسينا وأمسى الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذه الليلة وخير ما بعدها، وأعوذ بك من شر ما في هذه الليلة وشر ما بعدها، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.</div></div>
+                <div class="dhikr-item"><div class="num-box">٧</div><div class="dhikr-text"><span class="title-tag">سيد الاستغفار:</span> اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</div></div>
+                <div class="dhikr-item"><div class="num-box">٨</div><div class="dhikr-text"><span class="title-tag">رضيت بالله رباً:</span> رضيت بالله رباً وبالإسلام ديناً وبمحمد ﷺ نبياً [3 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">٩</div><div class="dhikr-text"><span class="title-tag">اللهم بك أمسينا:</span> اللهم بك أمسينا، وبك أصبحنا، وبك نحيا وبك نموت، وإليك المصير.</div></div>
+                <div class="dhikr-item"><div class="num-box">١٠</div><div class="dhikr-text"><span class="title-tag">كلمات الله التامات:</span> أعوذ بكلمات الله التامات من شر ما خلق [3 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">١١</div><div class="dhikr-text"><span class="title-tag">دعاء العافية:</span> اللهم إني أسألك العافية في الدنيا والآخرة، اللهم إني أسألك العفو والعافية في ديني ودنيااي وأهلي ومالي، اللهم استر عوراتي وآمن روعاتي، اللهم احفظني من بين يدي ومن خلفي وعن يميني وعن شمالي ومن فوقي، وأعوذ بعظمتك أن أغتال من تحتي.</div></div>
+                <div class="dhikr-item"><div class="num-box">١٢</div><div class="dhikr-text"><span class="title-tag">دعاء الحماية:</span> بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم [3 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">١٣</div><div class="dhikr-text"><span class="title-tag">يا حي يا قيوم:</span> يا حي يا قيوم برحمتك أستغيث أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.</div></div>
+                <div class="dhikr-item"><div class="num-box">١٤</div><div class="dhikr-text"><span class="title-tag">حسبي الله:</span> حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم [7 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">١٥</div><div class="dhikr-text"><span class="title-tag">عالم الغيب:</span> اللهم عالم الغيب والشهادة فاطر السموات والأرض، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي، ومن شر الشيطان وشركه، وأن أقترف على نفسي سوءاً، أو أجره إلى مسلم.</div></div>
+                <div class="dhikr-item"><div class="num-box">١٦</div><div class="dhikr-text"><span class="title-tag">اللهم عافني:</span> اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري، لا إله إلا أنت [3 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">١٧</div><div class="dhikr-text"><span class="title-tag">الاستعاذة:</span> اللهم إني أعوذ بك من الكفر والفقر، وأعوذ بك من عذاب القبر، لا إله إلا أنت [3 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">١٨</div><div class="dhikr-text"><span class="title-tag">فطرة الإسلام:</span> أمسينا على فطرة الإسلام وعلى كلمة الإخلاص وعلى دين نبينا محمد ﷺ وعلى ملة أبينا إبراهيم حنيفاً مسلماً وما كان من المشركين.</div></div>
+                <div class="dhikr-item"><div class="num-box">١٩</div><div class="dhikr-text"><span class="title-tag">التوحيد/التسبيح:</span> لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير [100 مرة أو 10 مرات]، وسُبْحَانَ اللهِ وَبِحَمْدِهِ [100 مرة].</div></div>
+                <div class="dhikr-item"><div class="num-box">٢٠</div><div class="dhikr-text"><span class="title-tag">شهادة الخلق:</span> اللهم إني أمسيت أشهدك وأشهد حملة عرشك وملائكتك وجميع خلقك، أنك أنت الله لا إله إلا أنت وحدك لا شريك لك، وأن محمداً عبدك ورسولك [4 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">٢١</div><div class="dhikr-text"><span class="title-tag">شكر النعمة :</span> اللهم ما أمسى بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.</div></div>
+                              <div class="dhikr-item"><span class="num-box">٢٢</span><div class="dhikr-text"><span class="title-tag">الصلاة على النبي:</span> اللهم صل وسلم وبارك على نبينا محمد [10 مرات].</div></div>
+
+                </div>
+            `,
+          },
+          evening_short: {
+            title: "أذكار المساء (مختصرة)",
+            isTreasure: true,
+            btn: "قراءة سريعة",
+            text: `
+              <div class="dhikr-container">
+                 <div class="dhikr-item"><div class="num-box">١</div><div class="dhikr-text"><span class="title-tag">آية الكرسي:</span> (اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ).</div></div>
+                <div class="dhikr-item"><div class="num-box">٢</div><div class="dhikr-text"><span class="title-tag">سورة الإخلاص:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٣</div><div class="dhikr-text"><span class="title-tag">سورة الفلق:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٤</div><div class="dhikr-text"><span class="title-tag">سورة الناس:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٥</div><div class="dhikr-text"><span class="title-tag">أمسينا وأمسى الملك لله:</span> أمسينا وأمسى الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذه الليلة وخير ما بعدها، وأعوذ بك من شر ما في هذه الليلة وشر ما بعدها، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.</div></div>
+                <div class="dhikr-item"><div class="num-box">٦</div><div class="dhikr-text"><span class="title-tag">سيد الاستغفار:</span> اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</div></div>
+                <div class="dhikr-item"><span class="num-box">٧</span><div class="dhikr-text"><span class="title-tag">دعاء الحماية:</span> بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">٨</span><div class="dhikr-text"><span class="title-tag">الصلاة على النبي:</span> اللهم صل وسلم وبارك على نبينا محمد [10 مرات].</div></div>
+                </div>
+            `,
+          },
         },
         treasures: {
           // أضيفي أحاديث طويلة (بدون عداد) هنا
@@ -499,9 +721,200 @@
             btn: "أتريد الجنة؟",
             text: "عن النبي صلى الله عليه وسلم قال خصلتان أو خلتان لا يحافظ عليهما عبد مسلم إلا دخل الجنة هما يسير ومن يعمل بهما قليل <span class='highlight'>يسبح</span> في دبر كل صلاة <span class='highlight'>عشرا</span> <span class='highlight'>ويحمد عشرا</span> <span class='highlight'>ويكبر عشرا</span> فذلك خمسون ومائة باللسان وألف وخمس مائة في الميزان <span class='highlight'>ويكبر أربعا وثلاثين إذا أخذ مضجعه</span> <span class='highlight'>ويحمد ثلاثا وثلاثين</span> <span class='highlight'>ويسبح ثلاثا وثلاثين</span> فذلك مائة باللسان وألف في الميزان فلقد رأيت رسول الله صلى الله عليه وسلم يعقدها بيده قالوا يا رسول الله كيف هما يسير ومن يعمل بهما قليل قال يأتي أحدكم يعني الشيطان في منامه فينومه قبل أن يقوله ويأتيه في صلاته فيذكره حاجة قبل أن يقولها",
           },
+          treasure_2: {
+            title: "وجبت له الجنة",
+            isTreasure: true,
+            btn: "كلمات توجب الجنة",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٥</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الذكر:</span> <span class='highlight'>"رضيت بالله رباً وبالإسلام ديناً وبمحمد ﷺ نبياً".</span>
+                    <span class="fadl-text">الفضل: قال ﷺ: "من قالها وجبت له الجنة" [رواه أبو داود].</span>
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          treasure_3: {
+            title: "قنطار من الأجر",
+            isTreasure: true,
+            btn: "أتريد قنطاراً في الجنة؟",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٣</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">العمل:</span> قيام الليل بعشر آيات أو مائة آية.
+                    <span class="fadl-text">الفضل: قال ﷺ: "من قام بعشر آيات لم يُكتب من الغافلين، ومن قام بمائة آية كُتب من القانتين، ومن قام بألف آية كُتب من المقنطرين" [رواه أبو داود].</span>
+                  </div>
+                </div>
+              </div>
+            `,
+          },
         },
         duaa: {
-          // [مكان إضافة الأدعية]
+          duaa_1: {
+            title: "دعاء الكرب والفرج",
+            isTreasure: true,
+            btn: "الدعاء وفضله",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">١</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "لا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ".
+                    <span class="fadl-text">الفضل: قال ﷺ: "لم يَدْعُ بها رجل مسلم في شيء قط إلا استجاب الله له".</span>
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          duaa_2: {
+            title: "اسم الله الأعظم",
+            isTreasure: true,
+            btn: "الدعاء وفضله",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٢</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "اللَّهُمَّ إِنِّي أَسْأَلُكَ بِأَنِّي أَشْهَدُ أَنَّكَ أَنْتَ اللَّهُ لَا إِلَهَ إِلَّا أَنْتَ، الأَحَدُ الصَّمَدُ، الَّذِي لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ".<br>
+                    <span class="title-tag">الفضل:</span> قال ﷺ لمن دعا به: "لقد سأل الله باسمه الأعظم، الذي إذا دُعي به أجاب، وإذا سُئل به أعطى" [رواه أبو داود].
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          duaa_3: {
+            title: "دعاء تفريج الهم",
+            isTreasure: true,
+            btn: "الدعاء وفضله",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٣</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "اللَّهُمَّ إِنِّي عَبْدُكَ، وَابْنُ عَبْدِكَ، وَابْنُ أَمَتِكَ، نَاصِيَتِي بِيَدِكَ، مَاضٍ فِيَّ حُكْمُكَ، عَدْلٌ فِيَّ قَضَاؤُكَ، أَسْأَلُكَ بِكُلِّ اسْمٍ هُوَ لَكَ... أَنْ تَجْعَلَ الْقُرْآنَ رَبِيعَ قَلْبِي، وَنُورَ صَدْرِي، وَجِلَاءَ حُزْنِي، وَذَهَابَ هَمِّي".<br>
+                    <span class="title-tag">الفضل:</span> قال ﷺ: "ما أصاب أحداً قط هم ولا حزن فقالها إلا أذهب الله همه، وأبدله مكانه فرحاً" [رواه أحمد].
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          duaa_4: {
+            title: "سيد الاستغفار",
+            isTreasure: true,
+            btn: "الدعاء وفضله",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٤</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ... أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي فَاغْفِرْ لِي؛ فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ".<br>
+                    <span class="title-tag">الفضل:</span> قال ﷺ: "من قالها من النهار موقناً بها فمات من يومه قبل أن يمسي فهو من أهل الجنة" [رواه البخاري].
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          duaa_5: {
+            title: "دعاء الحفظ من المصائب",
+            isTreasure: true,
+            btn: "الدعاء وفضله",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٥</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ".<br>
+                    <span class="title-tag">الفضل:</span> وصية النبي ﷺ لابنته فاطمة رضي الله عنها بالمداومة عليه كل صباح ومساء.
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          duaa_6: {
+            title: "دعاء الاستعاذة من الهم والعجز",
+            isTreasure: true,
+            btn: "الدعاء وفضله",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٦</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْجُبْنِ وَالْبُخْلِ، وَضَلَعِ الدَّيْنِ، وَغَلَبَةِ الرِّجَالِ".
+                    <span class="fadl-text">الفضل: كان النبي ﷺ يكثر من هذا الدعاء؛ لما فيه من استعاذة من كل ما يقعد العبد عن مصالحه.</span>
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          duaa_7: {
+            title: "دعاء سؤال العفو والعافية",
+            isTreasure: true,
+            btn: "الدعاء وفضله",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٧</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ".
+                    <span class="fadl-text">الفضل: قال ﷺ: "سلوا الله العفو والعافية؛ فإن أحداً لم يُعطَ بعد اليقين خيراً من العافية" [رواه الترمذي].</span>
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          duaa_8: {
+            title: "دعاء الهدى والتقى",
+            isTreasure: true,
+            btn: "الدعاء وفضله",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٨</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى".
+                    <span class="fadl-text">المصدر: رواه مسلم، وهو من أجمع الأدعية التي تجمع خير الدنيا والآخرة.</span>
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          duaa_9: {
+            title: "دعاء الثبات على الدين",
+            isTreasure: true,
+            btn: "الدعاء وفضله",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٩</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ".
+                    <span class="fadl-text">الفضل: قالت أم سلمة رضي الله عنها: كان أكثر دعاء النبي ﷺ؛ لشدة حاجة العبد للثبات.</span>
+                  </div>
+                </div>
+              </div>
+            `,
+          },
+          duaa_10: {
+            title: "الدعاء الجامع لكل خير",
+            isTreasure: true,
+            btn: "الدعاء وفضله",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">١٠</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ".
+                    <span class="fadl-text">الفضل: كان أكثر دعاء النبي ﷺ، حيث يجمع كل مطالب الدنيا والآخرة في كلمات يسيرة.</span>
+                  </div>
+                </div>
+              </div>
+            `,
+          },
         },
       };
 
@@ -529,8 +942,9 @@
       }
 
       /* نظام الرجوع الذكي للتعامل مع الأقسام */
+      /* [تعديل] جعل سهم التطبيق يرجع خطوة واحدة فقط مثل زر التلفون */
       function goBack() {
-        // إذا كانت الإعدادات مفتوحة، نغلقها أولاً ونبقى في نفس الصفحة
+        // 1. إذا كانت الإعدادات مفتوحة، نغلقها ونبقى في نفس الصفحة
         if (
           document.getElementById("settings-page").style.display === "block"
         ) {
@@ -538,11 +952,9 @@
           return;
         }
 
-        if (["sub-page", "feedback-page"].includes(currentSection)) {
-          showSection(window.lastSection || "main");
-        } else if (currentSection !== "main") {
-          showMain();
-        }
+        // 2. بدلاً من توجيه المستخدم يدوياً، نأمر المتصفح بالعودة خطوة للخلف
+        // هذا الأمر سيحفز حدث onpopstate ويشغل المنطق الصحيح تلقائياً
+        window.history.back();
       }
 
       /* العودة للواجهة الرئيسية (الأقسام الأربعة) */
@@ -556,36 +968,53 @@
 
       /* عرض قائمة الأذكار داخل قسم معين */
       function showSection(sectionId) {
-        if (sectionId === "main") return showMain();
         currentSection = sectionId;
-        window.lastSection = sectionId;
+        window.lastSection = sectionId; // لتذكر القسم عند الرجوع
         hideAllPages();
-
         const grid = document.getElementById("section-items-grid");
         grid.innerHTML = "";
-        const items = sectionsData[sectionId] || {};
 
+        // --- إضافة الحديث في مقدمة قسم أذكار الصباح والمساء ---
+        if (sectionId === "morning-evening") {
+          const hadithDiv = document.createElement("div");
+          hadithDiv.style.cssText = `
+            grid-column: 1 / -1;
+            background: #fdf7f7;
+            border-right: 5px solid #4f1a2a;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #4f1a2a;
+            text-align: justify;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+          `;
+          hadithDiv.innerHTML = `
+            <strong>عن أنس - رضي الله عنه - قال: قال رسول الله ﷺ:</strong> 
+            "لأن أقعد مع قوم يذكرون الله من صلاة الغداة حتى تطلع الشمس أحب إلي من أن أعتق أربعة من ولد إسماعيل، ولأن أقعد مع قوم يذكرون الله من صلاة العصر إلى أن تغرب الشمس أحب إلي من أن أعتق أربعة" 
+            <br><small style="display:block; margin-top:5px; opacity:0.8;">[رواه أبو داود]</small>
+          `;
+          grid.appendChild(hadithDiv);
+        }
+        // --------------------------------------------------
+
+        const items = sectionsData[sectionId] || {};
         Object.keys(items).forEach((key) => {
-          grid.innerHTML += `
-            <div class="card" onclick="openDhikr('${key}', '${sectionId}')">
-              <div class="card-title">${
-                sectionId === "daily-counters"
-                  ? '"' + (data[key] || 0) + '" '
-                  : ""
-              }${items[key].title}</div>
-              <div class="card-action">${items[key].btn}</div>
-            </div>`;
+          grid.innerHTML += `<div class="card" onclick="openDhikr('${key}', '${sectionId}')"><div class="card-title">${items[key].title}</div><div class="card-action">${items[key].btn}</div></div>`;
         });
 
         document.getElementById("section-content-page").style.display = "block";
         document.getElementById("daily-actions").style.display =
           sectionId === "daily-counters" ? "flex" : "none";
         document.getElementById("back-icon").style.display = "inline-block";
+        document.getElementById("page-title").innerText =
+          document.querySelector(
+            `[onclick="showSection('${sectionId}')"] .category-title`
+          ).innerText;
 
-        // [تعديل للرجوع] إخبار المتصفح أننا انتقلنا لصفحة القسم
         window.history.pushState({ page: sectionId }, "", "");
       }
-
       function openDhikr(type, sectionId) {
         currentSection = "sub-page";
         currentType = type;
@@ -676,32 +1105,65 @@
       });
       // الاستماع لزر الرجوع في الهاتف
       window.onpopstate = function (event) {
-        // تنفيذ دالة الرجوع البرمجية عند الضغط على زر الموبايل
+        // عند ضغط زر الهاتف، نفذ goBack وأخبره أنها PopState
         goBack(true);
       };
 
-      // تعديل بسيط على دالة goBack لتتوافق مع زر الهاتف
-      // تأكدي من تحديث دالة goBack الموجودة عندك لتصبح هكذا:
-      function goBack(isFromPhoneButton = false) {
-        // إذا كانت الإعدادات مفتوحة، نغلقها ونبقى في الصفحة
+      function goBack(isPopState = false) {
+        // إذا كانت الإعدادات مفتوحة، نغلقها ونبقى مكاننا
         if (
           document.getElementById("settings-page").style.display === "block"
         ) {
           toggleSettings();
-          // إذا كان الرجوع من زر الهاتف، نحتاج لتعويض السجل الذي حُذف
-          if (isFromPhoneButton)
+          // إذا كان الرجوع من زر الهاتف، نحافظ على الصفحة الحالية في التاريخ
+          if (isPopState)
             window.history.pushState({ page: currentSection }, "", "");
           return;
         }
 
-        if (["sub-page", "feedback-page"].includes(currentSection)) {
-          showSection(window.lastSection || "main");
-          // إذا رجعنا عن طريق سهم التطبيق، نحتاج لحذف سجل من تاريخ المتصفح
-          if (!isFromPhoneButton) window.history.back();
-        } else if (currentSection !== "main") {
-          showMain();
-          if (!isFromPhoneButton) window.history.back();
+        // إذا كان الضغط من سهم التطبيق (وليس زر الهاتف)
+        if (!isPopState) {
+          window.history.back(); // نأمر المتصفح بالرجوع خطوة واحدة
+          return;
         }
+
+        // المنطق الذي ينفذه زر الهاتف عند الرجوع
+        if (
+          currentSection === "sub-page" ||
+          currentSection === "feedback-page"
+        ) {
+          showSectionQuietly(window.lastSection || "main");
+        } else if (currentSection !== "main") {
+          showMainQuietly();
+        }
+      }
+
+      function showMainQuietly() {
+        currentSection = "main";
+        hideAllPages();
+        document.getElementById("main-page").style.display = "block";
+        document.getElementById("back-icon").style.display = "none";
+        document.getElementById("page-title").innerText = "أجر";
+      }
+
+      function showSectionQuietly(sectionId) {
+        if (sectionId === "main") return showMainQuietly();
+        currentSection = sectionId;
+        hideAllPages();
+        const grid = document.getElementById("section-items-grid");
+        grid.innerHTML = "";
+        const items = sectionsData[sectionId] || {};
+        Object.keys(items).forEach((key) => {
+          grid.innerHTML += `<div class="card" onclick="openDhikr('${key}', '${sectionId}')"><div class="card-title">${
+            sectionId === "daily-counters" ? '"' + (data[key] || 0) + '" ' : ""
+          }${items[key].title}</div><div class="card-action">${
+            items[key].btn
+          }</div></div>`;
+        });
+        document.getElementById("section-content-page").style.display = "block";
+        document.getElementById("daily-actions").style.display =
+          sectionId === "daily-counters" ? "flex" : "none";
+        document.getElementById("back-icon").style.display = "inline-block";
       }
     </script>
   </body>
