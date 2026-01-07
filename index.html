@@ -2,30 +2,40 @@
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
-
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <title>أجر</title>
-    <link rel="manifest" href="manifest.json" />
-    <link rel="icon" type="image/png" href="img/Logo.png" />
-    <link rel="apple-touch-icon" href="img/Logo.png" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-XR0YC1YREJ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-XR0YC1YREJ");
+    </script>
     <style>
-      /* [1] تعريف المتغيرات والألوان الأساسية */
+      /* [1] تعريف الألوان الأساسية - الوضع الفاتح */
       :root {
-        --main-color: #4f1a2a;
-        --light-color: #fceffc;
+        --main-color: #4f1a2a; /* العنابي */
+        --light-color: #fceffc; /* الوردي الفاتح */
         --dark-color: #2b0b15;
         --white: #ffffff;
         --text-color: #2b0b15;
       }
 
-      /* [2] إعدادات الوضع المعكوس (الثيم الداكن) */
+      /* [2] تعريف الألوان - الوضع الداكن */
       body.dark-theme {
         --main-color: #ffffff;
         --light-color: #4f1a2a;
@@ -33,10 +43,10 @@
         --text-color: #ffffff;
       }
 
+      /* تنسيقات عامة للجسم والخلفية */
       html {
         background-color: var(--main-color);
       }
-
       body {
         font-family: "Segoe UI", Tahoma, sans-serif;
         background-color: var(--light-color);
@@ -46,9 +56,10 @@
         user-select: none;
         -webkit-user-select: none;
         transition: background-color 0.3s, color 0.3s;
+        -webkit-tap-highlight-color: rgba(79, 26, 42, 0.2);
       }
 
-      /* [3] تنسيق شريط العنوان العلوي (Header) */
+      /* [3] تنسيق رأس الصفحة (Header) */
       .header {
         background-color: var(--main-color);
         color: var(--white);
@@ -59,19 +70,13 @@
         height: 60px;
         position: sticky;
         top: 0;
-        z-index: 1000;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      body.dark-theme .header {
-        color: #4f1a2a;
+        z-index: 2000; /* أعلى من الإعدادات ليبقى زر الترس ظاهراً */
       }
 
       .header-side {
         width: 60px;
         cursor: pointer;
       }
-
       .header-center {
         flex-grow: 1;
         display: flex;
@@ -80,7 +85,6 @@
         font-weight: bold;
         font-size: 1.2rem;
       }
-
       .back-btn {
         cursor: pointer;
         font-size: 24px;
@@ -88,7 +92,6 @@
         margin-left: 10px;
       }
 
-      /* [4] تنسيق شبكة الكروت (Grid System) */
       .container {
         max-width: 500px;
         margin: auto;
@@ -96,13 +99,13 @@
         text-align: center;
       }
 
+      /* [4] تنسيق شبكة الكروت (Grid) */
       .grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 15px;
         margin-top: 20px;
       }
-
       .card {
         background: var(--white);
         border-radius: 15px;
@@ -110,18 +113,12 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         cursor: pointer;
       }
-
       .card-title {
         padding: 15px 10px;
         font-size: 18px;
         font-weight: bold;
         color: var(--main-color);
       }
-
-      body.dark-theme .card-title {
-        color: white;
-      }
-
       .card-action {
         background: var(--main-color);
         color: var(--light-color);
@@ -130,14 +127,29 @@
         font-weight: bold;
       }
 
-      /* [5] التحكم بظهور وإخفاء الصفحات */
+      /* [5] تصميم الإعدادات كلوحة علوية مستقلة (Settings Overlay) */
+      #settings-page {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 60px);
+        background-color: var(--light-color);
+        z-index: 1500;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow-y: auto;
+      }
+
+      /* إخفاء الصفحات افتراضياً */
+      #section-content-page,
       #sub-page,
-      #settings-page,
       #feedback-page {
         display: none;
       }
 
-      /* [6] تنسيق صفحة التسبيح والعداد */
+      /* [6] تنسيق صفحة العداد والنص */
       .hadith-box {
         background: var(--white);
         padding: 15px;
@@ -145,10 +157,7 @@
         margin-bottom: 20px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
       }
-
       .circle-frame {
-        position: relative;
-        overflow: hidden;
         width: 250px;
         height: 250px;
         border: 10px solid var(--main-color);
@@ -158,18 +167,13 @@
         align-items: center;
         justify-content: center;
         background: var(--white);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         cursor: pointer;
         touch-action: manipulation;
       }
-
       #counter-display {
         font-size: 6.5rem;
-        font-weight: 400;
         color: var(--main-color);
-        z-index: 10;
       }
-
       .highlight {
         background-color: var(--main-color);
         color: var(--light-color);
@@ -179,7 +183,7 @@
         margin: 2px;
       }
 
-      /* [7] تنسيق صفوف الإعدادات وتذييل الصفحة */
+      /* [7] تنسيق الإعدادات والتذييل (Footer) */
       .setting-row {
         display: flex;
         justify-content: space-between;
@@ -191,14 +195,12 @@
         font-weight: bold;
         color: var(--main-color);
       }
-
       .footer {
         margin-top: 30px;
         display: flex;
         justify-content: space-between;
         align-items: center;
       }
-
       .reset-btn {
         background: var(--main-color);
         color: var(--light-color);
@@ -209,42 +211,17 @@
         font-weight: bold;
       }
 
-      /* [8] تأثير النجوم المتساقطة عند التسبيح */
-      .particle {
-        position: absolute;
-        pointer-events: none;
-        top: -20px;
-        z-index: 1;
-        animation: rain-animation 1.2s linear forwards;
-      }
-
-      @keyframes rain-animation {
-        0% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(320px);
-          opacity: 0;
-        }
-      }
-
-      /* [9] تنسيق حقول الإدخال والأيقونات */
+      /* حقول الإدخال */
       input,
       textarea {
         width: 100%;
         padding: 12px;
         border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(0, 0, 0, 0.1);
         background: var(--white);
         color: var(--text-color);
         margin-bottom: 15px;
         box-sizing: border-box;
-      }
-      .material-symbols-outlined {
-        color: inherit;
-        display: inline-block;
-        user-select: none;
       }
     </style>
   </head>
@@ -252,23 +229,21 @@
     <div class="header">
       <div
         class="header-side"
-        onclick="openSettings()"
+        onclick="toggleSettings()"
         style="text-align: right"
       >
-        <span
-          class="material-symbols-outlined"
-          style="font-size: 28px; vertical-align: middle"
+        <span id="settings-icon" class="material-symbols-outlined"
           >settings</span
         >
       </div>
       <div class="header-center">
-        <div id="back-icon" class="back-btn" onclick="showMain()">→</div>
+        <div id="back-icon" class="back-btn" onclick="goBack()">→</div>
         <span id="page-title">أجر</span>
       </div>
       <div
         class="header-side"
         onclick="openFeedback()"
-        style="text-align: left; font-size: 0.8rem; opacity: 0.9"
+        style="font-size: 0.8rem; opacity: 0.9"
       >
         من أنا؟
       </div>
@@ -276,11 +251,32 @@
 
     <div class="container">
       <div id="main-page">
-        <p style="font-weight: bold">
-          بِقَدْرِ ذِكْرِكَ، يَعْلُو بُنيانك.. انظر ماذا أعددت اليوم؟
+        <p style="font-weight: bold; margin-bottom: 25px">
+          بِقَدْرِ ذِكْرِكَ، يَعْلُو بُنيانك.. اختار وجهتك اليوم
         </p>
-        <div class="grid"></div>
-        <div class="footer">
+        <div class="grid">
+          <div class="card" onclick="showSection('daily-counters')">
+            <div class="card-title">العدادات اليومية</div>
+            <div class="card-action">نخل، قصور، وكنوز</div>
+          </div>
+          <div class="card" onclick="showSection('morning-evening')">
+            <div class="card-title">الصباح والمساء</div>
+            <div class="card-action">كاملة ومختصرة</div>
+          </div>
+          <div class="card" onclick="showSection('treasures')">
+            <div class="card-title">كنوز الأذكار</div>
+            <div class="card-action">أحاديث عظيمة الأجر</div>
+          </div>
+          <div class="card" onclick="showSection('duaa')">
+            <div class="card-title">جوامع الدعاء</div>
+            <div class="card-action">أدعية مستجابة</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="section-content-page">
+        <div id="section-items-grid" class="grid"></div>
+        <div id="daily-actions" class="footer" style="display: none">
           <span
             style="color: var(--main-color); font-weight: bold; cursor: pointer"
             onclick="showBalance()"
@@ -292,55 +288,41 @@
 
       <div id="sub-page">
         <div class="hadith-box">
-          <p
-            id="hadith-content"
-            class="hadith-text"
-            style="color: var(--text-color)"
-          ></p>
+          <p id="hadith-content"></p>
         </div>
-        <div class="circle-frame" onclick="increment()">
+        <div id="counter-area" class="circle-frame" onclick="increment()">
           <div id="counter-display">0</div>
         </div>
       </div>
 
       <div id="settings-page">
         <div class="setting-row">
-          <span>الاهتزاز</span>
-          <input
-            type="checkbox"
-            id="vibrate-toggle"
-            checked
-            style="width: 20px"
-          />
+          <span>الاهتزاز</span
+          ><input type="checkbox" id="vibrate-toggle" checked />
         </div>
         <div class="setting-row">
-          <span>الوضع المعكوس</span>
-          <input
+          <span>الوضع الداكن</span
+          ><input
             type="checkbox"
             id="dark-mode-toggle"
             onclick="toggleDarkMode()"
-            style="width: 20px"
           />
         </div>
         <div
-          id="total-sum-box"
           style="
             background: var(--main-color);
             color: var(--light-color);
             padding: 20px;
             border-radius: 15px;
-            font-size: 1.2rem;
-            font-weight: bold;
             margin-top: 20px;
           "
         >
-          المجموع: <span id="total-sum">0</span>
+          المجموع الكلي: <span id="total-sum">0</span>
         </div>
       </div>
 
       <div id="feedback-page">
         <h3 style="color: var(--main-color)">صدقة جارية.. اذكروني بدعوة</h3>
-        <p>تسعدني اقتراحاتكم لتحسين التجربة</p>
         <form
           id="suggestion-form"
           action="https://formspree.io/f/mlgrznlk"
@@ -354,24 +336,17 @@
           ></textarea>
           <button
             type="submit"
+            class="card-action"
             style="
-              background: var(--main-color);
-              color: var(--light-color);
-              border: none;
-              padding: 12px;
-              border-radius: 10px;
               width: 100%;
-              font-weight: bold;
+              border: none;
+              border-radius: 10px;
               cursor: pointer;
             "
           >
             إرسال
           </button>
         </form>
-        <p
-          id="form-status"
-          style="margin-top: 15px; font-weight: bold; display: none"
-        ></p>
       </div>
     </div>
 
@@ -385,7 +360,7 @@
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.6);
-        z-index: 2000;
+        z-index: 3000;
         align-items: center;
         justify-content: center;
       "
@@ -396,34 +371,18 @@
           padding: 25px;
           border-radius: 20px;
           width: 80%;
-          max-width: 350px;
           text-align: center;
         "
       >
-        <h3 style="color: var(--main-color); margin-top: 0">
-          رصيدك من النعيم ✨
-        </h3>
+        <h3 style="color: var(--main-color)">رصيدك من النعيم ✨</h3>
         <div
           id="balance-list"
-          style="
-            text-align: right;
-            margin: 20px 0;
-            line-height: 2;
-            font-size: 1.1rem;
-            color: var(--text-color);
-          "
+          style="text-align: right; margin: 20px 0; line-height: 2"
         ></div>
         <button
           onclick="closeBalance()"
-          style="
-            background: var(--main-color);
-            color: var(--light-color);
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            width: 100%;
-            font-weight: bold;
-          "
+          class="card-action"
+          style="width: 100%; border: none; border-radius: 10px"
         >
           تقبل الله
         </button>
@@ -431,197 +390,240 @@
     </div>
 
     <script>
-      /* [10] بيانات الأذكار ونصوص الأحاديث */
-      const dhikrSettings = {
-        palm: {
-          title: "نخلة",
-          limit: 1,
-          btn: "ازرع نخلة",
-          text: "من قال: <span class='highlight'>سبحان الله العظيم وبحمده</span>، غرست له نخلة في الجنة",
+      /* =========================================
+         [مكان الإضافة]: هنا يمكنكِ إضافة أذكار جديدة 
+         =========================================
+      */
+      const sectionsData = {
+        // أضيفي أذكار عداد جديدة هنا (تأكدي من وضع فاصلة بين كل ذكر)
+
+        "daily-counters": {
+          palm: {
+            title: "نخلة",
+            limit: 1,
+            btn: "ازرع نخلة",
+            text: "قال رسول الله ﷺ:<br> من قال: <span class='highlight'>سبحان الله العظيم وبحمده</span>، غرست له نخلة في الجنة",
+          },
+          palace: {
+            title: "قصر",
+            limit: 10,
+            btn: "عمّر قصراً",
+            text: "قال رسول الله ﷺ:<br> من قرأ <span class='highlight'>قُلْ هُوَ اللهُ أَحَدٌ</span> <span class='highlight'>عشرَ مراتٍ</span>، بنى اللهُ له قصراً في الجنَّةِ",
+          },
+          kanz: {
+            title: "كنز",
+            limit: 1,
+            btn: "اجمع كنزاً",
+            text: "قال رسول الله ﷺ:<br><span class='highlight'>لا حول ولا قوة إلا بالله</span> كنز من كنوز الجنة",
+          },
+          ghofran: {
+            title: "غفران",
+            limit: 100,
+            btn: "غفران الخطايا",
+            text: "قال رسول الله ﷺ:<br> من قال <span class='highlight'>سبحان الله وبحمده</span> <span class='highlight'>مائة مرة</span> غفرت خطاياه",
+          },
+          jwa2z: {
+            title: "الخمسُ جوائز",
+            limit: 100,
+            btn: "5 جوائز في ذكر",
+            text: "قال رسول الله ﷺ:<br>من قال <span class='highlight'>لا إله إلا الله وحده لا شريك له..</span> <span class='highlight'>مائة مرة</span>؛ كانت له عدل عشر رقاب...",
+          },
+          tree: {
+            title: "شجر",
+            limit: 1,
+            btn: "ازرع شجر",
+            text: "قال رسول الله ﷺ:<br> قل <span class='highlight'>سبحان الله والحمد لله ولا إله إلا الله والله أكبر</span> يغرس لك بكل واحدة شجرة",
+          },
+          ager: {
+            title: "الذكرُ المضاعف",
+            limit: 3,
+            btn: "ضاعف حسناتك",
+            text: "عن جويرية رضي الله عنها أن النبي ﷺ قال: لقد قلتُ بعدكِ أربع كلمات، <span class='highlight'>ثلاث مرات</span>... <span class='highlight'>سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته</span>.",
+          },
         },
-        palace: {
-          title: "قصر",
-          limit: 10,
-          btn: "عمّر قصراً",
-          text: "من قرأ <span class='highlight'>قُلْ هُوَ اللهُ أَحَدٌ</span> <span class='highlight'>عشرَ مراتٍ</span>، بنى الله له قصراً في الجنة",
+        "morning-evening": {
+          // [مكان إضافة أذكار الصباح والمساء]
         },
-        kanz: {
-          title: "كنز",
-          limit: 1,
-          btn: "اجمع كنزاً",
-          text: "<span class='highlight'>لا حول ولا قوة إلا بالله</span> كنز من كنوز الجنة",
+        treasures: {
+          // أضيفي أحاديث طويلة (بدون عداد) هنا
+          daily: {
+            title: "خصلتان",
+            isTreasure: true,
+            btn: "أتريد الجنة؟",
+            text: "عن النبي ﷺ قال <span class='highlight'>خصلتان لا يحافظ عليهما عبد مسلم...</span>",
+          },
         },
-        ghofran: {
-          title: "غفران",
-          limit: 100,
-          btn: "غفران الخطايا",
-          text: "من قال <span class='highlight'>سبحان الله وبحمده</span> <span class='highlight'>مائة مرة</span> غفرت خطاياه",
-        },
-        jwa2z: {
-          title: "الخمسُ جوائز",
-          limit: 100,
-          btn: "5 جوائز في ذكر",
-          text: "من قال <span class='highlight'>لا إله إلا الله وحده لا شريك له..</span> <span class='highlight'>مائة مرة</span>؛ كانت له عدل عشر رقاب...",
-        },
-        tree: {
-          title: "شجر",
-          limit: 1,
-          btn: "ازرع شجر",
-          text: "<span class='highlight'>سبحان الله والحمد لله ولا إله إلا الله والله أكبر</span> يغرس لك بكل واحدة شجرة",
-        },
-        ager: {
-          title: "الذكرُ المضاعف",
-          limit: 3,
-          btn: "ضاعف حسناتك",
-          text: "لقد قلتُ بعدكِ أربع كلمات، <span class='highlight'>ثلاث مرات</span>... <span class='highlight'>سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته</span>",
+        duaa: {
+          // [مكان إضافة الأدعية]
         },
       };
 
-      /* [11] إدارة البيانات والتهيئة الأساسية */
+      // متغيرات الحالة
+      let currentSection = "main";
       let currentType = "";
       let data = JSON.parse(localStorage.getItem("heavenData")) || {};
-      Object.keys(dhikrSettings).forEach((key) => {
-        if (!data[key]) data[key] = 0;
-      });
 
-      /* [12] دوال بناء الواجهة والتنقل */
-      function buildGrid() {
-        const grid = document.querySelector(".grid");
-        grid.innerHTML = "";
-        Object.keys(dhikrSettings).forEach((key) => {
-          grid.innerHTML += `<div class="card" onclick="openDhikr('${key}')"><div class="card-title">"${data[key]}" ${dhikrSettings[key].title}</div><div class="card-action">${dhikrSettings[key].btn}</div></div>`;
-        });
+      /* وظيفة فتح/إغلاق الإعدادات بشكل مستقل (Toggle) */
+      function toggleSettings() {
+        const settingsPage = document.getElementById("settings-page");
+        const icon = document.getElementById("settings-icon");
+
+        if (settingsPage.style.display === "block") {
+          settingsPage.style.display = "none";
+          icon.innerText = "settings";
+        } else {
+          settingsPage.style.display = "block";
+          icon.innerText = "close"; // تغيير الأيقونة لـ X عند الفتح
+          // تحديث المجموع عند الفتح
+          document.getElementById("total-sum").innerText = Object.values(
+            data
+          ).reduce((a, b) => a + b, 0);
+        }
       }
 
-      function switchPage(pageId, title) {
-        ["main-page", "sub-page", "settings-page", "feedback-page"].forEach(
-          (id) => (document.getElementById(id).style.display = "none")
-        );
-        document.getElementById(pageId).style.display = "block";
-        document.getElementById("back-icon").style.display = "inline-block";
-        document.getElementById("page-title").innerText = title;
-        window.history.pushState({ page: pageId }, title, "");
+      /* نظام الرجوع الذكي للتعامل مع الأقسام */
+      function goBack() {
+        // إذا كانت الإعدادات مفتوحة، نغلقها أولاً ونبقى في نفس الصفحة
+        if (
+          document.getElementById("settings-page").style.display === "block"
+        ) {
+          toggleSettings();
+          return;
+        }
+
+        if (["sub-page", "feedback-page"].includes(currentSection)) {
+          showSection(window.lastSection || "main");
+        } else if (currentSection !== "main") {
+          showMain();
+        }
       }
 
-      function openDhikr(type) {
-        currentType = type;
-        switchPage("sub-page", dhikrSettings[type].title);
-        document.getElementById("hadith-content").innerHTML =
-          dhikrSettings[type].text;
-        document.getElementById("counter-display").innerText = data[type];
-      }
-
-      function openSettings() {
-        switchPage("settings-page", "الإعدادات");
-        document.getElementById("total-sum").innerText = Object.values(
-          data
-        ).reduce((a, b) => a + b, 0);
-      }
-
-      function openFeedback() {
-        switchPage("feedback-page", "الاقتراحات");
-        document.getElementById("form-status").style.display = "none";
-      }
-
-      function showMain(fromBackBtn = false) {
-        ["sub-page", "settings-page", "feedback-page"].forEach(
-          (id) => (document.getElementById(id).style.display = "none")
-        );
+      /* العودة للواجهة الرئيسية (الأقسام الأربعة) */
+      function showMain() {
+        currentSection = "main";
+        hideAllPages();
         document.getElementById("main-page").style.display = "block";
         document.getElementById("back-icon").style.display = "none";
         document.getElementById("page-title").innerText = "أجر";
-        if (!fromBackBtn) window.history.replaceState(null, "Main", "");
-        buildGrid();
       }
 
-      /* [13] دوال العداد والاهتزاز والمؤثرات */
+      /* عرض قائمة الأذكار داخل قسم معين */
+      function showSection(sectionId) {
+        if (sectionId === "main") return showMain();
+        currentSection = sectionId;
+        window.lastSection = sectionId; // تخزين آخر قسم للرجوع إليه
+        hideAllPages();
+
+        const grid = document.getElementById("section-items-grid");
+        grid.innerHTML = "";
+        const items = sectionsData[sectionId] || {};
+
+        Object.keys(items).forEach((key) => {
+          grid.innerHTML += `
+            <div class="card" onclick="openDhikr('${key}', '${sectionId}')">
+              <div class="card-title">${
+                sectionId === "daily-counters"
+                  ? '"' + (data[key] || 0) + '" '
+                  : ""
+              }${items[key].title}</div>
+              <div class="card-action">${items[key].btn}</div>
+            </div>`;
+        });
+
+        document.getElementById("section-content-page").style.display = "block";
+        document.getElementById("daily-actions").style.display =
+          sectionId === "daily-counters" ? "flex" : "none";
+        document.getElementById("back-icon").style.display = "inline-block";
+      }
+
+      /* فتح صفحة الذكر المختار */
+      function openDhikr(type, sectionId) {
+        currentSection = "sub-page";
+        currentType = type;
+        hideAllPages();
+        const dhikr = sectionsData[sectionId][type];
+        document.getElementById("sub-page").style.display = "block";
+        document.getElementById("hadith-content").innerHTML = dhikr.text;
+
+        // إخفاء العداد إذا كان الذكر "كنز" (حديث طويل)
+        document.getElementById("counter-area").style.display = dhikr.isTreasure
+          ? "none"
+          : "flex";
+        document.getElementById("counter-display").innerText = data[type] || 0;
+      }
+
+      /* زيادة العداد وحفظ البيانات */
       function increment() {
-        data[currentType]++;
+        data[currentType] = (data[currentType] || 0) + 1;
         document.getElementById("counter-display").innerText =
           data[currentType];
-        if (document.getElementById("vibrate-toggle").checked) {
-          const limit = dhikrSettings[currentType].limit || 100;
-          navigator.vibrate(
-            data[currentType] % limit === 0 ? [400, 100, 400] : 40
-          );
-        }
-        createParticle();
+        if (document.getElementById("vibrate-toggle").checked)
+          navigator.vibrate(40);
         localStorage.setItem("heavenData", JSON.stringify(data));
       }
 
-      function createParticle() {
-        const container = document.querySelector(".circle-frame");
-        for (let i = 0; i < 6; i++) {
-          const p = document.createElement("div");
-          p.className = "particle";
-          p.innerText = "✨";
-          p.style.left = Math.random() * 100 + "%";
-          p.style.animationDuration = 0.8 + Math.random() * 0.5 + "s";
-          container.appendChild(p);
-          setTimeout(() => p.remove(), 1200);
-        }
+      /* إخفاء جميع الصفحات لتبديل الواجهات */
+      function hideAllPages() {
+        [
+          "main-page",
+          "section-content-page",
+          "sub-page",
+          "feedback-page",
+        ].forEach((id) => {
+          document.getElementById(id).style.display = "none";
+        });
       }
 
-      /* [14] دوال التحكم بالثيم والبيانات */
+      /* عرض الرصيد الإجمالي لكل ما تم تسبيحه */
+      function showBalance() {
+        const list = document.getElementById("balance-list");
+        list.innerHTML = "";
+        Object.keys(data).forEach((k) => {
+          let name = "";
+          // البحث عن اسم الذكر البرمجي لعرضه للمستخدم
+          Object.values(sectionsData).forEach((sec) => {
+            if (sec[k]) name = sec[k].title;
+          });
+          if (data[k] > 0) list.innerHTML += `<div>✅ ${data[k]} ${name}</div>`;
+        });
+        document.getElementById("balance-modal").style.display = "flex";
+      }
+
+      /* تبديل الوضع الداكن */
       function toggleDarkMode() {
         const isDark = document.getElementById("dark-mode-toggle").checked;
         document.body.classList.toggle("dark-theme", isDark);
         localStorage.setItem("darkMode", isDark);
       }
 
+      /* تصفير جميع العدادات */
       function resetAll() {
-        if (confirm("تصفير العدادات؟")) {
-          Object.keys(data).forEach((k) => (data[k] = 0));
+        if (confirm("هل تريد تصفير جميع العدادات؟")) {
+          data = {};
           localStorage.setItem("heavenData", JSON.stringify(data));
-          showMain();
+          showSection("daily-counters");
         }
-      }
-
-      function showBalance() {
-        const list = document.getElementById("balance-list");
-        list.innerHTML = "";
-        Object.keys(data).forEach((k) => {
-          if (data[k] > 0)
-            list.innerHTML += `<div>✅ ${data[k]} ${dhikrSettings[k].title}</div>`;
-        });
-        document.getElementById("balance-modal").style.display = "flex";
       }
 
       function closeBalance() {
         document.getElementById("balance-modal").style.display = "none";
       }
 
-      window.onpopstate = () => showMain(true);
+      /* فتح صفحة الاقتراحات */
+      function openFeedback() {
+        currentSection = "feedback-page";
+        hideAllPages();
+        document.getElementById("feedback-page").style.display = "block";
+        document.getElementById("back-icon").style.display = "inline-block";
+      }
 
-      /* [15] معالجة نموذج إرسال الاقتراحات */
-      document.getElementById("suggestion-form").onsubmit = async (e) => {
-        e.preventDefault();
-        const status = document.getElementById("form-status");
-        const res = await fetch(e.target.action, {
-          method: "POST",
-          body: new FormData(e.target),
-          headers: { Accept: "application/json" },
-        });
-        if (res.ok) {
-          status.style.display = "block";
-          status.innerText = "تم الإرسال بنجاح! ❤️";
-          e.target.reset();
-          setTimeout(() => {
-            status.style.display = "none";
-          }, 4000);
-        }
-      };
-
-      /* [16] استعادة الإعدادات المحفوظة عند تحميل الصفحة */
+      /* تحميل الإعدادات المحفوظة عند فتح التطبيق */
       window.addEventListener("load", () => {
-        const savedDarkMode = localStorage.getItem("darkMode") === "true";
-        if (savedDarkMode) {
+        if (localStorage.getItem("darkMode") === "true") {
           document.getElementById("dark-mode-toggle").checked = true;
           document.body.classList.add("dark-theme");
         }
       });
-
-      buildGrid();
     </script>
   </body>
 </html>
