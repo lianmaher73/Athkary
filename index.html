@@ -318,31 +318,31 @@
         box-sizing: border-box;
       }
       /* تنسيق النجوم */
-.rating-stars {
-  display: flex;
-  flex-direction: row-reverse; /* لعكس الترتيب برمجياً وتسهيل التحكم */
-  justify-content: center;
-  gap: 5px;
-}
+      .rating-stars {
+        display: flex;
+        flex-direction: row-reverse; /* لعكس الترتيب برمجياً وتسهيل التحكم */
+        justify-content: center;
+        gap: 5px;
+      }
 
-.star-label {
-  font-size: 35px;
-  color: #ccc; /* اللون الرمادي قبل الاختيار */
-  cursor: pointer;
-  transition: color 0.2s ease-in-out;
-}
+      .star-label {
+        font-size: 35px;
+        color: #ccc; /* اللون الرمادي قبل الاختيار */
+        cursor: pointer;
+        transition: color 0.2s ease-in-out;
+      }
 
-/* تلوين النجوم عند الهوفر (المرور بالماوس) */
-.star-label:hover,
-.star-label:hover ~ .star-label {
-  color: #ffb400;
-}
+      /* تلوين النجوم عند الهوفر (المرور بالماوس) */
+      .star-label:hover,
+      .star-label:hover ~ .star-label {
+        color: #ffb400;
+      }
 
-/* تلوين النجوم عند الضغط (الاختيار الثابت) */
-.star-label.selected,
-.star-label.selected ~ .star-label {
-  color: #ffb400;
-}
+      /* تلوين النجوم عند الضغط (الاختيار الثابت) */
+      .star-label.selected,
+      .star-label.selected ~ .star-label {
+        color: #ffb400;
+      }
     </style>
   </head>
   <body>
@@ -391,85 +391,137 @@
             <div class="card-title">جوامع الدعاء</div>
             <div class="card-action">أدعية مستجابة</div>
           </div>
+          <div class="card" onclick="showSection('duaa-yaomi')">
+            <div class="card-title">يوم الجمعة</div>
+            <div class="card-action">اهم الاعمال</div>
+          </div>
+        </div>
+        <div class="card" onclick="showSection('duaa-yaomi')">
+          <div class="card-title">رمضان</div>
+          <div class="card-action">العبادات و الادعية</div>
         </div>
       </div>
+    </div>
 
-      <div id="section-content-page">
-        <div id="section-items-grid" class="grid"></div>
-        <div id="daily-actions" class="footer" style="display: none">
-          <span
-            style="color: var(--main-color); font-weight: bold; cursor: pointer"
-            onclick="showBalance()"
-            >شاهد رصيدك</span
-          >
-          <button class="reset-btn" onclick="resetAll()">تصفير</button>
-        </div>
+    <div id="section-content-page">
+      <div id="section-items-grid" class="grid"></div>
+      <div id="daily-actions" class="footer" style="display: none">
+        <span
+          style="color: var(--main-color); font-weight: bold; cursor: pointer"
+          onclick="showBalance()"
+          >شاهد رصيدك</span
+        >
+        <button class="reset-btn" onclick="resetAll()">تصفير</button>
       </div>
+    </div>
 
-      <div id="sub-page">
-        <div class="hadith-box">
-          <p id="hadith-content"></p>
-        </div>
-        <div id="counter-area" class="circle-frame" onclick="increment()">
-          <div id="counter-display">0</div>
-        </div>
+    <div id="sub-page">
+      <div class="hadith-box">
+        <p id="hadith-content"></p>
       </div>
+      <div id="counter-area" class="circle-frame" onclick="increment()">
+        <div id="counter-display">0</div>
+      </div>
+    </div>
 
-      <div id="settings-page">
-        <div class="setting-row">
-          <span>الاهتزاز</span
-          ><input type="checkbox" id="vibrate-toggle" checked />
+    <div id="settings-page">
+      <div class="setting-row">
+        <span>الاهتزاز</span
+        ><input type="checkbox" id="vibrate-toggle" checked />
+      </div>
+      <div class="setting-row">
+        <span>الوضع الداكن</span
+        ><input
+          type="checkbox"
+          id="dark-mode-toggle"
+          onclick="toggleDarkMode()"
+        />
+      </div>
+      <div
+        style="
+          background: var(--main-color);
+          color: var(--light-color);
+          padding: 20px;
+          border-radius: 15px;
+          margin-top: 20px;
+        "
+      >
+        المجموع الكلي: <span id="total-sum">0</span>
+      </div>
+    </div>
+
+    <div id="feedback-page" class="container">
+      <h3 style="color: var(--main-color); margin-bottom: 10px">
+        هذا التطبيق صدقة جارية لا تنسوني من صالح دعائكم
+      </h3>
+      <p style="color: var(--text-color); opacity: 0.8; margin-bottom: 0px">
+        رأيك يساعدنا على التطوير
+      </p>
+
+      <form
+        id="suggestion-form"
+        action="https://formspree.io/f/mlgrznlk"
+        method="POST"
+      >
+        <div class="rating-stars" id="star-container">
+          <span class="star-label" onclick="markStar(5)">★</span>
+          <span class="star-label" onclick="markStar(4)">★</span>
+          <span class="star-label" onclick="markStar(3)">★</span>
+          <span class="star-label" onclick="markStar(2)">★</span>
+          <span class="star-label" onclick="markStar(1)">★</span>
+          <input type="hidden" name="rating" id="rating-value" value="0" />
         </div>
-        <div class="setting-row">
-          <span>الوضع الداكن</span
-          ><input
-            type="checkbox"
-            id="dark-mode-toggle"
-            onclick="toggleDarkMode()"
-          />
-        </div>
-        <div
+
+        <input
+          type="message"
+          name="email"
+          placeholder="إيميلك/اسمك (اختياري)"
           style="
-            background: var(--main-color);
-            color: var(--light-color);
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
+            border: 2px solid var(--main-color);
+            background: var(--white);
+            color: var(--text-color);
+            margin-bottom: 10px;
+          "
+        />
+
+        <textarea
+          name="message"
+          required
+          placeholder="اكتب اقتراحك أو سبب التقييم هنا..."
+          style="
+            border: 2px solid var(--main-color);
+            background: var(--white);
+            color: var(--text-color);
+            height: 120px;
+            resize: none;
+            margin-bottom: 15px;
+          "
+        ></textarea>
+
+        <button
+          type="submit"
+          id="submit-btn"
+          style="
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: var(--main-color);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
           "
         >
-          المجموع الكلي: <span id="total-sum">0</span>
-        </div>
-      </div>
+          إرسال التقييم
+        </button>
 
-<div id="feedback-page" class="container">
-          <h3 style="color: var(--main-color); margin-bottom: 10px;">هذا التطبيق صدقة جارية لا تنسوني من صالح دعائكم</h3>
-        <p style="color: var(--text-color); opacity: 0.8; margin-bottom: 0px;">رأيك يساعدنا على التطوير</p>
-        
-        <form id="suggestion-form" action="https://formspree.io/f/mlgrznlk" method="POST">
-          
-          <div class="rating-stars" id="star-container">
-  <span class="star-label" onclick="markStar(5)">★</span>
-  <span class="star-label" onclick="markStar(4)">★</span>
-  <span class="star-label" onclick="markStar(3)">★</span>
-  <span class="star-label" onclick="markStar(2)">★</span>
-  <span class="star-label" onclick="markStar(1)">★</span>
-  <input type="hidden" name="rating" id="rating-value" value="0">
-</div>
-
-          <input type="email" name="email" placeholder="إيميلك/اسمك (اختياري)" 
-                 style="border: 2px solid var(--main-color); background: var(--white); color: var(--text-color); margin-bottom: 10px;"/>
-          
-          <textarea name="message" required placeholder="اكتب اقتراحك أو سبب التقييم هنا..."
-            style="border: 2px solid var(--main-color); background: var(--white); color: var(--text-color); height: 120px; resize: none; margin-bottom: 15px;"></textarea>
-          
-          <button type="submit" id="submit-btn"
-            style="width: 100%; border: none; border-radius: 10px; cursor: pointer; background-color: var(--main-color); color: white; padding: 15px; font-weight: bold; font-size: 1.1rem;">
-            إرسال التقييم
-          </button>
-          
-          <div id="status-msg" style="margin-top: 15px; font-weight: bold; display: none;"></div>
-        </form>
-      </div>
+        <div
+          id="status-msg"
+          style="margin-top: 15px; font-weight: bold; display: none"
+        ></div>
+      </form>
+    </div>
 
     <div
       id="balance-modal"
@@ -1040,6 +1092,16 @@
             `[onclick="showSection('${sectionId}')"] .category-title`
           ).innerText;
 
+        const titles = {
+          "daily-counters": "العدادات اليومية",
+          "morning-evening": "الصباح والمساء",
+          treasures: "كنوز الأذكار",
+          duaa: "جوامع الدعاء",
+          "duaa-yaomi": "يوم الجمعة",
+        };
+        document.getElementById("page-title").innerText =
+          titles[sectionId] || "أجر";
+
         window.history.pushState({ page: sectionId }, "", "");
       }
       function openDhikr(type, sectionId) {
@@ -1132,45 +1194,68 @@
       });
       // الاستماع لزر الرجوع في الهاتف
       window.onpopstate = function (event) {
-        // عند ضغط زر الهاتف، نفذ goBack وأخبره أنها PopState
-        goBack(true);
+        if (event.state && event.state.page) {
+          const page = event.state.page;
+          if (page === "main") {
+            showMainQuietly();
+          } else if (sectionsData[page]) {
+            showSectionQuietly(page);
+          } else if (page === "sub-page") {
+            // إذا رجع لصفحة ذكر، الأفضل نرجعه للقسم نفسه
+            showSectionQuietly(window.lastSection || "main");
+          }
+        } else {
+          showMainQuietly();
+        }
       };
 
-      function goBack(isPopState = false) {
-        // إذا كانت الإعدادات مفتوحة، نغلقها ونبقى مكاننا
+      // function goBack(isPopState = false) {
+      //   // إذا كانت الإعدادات مفتوحة، نغلقها ونبقى مكاننا
+      //   if (
+      //     document.getElementById("settings-page").style.display === "block"
+      //   ) {
+      //     toggleSettings();
+      //     // إذا كان الرجوع من زر الهاتف، نحافظ على الصفحة الحالية في التاريخ
+      //     if (isPopState)
+      //       window.history.pushState({ page: currentSection }, "", "");
+      //     return;
+      //   }
+
+      //   // إذا كان الضغط من سهم التطبيق (وليس زر الهاتف)
+      //   if (!isPopState) {
+      //     window.history.back(); // نأمر المتصفح بالرجوع خطوة واحدة
+      //     return;
+      //   }
+
+      //   // المنطق الذي ينفذه زر الهاتف عند الرجوع
+      //   if (
+      //     currentSection === "sub-page" ||
+      //     currentSection === "feedback-page"
+      //   ) {
+      //     showSectionQuietly(window.lastSection || "main");
+      //   } else if (currentSection !== "main") {
+      //     showMainQuietly();
+      //   }
+      // }
+
+      // function showMainQuietly() {
+      //   currentSection = "main";
+      //   hideAllPages();
+      //   document.getElementById("main-page").style.display = "block";
+      //   document.getElementById("back-icon").style.display = "none";
+      //   document.getElementById("page-title").innerText = "أجر";
+      // }
+
+      function goBack() {
+        // إذا الإعدادات مفتوحة سكريها أولاً
         if (
           document.getElementById("settings-page").style.display === "block"
         ) {
           toggleSettings();
-          // إذا كان الرجوع من زر الهاتف، نحافظ على الصفحة الحالية في التاريخ
-          if (isPopState)
-            window.history.pushState({ page: currentSection }, "", "");
           return;
         }
-
-        // إذا كان الضغط من سهم التطبيق (وليس زر الهاتف)
-        if (!isPopState) {
-          window.history.back(); // نأمر المتصفح بالرجوع خطوة واحدة
-          return;
-        }
-
-        // المنطق الذي ينفذه زر الهاتف عند الرجوع
-        if (
-          currentSection === "sub-page" ||
-          currentSection === "feedback-page"
-        ) {
-          showSectionQuietly(window.lastSection || "main");
-        } else if (currentSection !== "main") {
-          showMainQuietly();
-        }
-      }
-
-      function showMainQuietly() {
-        currentSection = "main";
-        hideAllPages();
-        document.getElementById("main-page").style.display = "block";
-        document.getElementById("back-icon").style.display = "none";
-        document.getElementById("page-title").innerText = "أجر";
+        // غير هيك، ارجع خطوة في التاريخ
+        window.history.back();
       }
 
       function showSectionQuietly(sectionId) {
@@ -1194,13 +1279,13 @@
       }
       // التحكم في تلوين النجوم
       function setRating(n) {
-        const stars = document.querySelectorAll('.star-label');
+        const stars = document.querySelectorAll(".star-label");
         stars.forEach((star, index) => {
           // الترتيب معكوس لأننا نستخدم اتجاه ltr للنجوم
-          if (index >= (5-n)) {
-            star.classList.add('active');
+          if (index >= 5 - n) {
+            star.classList.add("active");
           } else {
-            star.classList.remove('active');
+            star.classList.remove("active");
           }
         });
       }
@@ -1219,42 +1304,44 @@
         fetch(event.target.action, {
           method: form.method,
           body: data,
-          headers: { 'Accept': 'application/json' }
-        }).then(response => {
-          if (response.ok) {
-            status.innerHTML = "تم الإرسال بنجاح! جزاك الله خيراً.";
-            status.style.color = "green";
-            status.style.display = "block";
-            form.reset();
-            setRating(0); // إعادة النجوم لحالتها الأصلية
-          } else {
-            status.innerHTML = "عذراً، حدث خطأ في الإرسال.";
+          headers: { Accept: "application/json" },
+        })
+          .then((response) => {
+            if (response.ok) {
+              status.innerHTML = "تم الإرسال بنجاح! جزاك الله خيراً.";
+              status.style.color = "green";
+              status.style.display = "block";
+              form.reset();
+              setRating(0); // إعادة النجوم لحالتها الأصلية
+            } else {
+              status.innerHTML = "عذراً، حدث خطأ في الإرسال.";
+              status.style.color = "red";
+              status.style.display = "block";
+            }
+            btn.innerText = "إرسال التقييم";
+            btn.disabled = false;
+          })
+          .catch((error) => {
+            status.innerHTML = "تأكد من اتصالك بالإنترنت.";
             status.style.color = "red";
             status.style.display = "block";
-          }
-          btn.innerText = "إرسال التقييم";
-          btn.disabled = false;
-        }).catch(error => {
-          status.innerHTML = "تأكد من اتصالك بالإنترنت.";
-          status.style.color = "red";
-          status.style.display = "block";
-          btn.innerText = "إرسال التقييم";
-          btn.disabled = false;
-        });
+            btn.innerText = "إرسال التقييم";
+            btn.disabled = false;
+          });
       });
       function markStar(rating) {
-  // تحديث القيمة في الحقل المخفي للإرسال
-  document.getElementById('rating-value').value = rating;
-  
-  const stars = document.querySelectorAll('.star-label');
-  
-  // حذف التحديد القديم
-  stars.forEach(s => s.classList.remove('selected'));
-  
-  // إضافة التحديد الجديد (بناءً على الترتيب العكسي)
-  // النجمة رقم 1 هي الأخيرة في القائمة بسبب row-reverse
-  stars[5 - rating].classList.add('selected');
-}
+        // تحديث القيمة في الحقل المخفي للإرسال
+        document.getElementById("rating-value").value = rating;
+
+        const stars = document.querySelectorAll(".star-label");
+
+        // حذف التحديد القديم
+        stars.forEach((s) => s.classList.remove("selected"));
+
+        // إضافة التحديد الجديد (بناءً على الترتيب العكسي)
+        // النجمة رقم 1 هي الأخيرة في القائمة بسبب row-reverse
+        stars[5 - rating].classList.add("selected");
+      }
     </script>
   </body>
 </html>
