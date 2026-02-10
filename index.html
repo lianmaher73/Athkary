@@ -395,8 +395,7 @@
             <div class="card-title">يوم الجمعة</div>
             <div class="card-action">اهم الاعمال</div>
           </div>
-        </div>
-        <div class="card" onclick="showSection('duaa-yaomi')">
+        <div class="card" onclick="showSection('random')">
           <div class="card-title">رمضان</div>
           <div class="card-action">العبادات و الادعية</div>
         </div>
@@ -473,9 +472,9 @@
         </div>
 
         <input
-          type="message"
+          type="email"
           name="email"
-          placeholder="إيميلك/اسمك (اختياري)"
+          placeholder="إيميلك (اختياري)"
           style="
             border: 2px solid var(--main-color);
             background: var(--white);
@@ -1022,7 +1021,7 @@
 
       /* نظام الرجوع الذكي للتعامل مع الأقسام */
       /* [تعديل] جعل سهم التطبيق يرجع خطوة واحدة فقط مثل زر التلفون */
-      function goBack() {
+     function goBack() {
         // 1. إذا كانت الإعدادات مفتوحة، نغلقها ونبقى في نفس الصفحة
         if (
           document.getElementById("settings-page").style.display === "block"
@@ -1091,16 +1090,6 @@
           document.querySelector(
             `[onclick="showSection('${sectionId}')"] .category-title`
           ).innerText;
-
-        const titles = {
-          "daily-counters": "العدادات اليومية",
-          "morning-evening": "الصباح والمساء",
-          treasures: "كنوز الأذكار",
-          duaa: "جوامع الدعاء",
-          "duaa-yaomi": "يوم الجمعة",
-        };
-        document.getElementById("page-title").innerText =
-          titles[sectionId] || "أجر";
 
         window.history.pushState({ page: sectionId }, "", "");
       }
@@ -1194,20 +1183,18 @@
       });
       // الاستماع لزر الرجوع في الهاتف
       window.onpopstate = function (event) {
-        if (event.state && event.state.page) {
-          const page = event.state.page;
-          if (page === "main") {
-            showMainQuietly();
-          } else if (sectionsData[page]) {
-            showSectionQuietly(page);
-          } else if (page === "sub-page") {
-            // إذا رجع لصفحة ذكر، الأفضل نرجعه للقسم نفسه
-            showSectionQuietly(window.lastSection || "main");
-          }
-        } else {
-          showMainQuietly();
-        }
+        // عند ضغط زر الهاتف، نفذ goBack وأخبره أنها PopState
+        goBack(true);
       };
+
+
+      function showMainQuietly() {
+        currentSection = "main";
+        hideAllPages();
+        document.getElementById("main-page").style.display = "block";
+        document.getElementById("back-icon").style.display = "none";
+        document.getElementById("page-title").innerText = "أجر";
+      }
 
       // function goBack(isPopState = false) {
       //   // إذا كانت الإعدادات مفتوحة، نغلقها ونبقى مكاننا
@@ -1237,45 +1224,98 @@
       //     showMainQuietly();
       //   }
       // }
-
-      // function showMainQuietly() {
-      //   currentSection = "main";
+      // function showSectionQuietly(sectionId) {
+      //   if (sectionId === "main") return showMainQuietly();
+      //   currentSection = sectionId;
       //   hideAllPages();
-      //   document.getElementById("main-page").style.display = "block";
-      //   document.getElementById("back-icon").style.display = "none";
-      //   document.getElementById("page-title").innerText = "أجر";
+      //   const grid = document.getElementById("section-items-grid");
+      //   grid.innerHTML = "";
+      //   const items = sectionsData[sectionId] || {};
+      //   Object.keys(items).forEach((key) => {
+      //     grid.innerHTML += `<div class="card" onclick="openDhikr('${key}', '${sectionId}')"><div class="card-title">${
+      //       sectionId === "daily-counters" ? '"' + (data[key] || 0) + '" ' : ""
+      //     }${items[key].title}</div><div class="card-action">${
+      //       items[key].btn
+      //     }</div></div>`;
+      //   });
+      //   document.getElementById("section-content-page").style.display = "block";
+      //   document.getElementById("daily-actions").style.display =
+      //     sectionId === "daily-counters" ? "flex" : "none";
+      //   document.getElementById("back-icon").style.display = "inline-block";
       // }
 
+      // [1] دالة الرجوع الموحدة (نسخة واحدة فقط!)
       function goBack() {
-        // إذا الإعدادات مفتوحة سكريها أولاً
-        if (
-          document.getElementById("settings-page").style.display === "block"
-        ) {
+        if (document.getElementById("settings-page").style.display === "block") {
           toggleSettings();
           return;
         }
-        // غير هيك، ارجع خطوة في التاريخ
+        // نترك المتصفح يرجع خطوة، والـ onpopstate سيتكفل بالباقي
         window.history.back();
       }
 
+      // [2] المحرك اللي بيراقب زر رجوع التلفون أو المتصفح
+      window.onpopstate = function (event) {
+        if (event.state && event.state.page) {
+          const target = event.state.page;
+          if (target === "main") {
+            showMainQuietly();
+          } else if (sectionsData[target]) {
+            showSectionQuietly(target);
+          } else if (target === "sub-page") {
+            // نرجعه للقسم اللي كان فيه مش للذكر نفسه
+            showSectionQuietly(window.lastSection || "main");
+          }
+        } else {
+          showMainQuietly();
+        }
+      };
+
+      // [3] الانتقال للقسم (للأمام فقط)
+      function showSection(sectionId) {
+        if (sectionId === "main") return showMain();
+        currentSection = sectionId;
+        window.lastSection = sectionId;
+        
+        showSectionQuietly(sectionId); // بناء الواجهة
+        window.history.pushState({ page: sectionId }, "", ""); // تسجيل الخطوة في التاريخ
+      }
+
+      // [4] بناء الواجهة بهدوء (بدون تسجيل Push جديد)
       function showSectionQuietly(sectionId) {
-        if (sectionId === "main") return showMainQuietly();
         currentSection = sectionId;
         hideAllPages();
         const grid = document.getElementById("section-items-grid");
         grid.innerHTML = "";
+
+        // إضافة الحديث للأقسام المختارة
+        if (sectionId === "morning-evening") {
+          const hadithDiv = document.createElement("div");
+          hadithDiv.className = "hadith-intro-box"; // تأكدي من وجود التنسيق في الـ Style
+          hadithDiv.style.cssText = "grid-column: 1 / -1; background: #fdf7f7; border-right: 5px solid #4f1a2a; padding: 15px; margin-bottom: 20px; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; color: #4f1a2a; text-align: justify;";
+          hadithDiv.innerHTML = `<strong>عن أنس رضي الله عنه قال ﷺ:</strong> "لأن أقعد مع قوم يذكرون الله من صلاة الغداة حتى تطلع الشمس أحب إلي من أن أعتق أربعة..." <br><small>[رواه أبو داود]</small>`;
+          grid.appendChild(hadithDiv);
+        }
+
         const items = sectionsData[sectionId] || {};
         Object.keys(items).forEach((key) => {
-          grid.innerHTML += `<div class="card" onclick="openDhikr('${key}', '${sectionId}')"><div class="card-title">${
-            sectionId === "daily-counters" ? '"' + (data[key] || 0) + '" ' : ""
-          }${items[key].title}</div><div class="card-action">${
-            items[key].btn
-          }</div></div>`;
+          // إضافة الكرت "مرة واحدة" فقط وبالتنسيق الصح
+          grid.innerHTML += `
+            <div class="card" onclick="openDhikr('${key}', '${sectionId}')">
+              <div class="card-title">
+                ${sectionId === "daily-counters" ? '"' + (data[key] || 0) + '" ' : ""}${items[key].title}
+              </div>
+              <div class="card-action">${items[key].btn}</div>
+            </div>`;
         });
+
         document.getElementById("section-content-page").style.display = "block";
-        document.getElementById("daily-actions").style.display =
-          sectionId === "daily-counters" ? "flex" : "none";
+        document.getElementById("daily-actions").style.display = (sectionId === "daily-counters" ? "flex" : "none");
         document.getElementById("back-icon").style.display = "inline-block";
+        
+        // تحديث العنوان بناءً على الـ ID
+        const titles = { "daily-counters": "العدادات اليومية", "morning-evening": "الصباح والمساء", "treasures": "كنوز الأذكار", "duaa": "جوامع الدعاء", "duaa-jumaa": "يوم الجمعة", "ramadan": "رمضان" };
+        document.getElementById("page-title").innerText = titles[sectionId] || "أجر";
       }
       // التحكم في تلوين النجوم
       function setRating(n) {
