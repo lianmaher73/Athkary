@@ -375,7 +375,7 @@
           بِقَدْرِ ذِكْرِكَ، يَعْلُو بُنيانك.. اختار وجهتك اليوم
         </p>
         <div class="grid">
-          <div class="card" onclick="showSection('daily-counters')">
+<div class="card" onclick="showSection('daily-counters')">
             <div class="card-title">العدادات اليومية</div>
             <div class="card-action">نخل، قصور، وكنوز</div>
           </div>
@@ -395,12 +395,22 @@
             <div class="card-title">يوم الجمعة</div>
             <div class="card-action">اهم الاعمال</div>
           </div>
-        <div class="card" onclick="showSection('random')">
+       
+        <div class="card" onclick="showSection('prophets-prayers')">
+         <div class="card-title">أدعية الأنبياء</div>
+        <div class="card-action">كما وردت</div>
+      </div>
+       <div class="card" onclick="showSection('quran-messages')">
+          <div class="card-title">رسائل القرآن</div>
+          <div class="card-action">آيات تطمئن قلبك</div>
+        </div>
+       <div class="card" onclick="showSection('ramadan')">
           <div class="card-title">رمضان</div>
           <div class="card-action">العبادات و الادعية</div>
         </div>
-      </div>
     </div>
+        </div>
+          
 
     <div id="section-content-page">
       <div id="section-items-grid" class="grid"></div>
@@ -1004,12 +1014,325 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
     limit: 1,
     btn: "سُنة مؤكدة",
     text: "قال رسول الله ﷺ: <span class='highlight'>غُسل يوم الجمعة واجب على كل محتلم</span>، وأن يستنّ (يستاك) ويمسّ من الطيب ما قدر عليه. [رواه مسلم]",
-  }
+  },
 },
+"quran-messages": {
+    sad: {
+      title: "حزين؟",
+      isTreasure: true,
+      btn: "طبُّ القلوب",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا</span> ﴾ [سورة التوبة: 40]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">فَإِنَّ مَعَ الْعُسْرِ يُسْرًا * إِنَّ مَعَ الْعُسْرِ يُسْرًا</span> ﴾ [سورة الشرح: 5-6]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ</span> ﴾ [سورة الزمر: 53]</div>
+          </div>
+        </div>
+      `
+    },
+    tired: {
+      title: "متعب؟",
+      isTreasure: true,
+      btn: "رسالة جبر",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَبَشِّرِ الصَّابِرِينَ</span> ﴾ [سورة البقرة: 155]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا</span> ﴾ [سورة البقرة: 286]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَاصْبِرْ لِحُكْمِ رَبِّكَ فَإِنَّكَ بِأَعْيُنِنَا</span> ﴾ [سورة الطور: 48]</div>
+          </div>
+        </div>
+      `
+    },
+    anxious: {
+      title: "خائف أو قلق؟",
+      isTreasure: true,
+      btn: "سكينة",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</span> ﴾ [سورة الرعد: 28]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ</span> ﴾ [سورة الطلاق: 3]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا</span> ﴾ [سورة التوبة: 51]</div>
+          </div>
+        </div>
+      `
+    },
+    lost: {
+      title: "تائه؟",
+      isTreasure: true,
+      btn: "نور الهداية",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَوَجَدَكَ ضَالًّا فَهَدَى</span> ﴾ [سورة الضحى: 7]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">يَهْدِي اللَّهُ لِنُورِهِ مَن يَشَاءُ</span> ﴾ [سورة النور: 35]</div>
+          </div>
+        </div>
+      `
 
-        
-      };
-
+    },
+    waiting: {
+      title: "تنتظر فرجاً؟",
+      isTreasure: true,
+      btn: "رسالة الاستبشار",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">لَا تَدْرِي لَعَلَّ اللَّهَ يُحْدِثُ بَعْدَ ذَلِكَ أَمْرًا</span> ﴾ [سورة الطلاق: 1]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَى</span> ﴾ [سورة الضحى: 5]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">يَأْتِ بِهَا اللَّهُ إِنَّ اللَّهَ لَطِيفٌ خَبِيرٌ</span> ﴾ [سورة لقمان: 16]</div>
+          </div>
+        </div>
+      `
+    },
+    wronged: {
+      title: "مظلوم؟",
+      isTreasure: true,
+      btn: "نصرٌ من الله",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">أَنِّي مَغْلُوبٌ فَانتَصِرْ</span> ﴾ [سورة القمر: 10]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ</span> ﴾ [سورة الطلاق: 3]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَاللَّهُ مَعَ الصَّابِرِينَ</span> ﴾ [سورة البقرة: 249]</div>
+          </div>
+        </div>
+      `
+    },
+    seeking_forgiveness: {
+      title: "أثقلتك الذنوب؟",
+      isTreasure: true,
+      btn: "باب التوبة",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">نَبِّئْ عِبَادِي أَنِّي أَنَا الْغَفُورُ الرَّحِيمُ</span> ﴾ [سورة الحجر: 49]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَإِنِّي لَغَفَّارٌ لِّمَن تَابَ وَآمَنَ وَعَمِلَ صَالِحًا ثُمَّ اهْتَدَى</span> ﴾ [سورة طه: 82]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَهُوَ الَّذِي يَقْبَلُ التَّوْبَةَ عَنْ عِبَادِهِ وَيَعْفُو عَنِ السَّيِّئَاتِ</span> ﴾ [سورة الشورى: 25]</div>
+          </div>
+        </div>
+      `
+    },
+    lonely: {
+      title: "وحيد؟",
+      isTreasure: true,
+      btn: "أنيس الروح",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ</span> ﴾ [سورة الحديد: 4]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ</span> ﴾ [سورة ق: 16]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">فَإِنِّي قَرِيبٌ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ</span> ﴾ [سورة البقرة: 186]</div>
+          </div>
+        </div>
+      `
+    }
+  },
+"prophets-prayers": {
+    illness: {
+      title: "مريض أو متألم؟",
+      isTreasure: true,
+      btn: "دعاء أيوب عليه السلام",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">أَنِّي مَسَّنِيَ الضُّرُّ وَأَنتَ أَرْحَمُ الرَّاحِمِينَ</span> ﴾ [سورة الأنبياء: 83]</div>
+          </div>
+        </div>
+      `
+    },
+    distress: {
+      title: "في ضيق أو كرب؟",
+      isTreasure: true,
+      btn: "دعاء يونس عليه السلام",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">لَّا إِلَهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ</span> ﴾ [سورة الأنبياء: 87]</div>
+          </div>
+        </div>
+      `
+    },
+    rizq: {
+      title: "تطلب الذرية أو الرزق؟",
+      isTreasure: true,
+      btn: "دعاء زكريا عليه السلام",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبِّ لَا تَذَرْنِي فَرْدًا وَأَنتَ خَيْرُ الْوَارِثِينَ</span> ﴾ [سورة الأنبياء: 89]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبِّ هَبْ لي مِن لَدُنْكَ ذُرِّيَّةً طَيِّبَةً إِنَّكَ سَميعُ الدُّعاء</span> ﴾ [سورة آل عمران: 38]</div>
+          </div>
+        </div>
+      `
+    },
+    strength: {
+      title: "مقبل على أمر صعب؟",
+      isTreasure: true,
+      btn: "دعاء موسى عليه السلام",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبِّ اشْرَحْ لِي صَدْرِي * وَيَسِّرْ لِي أَمْرِي</span> ﴾ [سورة طه: 25-26]</div>
+          </div>
+        </div>
+      `
+    },
+    protection: {
+      title: "خائف من كيد أو عدو؟",
+      isTreasure: true,
+      btn: "دعاء نوح عليه السلام",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">أَنِّي مَغْلُوبٌ فَانتَصِرْ</span> ﴾ [سورة القمر: 10]</div>
+          </div>
+        </div>
+      `
+    },
+    parents: {
+      title: "تريد الدعاء لوالديك؟",
+      isTreasure: true,
+      btn: "دعاء إبراهيم عليه السلام",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ</span> ﴾ [سورة إبراهيم: 41]</div>
+          </div>
+        </div>
+      `
+    },
+    guidance: {
+      title: "تطلب الهداية؟",
+      isTreasure: true,
+      btn: "دعاء الراسخين في العلم",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً إِنَّكَ أَنتَ الْوَهَّابُ</span> ﴾ [سورة آل عمران: 8]</div>
+          </div>
+        </div>
+      `
+    },
+    success: {
+      title: "تبحث عن التوفيق؟",
+      isTreasure: true,
+      btn: "دعاء شعيب عليه السلام",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ عَلَيْهِ تَوَكَّلْتُ وَإِلَيْهِ أُنِيبُ</span> ﴾ [سورة هود: 88]</div>
+          </div>
+        </div>
+      `
+    },
+    repentance: {
+      title: "تطلب قبول التوبة؟",
+      isTreasure: true,
+      btn: "دعاء آدم عليه السلام",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ</span> ﴾ [سورة الأعراف: 23]</div>
+          </div>
+        </div>
+      `
+    },
+    solomon_rizq: {
+      title: "تطلب ملكاً ورزقاً؟",
+      isTreasure: true,
+      btn: "دعاء سليمان عليه السلام",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبِّ اغْفِرْ لِي وَهَبْ لِي مُلْكًا لَّا يَنبَغِي لِأَحَدٍ مِّن بَعْدِي إِنَّكَ أَنتَ الْوَهَّابُ</span> ﴾ [سورة ص: 35]</div>
+          </div>
+        </div>
+      `
+    },
+    acceptance: {
+      title: "تريد قبول عملك؟",
+      isTreasure: true,
+      btn: "دعاء إبراهيم وإسماعيل",
+      text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ</span> ﴾ [سورة البقرة: 127]</div>
+          </div>
+        </div>
+      `
+    }
+  },
+};
       // متغيرات الحالة
       let currentSection = "main";
       let currentType = "";
