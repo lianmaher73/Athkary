@@ -665,33 +665,39 @@
           {id: 'qeab_lel', n: 'قيام ليل (ولو ركعتين)'}
         ];
 
-        let ramData = JSON.parse(localStorage.getItem('ramadan_tracker')) || {};
-
-        let html = '';
-        tasks.forEach(task => {
-          html += \`<tr style="border-bottom: 1px solid var(--light-color);">
-            <td style="width: 160px; padding: 10px 5px; font-weight: bold; color: var(--main-color); background: var(--light-color); position: sticky; right: 0; z-index: 1; text-align: right; font-size: 0.85rem; border-left: 1px solid #ddd; white-space: nowrap;">\${task.n}</td>\`;
+        // دالة مخصصة لبناء الجدول عشان نقدر نناديها كل ما نعدل شي
+        window.renderMatrix = () => {
+          let ramData = JSON.parse(localStorage.getItem('ramadan_tracker')) || {};
+          let html = '';
           
-          for (let day = 1; day <= 30; day++) {
-            const isChecked = (ramData[day] && ramData[day][task.id]) ? 'checked' : '';
-            html += \`
-              <td style="padding: 5px; border: 1px solid var(--light-color); width: 50px;">
-                <input type="checkbox" 
-                  style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--main-color);" 
-                  onchange="updateMatrix(\${day}, '\\\${task.id}', this.checked)" \${isChecked}>
-              </td>\`;
-          }
-          html += '</tr>';
-        });
+          tasks.forEach(task => {
+            html += '<tr style="border-bottom: 1px solid var(--light-color);">';
+            html += '<td style="width: 160px; padding: 10px 5px; font-weight: bold; color: var(--main-color); background: var(--light-color); position: sticky; right: 0; z-index: 1; text-align: right; font-size: 0.85rem; border-left: 1px solid #ddd; white-space: nowrap;">' + task.n + '</td>';
+            
+            for (let day = 1; day <= 30; day++) {
+              const isChecked = (ramData[day] && ramData[day][task.id]) ? 'checked' : '';
+              html += '<td style="padding: 5px; border: 1px solid var(--light-color); width: 80px;">' +
+                      '<input type="checkbox" style="width: 22px; height: 22px; cursor: pointer; accent-color: var(--main-color);" ' +
+                      'onclick="updateMatrix(' + day + ', \\'' + task.id + '\\', this.checked)" ' + isChecked + '>' +
+                      '</td>';
+            }
+            html += '</tr>';
+          });
+          matrixBody.innerHTML = html;
+        };
 
-        matrixBody.innerHTML = html;
-
+        // تحديث البيانات وحفظها
         window.updateMatrix = (day, taskId, status) => {
           let data = JSON.parse(localStorage.getItem('ramadan_tracker')) || {};
           if (!data[day]) data[day] = {};
           data[day][taskId] = status;
           localStorage.setItem('ramadan_tracker', JSON.stringify(data));
+          // السطر السحري: بنخليه يرجع يحدث الجدول فوراً عشان يثبت الـ Check
+          renderMatrix();
         };
+
+        // تشغيل الجدول لأول مرة عند فتح الصفحة
+        renderMatrix();
       })();
     <\/script>
   `},
