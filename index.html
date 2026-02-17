@@ -615,28 +615,26 @@
   text: `
     <div style="direction: rtl; padding: 5px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
       
-     <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); min-width: 300px; max-width: 100%;">
-  <strong style="color: var(--main-color); font-size: 1.1rem;">فضل السنن والنوافل ✨</strong><br>
-  
-  <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 8px; color: var(--text-color);">
-    قال الله تعالى في الحديث القدسي: "وما يزالُ عبدي <strong>يتقرَّبُ إليَّ بالنَّوافلِ حتَّى أُحبَّه</strong>، فإذا أحببتُه كنتُ سمعَه الَّذي يسمعُ به، وبصرَه الَّذي يُبصرُ به.."
-  </p>
-  
-  <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 8px; color: var(--text-color);">
-    قال رسول الله ﷺ: "إنَّ أولَ ما يُحاسبُ بهِ العبدُ يومَ القيامةِ من عملِهِ صلاتُهُ... فإن انتقصَ من فريضتِهِ شيئاً قالَ الربُّ تبارك وتعالى: <strong>انظروا هل لعبدي من تطوُّعٍ فيُكمَّلَ بها ما انتقصَ من الفريضةِ</strong>"
-  </p>
-
-  
-</div>
+      <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); min-width: 300px; max-width: 100%;">
+        <strong style="color: var(--main-color); font-size: 1.1rem;">فضل السنن والنوافل ✨</strong><br>
+        
+        <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 8px; color: var(--text-color);">
+          قال الله تعالى في الحديث القدسي: "وما يزالُ عبدي <strong>يتقرَّبُ إليَّ بالنَّوافلِ حتَّى أُحبَّه</strong>، فإذا أحببتُه كنتُ سمعَه الَّذي يسمعُ به، وبصرَه الَّذي يُبصرُ به.."
+        </p>
+        
+        <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 8px; color: var(--text-color);">
+          قال رسول الله ﷺ: "إنَّ أولَ ما يُحاسبُ بهِ العبدُ يومَ القيامةِ من عملِهِ صلاتُهُ... فإن انتقصَ من فريضتِهِ شيئاً قالَ الربُّ تبارك وتعالى: <strong>انظروا هل لعبدي من تطوُّعٍ فيُكمَّلَ بها ما انتقصَ من الفريضةِ</strong>"
+        </p>
+      </div>
 
       <h3 style="color: var(--main-color); text-align: center; margin-bottom: 15px;">لوحة إنجاز رمضان (30 يوم) ✨</h3>
       
-      <div style="min-width: 3000px; background: var(--white); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden;">
+      <div style="min-width: 1700px; background: var(--white); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden;">
         <table style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">
           <thead>
             <tr style="background: var(--main-color); color: white;">
-              <th style="width: 220px; padding: 15px; border: 1px solid rgba(255,255,255,0.2); position: sticky; right: 0; background: var(--main-color); z-index: 2;">المهمة والعبادة</th>
-              ${Array.from({length: 30}, (_, i) => `<th style="width: 50px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem;">${i+1}</th>`).join('')}
+              <th style="width: 160px; padding: 15px 5px; border: 1px solid rgba(255,255,255,0.2); position: sticky; right: 0; background: var(--main-color); z-index: 2; font-size: 0.85rem;">المهمة والعبادة</th>
+              ${Array.from({length: 30}, (_, i) => `<th style="width: 50px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;">${i+1}</th>`).join('')}
             </tr>
           </thead>
           <tbody id="tracker-matrix">
@@ -644,7 +642,7 @@
         </table>
       </div>
       <p style="text-align: center; font-size: 0.9rem; margin-top: 15px; color: var(--main-color); font-weight: bold;">
-         اسحب الجدول لليسار لمتابعة باقي الأيام (حتى يوم 30)
+         اسحب الجدول لليسار لمتابعة باقي الأيام (حتى يوم 30) 
       </p>
     </div>
 
@@ -669,18 +667,16 @@
 
         let html = '';
         tasks.forEach(task => {
-          const isDikr = task.id === 'dikr_100' ? 'background: #fdfae6;' : '';
-          
-          html += \`<tr style="border-bottom: 1px solid var(--light-color); \${isDikr}">
-            <td style="padding: 12px; font-weight: bold; color: var(--main-color); background: var(--light-color); position: sticky; right: 0; z-index: 1; text-align: right; font-size: 0.9rem; border-left: 1px solid #ddd; white-space: nowrap;">\${task.n}</td>\`;
+          html += \`<tr style="border-bottom: 1px solid var(--light-color);">
+            <td style="width: 160px; padding: 10px 5px; font-weight: bold; color: var(--main-color); background: var(--light-color); position: sticky; right: 0; z-index: 1; text-align: right; font-size: 0.85rem; border-left: 1px solid #ddd; white-space: nowrap;">\${task.n}</td>\`;
           
           for (let day = 1; day <= 30; day++) {
             const isChecked = (ramData[day] && ramData[day][task.id]) ? 'checked' : '';
             html += \`
-              <td style="padding: 8px; border: 1px solid var(--light-color);">
+              <td style="padding: 5px; border: 1px solid var(--light-color); width: 50px;">
                 <input type="checkbox" 
-                  style="width: 22px; height: 22px; cursor: pointer; accent-color: var(--main-color);" 
-                  onchange="updateMatrix(\${day}, '\${task.id}', this.checked)" \${isChecked}>
+                  style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--main-color);" 
+                  onchange="updateMatrix(\${day}, '\\\${task.id}', this.checked)" \${isChecked}>
               </td>\`;
           }
           html += '</tr>';
@@ -696,8 +692,7 @@
         };
       })();
     <\/script>
-  `
-},
+  `},
   bukhari_habit: {
     title: "همة الإمام البخاري",
     isTreasure: true,
