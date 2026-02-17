@@ -344,6 +344,27 @@
       .star-label.selected ~ .star-label {
         color: #ffb400;
       }
+      /* تنسيق خاص لبطاقة رمضان في الصفحة الرئيسية */
+.ramadan-card {
+    grid-column: 1 / -1 !important; /* تأخذ السطر كامل */
+    position: relative;
+    overflow: hidden;
+    background-color: var(--white);
+}
+
+.ramadan-card::before {
+    content: "🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0.12; /* شفافية النجوم */
+    font-size: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+    pointer-events: none;
+    justify-content: space-around;
+}
     </style>
   </head>
   <body>
@@ -375,7 +396,16 @@
         <p style="font-weight: bold; margin-bottom: 25px">
           بِقَدْرِ ذِكْرِكَ، يَعْلُو بُنيانك.. اختار وجهتك اليوم
         </p>
+        
         <div class="grid">
+           <div class="card" onclick="showSection('ramadan')" style="grid-column: 1 / -1; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.3; font-size: 18px; pointer-events: none; display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-around; padding: 5px; user-select: none;">
+        🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐
+    </div>
+    
+    <div class="card-title" style="position: relative; z-index: 1;">رمضان</div>
+    <div class="card-action" style="position: relative; z-index: 1;">العبادات و الادعية</div>
+</div>
 <div class="card" onclick="showSection('daily-counters')">
             <div class="card-title">العدادات اليومية</div>
             <div class="card-action">نخل، قصور، وكنوز</div>
@@ -405,10 +435,7 @@
           <div class="card-title">رسائل القرآن</div>
           <div class="card-action">آيات تطمئن قلبك</div>
         </div>
-       <div class="card" onclick="showSection('ramadan')">
-          <div class="card-title">رمضان</div>
-          <div class="card-action">العبادات و الادعية</div>
-        </div>
+      
     </div>
         </div>
           
@@ -579,6 +606,150 @@
       */
       const sectionsData = {
         // أضيفي أذكار عداد جديدة هنا (تأكدي من وضع فاصلة بين كل ذكر)
+"ramadan": {
+
+   daily_tracker: {
+  title: "جدول المتابعة الرمضاني الشامل",
+  isTreasure: true,
+  btn: "عرض جدول الـ 30 يوم",
+  text: `
+    <div style="direction: rtl; padding: 5px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+      
+     <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); min-width: 300px; max-width: 100%;">
+  <strong style="color: var(--main-color); font-size: 1.1rem;">فضل السنن والنوافل ✨</strong><br>
+  
+  <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 8px; color: var(--text-color);">
+    قال الله تعالى في الحديث القدسي: "وما يزالُ عبدي <strong>يتقرَّبُ إليَّ بالنَّوافلِ حتَّى أُحبَّه</strong>، فإذا أحببتُه كنتُ سمعَه الَّذي يسمعُ به، وبصرَه الَّذي يُبصرُ به.."
+  </p>
+  
+  <p style="font-size: 0.95rem; line-height: 1.6; margin-top: 8px; color: var(--text-color);">
+    قال رسول الله ﷺ: "إنَّ أولَ ما يُحاسبُ بهِ العبدُ يومَ القيامةِ من عملِهِ صلاتُهُ... فإن انتقصَ من فريضتِهِ شيئاً قالَ الربُّ تبارك وتعالى: <strong>انظروا هل لعبدي من تطوُّعٍ فيُكمَّلَ بها ما انتقصَ من الفريضةِ</strong>"
+  </p>
+
+  
+</div>
+
+      <h3 style="color: var(--main-color); text-align: center; margin-bottom: 15px;">لوحة إنجاز رمضان (30 يوم) ✨</h3>
+      
+      <div style="min-width: 3000px; background: var(--white); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden;">
+        <table style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">
+          <thead>
+            <tr style="background: var(--main-color); color: white;">
+              <th style="width: 220px; padding: 15px; border: 1px solid rgba(255,255,255,0.2); position: sticky; right: 0; background: var(--main-color); z-index: 2;">المهمة والعبادة</th>
+              ${Array.from({length: 30}, (_, i) => `<th style="width: 50px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem;">${i+1}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody id="tracker-matrix">
+          </tbody>
+        </table>
+      </div>
+      <p style="text-align: center; font-size: 0.9rem; margin-top: 15px; color: var(--main-color); font-weight: bold;">
+         اسحب الجدول لليسار لمتابعة باقي الأيام (حتى يوم 30)
+      </p>
+    </div>
+
+    <script>
+      (function() {
+        const matrixBody = document.getElementById('tracker-matrix');
+        if(!matrixBody) return;
+
+        const tasks = [
+          {id: 'fajr_s', n: 'الفجر (سنة + فريضة)'},
+          {id: 'dhuhr_s', n: 'الظهر (سنة + فريضة)'},
+          {id: 'asr_s', n: 'العصر (فريضة + نافلة)'},
+          {id: 'maghrib_s', n: 'المغرب (فريضة + سنة)'},
+          {id: 'isha_s', n: 'العشاء (سنة + وتر)'},
+          {id: 'taraweeh', n: 'صلاة التراويح'},
+          {id: 'dikr_100', n: 'سبحان الله وبحمده (100)'},
+          {id: 'quran_j', n: 'ورد القرآن (أقله جزء)'},
+          {id: 'qeab_lel', n: 'قيام ليل (ولو ركعتين)'}
+        ];
+
+        let ramData = JSON.parse(localStorage.getItem('ramadan_tracker')) || {};
+
+        let html = '';
+        tasks.forEach(task => {
+          const isDikr = task.id === 'dikr_100' ? 'background: #fdfae6;' : '';
+          
+          html += \`<tr style="border-bottom: 1px solid var(--light-color); \${isDikr}">
+            <td style="padding: 12px; font-weight: bold; color: var(--main-color); background: var(--light-color); position: sticky; right: 0; z-index: 1; text-align: right; font-size: 0.9rem; border-left: 1px solid #ddd; white-space: nowrap;">\${task.n}</td>\`;
+          
+          for (let day = 1; day <= 30; day++) {
+            const isChecked = (ramData[day] && ramData[day][task.id]) ? 'checked' : '';
+            html += \`
+              <td style="padding: 8px; border: 1px solid var(--light-color);">
+                <input type="checkbox" 
+                  style="width: 22px; height: 22px; cursor: pointer; accent-color: var(--main-color);" 
+                  onchange="updateMatrix(\${day}, '\${task.id}', this.checked)" \${isChecked}>
+              </td>\`;
+          }
+          html += '</tr>';
+        });
+
+        matrixBody.innerHTML = html;
+
+        window.updateMatrix = (day, taskId, status) => {
+          let data = JSON.parse(localStorage.getItem('ramadan_tracker')) || {};
+          if (!data[day]) data[day] = {};
+          data[day][taskId] = status;
+          localStorage.setItem('ramadan_tracker', JSON.stringify(data));
+        };
+      })();
+    <\/script>
+  `
+},
+  bukhari_habit: {
+    title: "همة الإمام البخاري",
+    isTreasure: true,
+    btn: "قدوة في القرآن",
+    text: "كان الإمام البخاري <span class='highlight'>يختم في النهار كل يوم ختمة</span>، و<span class='highlight'>يختم عند الإفطار كل ليلة ختمة</span>، ويقول: عند كل ختمة دعوة مستجابة. [المصدر: سير أعلام النبلاء]",
+  },
+  tarawih_break: {
+    title: "بين ركعات التراويح",
+    isTreasure: true,
+    btn: "ذكر وتبيح",
+    text: "يستحب أن يشغل الصائم وقته بالذكر بين ركعات القيام، ومن ذلك الإكثار من الباقيات الصالحات: <span class='highlight'>سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر، ولا حول ولا قوة إلا بالله العلي العظيم</span>.",
+  },
+  
+  fasting_gift: {
+    title: "هدية الصائم",
+    isTreasure: true,
+    btn: "دعوة لا تُرد",
+    text: "قال رسول الله ﷺ: <span class='highlight'>ثلاثة لا تُرد دعوتهم: الإمام العادل، والصائم حتى يُفطر، ودعوة المظلوم</span>. [رواه الترمذي]. فاحرص على الدعاء قبل أذان المغرب بدقائق فإنها لحظات استجابة.",
+  },
+  iftar_dua: {
+    title: "دعاء الإفطار",
+    isTreasure: true,
+    btn: "سنة نبوية",
+    text: "عن معاذ بن زهرة أنه بلغه أن النبي ﷺ كان يقول إذا أفطر: <span class='highlight'>اللهم لك صمت وعلى رزقك أفطرت</span>. [رواه أبو داود]. <br> وعن ابن عمر رضي الله عنهما قال: كان رسول الله ﷺ إذا أفطر قال: <span class='highlight'>ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله</span>. [صحيح أبي داود]",
+  },
+  
+  lailat_alqadr: {
+    title: "دعاء ليلة القدر",
+    isTreasure: true,
+    btn: "سؤال العفو",
+    text: "عن أم المؤمنين عائشة رضي الله عنها أنها قالت: يا رسول الله، أرأيت إن وافقت ليلة القدر ما أدعو؟ قال: تقولين: <span class='highlight'>اللهم إنك عفو تحب العفو فاعفُ عني</span>. [رواه الترمذي وصححه الألباني]",
+  },
+  sahar_dua: {
+    title: "وقت السحر",
+    isTreasure: true,
+    btn: "ساعة الاستجابة",
+    text: "قال ﷺ: <span class='highlight'>ينزل ربنا تبارك وتعالى كل ليلة إلى السماء الدنيا حين يبقى ثلث الليل الآخر</span> يقول: من يدعوني فأستجيب له؟ من يسألني فأعطيه؟ من يستغفرني فأغفر له؟ [متفق عليه]. وهو وقت السحور المبارك.",
+  },
+  fasting_protection: {
+    title: "خُلُق الصائم",
+    isTreasure: true,
+    btn: "كظم الغيظ",
+    text: "قال رسول الله ﷺ: <span class='highlight'>الصيام جُنة، فلا يرفث ولا يجهل، وإن امرؤ قاتله أو شاتمه فليقل: إني صائم -مرتين-</span>. [رواه البخاري]. ليكون صومك حفظاً لجوارحك كما هو حفظ لبطنك.",
+  },
+  last_ten: {
+    title: "العشر الأواخر",
+    isTreasure: true,
+    btn: "الاجتهاد في العبادة",
+    text: "عن عائشة رضي الله عنها قالت: <span class='highlight'>كان رسول الله ﷺ إذا دخل العشر أحيا الليل، وأيقظ أهله، وجد وشد المئزر</span>. [متفق عليه]. وهي ليالي العتق من النيران والتقرب إلى الرحمن.",
+  },
+
+},
 
         "daily-counters": {
           palm: {
@@ -1341,253 +1512,47 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
     }
   },
 
- "ramadan": {
-  bukhari_habit: {
-    title: "همة الإمام البخاري",
-    isTreasure: true,
-    btn: "قدوة في القرآن",
-    text: "كان الإمام البخاري <span class='highlight'>يختم في النهار كل يوم ختمة</span>، و<span class='highlight'>يختم عند الإفطار كل ليلة ختمة</span>، ويقول: عند كل ختمة دعوة مستجابة. [المصدر: سير أعلام النبلاء]",
-  },
-  tarawih_break: {
-    title: "بين ركعات التراويح",
-    isTreasure: true,
-    btn: "ذكر وتبيح",
-    text: "يستحب أن يشغل الصائم وقته بالذكر بين ركعات القيام، ومن ذلك الإكثار من الباقيات الصالحات: <span class='highlight'>سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر، ولا حول ولا قوة إلا بالله العلي العظيم</span>.",
-  },
-  
-  fasting_gift: {
-    title: "هدية الصائم",
-    isTreasure: true,
-    btn: "دعوة لا تُرد",
-    text: "قال رسول الله ﷺ: <span class='highlight'>ثلاثة لا تُرد دعوتهم: الإمام العادل، والصائم حتى يُفطر، ودعوة المظلوم</span>. [رواه الترمذي]. فاحرص على الدعاء قبل أذان المغرب بدقائق فإنها لحظات استجابة.",
-  },
-  iftar_dua: {
-    title: "دعاء الإفطار",
-    isTreasure: true,
-    btn: "سنة نبوية",
-    text: "عن معاذ بن زهرة أنه بلغه أن النبي ﷺ كان يقول إذا أفطر: <span class='highlight'>اللهم لك صمت وعلى رزقك أفطرت</span>. [رواه أبو داود]. <br> وعن ابن عمر رضي الله عنهما قال: كان رسول الله ﷺ إذا أفطر قال: <span class='highlight'>ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله</span>. [صحيح أبي داود]",
-  },
-  
-  lailat_alqadr: {
-    title: "دعاء ليلة القدر",
-    isTreasure: true,
-    btn: "سؤال العفو",
-    text: "عن أم المؤمنين عائشة رضي الله عنها أنها قالت: يا رسول الله، أرأيت إن وافقت ليلة القدر ما أدعو؟ قال: تقولين: <span class='highlight'>اللهم إنك عفو تحب العفو فاعفُ عني</span>. [رواه الترمذي وصححه الألباني]",
-  },
-  sahar_dua: {
-    title: "وقت السحر",
-    isTreasure: true,
-    btn: "ساعة الاستجابة",
-    text: "قال ﷺ: <span class='highlight'>ينزل ربنا تبارك وتعالى كل ليلة إلى السماء الدنيا حين يبقى ثلث الليل الآخر</span> يقول: من يدعوني فأستجيب له؟ من يسألني فأعطيه؟ من يستغفرني فأغفر له؟ [متفق عليه]. وهو وقت السحور المبارك.",
-  },
-  fasting_protection: {
-    title: "خُلُق الصائم",
-    isTreasure: true,
-    btn: "كظم الغيظ",
-    text: "قال رسول الله ﷺ: <span class='highlight'>الصيام جُنة، فلا يرفث ولا يجهل، وإن امرؤ قاتله أو شاتمه فليقل: إني صائم -مرتين-</span>. [رواه البخاري]. ليكون صومك حفظاً لجوارحك كما هو حفظ لبطنك.",
-  },
-  last_ten: {
-    title: "العشر الأواخر",
-    isTreasure: true,
-    btn: "الاجتهاد في العبادة",
-    text: "عن عائشة رضي الله عنها قالت: <span class='highlight'>كان رسول الله ﷺ إذا دخل العشر أحيا الليل، وأيقظ أهله، وجد وشد المئزر</span>. [متفق عليه]. وهي ليالي العتق من النيران والتقرب إلى الرحمن.",
-  }
-},
-};
-      // متغيرات الحالة
-      let currentSection = "main";
+ };
+
+let currentSection = "main";
       let currentType = "";
       let data = JSON.parse(localStorage.getItem("heavenData")) || {};
 
-      /* وظيفة فتح/إغلاق الإعدادات بشكل مستقل (Toggle) */
-      function toggleSettings() {
-        const settingsPage = document.getElementById("settings-page");
-        const icon = document.getElementById("settings-icon");
-
-        if (settingsPage.style.display === "block") {
-          settingsPage.style.display = "none";
-          icon.innerText = "settings";
-        } else {
-          settingsPage.style.display = "block";
-          icon.innerText = "close"; // تغيير الأيقونة لـ X عند الفتح
-          // تحديث المجموع عند الفتح
-          document.getElementById("total-sum").innerText = Object.values(
-            data
-          ).reduce((a, b) => a + b, 0);
-        }
-      }
-      /* نظام الرجوع الذكي للتعامل مع الأقسام */
-      /* [تعديل] جعل سهم التطبيق يرجع خطوة واحدة فقط مثل زر التلفون */
-     function goBack() {
-        // 1. إذا كانت الإعدادات مفتوحة، نغلقها ونبقى في نفس الصفحة
-        if (
-          document.getElementById("settings-page").style.display === "block"
-        ) {
-          toggleSettings();
-          return;
-        }
-
-        // 2. بدلاً من توجيه المستخدم يدوياً، نأمر المتصفح بالعودة خطوة للخلف
-        // هذا الأمر سيحفز حدث onpopstate ويشغل المنطق الصحيح تلقائياً
-        window.history.back();
-      }
-
-      /* العودة للواجهة الرئيسية (الأقسام الأربعة) */
-      function showMain() {
-        currentSection = "main";
-        hideAllPages();
-        document.getElementById("main-page").style.display = "block";
-        document.getElementById("back-icon").style.display = "none";
-        document.getElementById("page-title").innerText = "أجر";
-      }
-
-      /* عرض قائمة الأذكار داخل قسم معين */
-      function showSection(sectionId) {
-        currentSection = sectionId;
-        window.lastSection = sectionId; // لتذكر القسم عند الرجوع
-        hideAllPages();
-        const grid = document.getElementById("section-items-grid");
-        grid.innerHTML = "";
-
-        // --- إضافة الحديث في مقدمة قسم أذكار الصباح والمساء ---
-        if (sectionId === "morning-evening") {
-          const hadithDiv = document.createElement("div");
-          hadithDiv.style.cssText = `
-            grid-column: 1 / -1;
-            background: #fdf7f7;
-            border-right: 5px solid #4f1a2a;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #4f1a2a;
-            text-align: justify;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-          `;
-          hadithDiv.innerHTML = `
-            <strong>عن أنس - رضي الله عنه - قال: قال رسول الله ﷺ:</strong> 
-            "لأن أقعد مع قوم يذكرون الله من صلاة الغداة حتى تطلع الشمس أحب إلي من أن أعتق أربعة من ولد إسماعيل، ولأن أقعد مع قوم يذكرون الله من صلاة العصر إلى أن تغرب الشمس أحب إلي من أن أعتق أربعة" 
-            <br><small style="display:block; margin-top:5px; opacity:0.8;">[رواه أبو داود]</small>
-          `;
-          grid.appendChild(hadithDiv);
-        }
-        // --------------------------------------------------
-
-        const items = sectionsData[sectionId] || {};
-        Object.keys(items).forEach((key) => {
-          grid.innerHTML += `<div class="card" onclick="openDhikr('${key}', '${sectionId}')"><div class="card-title">${items[key].title}</div><div class="card-action">${items[key].btn}</div></div>`;
-        });
-
-        document.getElementById("section-content-page").style.display = "block";
-        document.getElementById("daily-actions").style.display =
-          sectionId === "daily-counters" ? "flex" : "none";
-        document.getElementById("back-icon").style.display = "inline-block";
-        document.getElementById("page-title").innerText =
-          document.querySelector(
-            `[onclick="showSection('${sectionId}')"] .category-title`
-          ).innerText;
-
-        window.history.pushState({ page: sectionId }, "", "");
-      }
-      function openDhikr(type, sectionId) {
-        currentSection = "sub-page";
-        currentType = type;
-        hideAllPages();
-        const dhikr = sectionsData[sectionId][type];
-        document.getElementById("sub-page").style.display = "block";
-        document.getElementById("hadith-content").innerHTML = dhikr.text;
-
-        document.getElementById("counter-area").style.display = dhikr.isTreasure
-          ? "none"
-          : "flex";
-        document.getElementById("counter-display").innerText = data[type] || 0;
-
-        // [تعديل للرجوع] إخبار المتصفح أننا انتقلنا لصفحة الذكر
-        window.history.pushState({ page: "sub-page" }, "", "");
-      }
-      /* زيادة العداد وحفظ البيانات */
-      function increment() {
-        data[currentType] = (data[currentType] || 0) + 1;
-        document.getElementById("counter-display").innerText =
-          data[currentType];
-        if (document.getElementById("vibrate-toggle").checked)
-          navigator.vibrate(40);
-        localStorage.setItem("heavenData", JSON.stringify(data));
-      }
-
-      /* إخفاء جميع الصفحات لتبديل الواجهات */
-      function hideAllPages() {
-        [
-          "main-page",
-          "section-content-page",
-          "sub-page",
-          "feedback-page",
-        ].forEach((id) => {
-          document.getElementById(id).style.display = "none";
-        });
-      }
-
-      /* عرض الرصيد الإجمالي لكل ما تم تسبيحه */
-      function showBalance() {
-        const list = document.getElementById("balance-list");
-        list.innerHTML = "";
-        Object.keys(data).forEach((k) => {
-          let name = "";
-          // البحث عن اسم الذكر البرمجي لعرضه للمستخدم
-          Object.values(sectionsData).forEach((sec) => {
-            if (sec[k]) name = sec[k].title;
-          });
-          if (data[k] > 0) list.innerHTML += `<div>✅ ${data[k]} ${name}</div>`;
-        });
-        document.getElementById("balance-modal").style.display = "flex";
-      }
-
-      /* تبديل الوضع الداكن */
-      function toggleDarkMode() {
-        const isDark = document.getElementById("dark-mode-toggle").checked;
-        document.body.classList.toggle("dark-theme", isDark);
-        localStorage.setItem("darkMode", isDark);
-      }
-
-      /* تصفير جميع العدادات */
-      function resetAll() {
-        if (confirm("هل تريد تصفير جميع العدادات؟")) {
-          data = {};
-          localStorage.setItem("heavenData", JSON.stringify(data));
-          showSection("daily-counters");
-        }
-      }
-
-      function closeBalance() {
-        document.getElementById("balance-modal").style.display = "none";
-      }
-
-      /* فتح صفحة الاقتراحات */
-      function openFeedback() {
-        currentSection = "feedback-page";
-        hideAllPages();
-        document.getElementById("feedback-page").style.display = "block";
-        document.getElementById("back-icon").style.display = "inline-block";
-        // لازم يكون فيه pushState عشان الـ onpopstate يشوفها
-    window.history.pushState({ page: "feedback-page" }, "", "");
-      }
-
-      /* تحميل الإعدادات المحفوظة عند فتح التطبيق */
       window.addEventListener("load", () => {
+        window.history.replaceState({ page: "main" }, "", "");
         if (localStorage.getItem("darkMode") === "true") {
           document.getElementById("dark-mode-toggle").checked = true;
           document.body.classList.add("dark-theme");
         }
       });
-      // الاستماع لزر الرجوع في الهاتف
+
+      // دالة الرجوع الموحدة
+      function goBack() {
+        if (document.getElementById("settings-page").style.display === "block") {
+          toggleSettings();
+          return;
+        }
+        window.history.back();
+      }
+
+      // المحرك الرئيسي للتنقل الخلفي
       window.onpopstate = function (event) {
-        // عند ضغط زر الهاتف، نفذ goBack وأخبره أنها PopState
-        goBack(true);
+        if (event.state && event.state.page === "main") {
+          renderMain();
+        } else if (event.state && sectionsData[event.state.page]) {
+          renderSection(event.state.page);
+        } else {
+          renderMain();
+        }
       };
 
+      // الدخول للقسم
+      function showSection(sectionId) {
+        renderSection(sectionId);
+        window.history.pushState({ page: sectionId }, "", "");
+      }
 
-      function showMainQuietly() {
+      function renderMain() {
         currentSection = "main";
         hideAllPages();
         document.getElementById("main-page").style.display = "block";
@@ -1595,118 +1560,34 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
         document.getElementById("page-title").innerText = "أجر";
       }
 
-      // function goBack(isPopState = false) {
-      //   // إذا كانت الإعدادات مفتوحة، نغلقها ونبقى مكاننا
-      //   if (
-      //     document.getElementById("settings-page").style.display === "block"
-      //   ) {
-      //     toggleSettings();
-      //     // إذا كان الرجوع من زر الهاتف، نحافظ على الصفحة الحالية في التاريخ
-      //     if (isPopState)
-      //       window.history.pushState({ page: currentSection }, "", "");
-      //     return;
-      //   }
-
-      //   // إذا كان الضغط من سهم التطبيق (وليس زر الهاتف)
-      //   if (!isPopState) {
-      //     window.history.back(); // نأمر المتصفح بالرجوع خطوة واحدة
-      //     return;
-      //   }
-
-      //   // المنطق الذي ينفذه زر الهاتف عند الرجوع
-      //   if (
-      //     currentSection === "sub-page" ||
-      //     currentSection === "feedback-page"
-      //   ) {
-      //     showSectionQuietly(window.lastSection || "main");
-      //   } else if (currentSection !== "main") {
-      //     showMainQuietly();
-      //   }
-      // }
-      // function showSectionQuietly(sectionId) {
-      //   if (sectionId === "main") return showMainQuietly();
-      //   currentSection = sectionId;
-      //   hideAllPages();
-      //   const grid = document.getElementById("section-items-grid");
-      //   grid.innerHTML = "";
-      //   const items = sectionsData[sectionId] || {};
-      //   Object.keys(items).forEach((key) => {
-      //     grid.innerHTML += `<div class="card" onclick="openDhikr('${key}', '${sectionId}')"><div class="card-title">${
-      //       sectionId === "daily-counters" ? '"' + (data[key] || 0) + '" ' : ""
-      //     }${items[key].title}</div><div class="card-action">${
-      //       items[key].btn
-      //     }</div></div>`;
-      //   });
-      //   document.getElementById("section-content-page").style.display = "block";
-      //   document.getElementById("daily-actions").style.display =
-      //     sectionId === "daily-counters" ? "flex" : "none";
-      //   document.getElementById("back-icon").style.display = "inline-block";
-      // }
-
-      // [1] دالة الرجوع الموحدة (نسخة واحدة فقط!)
-      function goBack() {
-        if (document.getElementById("settings-page").style.display === "block") {
-          toggleSettings();
-          return;
-        }
-        // نترك المتصفح يرجع خطوة، والـ onpopstate سيتكفل بالباقي
-        window.history.back();
-      }
-
-      // [2] المحرك اللي بيراقب زر رجوع التلفون أو المتصفح
-      window.onpopstate = function (event) {
-        if (event.state && event.state.page) {
-          const target = event.state.page;
-          if (target === "main") {
-            showMainQuietly();
-          } else if (sectionsData[target]) {
-            showSectionQuietly(target);
-          } else if (target === "sub-page" || target === "feedback-page"){
-            // نرجعه للقسم اللي كان فيه مش للذكر نفسه
-            showSectionQuietly(window.lastSection || "main");
-          }
-        } else {
-          showMainQuietly();
-        }
-      };
-
-      // [3] الانتقال للقسم (للأمام فقط)
-      function showSection(sectionId) {
-        if (sectionId === "main") return showMain();
-        currentSection = sectionId;
-        window.lastSection = sectionId;
-        
-        showSectionQuietly(sectionId); // بناء الواجهة
-        window.history.pushState({ page: sectionId }, "", ""); // تسجيل الخطوة في التاريخ
-      }
-
-      // [4] بناء الواجهة بهدوء (بدون تسجيل Push جديد)
-      function showSectionQuietly(sectionId) {
+      function renderSection(sectionId) {
         currentSection = sectionId;
         hideAllPages();
         const grid = document.getElementById("section-items-grid");
         grid.innerHTML = "";
 
-        // إضافة الحديث للأقسام المختارة
+        // إضافة حديث أذكار الصباح والمساء
         if (sectionId === "morning-evening") {
           const hadithDiv = document.createElement("div");
-          hadithDiv.className = "hadith-intro-box"; // تأكدي من وجود التنسيق في الـ Style
-          hadithDiv.style.cssText = "grid-column: 1 / -1; background: #fdf7f7; border-right: 5px solid #4f1a2a; padding: 15px; margin-bottom: 20px; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; color: #4f1a2a; text-align: justify;";
-          hadithDiv.innerHTML = `<strong>عن أنس - رضي الله عنه - قال: قال رسول الله ﷺ:</strong> 
-            "لأن أقعد مع قوم يذكرون الله من صلاة الغداة حتى تطلع الشمس أحب إلي من أن أعتق أربعة من ولد إسماعيل، ولأن أقعد مع قوم يذكرون الله من صلاة العصر إلى أن تغرب الشمس أحب إلي من أن أعتق أربعة" 
-            <br><small style="display:block; margin-top:5px; opacity:0.8;">[رواه أبو داود]</small>`;
+          hadithDiv.style.cssText = "grid-column: 1 / -1; background: #fdf7f7; border-right: 5px solid #4f1a2a; padding: 15px; margin-bottom: 20px; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; color: #4f1a2a;";
+          hadithDiv.innerHTML = `<strong>عن أنس رضي الله عنه قال: قال رسول الله ﷺ:</strong> "لأن أقعد مع قوم يذكرون الله من صلاة الغداة حتى تطلع الشمس أحب إلي من أن أعتق أربعة..."`;
           grid.appendChild(hadithDiv);
         }
 
         const items = sectionsData[sectionId] || {};
         Object.keys(items).forEach((key) => {
-          // إضافة الكرت "مرة واحدة" فقط وبالتنسيق الصح
+          // ميزة العرض الكامل والنجوم لجدول رمضان
+          const isTracker = key === "daily_tracker";
+          const cardStyle = isTracker ? "grid-column: 1 / -1; position: relative; overflow: hidden;" : "";
+          const stars = isTracker ? `<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.2; pointer-events: none; display: flex; flex-wrap: wrap; justify-content: space-around; padding: 10px;">${'🌙 ⭐ '.repeat(10)}</div>` : "";
+
           grid.innerHTML += `
-            <div class="card" onclick="openDhikr('${key}', '${sectionId}')">
-              <div class="card-title">
+            <div class="card" onclick="openDhikr('${key}', '${sectionId}')" style="${cardStyle}">
+              ${stars}
+              <div class="card-title" style="position: relative; z-index: 1;">
                 ${sectionId === "daily-counters" ? '"' + (data[key] || 0) + '" ' : ""}${items[key].title}
               </div>
-              <div class="card-action">${items[key].btn}</div>
+              <div class="card-action" style="position: relative; z-index: 1;">${items[key].btn}</div>
             </div>`;
         });
 
@@ -1714,74 +1595,130 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
         document.getElementById("daily-actions").style.display = (sectionId === "daily-counters" ? "flex" : "none");
         document.getElementById("back-icon").style.display = "inline-block";
         
-        // تحديث العنوان بناءً على الـ ID
-        const titles = { "daily-counters": "العدادات اليومية", "morning-evening": "الصباح والمساء", "treasures": "كنوز الأذكار", "duaa": "جوامع الدعاء", "duaa-jumaa": "يوم الجمعة", "ramadan": "رمضان" };
+        const titles = { 
+          "daily-counters": "العدادات اليومية", "morning-evening": "الصباح والمساء", 
+          "treasures": "كنوز الأذكار", "duaa": "جوامع الدعاء", 
+          "duaa-jumaa": "يوم الجمعة", "ramadan": "رمضان",
+          "prophets-prayers": "أدعية الأنبياء", "quran-messages": "رسائل القرآن"
+        };
         document.getElementById("page-title").innerText = titles[sectionId] || "أجر";
       }
-      // التحكم في تلوين النجوم
-      function setRating(n) {
-        const stars = document.querySelectorAll(".star-label");
-        stars.forEach((star, index) => {
-          // الترتيب معكوس لأننا نستخدم اتجاه ltr للنجوم
-          if (index >= 5 - n) {
-            star.classList.add("active");
-          } else {
-            star.classList.remove("active");
-          }
+
+      function openDhikr(type, sectionId) {
+        currentSection = "sub-page";
+        currentType = type;
+        hideAllPages();
+        const dhikr = sectionsData[sectionId][type];
+        const contentArea = document.getElementById("hadith-content");
+        document.getElementById("sub-page").style.display = "block";
+        contentArea.innerHTML = dhikr.text;
+
+        // تنفيذ السكريبتات (مهم لجدول رمضان)
+        const scripts = contentArea.getElementsByTagName("script");
+        for (let i = 0; i < scripts.length; i++) {
+          const newScript = document.createElement("script");
+          newScript.text = scripts[i].innerText;
+          document.body.appendChild(newScript).parentNode.removeChild(newScript);
+        }
+
+        document.getElementById("counter-area").style.display = dhikr.isTreasure ? "none" : "flex";
+        document.getElementById("counter-display").innerText = data[type] || 0;
+        document.getElementById("back-icon").style.display = "inline-block";
+        window.history.pushState({ page: "sub-page" }, "", "");
+      }
+
+      /* =========================================
+         [3] وظائف عامة (عداد، إعدادات، تقييم)
+         ========================================= */
+      function increment() {
+        data[currentType] = (data[currentType] || 0) + 1;
+        document.getElementById("counter-display").innerText = data[currentType];
+        if (document.getElementById("vibrate-toggle").checked) navigator.vibrate(40);
+        localStorage.setItem("heavenData", JSON.stringify(data));
+      }
+
+      function hideAllPages() {
+        ["main-page", "section-content-page", "sub-page", "feedback-page", "settings-page"].forEach(id => {
+          document.getElementById(id).style.display = "none";
         });
       }
 
-      // كود الإرسال عبر Formspree بدون تحميل الصفحة
-      const form = document.getElementById("suggestion-form");
-      const status = document.getElementById("status-msg");
+      function toggleSettings() {
+        const settingsPage = document.getElementById("settings-page");
+        const icon = document.getElementById("settings-icon");
+        
+        if (settingsPage.style.display === "block") {
+          // لما نسكر الإعدادات: بنخفيها وبنرجع نظهر الصفحة اللي كنا فيها
+          settingsPage.style.display = "none";
+          icon.innerText = "settings";
+          
+          if (currentSection === "main") {
+            document.getElementById("main-page").style.display = "block";
+          } else if (currentSection === "sub-page") {
+            document.getElementById("sub-page").style.display = "block";
+          } else {
+            document.getElementById("section-content-page").style.display = "block";
+          }
+        } else {
+          // لما نفتح الإعدادات: بنخفي كل شي وبنظهرها هي بس
+          hideAllPages();
+          settingsPage.style.display = "block";
+          icon.innerText = "close";
+          document.getElementById("total-sum").innerText = Object.values(data).reduce((a, b) => a + b, 0);
+        }
+      }
+      function toggleDarkMode() {
+        const isDark = document.getElementById("dark-mode-toggle").checked;
+        document.body.classList.toggle("dark-theme", isDark);
+        localStorage.setItem("darkMode", isDark);
+      }
 
-      form.addEventListener("submit", async function (event) {
-        event.preventDefault();
-        const btn = document.getElementById("submit-btn");
-        btn.innerText = "جاري الإرسال...";
-        btn.disabled = true;
+      function showBalance() {
+        const list = document.getElementById("balance-list");
+        list.innerHTML = "";
+        Object.keys(data).forEach(k => {
+          let name = "";
+          Object.values(sectionsData).forEach(sec => { if (sec[k]) name = sec[k].title; });
+          if (data[k] > 0) list.innerHTML += `<div>✅ \${data[k]} \${name}</div>`;
+        });
+        document.getElementById("balance-modal").style.display = "flex";
+      }
 
-        const data = new FormData(event.target);
-        fetch(event.target.action, {
-          method: form.method,
-          body: data,
-          headers: { Accept: "application/json" },
-        })
-          .then((response) => {
-            if (response.ok) {
-              status.innerHTML = "تم الإرسال بنجاح! جزاك الله خيراً.";
-              status.style.color = "green";
-              status.style.display = "block";
-              form.reset();
-              setRating(0); // إعادة النجوم لحالتها الأصلية
-            } else {
-              status.innerHTML = "عذراً، حدث خطأ في الإرسال.";
-              status.style.color = "red";
-              status.style.display = "block";
-            }
-            btn.innerText = "إرسال التقييم";
-            btn.disabled = false;
-          })
-          .catch((error) => {
-            status.innerHTML = "تأكد من اتصالك بالإنترنت.";
-            status.style.color = "red";
-            status.style.display = "block";
-            btn.innerText = "إرسال التقييم";
-            btn.disabled = false;
-          });
-      });
+      function closeBalance() { document.getElementById("balance-modal").style.display = "none"; }
+      
+      function resetAll() {
+        if (confirm("تصفير العدادات؟")) { data = {}; localStorage.setItem("heavenData", JSON.stringify(data)); renderSection("daily-counters"); }
+      }
+
       function markStar(rating) {
-        // تحديث القيمة في الحقل المخفي للإرسال
         document.getElementById("rating-value").value = rating;
-
         const stars = document.querySelectorAll(".star-label");
-
-        // حذف التحديد القديم
-        stars.forEach((s) => s.classList.remove("selected"));
-
-        // إضافة التحديد الجديد (بناءً على الترتيب العكسي)
-        // النجمة رقم 1 هي الأخيرة في القائمة بسبب row-reverse
+        stars.forEach(s => s.classList.remove("selected"));
         stars[5 - rating].classList.add("selected");
+      }
+
+      function openFeedback() {
+        const feedbackPage = document.getElementById("feedback-page");
+        
+        // إذا كانت صفحة "من أنا" مفتوحة أصلاً، بنسكرها وبنرجع للي قبله
+        if (feedbackPage.style.display === "block") {
+          feedbackPage.style.display = "none";
+          // نرجع نظهر الصفحة اللي كنا فيها حسب الـ currentSection
+          if (currentSection === "main") {
+            document.getElementById("main-page").style.display = "block";
+            document.getElementById("back-icon").style.display = "none";
+          } else if (currentSection === "sub-page") {
+            document.getElementById("sub-page").style.display = "block";
+          } else {
+            document.getElementById("section-content-page").style.display = "block";
+          }
+        } else {
+          // إذا كانت مسكرة، بنفتحها وبنخفي كل شي ثاني
+          hideAllPages();
+          feedbackPage.style.display = "block";
+          document.getElementById("back-icon").style.display = "inline-block";
+          window.history.pushState({ page: "feedback-page" }, "", "");
+        }
       }
     </script>
   </body>
