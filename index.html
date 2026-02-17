@@ -654,67 +654,104 @@
     </div>
 
     <script>
-    (function() {
-      const matrixBody = document.getElementById('tracker-matrix');
-      if(!matrixBody) return;
+(function() {
+  const matrixBody = document.getElementById('tracker-matrix');
+  if(!matrixBody) return;
 
-      const defaultTasks = [
-        {id: 'fajr_s', n: 'الفجر (سنة + فريضة)'},
-        {id: 'dhuhr_s', n: 'الظهر (سنة + فريضة)'},
-        {id: 'asr_s', n: 'العصر (فريضة + نافلة)'},
-        {id: 'maghrib_s', n: 'المغرب (فريضة + سنة)'},
-        {id: 'isha_s', n: 'العشاء (سنة + وتر)'},
-        {id: 'taraweeh', n: 'صلاة التراويح'},
-        {id: 'dikr_100', n: 'سبحان الله وبحمده (100)'},
-        {id: 'quran_j', n: 'ورد القرآن (أقله جزء)'},
-        {id: 'qeab_lel', n: 'قيام ليل (ولو ركعتين)'}
-      ];
+  const defaultTasks = [
+    {id: 'fajr_s', n: 'الفجر (سنة + فريضة)'},
+    {id: 'dhuhr_s', n: 'الظهر (سنة + فريضة)'},
+    {id: 'asr_s', n: 'العصر (فريضة + نافلة)'},
+    {id: 'maghrib_s', n: 'المغرب (فريضة + سنة)'},
+    {id: 'isha_s', n: 'العشاء (سنة + وتر)'},
+    {id: 'taraweeh', n: 'صلاة التراويح'},
+    {id: 'dikr_100', n: 'سبحان الله وبحمده (100)'},
+    {id: 'quran_j', n: 'ورد القرآن (أقله جزء)'},
+    {id: 'qeab_lel', n: 'قيام ليل (ولو ركعتين)'}
+  ];
 
-      window.renderMatrix = () => {
-        let customTasks = JSON.parse(localStorage.getItem('custom_ramadan_tasks')) || [];
-        let allTasks = [...defaultTasks, ...customTasks];
-        let ramData = JSON.parse(localStorage.getItem('ramadan_tracker')) || {};
-        
-        let html = '';
-        allTasks.forEach(task => {
-          html += '<tr style="border-bottom: 1px solid var(--light-color);">';
-          html += '<td style="width: 160px; padding: 10px 5px; font-weight: bold; color: var(--main-color); background: var(--light-color); position: sticky; right: 0; z-index: 1; text-align: right; font-size: 0.85rem; border-left: 1px solid #ddd; white-space: nowrap;">' + task.n + '</td>';
-          
-          for (let day = 1; day <= 30; day++) {
-            const isChecked = (ramData[day] && ramData[day][task.id]) ? 'checked' : '';
-            html += '<td style="padding: 5px; border: 1px solid var(--light-color); width: 80px;">' +
-                    '<input type="checkbox" style="width: 22px; height: 22px; cursor: pointer; accent-color: var(--main-color);" ' +
-                    'onclick="updateMatrix(' + day + ', \\'' + task.id + '\\', this.checked)" ' + isChecked + '>' +
-                    '</td>';
-          }
-          html += '</tr>';
-        });
-        matrixBody.innerHTML = html;
-      };
+  window.renderMatrix = () => {
+    let customTasks = JSON.parse(localStorage.getItem('custom_ramadan_tasks')) || [];
+    let ramData = JSON.parse(localStorage.getItem('ramadan_tracker')) || {};
+    let html = '';
 
-      window.updateMatrix = (day, taskId, status) => {
-        let data = JSON.parse(localStorage.getItem('ramadan_tracker')) || {};
-        if (!data[day]) data[day] = {};
-        data[day][taskId] = status;
-        localStorage.setItem('ramadan_tracker', JSON.stringify(data));
+    const createRow = (task, isCustom) => {
+      let row = '<tr style="border-bottom: 1px solid var(--light-color);">';
+      
+      // عمود العنوان مع الأيقونات
+      row += '<td style="width: 160px; padding: 10px 5px; font-weight: bold; color: var(--main-color); background: var(--light-color); position: sticky; right: 0; z-index: 1; text-align: right; font-size: 0.85rem; border-left: 1px solid #ddd; white-space: nowrap;">';
+      
+      if (isCustom) {
+        // زر الحذف (إكس أحمر)
+        row += '<span onclick="deleteTask(\\'' + task.id + '\\')" style="color: #ff4d4d; cursor: pointer; margin-left: 5px; font-size: 0.8rem;" title="حذف">❌</span>';
+        // أيقونة القلم للتعديل
+        row += '<span onclick="editTask(\\'' + task.id + '\\', \\'' + task.n + '\\')" style="cursor: pointer; margin-left: 8px; font-size: 0.85rem;" title="تعديل">📝</span>';
+        row += task.n;
+      } else {
+        row += task.n;
+      }
+      
+      row += '</td>';
+      
+      for (let day = 1; day <= 30; day++) {
+        const isChecked = (ramData[day] && ramData[day][task.id]) ? 'checked' : '';
+        row += '<td style="padding: 5px; border: 1px solid var(--light-color); width: 80px;">' +
+               '<input type="checkbox" style="width: 22px; height: 22px; cursor: pointer; accent-color: var(--main-color);" ' +
+               'onclick="updateMatrix(' + day + ', \\'' + task.id + '\\', this.checked)" ' + isChecked + '>' +
+               '</td>';
+      }
+      row += '</tr>';
+      return row;
+    };
+
+    defaultTasks.forEach(t => { html += createRow(t, false); });
+    customTasks.forEach(t => { html += createRow(t, true); });
+    matrixBody.innerHTML = html;
+  };
+
+  window.editTask = (taskId, oldName) => {
+    let newName = prompt("تعديل اسم العبادة:", oldName);
+    if (newName && newName.trim() !== "" && newName !== oldName) {
+      let customTasks = JSON.parse(localStorage.getItem('custom_ramadan_tasks')) || [];
+      let taskIndex = customTasks.findIndex(t => t.id === taskId);
+      if (taskIndex !== -1) {
+        customTasks[taskIndex].n = newName;
+        localStorage.setItem('custom_ramadan_tasks', JSON.stringify(customTasks));
         renderMatrix();
-      };
+      }
+    }
+  };
 
-      window.addNewTask = () => {
-        let taskName = prompt("اكتب اسم العبادة أو الذكر الجديد:");
-        if (taskName && taskName.trim() !== "") {
-          let customTasks = JSON.parse(localStorage.getItem('custom_ramadan_tasks')) || [];
-          const newId = 'custom_' + Date.now();
-          customTasks.push({id: newId, n: taskName});
-          localStorage.setItem('custom_ramadan_tasks', JSON.stringify(customTasks));
-          renderMatrix();
-        }
-      };
+  window.updateMatrix = (day, taskId, status) => {
+    let data = JSON.parse(localStorage.getItem('ramadan_tracker')) || {};
+    if (!data[day]) data[day] = {};
+    data[day][taskId] = status;
+    localStorage.setItem('ramadan_tracker', JSON.stringify(data));
+    renderMatrix();
+  };
 
+  window.addNewTask = () => {
+    let taskName = prompt("اكتب اسم العبادة الجديدة:");
+    if (taskName && taskName.trim() !== "") {
+      let customTasks = JSON.parse(localStorage.getItem('custom_ramadan_tasks')) || [];
+      customTasks.push({id: 'c_' + Date.now(), n: taskName});
+      localStorage.setItem('custom_ramadan_tasks', JSON.stringify(customTasks));
       renderMatrix();
-    })();
-    <\/script>
-  `
+    }
+  };
+
+  window.deleteTask = (taskId) => {
+    if (confirm("هل تريد حذف هذه العبادة؟")) {
+      let customTasks = JSON.parse(localStorage.getItem('custom_ramadan_tasks')) || [];
+      customTasks = customTasks.filter(t => t.id !== taskId);
+      localStorage.setItem('custom_ramadan_tasks', JSON.stringify(customTasks));
+      renderMatrix();
+    }
+  };
+
+  renderMatrix();
+})();
+<\/script>`
 },
   bukhari_habit: {
     title: "همة الإمام البخاري",
