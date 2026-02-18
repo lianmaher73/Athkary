@@ -76,17 +76,24 @@
       }
 
       /* [2] تعريف الألوان - الوضع الداكن */
-      body.dark-theme {
+      /* body.dark-theme {
         --main-color: #ffffff;
         --light-color: #4f1a2a;
         --white: #632537;
         --text-color: #ffffff;
-      }
+      } */
+      body.dark-theme {
+    --main-color: #ffffff;
+    --light-color: #4f1a2a; /* هذا هو لون الخلفية في الداكن */
+    --white: #632537;
+    --text-color: #ffffff;
+    background-color: var(--light-color); /* أضف هذا السطر هنا */
+}
 
       /* تنسيقات عامة للجسم والخلفية */
-      html {
+      /* html {
         background-color: var(--main-color);
-      }
+      } */
       body {
         font-family: "Segoe UI", Tahoma, sans-serif;
         background-color: var(--light-color);
@@ -100,11 +107,18 @@
       }
       html,
       body {
-        height: 100%;
+        /* height: 100%; */
         margin: 0;
-        background-color: var(
-          --light-color
-        ); /* هذا السطر هو الذي يغير لون الفوتر للوردي */
+        min-height: 100vh; /* يضمن إن اللون يغطي الشاشة كاملة لآخرها */
+        background-color: var( --light-color); /* هذا السطر هو الذي يغير لون الفوتر للوردي */
+      transition: background-color 0.3s ease;
+      }
+       .container {
+        flex: 1;
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        text-align: center;
       }
 
       /* [3] تنسيق رأس الصفحة (Header) */
@@ -186,13 +200,14 @@
         display: none;
         margin-left: 10px;
       }
-
+/* 
       .container {
         max-width: 500px;
         margin: auto;
         padding: 20px;
         text-align: center;
-      }
+      } */
+     
 
       /* [4] تنسيق شبكة الكروت (Grid) */
       .grid {
@@ -236,6 +251,56 @@
         box-sizing: border-box;
         overflow-y: auto;
       }
+      /* تنسيق صفحة الإعدادات */
+#settings-page {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 60px);
+    background-color: var(--light-color);
+    z-index: 1500;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* تنسيق السطر (أهم جزء) */
+.setting-row {
+    display: flex; /* تفعيل نظام الصفوف */
+    justify-content: space-between; /* رمي الكلام لليمين والزر لليسار */
+    align-items: center; /* موازاة العناصر في المنتصف عمودياً */
+    background: var(--white);
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 12px; /* مسافة بين كل سطر وسطر */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.setting-row span {
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+/* تنسيق الـ checkbox عشان ما يلزق بالحواف */
+.setting-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--main-color);
+}
+
+/* تنسيق صندوق المجموع الكلي */
+.total-sum-box {
+    background: var(--main-color);
+    color: var(--white);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+}
 
       /* إخفاء الصفحات افتراضياً */
       #section-content-page,
@@ -414,6 +479,10 @@
             <div class="card-title">الصباح والمساء</div>
             <div class="card-action">كاملة ومختصرة</div>
           </div>
+          <div class="card" onclick="showSection('adhan-sunnan')">
+  <div class="card-title">الأذان والإقامة</div>
+  <div class="card-action">سنن مستحبة وأجر عظيم</div>
+</div>
           <div class="card" onclick="showSection('treasures')">
             <div class="card-title">كنوز الأذكار</div>
             <div class="card-action">أحاديث عظيمة الأجر</div>
@@ -535,23 +604,23 @@
           "
         ></textarea>
 
-        <button
-          type="submit"
-          id="submit-btn"
-          style="
-            width: 100%;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            background-color: var(--main-color);
-            color: white;
-            padding: 15px;
-            font-weight: bold;
-            font-size: 1.1rem;
-          "
-        >
-          إرسال التقييم
-        </button>
+       <button
+  type="submit"
+  id="submit-btn"
+  style="
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--main-color);
+    color: var(--light-color); /* التعديل هون عشان يقلب عنابي بالداكن */
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+  "
+>
+  إرسال التقييم
+</button>
 
         <div
           id="status-msg"
@@ -605,6 +674,73 @@
          =========================================
       */
       const sectionsData = {
+        
+       "adhan-sunnan": {
+    during_adhan: {
+        title: "ماذا نردد أثناء الأذان",
+        isTreasure: true,
+        btn: "عرض السنّة النبوية",
+        text: `
+            <div class="dhikr-container">
+                <div style="background: #fdf7f7; border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--main-color);">
+                    <strong>عن أبي سعيد الخدري رضي الله عنه أن رسول الله ﷺ قال:</strong><br>
+                    "إِذَا سَمِعْتُمُ المُؤَذِّنَ، <span class="highlight">فَقُولوا مِثْلَ ما يقولُ</span>" [رواه البخاري ومسلم].
+                </div>
+                
+                <div class="dhikr-item">
+                    <div class="num-box">١</div>
+                    <div class="dhikr-text">تردد خلف المؤذن في كل جملة إلا في <span class="title-tag">"حي على الصلاة"</span> و <span class="title-tag">"حي على الفلاح"</span>، فتقول: <br><span class="highlight">"لا حول ولا قوة إلا بالله"</span>.</div>
+                </div>
+
+                <div class="dhikr-item">
+                    <div class="num-box">٢</div>
+                    <div class="dhikr-text">في صلاة الفجر، عندما يقول المؤذن <span class="title-tag">"الصلاة خير من النوم"</span>، تقول مثله: <br><span class="highlight">"الصلاة خير من النوم"</span>.</div>
+                </div>
+            </div>
+        `
+    },
+    after_adhan: {
+        title: "الأذكار بعد انتهاء الأذان",
+        isTreasure: true,
+        btn: "عرض الأذكار والشفاعة",
+        text: `
+            <div class="dhikr-container">
+                <div class="dhikr-item">
+                    <div class="num-box">١</div>
+                    <div class="dhikr-text"><span class="title-tag">الصلاة على النبي:</span> "اللهم صلِّ على محمد وعلى آل محمد..." (الصلاة الإبراهيمية)، لقوله ﷺ: <span class="highlight">"فإنه من صلى عليَّ صلاة صلى الله عليه بها عشراً"</span>.</div>
+                </div>
+
+                <div class="dhikr-item">
+                    <div class="num-box">٢</div>
+                    <div class="dhikr-text"><span class="title-tag">دعاء الوسيلة:</span> "اللهم رب هذه الدعوة التامة، والصلاة القائمة، آت محمداً <span class="highlight">الوسيلة والفضيلة</span>، وابعثه مقاماً محموداً الذي وعدته".<br><small>(الفضل: حلت له شفاعة النبي ﷺ يوم القيامة).</small></div>
+                </div>
+
+                <div class="dhikr-item">
+                    <div class="num-box">٣</div>
+                    <div class="dhikr-text"><span class="title-tag">الشهادة:</span> "وأنا أشهد أن لا إله إلا الله وحده لا شريك له، وأن محمداً عبده ورسوله، <span class="highlight">رضيت بالله رباً وبالإسلام ديناً وبمحمد رسولاً</span>".<br><small>(الفضل: غُفر له ذنبه).</small></div>
+                </div>
+            </div>
+        `
+    },
+    dua_between: {
+        title: "الدعاء وقت الاستجابة",
+        isTreasure: true,
+        btn: "أجر الدعاء المستجاب",
+        text: `
+            <div class="dhikr-container">
+                <div style="background: #fdf7f7; border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--main-color);">
+                    <strong>عن أنس بن مالك رضي الله عنه قال: قال رسول الله ﷺ:</strong><br>
+                    "<span class="highlight">الدُّعاءُ لا يُردُّ بين الأذانِ والإقامةِ</span>" [رواه الترمذي وأبو داود].
+                </div>
+                
+                <div class="dhikr-item">
+                    <div class="num-box">★</div>
+                    <div class="dhikr-text">هذا الوقت من أرجى الأوقات لإجابة الدعاء، فاجتهد في <span class="title-tag">سؤال الله العافية</span> في الدنيا والآخرة، ولا تغفل عنه بالانشغال بالناس أو الهاتف.</div>
+                </div>
+            </div>
+        `
+    }
+},// سكرنا adhan-sunnan
         // أضيفي أذكار عداد جديدة هنا (تأكدي من وضع فاصلة بين كل ذكر)
 "ramadan": {
 
@@ -648,9 +784,9 @@
          اسحب الجدول لليسار لمتابعة باقي الأيام (حتى يوم 30) 
       </p>
 
-      <button onclick="addNewTask()" style="width: 100%; padding: 12px; margin-top: 10px; background: var(--main-color); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-family: inherit; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        ➕ إضافة عبادة مخصصة للجدول
-      </button>
+      <button onclick="addNewTask()" style="width: 100%; padding: 12px; margin-top: 10px; background: var(--main-color); color: var(--light-color); border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-family: inherit; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    ➕ إضافة عبادة مخصصة للجدول
+</button>
     </div>
 
     <script>
@@ -659,17 +795,20 @@
   if(!matrixBody) return;
 
   const defaultTasks = [
-    {id: 'fajr_s', n: 'الفجر (سنة + فريضة)'},
-    {id: 'dhuhr_s', n: 'الظهر (سنة + فريضة)'},
-    {id: 'asr_s', n: 'العصر (فريضة + نافلة)'},
-    {id: 'maghrib_s', n: 'المغرب (فريضة + سنة)'},
-    {id: 'isha_s', n: 'العشاء (سنة + وتر)'},
-    {id: 'taraweeh', n: 'صلاة التراويح'},
-    {id: 'dikr_100', n: 'سبحان الله وبحمده (100)'},
-    {id: 'quran_j', n: 'ورد القرآن (أقله جزء)'},
-    {id: 'qeab_lel', n: 'قيام ليل (ولو ركعتين)'}
-  ];
-
+      {id: 'fajr_s', n: 'الفجر (سنة + فريضة)'},
+      {id: 'sabah', n: 'أذكار الصباح <br><small style="font-weight:normal; opacity:0.8;">(الأفضل بعد الفجر وقبل الشروق)</small>'},
+      {id: 'doha', n: 'صلاة الضحى (أقلها ركعتين)'},
+      {id: 'dhuhr_s', n: 'الظهر (سنة + فريضة)'},
+      {id: 'asr_s', n: 'العصر'},    
+      {id: 'masaa', n: 'أذكار المساء <br><small style="font-weight:normal; opacity:0.8;">(الأفضل بعد العصر وقبل المغرب)</small>'},
+      {id: 'maghrib_s', n: 'المغرب (فريضة + سنة)'},
+      {id: 'isha_s', n: 'العشاء (سنة + وتر)'},
+{id: 'taraweeh', n: 'صلاة التراويح <br><small style="font-weight:normal; opacity:0.8;">(ثمان ركعات أو أكثر)</small>'},      {id: 'dikr_100', n: 'سبحان الله وبحمده (100)'},
+      {id: 'nabe_100', n: 'الصلاة على النبي ﷺ (1000)'},
+      {id: 'esteghfar_100', n: 'الاستغفار (1000)'},
+      {id: 'quran_j', n: 'ورد القرآن (أقله جزء)'},
+      {id: 'qeab_lel', n: 'قيام ليل (ولو ركعتين)'}
+    ];
   window.renderMatrix = () => {
     let customTasks = JSON.parse(localStorage.getItem('custom_ramadan_tasks')) || [];
     let ramData = JSON.parse(localStorage.getItem('ramadan_tracker')) || {};
@@ -805,6 +944,7 @@
   },
 
 },
+
 
         "daily-counters": {
           palm: {
@@ -1552,22 +1692,22 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
         </div>
       `
     },
-    acceptance: {
-      title: "تريد قبول عملك؟",
-      isTreasure: true,
-      btn: "دعاء إبراهيم وإسماعيل",
-      text: `
-        <div class="dhikr-container">
-          <div class="dhikr-item">
-            <div class="num-box">١</div>
-            <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ</span> ﴾ [سورة البقرة: 127]</div>
-          </div>
-        </div>
-      `
-    }
-  },
+   acceptance: {
+            title: "تريد قبول عملك؟",
+            isTreasure: true,
+            btn: "دعاء إبراهيم وإسماعيل",
+            text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">١</div>
+                  <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ</span> ﴾ [سورة البقرة: 127]</div>
+                </div>
+              </div>
+            `
+          }
+        }, // هذا القوس سكر prophets-prayers
 
- };
+      }; // سكرنا sectionsData الكبير
 
 let currentSection = "main";
       let currentType = "";
