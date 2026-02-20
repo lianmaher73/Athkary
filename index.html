@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <title>أجر</title>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
@@ -83,12 +83,12 @@
         --text-color: #ffffff;
       } */
       body.dark-theme {
-    --main-color: #ffffff;
-    --light-color: #4f1a2a; /* هذا هو لون الخلفية في الداكن */
-    --white: #632537;
-    --text-color: #ffffff;
-    background-color: var(--light-color); /* أضف هذا السطر هنا */
-}
+        --main-color: #ffffff;
+        --light-color: #4f1a2a; /* هذا هو لون الخلفية في الداكن */
+        --white: #632537;
+        --text-color: #ffffff;
+        background-color: var(--light-color); /* أضف هذا السطر هنا */
+      }
 
       /* تنسيقات عامة للجسم والخلفية */
       /* html {
@@ -110,10 +110,12 @@
         /* height: 100%; */
         margin: 0;
         min-height: 100vh; /* يضمن إن اللون يغطي الشاشة كاملة لآخرها */
-        background-color: var( --light-color); /* هذا السطر هو الذي يغير لون الفوتر للوردي */
-      transition: background-color 0.3s ease;
+        background-color: var(
+          --light-color
+        ); /* هذا السطر هو الذي يغير لون الفوتر للوردي */
+        transition: background-color 0.3s ease;
       }
-       .container {
+      .container {
         flex: 1;
         max-width: 500px;
         margin: auto;
@@ -200,14 +202,13 @@
         display: none;
         margin-left: 10px;
       }
-/* 
+      /* 
       .container {
         max-width: 500px;
         margin: auto;
         padding: 20px;
         text-align: center;
       } */
-     
 
       /* [4] تنسيق شبكة الكروت (Grid) */
       .grid {
@@ -252,55 +253,55 @@
         overflow-y: auto;
       }
       /* تنسيق صفحة الإعدادات */
-#settings-page {
-    display: none;
-    position: fixed;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    height: calc(100% - 60px);
-    background-color: var(--light-color);
-    z-index: 1500;
-    padding: 20px;
-    box-sizing: border-box;
-    overflow-y: auto;
-}
+      #settings-page {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 60px);
+        background-color: var(--light-color);
+        z-index: 1500;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow-y: auto;
+      }
 
-/* تنسيق السطر (أهم جزء) */
-.setting-row {
-    display: flex; /* تفعيل نظام الصفوف */
-    justify-content: space-between; /* رمي الكلام لليمين والزر لليسار */
-    align-items: center; /* موازاة العناصر في المنتصف عمودياً */
-    background: var(--white);
-    padding: 15px 20px;
-    border-radius: 12px;
-    margin-bottom: 12px; /* مسافة بين كل سطر وسطر */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
+      /* تنسيق السطر (أهم جزء) */
+      .setting-row {
+        display: flex; /* تفعيل نظام الصفوف */
+        justify-content: space-between; /* رمي الكلام لليمين والزر لليسار */
+        align-items: center; /* موازاة العناصر في المنتصف عمودياً */
+        background: var(--white);
+        padding: 15px 20px;
+        border-radius: 12px;
+        margin-bottom: 12px; /* مسافة بين كل سطر وسطر */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
 
-.setting-row span {
-    font-weight: bold;
-    color: var(--main-color);
-}
+      .setting-row span {
+        font-weight: bold;
+        color: var(--main-color);
+      }
 
-/* تنسيق الـ checkbox عشان ما يلزق بالحواف */
-.setting-row input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    accent-color: var(--main-color);
-}
+      /* تنسيق الـ checkbox عشان ما يلزق بالحواف */
+      .setting-row input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        accent-color: var(--main-color);
+      }
 
-/* تنسيق صندوق المجموع الكلي */
-.total-sum-box {
-    background: var(--main-color);
-    color: var(--white);
-    padding: 20px;
-    border-radius: 15px;
-    margin-top: 20px;
-    font-weight: bold;
-    text-align: center;
-}
+      /* تنسيق صندوق المجموع الكلي */
+      .total-sum-box {
+        background: var(--main-color);
+        color: var(--white);
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 20px;
+        font-weight: bold;
+        text-align: center;
+      }
 
       /* إخفاء الصفحات افتراضياً */
       #section-content-page,
@@ -410,26 +411,29 @@
         color: #ffb400;
       }
       /* تنسيق خاص لبطاقة رمضان في الصفحة الرئيسية */
-.ramadan-card {
-    grid-column: 1 / -1 !important; /* تأخذ السطر كامل */
-    position: relative;
-    overflow: hidden;
-    background-color: var(--white);
-}
+      .ramadan-card {
+        grid-column: 1 / -1 !important; /* تأخذ السطر كامل */
+        position: relative;
+        overflow: hidden;
+        background-color: var(--white);
+      }
 
-.ramadan-card::before {
-    content: "🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    opacity: 0.12; /* شفافية النجوم */
-    font-size: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 10px;
-    pointer-events: none;
-    justify-content: space-around;
-}
+      .ramadan-card::before {
+        /* content: "🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐"; */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.12; /* شفافية النجوم */
+        font-size: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 10px;
+        pointer-events: none;
+        justify-content: space-around;
+      }
     </style>
   </head>
   <body>
@@ -461,17 +465,42 @@
         <p style="font-weight: bold; margin-bottom: 25px">
           بِقَدْرِ ذِكْرِكَ، يَعْلُو بُنيانك.. اختار وجهتك اليوم
         </p>
-        
+
         <div class="grid">
-           <div class="card" onclick="showSection('ramadan')" style="grid-column: 1 / -1; position: relative; overflow: hidden;">
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.3; font-size: 18px; pointer-events: none; display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-around; padding: 5px; user-select: none;">
-        🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐
-    </div>
-    
-    <div class="card-title" style="position: relative; z-index: 1;">رمضان</div>
-    <div class="card-action" style="position: relative; z-index: 1;">العبادات و الادعية</div>
-</div>
-<div class="card" onclick="showSection('daily-counters')">
+          <div
+            class="card"
+            onclick="showSection('ramadan')"
+            style="grid-column: 1 / -1; position: relative; overflow: hidden"
+          >
+            <div
+              style="
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                font-size: 18px;
+                pointer-events: none;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: space-around;
+                padding: 5px;
+                user-select: none;
+              "
+            >
+              🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐
+            </div>
+
+            <div class="card-title" style="position: relative; z-index: 1">
+              رمضان
+            </div>
+            <div class="card-action" style="position: relative; z-index: 1">
+              العبادات و الادعية
+            </div>
+          </div>
+          <div class="card" onclick="showSection('daily-counters')">
             <div class="card-title">العدادات اليومية</div>
             <div class="card-action">نخل، قصور، وكنوز</div>
           </div>
@@ -480,9 +509,9 @@
             <div class="card-action">كاملة ومختصرة</div>
           </div>
           <div class="card" onclick="showSection('adhan-sunnan')">
-  <div class="card-title">الأذان والإقامة</div>
-  <div class="card-action">سنن مستحبة وأجر عظيم</div>
-</div>
+            <div class="card-title">الأذان والإقامة</div>
+            <div class="card-action">سنن مستحبة وأجر عظيم</div>
+          </div>
           <div class="card" onclick="showSection('treasures')">
             <div class="card-title">كنوز الأذكار</div>
             <div class="card-action">أحاديث عظيمة الأجر</div>
@@ -495,53 +524,51 @@
             <div class="card-title">يوم الجمعة</div>
             <div class="card-action">اهم الاعمال</div>
           </div>
-       
-        <div class="card" onclick="showSection('prophets-prayers')">
-         <div class="card-title">أدعية الأنبياء</div>
-        <div class="card-action">كما وردت</div>
-      </div>
-       <div class="card" onclick="showSection('quran-messages')">
-          <div class="card-title">رسائل القرآن</div>
-          <div class="card-action">آيات تطمئن قلبك</div>
+
+          <div class="card" onclick="showSection('prophets-prayers')">
+            <div class="card-title">أدعية الأنبياء</div>
+            <div class="card-action">كما وردت</div>
+          </div>
+          <div class="card" onclick="showSection('quran-messages')">
+            <div class="card-title">رسائل القرآن</div>
+            <div class="card-action">آيات تطمئن قلبك</div>
+          </div>
         </div>
-      
-    </div>
+      </div>
+
+      <div id="section-content-page">
+        <div id="section-items-grid" class="grid"></div>
+        <div id="daily-actions" class="footer" style="display: none">
+          <span
+            style="color: var(--main-color); font-weight: bold; cursor: pointer"
+            onclick="showBalance()"
+            >شاهد رصيدك</span
+          >
+          <button class="reset-btn" onclick="resetAll()">تصفير</button>
         </div>
-          
+      </div>
 
-    <div id="section-content-page">
-      <div id="section-items-grid" class="grid"></div>
-      <div id="daily-actions" class="footer" style="display: none">
-        <span
-          style="color: var(--main-color); font-weight: bold; cursor: pointer"
-          onclick="showBalance()"
-          >شاهد رصيدك</span
-        >
-        <button class="reset-btn" onclick="resetAll()">تصفير</button>
+      <div id="sub-page">
+        <div class="hadith-box">
+          <p id="hadith-content"></p>
+        </div>
+        <div id="counter-area" class="circle-frame" onclick="increment()">
+          <div id="counter-display">0</div>
+        </div>
       </div>
-    </div>
 
-    <div id="sub-page">
-      <div class="hadith-box">
-        <p id="hadith-content"></p>
-      </div>
-      <div id="counter-area" class="circle-frame" onclick="increment()">
-        <div id="counter-display">0</div>
-      </div>
-    </div>
-
-    <div id="settings-page">
-      <div class="setting-row">
-        <span>الاهتزاز</span
-        ><input type="checkbox" id="vibrate-toggle" checked />
-      </div>
-      <div class="setting-row">
+      <div id="settings-page">
+        <div class="setting-row">
+          <span>الاهتزاز</span
+          ><input type="checkbox" id="vibrate-toggle" checked />
+        </div>
+        <!-- <div class="setting-row">
         <span>الوضع الداكن</span
         ><input
           type="checkbox"
           id="dark-mode-toggle"
           onclick="toggleDarkMode()"
-        />
+        /> -->
       </div>
       <div
         style="
@@ -604,23 +631,23 @@
           "
         ></textarea>
 
-       <button
-  type="submit"
-  id="submit-btn"
-  style="
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    background-color: var(--main-color);
-    color: var(--light-color); /* التعديل هون عشان يقلب عنابي بالداكن */
-    padding: 15px;
-    font-weight: bold;
-    font-size: 1.1rem;
-  "
->
-  إرسال التقييم
-</button>
+        <button
+          type="submit"
+          id="submit-btn"
+          style="
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: var(--main-color);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+          "
+        >
+          إرسال التقييم
+        </button>
 
         <div
           id="status-msg"
@@ -674,13 +701,12 @@
          =========================================
       */
       const sectionsData = {
-        
-       "adhan-sunnan": {
-    during_adhan: {
-        title: "ماذا نردد أثناء الأذان",
-        isTreasure: true,
-        btn: "عرض السنّة النبوية",
-        text: `
+        "adhan-sunnan": {
+          during_adhan: {
+            title: "ماذا نردد أثناء الأذان",
+            isTreasure: true,
+            btn: "عرض السنّة النبوية",
+            text: `
             <div class="dhikr-container">
                 <div style="background: #fdf7f7; border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--main-color);">
                     <strong>عن أبي سعيد الخدري رضي الله عنه أن رسول الله ﷺ قال:</strong><br>
@@ -697,13 +723,13 @@
                     <div class="dhikr-text">في صلاة الفجر، عندما يقول المؤذن <span class="title-tag">"الصلاة خير من النوم"</span>، تقول مثله: <br><span class="highlight">"الصلاة خير من النوم"</span>.</div>
                 </div>
             </div>
-        `
-    },
-    after_adhan: {
-        title: "الأذكار بعد انتهاء الأذان",
-        isTreasure: true,
-        btn: "عرض الأذكار والشفاعة",
-        text: `
+        `,
+          },
+          after_adhan: {
+            title: "الأذكار بعد انتهاء الأذان",
+            isTreasure: true,
+            btn: "عرض الأذكار والشفاعة",
+            text: `
             <div class="dhikr-container">
                 <div class="dhikr-item">
                     <div class="num-box">١</div>
@@ -720,13 +746,13 @@
                     <div class="dhikr-text"><span class="title-tag">الشهادة:</span> "وأنا أشهد أن لا إله إلا الله وحده لا شريك له، وأن محمداً عبده ورسوله، <span class="highlight">رضيت بالله رباً وبالإسلام ديناً وبمحمد رسولاً</span>".<br><small>(الفضل: غُفر له ذنبه).</small></div>
                 </div>
             </div>
-        `
-    },
-    dua_between: {
-        title: "الدعاء وقت الاستجابة",
-        isTreasure: true,
-        btn: "أجر الدعاء المستجاب",
-        text: `
+        `,
+          },
+          dua_between: {
+            title: "الدعاء وقت الاستجابة",
+            isTreasure: true,
+            btn: "أجر الدعاء المستجاب",
+            text: `
             <div class="dhikr-container">
                 <div style="background: #fdf7f7; border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--main-color);">
                     <strong>عن أنس بن مالك رضي الله عنه قال: قال رسول الله ﷺ:</strong><br>
@@ -738,17 +764,16 @@
                     <div class="dhikr-text">هذا الوقت من أرجى الأوقات لإجابة الدعاء، فاجتهد في <span class="title-tag">سؤال الله العافية</span> في الدنيا والآخرة، ولا تغفل عنه بالانشغال بالناس أو الهاتف.</div>
                 </div>
             </div>
-        `
-    }
-},// سكرنا adhan-sunnan
+        `,
+          },
+        }, // سكرنا adhan-sunnan
         // أضيفي أذكار عداد جديدة هنا (تأكدي من وضع فاصلة بين كل ذكر)
-"ramadan": {
-
-   daily_tracker: {
-  title: "جدول المتابعة الرمضاني الشامل",
-  isTreasure: true,
-  btn: "عرض جدول الـ 30 يوم",
-  text: `
+        ramadan: {
+          daily_tracker: {
+            title: "جدول المتابعة الرمضاني الشامل",
+            isTreasure: true,
+            btn: "عرض جدول الـ 30 يوم",
+            text: `
     <div style="direction: rtl; padding: 5px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
       
       <div style="background: #fdf7f7; border-right: 5px solid #4f1a2a; padding: 15px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); min-width: 300px; max-width: 100%; color: #4f1a2a; line-height: 1.6;">
@@ -772,7 +797,13 @@
           <thead>
             <tr style="background: var(--main-color); color: white;">
               <th style="width: 160px; padding: 15px 5px; border: 1px solid rgba(255,255,255,0.2); position: sticky; right: 0; background: var(--main-color); z-index: 2; font-size: 0.85rem;">المهمة والعبادة</th>
-              ${Array.from({length: 30}, (_, i) => `<th style="width: 80px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem;">${i+1}</th>`).join('')}
+              ${Array.from(
+                { length: 30 },
+                (_, i) =>
+                  `<th style="width: 80px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem;">${
+                    i + 1
+                  }</th>`
+              ).join("")}
             </tr>
           </thead>
           <tbody id="tracker-matrix">
@@ -890,61 +921,59 @@
 
   renderMatrix();
 })();
-<\/script>`
-},
-  bukhari_habit: {
-    title: "همة الإمام البخاري",
-    isTreasure: true,
-    btn: "قدوة في القرآن",
-    text: "كان الإمام البخاري <span class='highlight'>يختم في النهار كل يوم ختمة</span>، و<span class='highlight'>يختم عند الإفطار كل ليلة ختمة</span>، ويقول: عند كل ختمة دعوة مستجابة. [المصدر: سير أعلام النبلاء]",
-  },
-  tarawih_break: {
-    title: "بين ركعات التراويح",
-    isTreasure: true,
-    btn: "ذكر وتبيح",
-    text: "يستحب أن يشغل الصائم وقته بالذكر بين ركعات القيام، ومن ذلك الإكثار من الباقيات الصالحات: <span class='highlight'>سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر، ولا حول ولا قوة إلا بالله العلي العظيم</span>.",
-  },
-  
-  fasting_gift: {
-    title: "هدية الصائم",
-    isTreasure: true,
-    btn: "دعوة لا تُرد",
-    text: "قال رسول الله ﷺ: <span class='highlight'>ثلاثة لا تُرد دعوتهم: الإمام العادل، والصائم حتى يُفطر، ودعوة المظلوم</span>. [رواه الترمذي]. فاحرص على الدعاء قبل أذان المغرب بدقائق فإنها لحظات استجابة.",
-  },
-  iftar_dua: {
-    title: "دعاء الإفطار",
-    isTreasure: true,
-    btn: "سنة نبوية",
-    text: "عن معاذ بن زهرة أنه بلغه أن النبي ﷺ كان يقول إذا أفطر: <span class='highlight'>اللهم لك صمت وعلى رزقك أفطرت</span>. [رواه أبو داود]. <br> وعن ابن عمر رضي الله عنهما قال: كان رسول الله ﷺ إذا أفطر قال: <span class='highlight'>ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله</span>. [صحيح أبي داود]",
-  },
-  
-  lailat_alqadr: {
-    title: "دعاء ليلة القدر",
-    isTreasure: true,
-    btn: "سؤال العفو",
-    text: "عن أم المؤمنين عائشة رضي الله عنها أنها قالت: يا رسول الله، أرأيت إن وافقت ليلة القدر ما أدعو؟ قال: تقولين: <span class='highlight'>اللهم إنك عفو تحب العفو فاعفُ عني</span>. [رواه الترمذي وصححه الألباني]",
-  },
-  sahar_dua: {
-    title: "وقت السحر",
-    isTreasure: true,
-    btn: "ساعة الاستجابة",
-    text: "قال ﷺ: <span class='highlight'>ينزل ربنا تبارك وتعالى كل ليلة إلى السماء الدنيا حين يبقى ثلث الليل الآخر</span> يقول: من يدعوني فأستجيب له؟ من يسألني فأعطيه؟ من يستغفرني فأغفر له؟ [متفق عليه]. وهو وقت السحور المبارك.",
-  },
-  fasting_protection: {
-    title: "خُلُق الصائم",
-    isTreasure: true,
-    btn: "كظم الغيظ",
-    text: "قال رسول الله ﷺ: <span class='highlight'>الصيام جُنة، فلا يرفث ولا يجهل، وإن امرؤ قاتله أو شاتمه فليقل: إني صائم -مرتين-</span>. [رواه البخاري]. ليكون صومك حفظاً لجوارحك كما هو حفظ لبطنك.",
-  },
-  last_ten: {
-    title: "العشر الأواخر",
-    isTreasure: true,
-    btn: "الاجتهاد في العبادة",
-    text: "عن عائشة رضي الله عنها قالت: <span class='highlight'>كان رسول الله ﷺ إذا دخل العشر أحيا الليل، وأيقظ أهله، وجد وشد المئزر</span>. [متفق عليه]. وهي ليالي العتق من النيران والتقرب إلى الرحمن.",
-  },
+<\/script>`,
+          },
+          bukhari_habit: {
+            title: "همة الإمام البخاري",
+            isTreasure: true,
+            btn: "قدوة في القرآن",
+            text: "كان الإمام البخاري <span class='highlight'>يختم في النهار كل يوم ختمة</span>، و<span class='highlight'>يختم عند الإفطار كل ليلة ختمة</span>، ويقول: عند كل ختمة دعوة مستجابة. [المصدر: سير أعلام النبلاء]",
+          },
+          tarawih_break: {
+            title: "بين ركعات التراويح",
+            isTreasure: true,
+            btn: "ذكر وتبيح",
+            text: "يستحب أن يشغل الصائم وقته بالذكر بين ركعات القيام، ومن ذلك الإكثار من الباقيات الصالحات: <span class='highlight'>سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر، ولا حول ولا قوة إلا بالله العلي العظيم</span>.",
+          },
 
-},
+          fasting_gift: {
+            title: "هدية الصائم",
+            isTreasure: true,
+            btn: "دعوة لا تُرد",
+            text: "قال رسول الله ﷺ: <span class='highlight'>ثلاثة لا تُرد دعوتهم: الإمام العادل، والصائم حتى يُفطر، ودعوة المظلوم</span>. [رواه الترمذي]. فاحرص على الدعاء قبل أذان المغرب بدقائق فإنها لحظات استجابة.",
+          },
+          iftar_dua: {
+            title: "دعاء الإفطار",
+            isTreasure: true,
+            btn: "سنة نبوية",
+            text: "عن معاذ بن زهرة أنه بلغه أن النبي ﷺ كان يقول إذا أفطر: <span class='highlight'>اللهم لك صمت وعلى رزقك أفطرت</span>. [رواه أبو داود]. <br> وعن ابن عمر رضي الله عنهما قال: كان رسول الله ﷺ إذا أفطر قال: <span class='highlight'>ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله</span>. [صحيح أبي داود]",
+          },
 
+          lailat_alqadr: {
+            title: "دعاء ليلة القدر",
+            isTreasure: true,
+            btn: "سؤال العفو",
+            text: "عن أم المؤمنين عائشة رضي الله عنها أنها قالت: يا رسول الله، أرأيت إن وافقت ليلة القدر ما أدعو؟ قال: تقولين: <span class='highlight'>اللهم إنك عفو تحب العفو فاعفُ عني</span>. [رواه الترمذي وصححه الألباني]",
+          },
+          sahar_dua: {
+            title: "وقت السحر",
+            isTreasure: true,
+            btn: "ساعة الاستجابة",
+            text: "قال ﷺ: <span class='highlight'>ينزل ربنا تبارك وتعالى كل ليلة إلى السماء الدنيا حين يبقى ثلث الليل الآخر</span> يقول: من يدعوني فأستجيب له؟ من يسألني فأعطيه؟ من يستغفرني فأغفر له؟ [متفق عليه]. وهو وقت السحور المبارك.",
+          },
+          fasting_protection: {
+            title: "خُلُق الصائم",
+            isTreasure: true,
+            btn: "كظم الغيظ",
+            text: "قال رسول الله ﷺ: <span class='highlight'>الصيام جُنة، فلا يرفث ولا يجهل، وإن امرؤ قاتله أو شاتمه فليقل: إني صائم -مرتين-</span>. [رواه البخاري]. ليكون صومك حفظاً لجوارحك كما هو حفظ لبطنك.",
+          },
+          last_ten: {
+            title: "العشر الأواخر",
+            isTreasure: true,
+            btn: "الاجتهاد في العبادة",
+            text: "عن عائشة رضي الله عنها قالت: <span class='highlight'>كان رسول الله ﷺ إذا دخل العشر أحيا الليل، وأيقظ أهله، وجد وشد المئزر</span>. [متفق عليه]. وهي ليالي العتق من النيران والتقرب إلى الرحمن.",
+          },
+        },
 
         "daily-counters": {
           palm: {
@@ -975,7 +1004,8 @@
             title: "الخمسُ جوائز",
             limit: 100,
             btn: "5 جوائز في ذكر",
-text: "قال رسول الله ﷺ:<br>من قال: <span class='highlight'>لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير</span> في يوم <span class='highlight'>مائة مرة</span>؛ كانت له عدل عشر رقاب، وكُتبت له مائة حسنة، ومُحيت عنه مائة سيئة، وكانت له حرزاً من الشيطان يومه ذلك حتى يمسي، ولم يأتِ أحدٌ بأفضل مما جاء به إلا رجل عمل أكثر منه.",          },
+            text: "قال رسول الله ﷺ:<br>من قال: <span class='highlight'>لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير</span> في يوم <span class='highlight'>مائة مرة</span>؛ كانت له عدل عشر رقاب، وكُتبت له مائة حسنة، ومُحيت عنه مائة سيئة، وكانت له حرزاً من الشيطان يومه ذلك حتى يمسي، ولم يأتِ أحدٌ بأفضل مما جاء به إلا رجل عمل أكثر منه.",
+          },
           tree: {
             title: "شجر",
             limit: 1,
@@ -986,7 +1016,8 @@ text: "قال رسول الله ﷺ:<br>من قال: <span class='highlight'>ل�
             title: "الذكرُ المضاعف",
             limit: 3,
             btn: "ضاعف حسناتك",
-text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج من عندها بكرة حين صلى الصبح وهي في مسجدها، ثم رجع بعد أن أضحى وهي جالسة، فقال: ما زلتِ على الحالة التي فارقتكِ عليها؟ قالت: نعم، قال ﷺ: لقد قلتُ بعدكِ أربع كلمات <span class='highlight'>ثلاث مرات</span> لو وُزنت بما قلتِ منذ اليوم لوزنتهن: <span class='highlight'>سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته</span>."          },
+            text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج من عندها بكرة حين صلى الصبح وهي في مسجدها، ثم رجع بعد أن أضحى وهي جالسة، فقال: ما زلتِ على الحالة التي فارقتكِ عليها؟ قالت: نعم، قال ﷺ: لقد قلتُ بعدكِ أربع كلمات <span class='highlight'>ثلاث مرات</span> لو وُزنت بما قلتِ منذ اليوم لوزنتهن: <span class='highlight'>سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته</span>.",
+          },
         },
 
         // [مكان إضافة أذكار الصباح والمساء]
@@ -1178,7 +1209,7 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
             title: "وجبت له الجنة",
             isTreasure: true,
             btn: "كلمات توجب الجنة",
-           text: "قال رسول الله ﷺ: من قال إذا أصبح وإذا أمسى: <span class='highlight'>رضيت بالله رباً وبالإسلام ديناً وبمحمد ﷺ نبياً</span>، كان حقاً على الله أن يرضيه يوم القيامة.",
+            text: "قال رسول الله ﷺ: من قال إذا أصبح وإذا أمسى: <span class='highlight'>رضيت بالله رباً وبالإسلام ديناً وبمحمد ﷺ نبياً</span>، كان حقاً على الله أن يرضيه يوم القيامة.",
           },
           treasure_3: {
             title: "قنطار من الأجر",
@@ -1205,10 +1236,10 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
             `,
           },
           duaa_2: {
-      title: "اسم الله الأعظم",
-      isTreasure: true,
-      btn: "الدعاء وفضله",
-      text: `
+            title: "اسم الله الأعظم",
+            isTreasure: true,
+            btn: "الدعاء وفضله",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1226,7 +1257,7 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
           </div>
         </div>
       `,
-    },
+          },
           duaa_3: {
             title: "دعاء تفريج الهم",
             isTreasure: true,
@@ -1355,47 +1386,46 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
               </div>
             `,
           },
-        
         },
 
-          "duaa-jumaa": {
-  alkahf: {
-    title: "سورة الكهف",
-    limit: 1,
-    btn: "نورٌ ما بين الجمعتين",
-    text: "قال رسول الله ﷺ: <span class='highlight'>من قرأ سورة الكهف في يوم الجمعة أضاء له من النور ما بين الجمعتين</span>. [رواه الحاكم]",
-  },
-  salat_nabi: {
-    title: "الصلاة على النبي",
-    limit: 100, // مفتوح، بس حطينا 100 كهدف
-    btn: "يُرد عليك السلام",
-    text: "قال رسول الله ﷺ: <span class='highlight'>أكثروا الصلاة علي يوم الجمعة وليلة الجمعة</span>، فمن صلى علي صلاة صلى الله عليه بها عشراً. [رواه البيهقي]",
-  },
-  dua_hour: {
-    title: "ساعة الاستجابة",
-    limit: 1,
-    btn: "لا يرد فيها سائل",
-    text: "قال رسول الله ﷺ عن يوم الجمعة: <span class='highlight'>فيه ساعة لا يوافقها عبد مسلم وهو قائم يصلي يسأل الله تعالى شيئاً إلا أعطاه إياه</span>. [متفق عليه] (تحرّها آخر ساعة قبل المغرب).",
-  },
-  tabkeer: {
-    title: "التبكير للمسجد",
-    limit: 1,
-    btn: "أجر تقريب بدنة",
-    text: "قال رسول الله ﷺ: <span class='highlight'>من اغتسل يوم الجمعة... ثم راح في الساعة الأولى فكأنما قرب بدنة</span> (ناقة)، ومن راح في الساعة الثانية فكأنما قرب بقرة... [متفق عليه]",
-  },
-  ghusl: {
-    title: "الاغتسال والتطيب",
-    limit: 1,
-    btn: "سُنة مؤكدة",
-    text: "قال رسول الله ﷺ: <span class='highlight'>غُسل يوم الجمعة واجب على كل محتلم</span>، وأن يستنّ (يستاك) ويمسّ من الطيب ما قدر عليه. [رواه مسلم]",
-  },
-},
-"quran-messages": {
-    sad: {
-      title: "حزين؟",
-      isTreasure: true,
-      btn: "طبُّ القلوب",
-      text: `
+        "duaa-jumaa": {
+          alkahf: {
+            title: "سورة الكهف",
+            limit: 1,
+            btn: "نورٌ ما بين الجمعتين",
+            text: "قال رسول الله ﷺ: <span class='highlight'>من قرأ سورة الكهف في يوم الجمعة أضاء له من النور ما بين الجمعتين</span>. [رواه الحاكم]",
+          },
+          salat_nabi: {
+            title: "الصلاة على النبي",
+            limit: 100, // مفتوح، بس حطينا 100 كهدف
+            btn: "يُرد عليك السلام",
+            text: "قال رسول الله ﷺ: <span class='highlight'>أكثروا الصلاة علي يوم الجمعة وليلة الجمعة</span>، فمن صلى علي صلاة صلى الله عليه بها عشراً. [رواه البيهقي]",
+          },
+          dua_hour: {
+            title: "ساعة الاستجابة",
+            limit: 1,
+            btn: "لا يرد فيها سائل",
+            text: "قال رسول الله ﷺ عن يوم الجمعة: <span class='highlight'>فيه ساعة لا يوافقها عبد مسلم وهو قائم يصلي يسأل الله تعالى شيئاً إلا أعطاه إياه</span>. [متفق عليه] (تحرّها آخر ساعة قبل المغرب).",
+          },
+          tabkeer: {
+            title: "التبكير للمسجد",
+            limit: 1,
+            btn: "أجر تقريب بدنة",
+            text: "قال رسول الله ﷺ: <span class='highlight'>من اغتسل يوم الجمعة... ثم راح في الساعة الأولى فكأنما قرب بدنة</span> (ناقة)، ومن راح في الساعة الثانية فكأنما قرب بقرة... [متفق عليه]",
+          },
+          ghusl: {
+            title: "الاغتسال والتطيب",
+            limit: 1,
+            btn: "سُنة مؤكدة",
+            text: "قال رسول الله ﷺ: <span class='highlight'>غُسل يوم الجمعة واجب على كل محتلم</span>، وأن يستنّ (يستاك) ويمسّ من الطيب ما قدر عليه. [رواه مسلم]",
+          },
+        },
+        "quran-messages": {
+          sad: {
+            title: "حزين؟",
+            isTreasure: true,
+            btn: "طبُّ القلوب",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1410,13 +1440,13 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
             <div class="dhikr-text">﴿ <span class="highlight">لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ</span> ﴾ [سورة الزمر: 53]</div>
           </div>
         </div>
-      `
-    },
-    tired: {
-      title: "متعب؟",
-      isTreasure: true,
-      btn: "رسالة جبر",
-      text: `
+      `,
+          },
+          tired: {
+            title: "متعب؟",
+            isTreasure: true,
+            btn: "رسالة جبر",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1431,13 +1461,13 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
             <div class="dhikr-text">﴿ <span class="highlight">وَاصْبِرْ لِحُكْمِ رَبِّكَ فَإِنَّكَ بِأَعْيُنِنَا</span> ﴾ [سورة الطور: 48]</div>
           </div>
         </div>
-      `
-    },
-    anxious: {
-      title: "خائف أو قلق؟",
-      isTreasure: true,
-      btn: "سكينة",
-      text: `
+      `,
+          },
+          anxious: {
+            title: "خائف أو قلق؟",
+            isTreasure: true,
+            btn: "سكينة",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1452,13 +1482,13 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
             <div class="dhikr-text">﴿ <span class="highlight">قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا</span> ﴾ [سورة التوبة: 51]</div>
           </div>
         </div>
-      `
-    },
-    lost: {
-      title: "تائه؟",
-      isTreasure: true,
-      btn: "نور الهداية",
-      text: `
+      `,
+          },
+          lost: {
+            title: "تائه؟",
+            isTreasure: true,
+            btn: "نور الهداية",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1469,14 +1499,13 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
             <div class="dhikr-text">﴿ <span class="highlight">يَهْدِي اللَّهُ لِنُورِهِ مَن يَشَاءُ</span> ﴾ [سورة النور: 35]</div>
           </div>
         </div>
-      `
-
-    },
-    waiting: {
-      title: "تنتظر فرجاً؟",
-      isTreasure: true,
-      btn: "رسالة الاستبشار",
-      text: `
+      `,
+          },
+          waiting: {
+            title: "تنتظر فرجاً؟",
+            isTreasure: true,
+            btn: "رسالة الاستبشار",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1491,13 +1520,13 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
             <div class="dhikr-text">﴿ <span class="highlight">يَأْتِ بِهَا اللَّهُ إِنَّ اللَّهَ لَطِيفٌ خَبِيرٌ</span> ﴾ [سورة لقمان: 16]</div>
           </div>
         </div>
-      `
-    },
-    wronged: {
-      title: "مظلوم؟",
-      isTreasure: true,
-      btn: "نصرٌ من الله",
-      text: `
+      `,
+          },
+          wronged: {
+            title: "مظلوم؟",
+            isTreasure: true,
+            btn: "نصرٌ من الله",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1512,13 +1541,13 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
             <div class="dhikr-text">﴿ <span class="highlight">وَاللَّهُ مَعَ الصَّابِرِينَ</span> ﴾ [سورة البقرة: 249]</div>
           </div>
         </div>
-      `
-    },
-    seeking_forgiveness: {
-      title: "أثقلتك الذنوب؟",
-      isTreasure: true,
-      btn: "باب التوبة",
-      text: `
+      `,
+          },
+          seeking_forgiveness: {
+            title: "أثقلتك الذنوب؟",
+            isTreasure: true,
+            btn: "باب التوبة",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1533,13 +1562,13 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
             <div class="dhikr-text">﴿ <span class="highlight">وَهُوَ الَّذِي يَقْبَلُ التَّوْبَةَ عَنْ عِبَادِهِ وَيَعْفُو عَنِ السَّيِّئَاتِ</span> ﴾ [سورة الشورى: 25]</div>
           </div>
         </div>
-      `
-    },
-    lonely: {
-      title: "وحيد؟",
-      isTreasure: true,
-      btn: "أنيس الروح",
-      text: `
+      `,
+          },
+          lonely: {
+            title: "وحيد؟",
+            isTreasure: true,
+            btn: "أنيس الروح",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1554,41 +1583,41 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
             <div class="dhikr-text">﴿ <span class="highlight">فَإِنِّي قَرِيبٌ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ</span> ﴾ [سورة البقرة: 186]</div>
           </div>
         </div>
-      `
-    }
-  },
-"prophets-prayers": {
-    illness: {
-      title: "مريض أو متألم؟",
-      isTreasure: true,
-      btn: "دعاء أيوب عليه السلام",
-      text: `
+      `,
+          },
+        },
+        "prophets-prayers": {
+          illness: {
+            title: "مريض أو متألم؟",
+            isTreasure: true,
+            btn: "دعاء أيوب عليه السلام",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">أَنِّي مَسَّنِيَ الضُّرُّ وَأَنتَ أَرْحَمُ الرَّاحِمِينَ</span> ﴾ [سورة الأنبياء: 83]</div>
           </div>
         </div>
-      `
-    },
-    distress: {
-      title: "في ضيق أو كرب؟",
-      isTreasure: true,
-      btn: "دعاء يونس عليه السلام",
-      text: `
+      `,
+          },
+          distress: {
+            title: "في ضيق أو كرب؟",
+            isTreasure: true,
+            btn: "دعاء يونس عليه السلام",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">لَّا إِلَهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ</span> ﴾ [سورة الأنبياء: 87]</div>
           </div>
         </div>
-      `
-    },
-    rizq: {
-      title: "تطلب الذرية أو الرزق؟",
-      isTreasure: true,
-      btn: "دعاء زكريا عليه السلام",
-      text: `
+      `,
+          },
+          rizq: {
+            title: "تطلب الذرية أو الرزق؟",
+            isTreasure: true,
+            btn: "دعاء زكريا عليه السلام",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1599,100 +1628,100 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
             <div class="dhikr-text">﴿ <span class="highlight">رَبِّ هَبْ لي مِن لَدُنْكَ ذُرِّيَّةً طَيِّبَةً إِنَّكَ سَميعُ الدُّعاء</span> ﴾ [سورة آل عمران: 38]</div>
           </div>
         </div>
-      `
-    },
-    strength: {
-      title: "مقبل على أمر صعب؟",
-      isTreasure: true,
-      btn: "دعاء موسى عليه السلام",
-      text: `
+      `,
+          },
+          strength: {
+            title: "مقبل على أمر صعب؟",
+            isTreasure: true,
+            btn: "دعاء موسى عليه السلام",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">رَبِّ اشْرَحْ لِي صَدْرِي * وَيَسِّرْ لِي أَمْرِي</span> ﴾ [سورة طه: 25-26]</div>
           </div>
         </div>
-      `
-    },
-    protection: {
-      title: "خائف من كيد أو عدو؟",
-      isTreasure: true,
-      btn: "دعاء نوح عليه السلام",
-      text: `
+      `,
+          },
+          protection: {
+            title: "خائف من كيد أو عدو؟",
+            isTreasure: true,
+            btn: "دعاء نوح عليه السلام",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">أَنِّي مَغْلُوبٌ فَانتَصِرْ</span> ﴾ [سورة القمر: 10]</div>
           </div>
         </div>
-      `
-    },
-    parents: {
-      title: "تريد الدعاء لوالديك؟",
-      isTreasure: true,
-      btn: "دعاء إبراهيم عليه السلام",
-      text: `
+      `,
+          },
+          parents: {
+            title: "تريد الدعاء لوالديك؟",
+            isTreasure: true,
+            btn: "دعاء إبراهيم عليه السلام",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ</span> ﴾ [سورة إبراهيم: 41]</div>
           </div>
         </div>
-      `
-    },
-    guidance: {
-      title: "تطلب الهداية؟",
-      isTreasure: true,
-      btn: "دعاء الراسخين في العلم",
-      text: `
+      `,
+          },
+          guidance: {
+            title: "تطلب الهداية؟",
+            isTreasure: true,
+            btn: "دعاء الراسخين في العلم",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً إِنَّكَ أَنتَ الْوَهَّابُ</span> ﴾ [سورة آل عمران: 8]</div>
           </div>
         </div>
-      `
-    },
-    success: {
-      title: "تبحث عن التوفيق؟",
-      isTreasure: true,
-      btn: "دعاء شعيب عليه السلام",
-      text: `
+      `,
+          },
+          success: {
+            title: "تبحث عن التوفيق؟",
+            isTreasure: true,
+            btn: "دعاء شعيب عليه السلام",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ عَلَيْهِ تَوَكَّلْتُ وَإِلَيْهِ أُنِيبُ</span> ﴾ [سورة هود: 88]</div>
           </div>
         </div>
-      `
-    },
-    repentance: {
-      title: "تطلب قبول التوبة؟",
-      isTreasure: true,
-      btn: "دعاء آدم عليه السلام",
-      text: `
+      `,
+          },
+          repentance: {
+            title: "تطلب قبول التوبة؟",
+            isTreasure: true,
+            btn: "دعاء آدم عليه السلام",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ</span> ﴾ [سورة الأعراف: 23]</div>
           </div>
         </div>
-      `
-    },
-    solomon_rizq: {
-      title: "تطلب ملكاً ورزقاً؟",
-      isTreasure: true,
-      btn: "دعاء سليمان عليه السلام",
-      text: `
+      `,
+          },
+          solomon_rizq: {
+            title: "تطلب ملكاً ورزقاً؟",
+            isTreasure: true,
+            btn: "دعاء سليمان عليه السلام",
+            text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">رَبِّ اغْفِرْ لِي وَهَبْ لِي مُلْكًا لَّا يَنبَغِي لِأَحَدٍ مِّن بَعْدِي إِنَّكَ أَنتَ الْوَهَّابُ</span> ﴾ [سورة ص: 35]</div>
           </div>
         </div>
-      `
-    },
-   acceptance: {
+      `,
+          },
+          acceptance: {
             title: "تريد قبول عملك؟",
             isTreasure: true,
             btn: "دعاء إبراهيم وإسماعيل",
@@ -1703,13 +1732,12 @@ text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج م�
                   <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ</span> ﴾ [سورة البقرة: 127]</div>
                 </div>
               </div>
-            `
-          }
+            `,
+          },
         }, // هذا القوس سكر prophets-prayers
-
       }; // سكرنا sectionsData الكبير
 
-let currentSection = "main";
+      let currentSection = "main";
       let currentType = "";
       let data = JSON.parse(localStorage.getItem("heavenData")) || {};
 
@@ -1723,7 +1751,9 @@ let currentSection = "main";
 
       // دالة الرجوع الموحدة
       function goBack() {
-        if (document.getElementById("settings-page").style.display === "block") {
+        if (
+          document.getElementById("settings-page").style.display === "block"
+        ) {
           toggleSettings();
           return;
         }
@@ -1764,7 +1794,8 @@ let currentSection = "main";
         // إضافة حديث أذكار الصباح والمساء
         if (sectionId === "morning-evening") {
           const hadithDiv = document.createElement("div");
-          hadithDiv.style.cssText = "grid-column: 1 / -1; background: #fdf7f7; border-right: 5px solid #4f1a2a; padding: 15px; margin-bottom: 20px; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; color: #4f1a2a;";
+          hadithDiv.style.cssText =
+            "grid-column: 1 / -1; background: #fdf7f7; border-right: 5px solid #4f1a2a; padding: 15px; margin-bottom: 20px; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; color: #4f1a2a;";
           hadithDiv.innerHTML = `<strong>عن أنس رضي الله عنه قال: قال رسول الله ﷺ:</strong> "لأن أقعد مع قوم يذكرون الله من صلاة الغداة حتى تطلع الشمس أحب إلي من أن أعتق أربعة..."`;
           grid.appendChild(hadithDiv);
         }
@@ -1773,30 +1804,48 @@ let currentSection = "main";
         Object.keys(items).forEach((key) => {
           // ميزة العرض الكامل والنجوم لجدول رمضان
           const isTracker = key === "daily_tracker";
-          const cardStyle = isTracker ? "grid-column: 1 / -1; position: relative; overflow: hidden;" : "";
-          const stars = isTracker ? `<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.2; pointer-events: none; display: flex; flex-wrap: wrap; justify-content: space-around; padding: 10px;">${'🌙 ⭐ '.repeat(10)}</div>` : "";
+          const cardStyle = isTracker
+            ? "grid-column: 1 / -1; position: relative; overflow: hidden;"
+            : "";
+          const stars = isTracker
+            ? `<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; display: flex; flex-wrap: wrap; justify-content: space-around; padding: 10px;">${"🌙 ⭐ ".repeat(
+                10
+              )}</div>`
+            : "";
 
           grid.innerHTML += `
             <div class="card" onclick="openDhikr('${key}', '${sectionId}')" style="${cardStyle}">
               ${stars}
               <div class="card-title" style="position: relative; z-index: 1;">
-                ${sectionId === "daily-counters" ? '"' + (data[key] || 0) + '" ' : ""}${items[key].title}
+                ${
+                  sectionId === "daily-counters"
+                    ? '"' + (data[key] || 0) + '" '
+                    : ""
+                }${items[key].title}
               </div>
-              <div class="card-action" style="position: relative; z-index: 1;">${items[key].btn}</div>
+              <div class="card-action" style="position: relative; z-index: 1;">${
+                items[key].btn
+              }</div>
             </div>`;
         });
 
         document.getElementById("section-content-page").style.display = "block";
-        document.getElementById("daily-actions").style.display = (sectionId === "daily-counters" ? "flex" : "none");
+        document.getElementById("daily-actions").style.display =
+          sectionId === "daily-counters" ? "flex" : "none";
         document.getElementById("back-icon").style.display = "inline-block";
-        
-        const titles = { 
-          "daily-counters": "العدادات اليومية", "morning-evening": "الصباح والمساء", 
-          "treasures": "كنوز الأذكار", "duaa": "جوامع الدعاء", 
-          "duaa-jumaa": "يوم الجمعة", "ramadan": "رمضان",
-          "prophets-prayers": "أدعية الأنبياء", "quran-messages": "رسائل القرآن"
+
+        const titles = {
+          "daily-counters": "العدادات اليومية",
+          "morning-evening": "الصباح والمساء",
+          treasures: "كنوز الأذكار",
+          duaa: "جوامع الدعاء",
+          "duaa-jumaa": "يوم الجمعة",
+          ramadan: "رمضان",
+          "prophets-prayers": "أدعية الأنبياء",
+          "quran-messages": "رسائل القرآن",
         };
-        document.getElementById("page-title").innerText = titles[sectionId] || "أجر";
+        document.getElementById("page-title").innerText =
+          titles[sectionId] || "أجر";
       }
 
       function openDhikr(type, sectionId) {
@@ -1813,10 +1862,14 @@ let currentSection = "main";
         for (let i = 0; i < scripts.length; i++) {
           const newScript = document.createElement("script");
           newScript.text = scripts[i].innerText;
-          document.body.appendChild(newScript).parentNode.removeChild(newScript);
+          document.body
+            .appendChild(newScript)
+            .parentNode.removeChild(newScript);
         }
 
-        document.getElementById("counter-area").style.display = dhikr.isTreasure ? "none" : "flex";
+        document.getElementById("counter-area").style.display = dhikr.isTreasure
+          ? "none"
+          : "flex";
         document.getElementById("counter-display").innerText = data[type] || 0;
         document.getElementById("back-icon").style.display = "inline-block";
         window.history.pushState({ page: "sub-page" }, "", "");
@@ -1827,13 +1880,21 @@ let currentSection = "main";
          ========================================= */
       function increment() {
         data[currentType] = (data[currentType] || 0) + 1;
-        document.getElementById("counter-display").innerText = data[currentType];
-        if (document.getElementById("vibrate-toggle").checked) navigator.vibrate(40);
+        document.getElementById("counter-display").innerText =
+          data[currentType];
+        if (document.getElementById("vibrate-toggle").checked)
+          navigator.vibrate(40);
         localStorage.setItem("heavenData", JSON.stringify(data));
       }
 
       function hideAllPages() {
-        ["main-page", "section-content-page", "sub-page", "feedback-page", "settings-page"].forEach(id => {
+        [
+          "main-page",
+          "section-content-page",
+          "sub-page",
+          "feedback-page",
+          "settings-page",
+        ].forEach((id) => {
           document.getElementById(id).style.display = "none";
         });
       }
@@ -1841,25 +1902,28 @@ let currentSection = "main";
       function toggleSettings() {
         const settingsPage = document.getElementById("settings-page");
         const icon = document.getElementById("settings-icon");
-        
+
         if (settingsPage.style.display === "block") {
           // لما نسكر الإعدادات: بنخفيها وبنرجع نظهر الصفحة اللي كنا فيها
           settingsPage.style.display = "none";
           icon.innerText = "settings";
-          
+
           if (currentSection === "main") {
             document.getElementById("main-page").style.display = "block";
           } else if (currentSection === "sub-page") {
             document.getElementById("sub-page").style.display = "block";
           } else {
-            document.getElementById("section-content-page").style.display = "block";
+            document.getElementById("section-content-page").style.display =
+              "block";
           }
         } else {
           // لما نفتح الإعدادات: بنخفي كل شي وبنظهرها هي بس
           hideAllPages();
           settingsPage.style.display = "block";
           icon.innerText = "close";
-          document.getElementById("total-sum").innerText = Object.values(data).reduce((a, b) => a + b, 0);
+          document.getElementById("total-sum").innerText = Object.values(
+            data
+          ).reduce((a, b) => a + b, 0);
         }
       }
       function toggleDarkMode() {
@@ -1871,30 +1935,39 @@ let currentSection = "main";
       function showBalance() {
         const list = document.getElementById("balance-list");
         list.innerHTML = "";
-        Object.keys(data).forEach(k => {
+        Object.keys(data).forEach((k) => {
           let name = "";
-          Object.values(sectionsData).forEach(sec => { if (sec[k]) name = sec[k].title; });
-          if (data[k] > 0) list.innerHTML += `<div>✅ \${data[k]} \${name}</div>`;
+          Object.values(sectionsData).forEach((sec) => {
+            if (sec[k]) name = sec[k].title;
+          });
+          if (data[k] > 0)
+            list.innerHTML += `<div>✅ \${data[k]} \${name}</div>`;
         });
         document.getElementById("balance-modal").style.display = "flex";
       }
 
-      function closeBalance() { document.getElementById("balance-modal").style.display = "none"; }
-      
+      function closeBalance() {
+        document.getElementById("balance-modal").style.display = "none";
+      }
+
       function resetAll() {
-        if (confirm("تصفير العدادات؟")) { data = {}; localStorage.setItem("heavenData", JSON.stringify(data)); renderSection("daily-counters"); }
+        if (confirm("تصفير العدادات؟")) {
+          data = {};
+          localStorage.setItem("heavenData", JSON.stringify(data));
+          renderSection("daily-counters");
+        }
       }
 
       function markStar(rating) {
         document.getElementById("rating-value").value = rating;
         const stars = document.querySelectorAll(".star-label");
-        stars.forEach(s => s.classList.remove("selected"));
+        stars.forEach((s) => s.classList.remove("selected"));
         stars[5 - rating].classList.add("selected");
       }
 
       function openFeedback() {
         const feedbackPage = document.getElementById("feedback-page");
-        
+
         // إذا كانت صفحة "من أنا" مفتوحة أصلاً، بنسكرها وبنرجع للي قبله
         if (feedbackPage.style.display === "block") {
           feedbackPage.style.display = "none";
@@ -1905,7 +1978,8 @@ let currentSection = "main";
           } else if (currentSection === "sub-page") {
             document.getElementById("sub-page").style.display = "block";
           } else {
-            document.getElementById("section-content-page").style.display = "block";
+            document.getElementById("section-content-page").style.display =
+              "block";
           }
         } else {
           // إذا كانت مسكرة، بنفتحها وبنخفي كل شي ثاني
