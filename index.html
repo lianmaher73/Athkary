@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
     <title>أجر</title>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="manifest.json">
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
@@ -83,12 +83,12 @@
         --text-color: #ffffff;
       } */
       body.dark-theme {
-        --main-color: #ffffff;
-        --light-color: #4f1a2a; /* هذا هو لون الخلفية في الداكن */
-        --white: #632537;
-        --text-color: #ffffff;
-        background-color: var(--light-color); /* أضف هذا السطر هنا */
-      }
+    --main-color: #ffffff;
+    --light-color: #4f1a2a; /* هذا هو لون الخلفية في الداكن */
+    --white: #632537;
+    --text-color: #ffffff;
+    background-color: var(--light-color); /* أضف هذا السطر هنا */
+}
 
       /* تنسيقات عامة للجسم والخلفية */
       /* html {
@@ -110,12 +110,10 @@
         /* height: 100%; */
         margin: 0;
         min-height: 100vh; /* يضمن إن اللون يغطي الشاشة كاملة لآخرها */
-        background-color: var(
-          --light-color
-        ); /* هذا السطر هو الذي يغير لون الفوتر للوردي */
-        transition: background-color 0.3s ease;
+        background-color: var( --light-color); /* هذا السطر هو الذي يغير لون الفوتر للوردي */
+      transition: background-color 0.3s ease;
       }
-      .container {
+       .container {
         flex: 1;
         max-width: 500px;
         margin: auto;
@@ -202,13 +200,14 @@
         display: none;
         margin-left: 10px;
       }
-      /* 
+/* 
       .container {
         max-width: 500px;
         margin: auto;
         padding: 20px;
         text-align: center;
       } */
+     
 
       /* [4] تنسيق شبكة الكروت (Grid) */
       .grid {
@@ -253,55 +252,55 @@
         overflow-y: auto;
       }
       /* تنسيق صفحة الإعدادات */
-      #settings-page {
-        display: none;
-        position: fixed;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        height: calc(100% - 60px);
-        background-color: var(--light-color);
-        z-index: 1500;
-        padding: 20px;
-        box-sizing: border-box;
-        overflow-y: auto;
-      }
+#settings-page {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 60px);
+    background-color: var(--light-color);
+    z-index: 1500;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
 
-      /* تنسيق السطر (أهم جزء) */
-      .setting-row {
-        display: flex; /* تفعيل نظام الصفوف */
-        justify-content: space-between; /* رمي الكلام لليمين والزر لليسار */
-        align-items: center; /* موازاة العناصر في المنتصف عمودياً */
-        background: var(--white);
-        padding: 15px 20px;
-        border-radius: 12px;
-        margin-bottom: 12px; /* مسافة بين كل سطر وسطر */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-      }
+/* تنسيق السطر (أهم جزء) */
+.setting-row {
+    display: flex; /* تفعيل نظام الصفوف */
+    justify-content: space-between; /* رمي الكلام لليمين والزر لليسار */
+    align-items: center; /* موازاة العناصر في المنتصف عمودياً */
+    background: var(--white);
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 12px; /* مسافة بين كل سطر وسطر */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
 
-      .setting-row span {
-        font-weight: bold;
-        color: var(--main-color);
-      }
+.setting-row span {
+    font-weight: bold;
+    color: var(--main-color);
+}
 
-      /* تنسيق الـ checkbox عشان ما يلزق بالحواف */
-      .setting-row input[type="checkbox"] {
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-        accent-color: var(--main-color);
-      }
+/* تنسيق الـ checkbox عشان ما يلزق بالحواف */
+.setting-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--main-color);
+}
 
-      /* تنسيق صندوق المجموع الكلي */
-      .total-sum-box {
-        background: var(--main-color);
-        color: var(--white);
-        padding: 20px;
-        border-radius: 15px;
-        margin-top: 20px;
-        font-weight: bold;
-        text-align: center;
-      }
+/* تنسيق صندوق المجموع الكلي */
+.total-sum-box {
+    background: var(--main-color);
+    color: var(--white);
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
+}
 
       /* إخفاء الصفحات افتراضياً */
       #section-content-page,
@@ -411,29 +410,26 @@
         color: #ffb400;
       }
       /* تنسيق خاص لبطاقة رمضان في الصفحة الرئيسية */
-      .ramadan-card {
-        grid-column: 1 / -1 !important; /* تأخذ السطر كامل */
-        position: relative;
-        overflow: hidden;
-        background-color: var(--white);
-      }
+.ramadan-card {
+    grid-column: 1 / -1 !important; /* تأخذ السطر كامل */
+    position: relative;
+    overflow: hidden;
+    background-color: var(--white);
+}
 
-      .ramadan-card::before {
-        /* content: "🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐"; */
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.12; /* شفافية النجوم */
-        font-size: 20px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        padding: 10px;
-        pointer-events: none;
-        justify-content: space-around;
-      }
+.ramadan-card::before {
+    /* content: "🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐"; */
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0.12; /* شفافية النجوم */
+    font-size: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+    pointer-events: none;
+    justify-content: space-around;
+}
     </style>
   </head>
   <body>
@@ -465,42 +461,17 @@
         <p style="font-weight: bold; margin-bottom: 25px">
           بِقَدْرِ ذِكْرِكَ، يَعْلُو بُنيانك.. اختار وجهتك اليوم
         </p>
-
+        
         <div class="grid">
-          <div
-            class="card"
-            onclick="showSection('ramadan')"
-            style="grid-column: 1 / -1; position: relative; overflow: hidden"
-          >
-            <div
-              style="
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
-                font-size: 18px;
-                pointer-events: none;
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                justify-content: space-around;
-                padding: 5px;
-                user-select: none;
-              "
-            >
-              🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐
-            </div>
-
-            <div class="card-title" style="position: relative; z-index: 1">
-              رمضان
-            </div>
-            <div class="card-action" style="position: relative; z-index: 1">
-              العبادات و الادعية
-            </div>
-          </div>
-          <div class="card" onclick="showSection('daily-counters')">
+           <div class="card" onclick="showSection('ramadan')" style="grid-column: 1 / -1; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; font-size: 18px; pointer-events: none; display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-around; padding: 5px; user-select: none;">
+        🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐ 🌙 ⭐
+    </div>
+    
+    <div class="card-title" style="position: relative; z-index: 1;">رمضان</div>
+    <div class="card-action" style="position: relative; z-index: 1;">العبادات و الادعية</div>
+</div>
+<div class="card" onclick="showSection('daily-counters')">
             <div class="card-title">العدادات اليومية</div>
             <div class="card-action">نخل، قصور، وكنوز</div>
           </div>
@@ -509,9 +480,9 @@
             <div class="card-action">كاملة ومختصرة</div>
           </div>
           <div class="card" onclick="showSection('adhan-sunnan')">
-            <div class="card-title">الأذان والإقامة</div>
-            <div class="card-action">سنن مستحبة وأجر عظيم</div>
-          </div>
+  <div class="card-title">الأذان والإقامة</div>
+  <div class="card-action">سنن مستحبة وأجر عظيم</div>
+</div>
           <div class="card" onclick="showSection('treasures')">
             <div class="card-title">كنوز الأذكار</div>
             <div class="card-action">أحاديث عظيمة الأجر</div>
@@ -524,51 +495,53 @@
             <div class="card-title">يوم الجمعة</div>
             <div class="card-action">اهم الاعمال</div>
           </div>
-
-          <div class="card" onclick="showSection('prophets-prayers')">
-            <div class="card-title">أدعية الأنبياء</div>
-            <div class="card-action">كما وردت</div>
-          </div>
-          <div class="card" onclick="showSection('quran-messages')">
-            <div class="card-title">رسائل القرآن</div>
-            <div class="card-action">آيات تطمئن قلبك</div>
-          </div>
-        </div>
+       
+        <div class="card" onclick="showSection('prophets-prayers')">
+         <div class="card-title">أدعية الأنبياء</div>
+        <div class="card-action">كما وردت</div>
       </div>
-
-      <div id="section-content-page">
-        <div id="section-items-grid" class="grid"></div>
-        <div id="daily-actions" class="footer" style="display: none">
-          <span
-            style="color: var(--main-color); font-weight: bold; cursor: pointer"
-            onclick="showBalance()"
-            >شاهد رصيدك</span
-          >
-          <button class="reset-btn" onclick="resetAll()">تصفير</button>
+       <div class="card" onclick="showSection('quran-messages')">
+          <div class="card-title">رسائل القرآن</div>
+          <div class="card-action">آيات تطمئن قلبك</div>
         </div>
+      
+    </div>
+        </div>
+          
+
+    <div id="section-content-page">
+      <div id="section-items-grid" class="grid"></div>
+      <div id="daily-actions" class="footer" style="display: none">
+        <span
+          style="color: var(--main-color); font-weight: bold; cursor: pointer"
+          onclick="showBalance()"
+          >شاهد رصيدك</span
+        >
+        <button class="reset-btn" onclick="resetAll()">تصفير</button>
       </div>
+    </div>
 
-      <div id="sub-page">
-        <div class="hadith-box">
-          <p id="hadith-content"></p>
-        </div>
-        <div id="counter-area" class="circle-frame" onclick="increment()">
-          <div id="counter-display">0</div>
-        </div>
+    <div id="sub-page">
+      <div class="hadith-box">
+        <p id="hadith-content"></p>
       </div>
+      <div id="counter-area" class="circle-frame" onclick="increment()">
+        <div id="counter-display">0</div>
+      </div>
+    </div>
 
-      <div id="settings-page">
-        <div class="setting-row">
-          <span>الاهتزاز</span
-          ><input type="checkbox" id="vibrate-toggle" checked />
-        </div>
-        <!-- <div class="setting-row">
+    <div id="settings-page">
+      <div class="setting-row">
+        <span>الاهتزاز</span
+        ><input type="checkbox" id="vibrate-toggle" checked />
+      </div>
+      <div class="setting-row">
         <span>الوضع الداكن</span
         ><input
           type="checkbox"
           id="dark-mode-toggle"
           onclick="toggleDarkMode()"
-        /> -->
+        />
       </div>
       <div
         style="
@@ -640,7 +613,7 @@
             border-radius: 10px;
             cursor: pointer;
             background-color: var(--main-color);
-            color: white;
+            color: var(--light-color);
             padding: 15px;
             font-weight: bold;
             font-size: 1.1rem;
@@ -701,14 +674,15 @@
          =========================================
       */
       const sectionsData = {
-        "adhan-sunnan": {
-          during_adhan: {
-            title: "ماذا نردد أثناء الأذان",
-            isTreasure: true,
-            btn: "عرض السنّة النبوية",
-            text: `
+        
+       "adhan-sunnan": {
+    during_adhan: {
+        title: "ماذا نردد أثناء الأذان",
+        isTreasure: true,
+        btn: "عرض السنّة النبوية",
+        text: `
             <div class="dhikr-container">
-                <div style="background: #fdf7f7; border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--main-color);">
+                <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color);">
                     <strong>عن أبي سعيد الخدري رضي الله عنه أن رسول الله ﷺ قال:</strong><br>
                     "إِذَا سَمِعْتُمُ المُؤَذِّنَ، <span class="highlight">فَقُولوا مِثْلَ ما يقولُ</span>" [رواه البخاري ومسلم].
                 </div>
@@ -723,13 +697,13 @@
                     <div class="dhikr-text">في صلاة الفجر، عندما يقول المؤذن <span class="title-tag">"الصلاة خير من النوم"</span>، تقول مثله: <br><span class="highlight">"الصلاة خير من النوم"</span>.</div>
                 </div>
             </div>
-        `,
-          },
-          after_adhan: {
-            title: "الأذكار بعد انتهاء الأذان",
-            isTreasure: true,
-            btn: "عرض الأذكار والشفاعة",
-            text: `
+        `
+    },
+    after_adhan: {
+        title: "الأذكار بعد انتهاء الأذان",
+        isTreasure: true,
+        btn: "عرض الأذكار والشفاعة",
+        text: `
             <div class="dhikr-container">
                 <div class="dhikr-item">
                     <div class="num-box">١</div>
@@ -746,34 +720,35 @@
                     <div class="dhikr-text"><span class="title-tag">الشهادة:</span> "وأنا أشهد أن لا إله إلا الله وحده لا شريك له، وأن محمداً عبده ورسوله، <span class="highlight">رضيت بالله رباً وبالإسلام ديناً وبمحمد رسولاً</span>".<br><small>(الفضل: غُفر له ذنبه).</small></div>
                 </div>
             </div>
-        `,
-          },
-          dua_between: {
-            title: "الدعاء وقت الاستجابة",
-            isTreasure: true,
-            btn: "أجر الدعاء المستجاب",
-            text: `
+        `
+    },
+    dua_between: {
+        title: "الدعاء وقت الاستجابة",
+        isTreasure: true,
+        btn: "أجر الدعاء المستجاب",
+        text: `
             <div class="dhikr-container">
-                <div style="background: #fdf7f7; border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--main-color);">
+                <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color);">
                     <strong>عن أنس بن مالك رضي الله عنه قال: قال رسول الله ﷺ:</strong><br>
                     "<span class="highlight">الدُّعاءُ لا يُردُّ بين الأذانِ والإقامةِ</span>" [رواه الترمذي وأبو داود].
                 </div>
                 
                 <div class="dhikr-item">
-                    <div class="num-box">★</div>
                     <div class="dhikr-text">هذا الوقت من أرجى الأوقات لإجابة الدعاء، فاجتهد في <span class="title-tag">سؤال الله العافية</span> في الدنيا والآخرة، ولا تغفل عنه بالانشغال بالناس أو الهاتف.</div>
                 </div>
             </div>
-        `,
-          },
-        }, // سكرنا adhan-sunnan
+        `
+    }
+},// سكرنا adhan-sunnan
         // أضيفي أذكار عداد جديدة هنا (تأكدي من وضع فاصلة بين كل ذكر)
-        ramadan: {
-          daily_tracker: {
-            title: "جدول المتابعة الرمضاني الشامل",
-            isTreasure: true,
-            btn: "عرض جدول الـ 30 يوم",
-            text: `
+"ramadan": {
+  
+
+   daily_tracker: {
+  title: "جدول المتابعة الرمضاني الشامل",
+  isTreasure: true,
+  btn: "عرض جدول الـ 30 يوم",
+  text: `
     <div style="direction: rtl; padding: 5px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
       
       <div style="background: #fdf7f7; border-right: 5px solid #4f1a2a; padding: 15px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); min-width: 300px; max-width: 100%; color: #4f1a2a; line-height: 1.6;">
@@ -790,20 +765,12 @@
         </div>
       </div>
 
-      <h3 style="color: var(--main-color); text-align: center; margin-bottom: 15px;">لوحة إنجاز رمضان (30 يوم) ✨</h3>
+      <h3 style="color: var(--main-color); text-align: center; margin-bottom: 15px;">لوحة إنجاز رمضان (30 يوم) </h3>
       
-      <div style="min-width: 4000px; background: var(--white); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); overflow: hidden;">
-        <table style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">
+<div style="min-width: 4000px; background: var(--white); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">        <table style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">
           <thead>
-            <tr style="background: var(--main-color); color: white;">
-              <th style="width: 160px; padding: 15px 5px; border: 1px solid rgba(255,255,255,0.2); position: sticky; right: 0; background: var(--main-color); z-index: 2; font-size: 0.85rem;">المهمة والعبادة</th>
-              ${Array.from(
-                { length: 30 },
-                (_, i) =>
-                  `<th style="width: 80px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem;">${
-                    i + 1
-                  }</th>`
-              ).join("")}
+            <tr style="background: var(--main-color); color: var(--light-color);">
+<th style="width: 160px; padding: 15px 5px; border: 1px solid rgba(255,255,255,0.2); position: sticky; right: 0; background: var(--main-color); z-index: 10; font-size: 0.85rem;">المهمة والعبادة</th>              ${Array.from({length: 30}, (_, i) => `<th style="width: 80px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem;">${i+1}</th>`).join('')}
             </tr>
           </thead>
           <tbody id="tracker-matrix">
@@ -849,8 +816,7 @@
       let row = '<tr style="border-bottom: 1px solid var(--light-color);">';
       
       // عمود العنوان مع الأيقونات
-      row += '<td style="width: 160px; padding: 10px 5px; font-weight: bold; color: var(--main-color); background: var(--light-color); position: sticky; right: 0; z-index: 1; text-align: right; font-size: 0.85rem; border-left: 1px solid #ddd; white-space: nowrap;">';
-      
+row += '<td style="width: 160px; padding: 10px 5px; font-weight: bold; color: var(--main-color); background: var(--white); position: sticky; right: 0; z-index: 5; text-align: right; font-size: 0.85rem; border-left: 2px solid var(--main-color); white-space: normal;">';      
       if (isCustom) {
         // زر الحذف (إكس أحمر)
         row += '<span onclick="deleteTask(\\'' + task.id + '\\')" style="color: #ff4d4d; cursor: pointer; margin-left: 5px; font-size: 0.8rem;" title="حذف">❌</span>';
@@ -921,59 +887,421 @@
 
   renderMatrix();
 })();
-<\/script>`,
-          },
-          bukhari_habit: {
-            title: "همة الإمام البخاري",
-            isTreasure: true,
-            btn: "قدوة في القرآن",
-            text: "كان الإمام البخاري <span class='highlight'>يختم في النهار كل يوم ختمة</span>، و<span class='highlight'>يختم عند الإفطار كل ليلة ختمة</span>، ويقول: عند كل ختمة دعوة مستجابة. [المصدر: سير أعلام النبلاء]",
-          },
-          tarawih_break: {
-            title: "بين ركعات التراويح",
-            isTreasure: true,
-            btn: "ذكر وتبيح",
-            text: "يستحب أن يشغل الصائم وقته بالذكر بين ركعات القيام، ومن ذلك الإكثار من الباقيات الصالحات: <span class='highlight'>سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر، ولا حول ولا قوة إلا بالله العلي العظيم</span>.",
-          },
+<\/script>`
+},
+"ramadan-duaa": {
+title: "أدعية رمضانية <span style='background: #ff4d4d; color: white; font-size: 0.6rem; padding: 2px 8px; border-radius: 10px; margin-right: 8px; vertical-align: middle; animation: pulse 2s infinite;'>جديد</span>",    isTreasure: true, // عشان يفتح كرت فخم بدون عداد
+    btn: "افتح جوامع الدعاء",
+    text: `
+        <div style="direction: rtl; text-align: right;">
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> عند رؤية الهلال:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم أهله علينا باليُمن والإيمان، والسلامة والإسلام، ربي وربك الله".</p>
+            </div>
 
-          fasting_gift: {
-            title: "هدية الصائم",
-            isTreasure: true,
-            btn: "دعوة لا تُرد",
-            text: "قال رسول الله ﷺ: <span class='highlight'>ثلاثة لا تُرد دعوتهم: الإمام العادل، والصائم حتى يُفطر، ودعوة المظلوم</span>. [رواه الترمذي]. فاحرص على الدعاء قبل أذان المغرب بدقائق فإنها لحظات استجابة.",
-          },
-          iftar_dua: {
-            title: "دعاء الإفطار",
-            isTreasure: true,
-            btn: "سنة نبوية",
-            text: "عن معاذ بن زهرة أنه بلغه أن النبي ﷺ كان يقول إذا أفطر: <span class='highlight'>اللهم لك صمت وعلى رزقك أفطرت</span>. [رواه أبو داود]. <br> وعن ابن عمر رضي الله عنهما قال: كان رسول الله ﷺ إذا أفطر قال: <span class='highlight'>ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله</span>. [صحيح أبي داود]",
-          },
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> عند الإفطار:</p>
+                <p style="margin: 5px 0 0 0;">"ذهب الظمأ وابتلت العروق، وثبت الأجر إن شاء الله".</p>
+            </div>
 
-          lailat_alqadr: {
-            title: "دعاء ليلة القدر",
-            isTreasure: true,
-            btn: "سؤال العفو",
-            text: "عن أم المؤمنين عائشة رضي الله عنها أنها قالت: يا رسول الله، أرأيت إن وافقت ليلة القدر ما أدعو؟ قال: تقولين: <span class='highlight'>اللهم إنك عفو تحب العفو فاعفُ عني</span>. [رواه الترمذي وصححه الألباني]",
-          },
-          sahar_dua: {
-            title: "وقت السحر",
-            isTreasure: true,
-            btn: "ساعة الاستجابة",
-            text: "قال ﷺ: <span class='highlight'>ينزل ربنا تبارك وتعالى كل ليلة إلى السماء الدنيا حين يبقى ثلث الليل الآخر</span> يقول: من يدعوني فأستجيب له؟ من يسألني فأعطيه؟ من يستغفرني فأغفر له؟ [متفق عليه]. وهو وقت السحور المبارك.",
-          },
-          fasting_protection: {
-            title: "خُلُق الصائم",
-            isTreasure: true,
-            btn: "كظم الغيظ",
-            text: "قال رسول الله ﷺ: <span class='highlight'>الصيام جُنة، فلا يرفث ولا يجهل، وإن امرؤ قاتله أو شاتمه فليقل: إني صائم -مرتين-</span>. [رواه البخاري]. ليكون صومك حفظاً لجوارحك كما هو حفظ لبطنك.",
-          },
-          last_ten: {
-            title: "العشر الأواخر",
-            isTreasure: true,
-            btn: "الاجتهاد في العبادة",
-            text: "عن عائشة رضي الله عنها قالت: <span class='highlight'>كان رسول الله ﷺ إذا دخل العشر أحيا الليل، وأيقظ أهله، وجد وشد المئزر</span>. [متفق عليه]. وهي ليالي العتق من النيران والتقرب إلى الرحمن.",
-          },
-        },
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> في ليالي العشر:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إنك عفو تحب العفو فاعفُ عني".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> في جوف الليل:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم لك أسلمت، وبك آمنت، وعليك توكلت، وإليك أنبت.. فاغفر لي ما قدمت وما أخرت".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> من جوامع الدعاء:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إنك عفو كريم تحب العفو فاعفُ عني، اللهم إني أسألك الهدى والتقى والعفاف والغنى".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> لتيسير الرزق والأمر:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم لا سهل إلا ما جعلته سهلاً، وأنت تجعل الحزن إذا شئت سهلاً، اللهم رحمتك أرجو فلا تكلني إلى نفسي طرفة عين".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> للثبات على الطاعة:</p>
+                <p style="margin: 5px 0 0 0;">"يا مقلب القلوب ثبت قلبي على دينك، اللهم أعني على ذكرك وشكرك وحسن عبادتك".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> لفرج الكرب:</p>
+                <p style="margin: 5px 0 0 0;">"لا إله إلا أنت سبحانك إني كنت من الظالمين، اللهم إني أعوذ بك من الهم والحزن، والعجز والكسل، والبخل والجبن".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> للستر والعافية:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم استر عوراتي وآمن روعاتي، اللهم احفظني من بين يدي ومن خلفي، وعن يميني وعن شمالي ومن فوقي".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> للنجاة من النار:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أسألك الجنة وما قرب إليها من قول أو عمل، وأعوذ بك من النار وما قرب إليها من قول أو عمل".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> لطلب الهدى والسداد:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم اهدني وسددني، اللهم إني أسألك الهدى والسداد، اللهم آتِ نفسي تقواها وزكها أنت خير من زكاها".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> بر الوالدين:</p>
+                <p style="margin: 5px 0 0 0;">"رب اغفر لي ولوالدي، رب ارحمهما كما ربياني صغيراً، ربنا اغفر لي ولوالدي وللمؤمنين يوم يقوم الحساب".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> لحفظ النعم:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أعوذ بك من زوال نعمتك، وتحول عافيتك، وفجاءة نقمتك، وجميع سخطك".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> للأهل والذرية:</p>
+                <p style="margin: 5px 0 0 0;">"ربنا هب لنا من أزواجنا وذرياتنا قرة أعين واجعلنا للمتقين إماماً، رب لا تذرني فرداً وأنت خير الوارثين".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> لطلب العلم والفهم:</p>
+                <p style="margin: 5px 0 0 0;">"رب زدني علماً، اللهم انفعني بما علمتني، وعلمني ما ينفعني، وزدني علماً ينفعني".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> لطلب الشفاء:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم رب الناس أذهب البأس، اشفِ وأنت الشافي، لا شفاء إلا شفاؤك، شفاءً لا يغادر سقماً".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> للكفاية والحماية:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم اكفني بـحلالك عن حرامك، وأغنني بفضلِك عمن سواك، اللهم إني أعوذ بك من شر ما عملت، ومن شر ما لم أعمل".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> لحسن الخاتمة:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم اجعل خير عمري آخره، وخير عملي خواتمه، وخير أيامي يوم ألقاك فيه، اللهم توفنا وأنت راضٍ عنا غير غضبان".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> لطلب الهدى والسداد:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم اهدني وسددني، اللهم إني أسألك الهدى والسداد، اللهم آتِ نفسي تقواها وزكها أنت خير من زكاها".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> بر الوالدين:</p>
+                <p style="margin: 5px 0 0 0;">"رب اغفر لي ولوالدي، رب ارحمهما كما ربياني صغيراً، ربنا اغفر لي ولوالدي وللمؤمنين يوم يقوم الحساب".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> لحفظ النعم:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أعوذ بك من زوال نعمتك، وتحول عافيتك، وفجاءة نقمتك، وجميع سخطك".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> للأهل والذرية:</p>
+                <p style="margin: 5px 0 0 0;">"ربنا هب لنا من أزواجنا وذرياتنا قرة أعين واجعلنا للمتقين إماماً، رب لا تذرني فرداً وأنت خير الوارثين".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> لطلب العلم والفهم:</p>
+                <p style="margin: 5px 0 0 0;">"رب زدني علماً، اللهم انفعني بما علمتني، وعلمني ما ينفعني، وزدني علماً ينفعني".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> لطلب الشفاء:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم رب الناس أذهب البأس، اشفِ وأنت الشافي، لا شفاء إلا شفاؤك، شفاءً لا يغادر سقماً".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> للكفاية والحماية:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم اكفني بـحلالك عن حرامك، وأغنني بفضلِك عمن سواك، اللهم إني أعوذ بك من شر ما عملت، ومن شر ما لم أعمل".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;"> لحسن الخاتمة:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم اجعل خير عمري آخره، وخير عملي خواتمه، وخير أيامي يوم ألقاك فيه، اللهم توفنا وأنت راضٍ عنا".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">الاستعاذة من الفتن والشرور:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أعوذ بك من فتنة النار وعذاب النار، وفتنة القبر وعذاب القبر، ومن شر فتنة الغنى، ومن شر فتنة الفقر، وأعوذ بك من شر فتنة المسيح الدجال".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">طلب تمام العافية:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أسألك العافية في الدنيا والآخرة، اللهم إني أسألك العفو والعافية في ديني ودنياي وأهلي ومالي، اللهم استر عوراتي وآمن روعاتي".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">من دعاء النبي صلى الله عليه وسلم:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم أصلح لي ديني الذي هو عصمة أمري، وأصلح لي دنياي التي فيها معاشي، وأصلح لي آخرتي التي فيها معادي، واجعل الحياة زيادة لي في كل خير، واجعل الموت راحة لي من كل شر".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">سيد الاستغفار:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">للثبات والهدى:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم مصرف القلوب صرف قلوبنا على طاعتك، يا مقلب القلوب ثبت قلبي على دينك، اللهم إني أسألك الثبات في الأمر، والعزيمة على الرشد".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">للكفاية من الهم والدين:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم اكفني بحلالك عن حرامك، وأغنني بفضلِك عمن سواك، اللهم إني أعوذ بك من الهم والحزن، وأعوذ بك من العجز والكسل، وأعوذ بك من الجبن والبخل، وأعوذ بك من غلبة الدين وقهر الرجال".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">طلب الرحمة والمغفرة:</p>
+                <p style="margin: 5px 0 0 0;">"ربنا آتنا من لدنك رحمة وهئ لنا من أمرنا رشدا، ربنا اغفر لنا ولإخواننا الذين سبقونا بالإيمان ولا تجعل في قلوبنا غلا للذين آمنوا ربنا إنك رؤوف رحيم".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">لتيسير الشدائد:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم رحمتك أرجو فلا تكلني إلى نفسي طرفة عين، وأصلح لي شأني كله لا إله إلا أنت، اللهم لا سهل إلا ما جعلته سهلا وأنت تجعل الحزن إذا شئت سهلا".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">لجلاء الحزن وذهاب الهم:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني عبدك وابن عبدك وابن أمتك، ناصيتي بيدك، ماض في حكمك، عدل في قضاؤك، أسألك بكل اسم هو لك سميت به نفسك أو أنزلته في كتابك أو علمته أحدا من خلقك أو استأثرت به في علم الغيب عندك أن تجعل القرآن ربيع قلبي ونور صدري وجلاء حزني وذهاب همي".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">سؤال الخير كله:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أسألك من الخير كله عاجله وآجله ما علمت منه وما لم أعلم، وأعوذ بك من الشر كله عاجله وآجله ما علمت منه وما لم أعلم، اللهم إني أسألك من خير ما سألك منه عبدك ونبيك، وأعوذ بك من شر ما عاذ به عبدك ونبيك، اللهم إني أسألك الجنة وما قرب إليها من قول أو عمل، وأسألك أن تجعل كل قضاء قضيته لي خيرا".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">لقضاء الدين والرحمة الواسعة:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم مالك الملك، تؤتي الملك من تشاء، وتنزع الملك ممن تشاء، وتعز من تشاء، وتذل من تشاء، بيدك الخير إنك على كل شيء قدير، رحمن الدنيا والآخرة ورحيمهما، تعطيهما من تشاء، وتمنع منهما من تشاء، ارحمني رحمة تغنيني بها عن رحمة من سواك".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">الاستعاذة من الفقر والدين:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم رب السماوات ورب الأرض ورب العرش العظيم، ربنا ورب كل شيء، فالق الحب والنوى، ومنزل التوراة والإنجيل والفرقان، أعوذ بك من شر كل شيء أنت آخذ بناصيته، اللهم أنت الأول فليس قبلك شيء، وأنت الآخر فليس بعدك شيء، وأنت الظاهر فليس فوقك شيء، وأنت الباطن فليس دونك شيء، اقض عنا الدين، وأغننا من الفقر".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">سؤال اليقين والنصر:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم اقسم لنا من خشيتك ما يحول بيننا وبين معاصيك، ومن طاعتك ما تبلغنا به جنتك، ومن اليقين ما يهون علينا مصيبات الدنيا، ومتعنا بأسماعنا وأبصارنا وقوتنا ما أحييتنا واجعله الوارث منا واجعل ثأرنا على من ظلمنا، وانصرنا على من عادانا، ولا تجعل مصيبتنا في ديننا، ولا تجعل الدنيا أكبر همنا ولا مبلغ علمنا، ولا تسلط علينا من لا يرحمنا".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">طلب النور في كل جارحة:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم اجعل لي في قلبي نورا، وفي لساني نورا، وفي سمعي نورا، وفي بصري نورا، ومن فوقي نورا، ومن تحتي نورا، وعن يميني نورا، وعن شمالي نورا، ومن بين يدي نورا، ومن خلفي نورا، واجعل في نفسي نورا، وأعظم لي نورا".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">طلب الإغاثة وإصلاح الشأن:</p>
+                <p style="margin: 5px 0 0 0;">"يا حي يا قيوم برحمتك أستغيث أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">رجاء الرحمة:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم رحمتك أرجو فلا تكلني إلى نفسي طرفة عين وأصلح لي شأني كله لا إله إلا أنت".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">الاستعاذة من شر النفس والشيطان:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم عالم الغيب والشهادة، فاطر السماوات والأرض، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي وشر الشيطان وشركه".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">لتنقية القلب والباعدة عن الخطايا:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم اغسل خطاياي بماء الثلج والبرد، ونق قلبي من الخطايا كما نقيت الثوب الأبيض من الدنس، وباعد بيني وبين خطاياي كما باعدت بين المشرق والمغرب، اللهم فإني أعوذ بك من الكسل والهرم والمأثم والمغرم".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">لسؤال الثبات على الدين:</p>
+                <p style="margin: 5px 0 0 0;">"يا مقلب القلوب ثبت قلبي على دينك".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">طلب البركة الشاملة:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم بارك لي فيما أعطيت، وقني شر ما قضيت، اللهم إني أسألك عيشة هنية، وميتة سوية، ومرداً غير مخزٍ ولا فاضح، اللهم اجعل أوسع رزقك عليّ عند كبر سني، وانقطاع عمري".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">للحفظ من زلات اللسان والسمع:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أعوذ بك من شر سمعي، ومن شر بصري، ومن شر لساني، ومن شر قلبي، ومن شر منيي، اللهم إني أعوذ بك من منكرات الأخلاق، والأعمال، والأهواء".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">للوقاية من سوء القضاء:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أعوذ بك من جهد البلاء، ودرك الشقاء، وسوء القضاء، وشماتة الأعداء، اللهم إني أعوذ بك من غلبة الدين، وغلبة العدو، وشماتة الأعداء".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">لتزكية النفس وطهارة القلب:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم آتِ نفسي تقواها، وزكها أنت خير من زكاها، أنت وليها ومولاها، اللهم إني أعوذ بك من علم لا ينفع، ومن قلب لا يخشع، ومن نفس لا تشبع، ومن دعوة لا يستجاب لها".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">سؤال التوبة النصوح:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم اقبل توبتي، واغسل حوبتي، وأجب دعوتي، وثبت حجتي، واهدِ قلبي، وسدد لساني، واسلل سخيمة قلبي، اللهم إني أسألك موجبات رحمتك، وعزائم مغفرتك، والسلامة من كل إثم، والغنيمة من كل بر".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">التفويض والتوكل:</p>
+                <p style="margin: 5px 0 0 0;">"ربنا عليك توكلنا وإليك أنبنا وإليك المصير، ربنا لا تجعلنا فتنة للذين كفروا واغفر لنا ربنا إنك أنت العزيز الحكيم، اللهم فوضت أمري إليك رغبة ورهبة إليك، لا ملجأ ولا منجا منك إلا إليك".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">للحفظ في السكن والمقام:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أعوذ بك من جار السوء في دار المقامة، فإن جار البادية يتحول، اللهم إني أعوذ بك من خليل ماكر عيناه ترياني وقلبه يرعاني، إن رأى حسنة دفنها وإن رأى سيئة أذاعها".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">سؤال المغفرة بكل تفاصيلها:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم اغفر لي ذنبي كله، دقه وجله، وأوله وآخره، وعلانيته وسره".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">تعظيم الله والافتقار إليه:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم ربنا لك الحمد، ملء السماوات وملء الأرض، وملء ما شئت من شيء بعد أهل الثناء والمجد، لا مانع لما أعطيت، ولا معطي لما منعت ولا ينفع ذا الجد منك الجد".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">طلب العافية من الأمراض:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أعوذ بك من البرص والجنون والجذام ومن سيئ الأسقام".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">الاستعاذة من ميتات السوء:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أعوذ بك من الهدم وأعوذ بك من التردي وأعوذ بك من الغرق والحرق والهرم وأعوذ بك أن يتخبطني الشيطان عند الموت وأعوذ بك أن أموت في سبيلك مدبرا وأعوذ بك أن أموت لديغا".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">للعزة والعدل:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أعوذ بك من الفقر والقلة والذلة وأعوذ بك من أن أظلم أو أظلم، اللهم إني أعوذ بعظمتك أن أغتال من تحتي".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">للهداية والإيمان:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم حبب إلينا الإيمان وزينه في قلوبنا، وكره إلينا الكفر والفسوق والعصيان، واجعلنا من الراشدين، اللهم توفنا مسلمين وأحينا مسلمين وألحقنا بالصالحين غير خزايا ولا مفتونين".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">سؤال السعادة في الدارين:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم بعلمك الغيب وقدرتك على الخلق أحيني ما علمت الحياة خيرا لي وتوفني إذا علمت الوفاة خيرا لي، اللهم وأسألك خشيتك في الغيب والشهادة وأسألك كلمة الحق في الرضا والغضب وأسألك القصد في الفقر والغنى وأسألك نعيما لا ينفد وأسألك قرة عين لا تنقطع".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">طلب الهداية للحق:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم رب جبرائيل وميكائيل وإسرافيل، فاطر السماوات والأرض، عالم الغيب والشهادة، أنت تحكم بين عبادك فيما كانوا فيه يختلفون، اهدني لما اختلف فيه من الحق بإذنك إنك تهدي من تشاء إلى صراط مستقيم".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">طلب العون والقبول:</p>
+                <p style="margin: 5px 0 0 0;">"رب أعني ولا تعن علي، وانصرني ولا تنصر علي، واهدني ويسر الهدى لي، وانصرني على من بغى علي، رب اجعلني لك شاكراً، لك ذاكراً، لك راهباً، إليك أواهاً منيباً، رب تقبل توبتي، واغسل حوبتي، وأجب دعواتي، واسلل سخيمة صدري".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">الصلاة الإبراهيمية:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم صل على محمد وعلى آل محمد، كما صليت على إبراهيم، وعلى آل إبراهيم، إنك حميد مجيد، اللهم بارك على محمد وعلى آل محمد، كما باركت على إبراهيم وعلى آل إبراهيم، إنك حميد مجيد".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">الاستعاذة من ميتات السوء والحوادث:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أعوذ بك من الهدم وأعوذ بك من التردي وأعوذ بك من الغرق والحرق والهرم وأعوذ بك أن يتخبطني الشيطان عند الموت وأعوذ بك أن أموت في سبيلك مدبرا وأعوذ بك أن أموت لديغا".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">دعاء لغفران الظلم والذنوب:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني ظلمت نفسي ظلما كثيرا ولا يغفر الذنوب إلا أنت، فاغفر لي مغفرة من عندك وارحمني، إنك أنت الغفور الرحيم".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">لسؤال حب الإيمان وكره العصيان:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم حبب إلينا الإيمان وزينه في قلوبنا، وكره إلينا الكفر والفسوق والعصيان، واجعلنا من الراشدين، اللهم توفنا مسلمين وأحينا مسلمين وألحقنا بالصالحين غير خزايا ولا مفتونين".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">الاستعاذة من أرذل العمر:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أعوذ بك من الجبن، وأعوذ بك من البخل، وأعوذ بك من أن أرد إلى أرذل العمر، وأعوذ بك من فتنة الدنيا، وعذاب القبر".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">سؤال فعل الخيرات:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أسألك فعل الخيرات وترك المنكرات وحب المساكين وإذا أردت بعبادك فتنة فاقبضني إليك غير مفتون".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">لتحسين الخلق:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم أحسنت خلقي فأحسن خلقي".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">لطلب التوبة:</p>
+                <p style="margin: 5px 0 0 0;">"رب اغفر لي وتب علي إنك أنت التواب الغفور".</p>
+            </div>
+
+            <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color); box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+                <p style="margin: 0; font-size: 0.9rem; color: var(--main-color); font-weight: bold;">طلب الوقاية من الأمراض الشديدة:</p>
+                <p style="margin: 5px 0 0 0;">"اللهم إني أعوذ بك من البرص والجنون والجذام ومن سيئ الأسقام".</p>
+            </div>
+
+            
+
+        </div>
+    `
+},
+  bukhari_habit: {
+    title: "همة الإمام البخاري",
+    isTreasure: true,
+    btn: "قدوة في القرآن",
+    text: "كان الإمام البخاري <span class='highlight'>يختم في النهار كل يوم ختمة</span>، و<span class='highlight'>يختم عند الإفطار كل ليلة ختمة</span>، ويقول: عند كل ختمة دعوة مستجابة. [المصدر: سير أعلام النبلاء]",
+  },
+  tarawih_break: {
+    title: "بين ركعات التراويح",
+    isTreasure: true,
+    btn: "ذكر وتبيح",
+    text: "يستحب أن يشغل الصائم وقته بالذكر بين ركعات القيام، ومن ذلك الإكثار من الباقيات الصالحات: <span class='highlight'>سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر، ولا حول ولا قوة إلا بالله العلي العظيم</span>.",
+  },
+  
+  fasting_gift: {
+    title: "هدية الصائم",
+    isTreasure: true,
+    btn: "دعوة لا تُرد",
+    text: "قال رسول الله ﷺ: <span class='highlight'>ثلاثة لا تُرد دعوتهم: الإمام العادل، والصائم حتى يُفطر، ودعوة المظلوم</span>. [رواه الترمذي]. فاحرص على الدعاء قبل أذان المغرب بدقائق فإنها لحظات استجابة.",
+  },
+  iftar_dua: {
+    title: "دعاء الإفطار",
+    isTreasure: true,
+    btn: "سنة نبوية",
+    text: "عن معاذ بن زهرة أنه بلغه أن النبي ﷺ كان يقول إذا أفطر: <span class='highlight'>اللهم لك صمت وعلى رزقك أفطرت</span>. [رواه أبو داود]. <br> وعن ابن عمر رضي الله عنهما قال: كان رسول الله ﷺ إذا أفطر قال: <span class='highlight'>ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله</span>. [صحيح أبي داود]",
+  },
+  
+  lailat_alqadr: {
+    title: "دعاء ليلة القدر",
+    isTreasure: true,
+    btn: "سؤال العفو",
+    text: "عن أم المؤمنين عائشة رضي الله عنها أنها قالت: يا رسول الله، أرأيت إن وافقت ليلة القدر ما أدعو؟ قال: تقولين: <span class='highlight'>اللهم إنك عفو تحب العفو فاعفُ عني</span>. [رواه الترمذي وصححه الألباني]",
+  },
+  sahar_dua: {
+    title: "وقت السحر",
+    isTreasure: true,
+    btn: "ساعة الاستجابة",
+    text: "قال ﷺ: <span class='highlight'>ينزل ربنا تبارك وتعالى كل ليلة إلى السماء الدنيا حين يبقى ثلث الليل الآخر</span> يقول: من يدعوني فأستجيب له؟ من يسألني فأعطيه؟ من يستغفرني فأغفر له؟ [متفق عليه]. وهو وقت السحور المبارك.",
+  },
+  fasting_protection: {
+    title: "خُلُق الصائم",
+    isTreasure: true,
+    btn: "كظم الغيظ",
+    text: "قال رسول الله ﷺ: <span class='highlight'>الصيام جُنة، فلا يرفث ولا يجهل، وإن امرؤ قاتله أو شاتمه فليقل: إني صائم -مرتين-</span>. [رواه البخاري]. ليكون صومك حفظاً لجوارحك كما هو حفظ لبطنك.",
+  },
+  last_ten: {
+    title: "العشر الأواخر",
+    isTreasure: true,
+    btn: "الاجتهاد في العبادة",
+    text: "عن عائشة رضي الله عنها قالت: <span class='highlight'>كان رسول الله ﷺ إذا دخل العشر أحيا الليل، وأيقظ أهله، وجد وشد المئزر</span>. [متفق عليه]. وهي ليالي العتق من النيران والتقرب إلى الرحمن.",
+  },
+
+},
+
 
         "daily-counters": {
           palm: {
@@ -1004,8 +1332,7 @@
             title: "الخمسُ جوائز",
             limit: 100,
             btn: "5 جوائز في ذكر",
-            text: "قال رسول الله ﷺ:<br>من قال: <span class='highlight'>لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير</span> في يوم <span class='highlight'>مائة مرة</span>؛ كانت له عدل عشر رقاب، وكُتبت له مائة حسنة، ومُحيت عنه مائة سيئة، وكانت له حرزاً من الشيطان يومه ذلك حتى يمسي، ولم يأتِ أحدٌ بأفضل مما جاء به إلا رجل عمل أكثر منه.",
-          },
+text: "قال رسول الله ﷺ:<br>من قال: <span class='highlight'>لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير</span> في يوم <span class='highlight'>مائة مرة</span>؛ كانت له عدل عشر رقاب، وكُتبت له مائة حسنة، ومُحيت عنه مائة سيئة، وكانت له حرزاً من الشيطان يومه ذلك حتى يمسي، ولم يأتِ أحدٌ بأفضل مما جاء به إلا رجل عمل أكثر منه.",          },
           tree: {
             title: "شجر",
             limit: 1,
@@ -1016,7 +1343,25 @@
             title: "الذكرُ المضاعف",
             limit: 3,
             btn: "ضاعف حسناتك",
-            text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج من عندها بكرة حين صلى الصبح وهي في مسجدها، ثم رجع بعد أن أضحى وهي جالسة، فقال: ما زلتِ على الحالة التي فارقتكِ عليها؟ قالت: نعم، قال ﷺ: لقد قلتُ بعدكِ أربع كلمات <span class='highlight'>ثلاث مرات</span> لو وُزنت بما قلتِ منذ اليوم لوزنتهن: <span class='highlight'>سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته</span>.",
+text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج من عندها بكرة حين صلى الصبح وهي في مسجدها، ثم رجع بعد أن أضحى وهي جالسة، فقال: ما زلتِ على الحالة التي فارقتكِ عليها؟ قالت: نعم، قال ﷺ: لقد قلتُ بعدكِ أربع كلمات <span class='highlight'>ثلاث مرات</span> لو وُزنت بما قلتِ منذ اليوم لوزنتهن: <span class='highlight'>سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته</span>."          },
+
+salat_1000: {
+            title: "كفاية الهم",
+            limit: 1000,
+            btn: "صلِّ على النبي",
+text: `عن أبي بن كعب رضي الله عنه قال: قلت: يا رسول الله، إني أكثر الصلاة عليك، فكم أجعل لك من صلاتي؟ 
+            فقال: ما شئت. 
+            قلت: الربع؟ قال: ما شئت، فإن زدت فهو خير لك. 
+            قلت: فالنصف؟ قال: ما شئت، فإن زدت فهو خير لك. 
+            قلت: فالثلثين؟ قال: ما شئت، فإن زدت فهو خير لك. 
+            قلت: <span class='highlight'>أجعل لك صلاتي كلها؟</span> 
+            قال: <span class='highlight'>إذن تُكفى همك، ويُغفر لك ذنبك</span>. [رواه الترمذي].`
+                    },
+          istighfar_1000: {
+            title: "مفاتيح الرزق",
+            limit: 1000,
+            btn: "استغفر الله",
+            text: "قال ﷺ: <span class='highlight'>من لزم الاستغفار جعل الله له من كل ضيق مخرجاً ومن كل هم فرجاً</span>. (استعن بالعداد لتصل لهدفك اليومي).",
           },
         },
 
@@ -1144,14 +1489,7 @@
             isTreasure: true,
             btn: "القراءة الوافية",
             text: `
-              <style>
-                .dhikr-container { direction: rtl; text-align: right; padding: 5px; }
-                .dhikr-item { border-bottom: 2px solid #4f1a2a; padding: 15px 0; display: flex; align-items: flex-start; gap: 12px; }
-                .dhikr-item:last-child { border-bottom: none; }
-                .num-box { background: #4f1a2a; color: #ffffff !important; border-radius: 5px; min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: bold; flex-shrink: 0; }
-                .dhikr-text { color: #333; font-size: 1.05rem; line-height: 1.7; flex: 1; }
-                .title-tag { font-weight: bold; color: #4f1a2a; }
-              </style>
+          
               <div class="dhikr-container">
                 <div class="dhikr-item"><div class="num-box">١</div><div class="dhikr-text"><span class="title-tag">آية الكرسي:</span> (اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ).</div></div>
                 <div class="dhikr-item"><div class="num-box">٢</div><div class="dhikr-text"><span class="title-tag">سورة الإخلاص:</span> [3 مرات]</div></div>
@@ -1209,15 +1547,25 @@
             title: "وجبت له الجنة",
             isTreasure: true,
             btn: "كلمات توجب الجنة",
-            text: "قال رسول الله ﷺ: من قال إذا أصبح وإذا أمسى: <span class='highlight'>رضيت بالله رباً وبالإسلام ديناً وبمحمد ﷺ نبياً</span>، كان حقاً على الله أن يرضيه يوم القيامة.",
+           text: "قال رسول الله ﷺ: من قال إذا أصبح وإذا أمسى: <span class='highlight'>رضيت بالله رباً وبالإسلام ديناً وبمحمد ﷺ نبياً</span>، كان حقاً على الله أن يرضيه يوم القيامة.",
           },
           treasure_3: {
             title: "قنطار من الأجر",
             isTreasure: true,
             btn: "أتريد قنطاراً في الجنة؟",
-            text: "قال رسول الله ﷺ: <span class='highlight'>من قام بعشر آيات لم يُكتب من الغافلين</span>، ومن قام بمائة آية كُتب من القانتين، ومن قام بألف آية كُتب من المقنطرين.",
-          },
-        },
+text: `قال رسول الله ﷺ: من قام بـ <span class='highlight'>عشر</span> آيات <span class='highlight'>لم يُكتب من الغافلين</span>، ومن قام بـ <span class='highlight'>مائة</span> آية كُتب من <span class='highlight'>القانتين</span>، ومن قام بـ <span class='highlight'>ألف</span> آية كُتب من <span class='highlight'>المقنطرين</span>.
+            <div style="margin-top: 20px; padding: 15px; background: var(--white); border-radius: 12px; border: 1px dashed var(--main-color); text-align: center;">
+                <p style="margin: 5px 0;"> <strong>ملخص الأجر:</strong></p>
+                <p style="margin: 5px 0;">١٠ آيات ← <span class="highlight">براءة من الغفلة</span></p>
+                <p style="margin: 5px 0;">١٠٠ آية ← <span class="highlight">يكتب من القانتين</span></p>
+                <p style="margin: 5px 0;">١٠٠٠ آية ← <span class="highlight">يكتب من المقنطرين</span></p>
+            </div>  
+          
+          <div style="margin-top: 15px; font-size: 0.95rem; text-align: right; border-top: 1px solid var(--main-color); padding-top: 10px; opacity: 0.9;">
+                <p style="margin: 5px 0;"> <strong>معاني الكلمات:</strong></p>
+                <p style="margin: 3px 0;">• <strong>القانتين:</strong> المطيعون المداومون على العبادة والقيام.</p>
+                <p style="margin: 3px 0;">• <strong>المقنطرين:</strong> الذين يُعطون قنطاراً من الأجر (أجرٌ عظيم لا يعلمه إلا الله).</p>
+            </div>`},},
         duaa: {
           duaa_1: {
             title: "دعاء الكرب والفرج",
@@ -1236,10 +1584,10 @@
             `,
           },
           duaa_2: {
-            title: "اسم الله الأعظم",
-            isTreasure: true,
-            btn: "الدعاء وفضله",
-            text: `
+      title: "اسم الله الأعظم",
+      isTreasure: true,
+      btn: "الدعاء وفضله",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1257,7 +1605,7 @@
           </div>
         </div>
       `,
-          },
+    },
           duaa_3: {
             title: "دعاء تفريج الهم",
             isTreasure: true,
@@ -1386,46 +1734,47 @@
               </div>
             `,
           },
+        
         },
 
-        "duaa-jumaa": {
-          alkahf: {
-            title: "سورة الكهف",
-            limit: 1,
-            btn: "نورٌ ما بين الجمعتين",
-            text: "قال رسول الله ﷺ: <span class='highlight'>من قرأ سورة الكهف في يوم الجمعة أضاء له من النور ما بين الجمعتين</span>. [رواه الحاكم]",
-          },
-          salat_nabi: {
-            title: "الصلاة على النبي",
-            limit: 100, // مفتوح، بس حطينا 100 كهدف
-            btn: "يُرد عليك السلام",
-            text: "قال رسول الله ﷺ: <span class='highlight'>أكثروا الصلاة علي يوم الجمعة وليلة الجمعة</span>، فمن صلى علي صلاة صلى الله عليه بها عشراً. [رواه البيهقي]",
-          },
-          dua_hour: {
-            title: "ساعة الاستجابة",
-            limit: 1,
-            btn: "لا يرد فيها سائل",
-            text: "قال رسول الله ﷺ عن يوم الجمعة: <span class='highlight'>فيه ساعة لا يوافقها عبد مسلم وهو قائم يصلي يسأل الله تعالى شيئاً إلا أعطاه إياه</span>. [متفق عليه] (تحرّها آخر ساعة قبل المغرب).",
-          },
-          tabkeer: {
-            title: "التبكير للمسجد",
-            limit: 1,
-            btn: "أجر تقريب بدنة",
-            text: "قال رسول الله ﷺ: <span class='highlight'>من اغتسل يوم الجمعة... ثم راح في الساعة الأولى فكأنما قرب بدنة</span> (ناقة)، ومن راح في الساعة الثانية فكأنما قرب بقرة... [متفق عليه]",
-          },
-          ghusl: {
-            title: "الاغتسال والتطيب",
-            limit: 1,
-            btn: "سُنة مؤكدة",
-            text: "قال رسول الله ﷺ: <span class='highlight'>غُسل يوم الجمعة واجب على كل محتلم</span>، وأن يستنّ (يستاك) ويمسّ من الطيب ما قدر عليه. [رواه مسلم]",
-          },
-        },
-        "quran-messages": {
-          sad: {
-            title: "حزين؟",
-            isTreasure: true,
-            btn: "طبُّ القلوب",
-            text: `
+          "duaa-jumaa": {
+  alkahf: {
+    title: "سورة الكهف",
+isTreasure: true,
+    btn: "نورٌ ما بين الجمعتين",
+    text: "قال رسول الله ﷺ: <span class='highlight'>من قرأ سورة الكهف في يوم الجمعة أضاء له من النور ما بين الجمعتين</span>. [رواه الحاكم]",
+  },
+  salat_nabi: {
+    title: "الصلاة على النبي",
+    limit: 100, // مفتوح، بس حطينا 100 كهدف
+    btn: "يُرد عليك السلام",
+    text: "قال رسول الله ﷺ: <span class='highlight'>أكثروا الصلاة علي يوم الجمعة وليلة الجمعة</span>، فمن صلى علي صلاة صلى الله عليه بها عشراً. [رواه البيهقي]",
+  },
+  dua_hour: {
+    title: "ساعة الاستجابة",
+    isTreasure: true,
+    btn: "لا يرد فيها سائل",
+    text: "قال رسول الله ﷺ عن يوم الجمعة: <span class='highlight'>فيه ساعة لا يوافقها عبد مسلم وهو قائم يصلي يسأل الله تعالى شيئاً إلا أعطاه إياه</span>. [متفق عليه] (تحرّها آخر ساعة قبل المغرب).",
+  },
+  tabkeer: {
+    title: "التبكير للمسجد",
+    isTreasure: true,
+    btn: "أجر تقريب بدنة",
+    text: "قال رسول الله ﷺ: <span class='highlight'>من اغتسل يوم الجمعة... ثم راح في الساعة الأولى فكأنما قرب بدنة</span> (ناقة)، ومن راح في الساعة الثانية فكأنما قرب بقرة... [متفق عليه]",
+  },
+  ghusl: {
+    title: "الاغتسال والتطيب",
+    isTreasure: true,
+    btn: "سُنة مؤكدة",
+    text: "قال رسول الله ﷺ: <span class='highlight'>غُسل يوم الجمعة واجب على كل محتلم</span>، وأن يستنّ (يستاك) ويمسّ من الطيب ما قدر عليه. [رواه مسلم]",
+  },
+},
+"quran-messages": {
+    sad: {
+      title: "حزين؟",
+      isTreasure: true,
+      btn: "طبُّ القلوب",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1440,13 +1789,13 @@
             <div class="dhikr-text">﴿ <span class="highlight">لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ</span> ﴾ [سورة الزمر: 53]</div>
           </div>
         </div>
-      `,
-          },
-          tired: {
-            title: "متعب؟",
-            isTreasure: true,
-            btn: "رسالة جبر",
-            text: `
+      `
+    },
+    tired: {
+      title: "متعب؟",
+      isTreasure: true,
+      btn: "رسالة جبر",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1461,13 +1810,13 @@
             <div class="dhikr-text">﴿ <span class="highlight">وَاصْبِرْ لِحُكْمِ رَبِّكَ فَإِنَّكَ بِأَعْيُنِنَا</span> ﴾ [سورة الطور: 48]</div>
           </div>
         </div>
-      `,
-          },
-          anxious: {
-            title: "خائف أو قلق؟",
-            isTreasure: true,
-            btn: "سكينة",
-            text: `
+      `
+    },
+    anxious: {
+      title: "خائف أو قلق؟",
+      isTreasure: true,
+      btn: "سكينة",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1482,13 +1831,13 @@
             <div class="dhikr-text">﴿ <span class="highlight">قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا</span> ﴾ [سورة التوبة: 51]</div>
           </div>
         </div>
-      `,
-          },
-          lost: {
-            title: "تائه؟",
-            isTreasure: true,
-            btn: "نور الهداية",
-            text: `
+      `
+    },
+    lost: {
+      title: "تائه؟",
+      isTreasure: true,
+      btn: "نور الهداية",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1499,13 +1848,14 @@
             <div class="dhikr-text">﴿ <span class="highlight">يَهْدِي اللَّهُ لِنُورِهِ مَن يَشَاءُ</span> ﴾ [سورة النور: 35]</div>
           </div>
         </div>
-      `,
-          },
-          waiting: {
-            title: "تنتظر فرجاً؟",
-            isTreasure: true,
-            btn: "رسالة الاستبشار",
-            text: `
+      `
+
+    },
+    waiting: {
+      title: "تنتظر فرجاً؟",
+      isTreasure: true,
+      btn: "رسالة الاستبشار",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1520,13 +1870,13 @@
             <div class="dhikr-text">﴿ <span class="highlight">يَأْتِ بِهَا اللَّهُ إِنَّ اللَّهَ لَطِيفٌ خَبِيرٌ</span> ﴾ [سورة لقمان: 16]</div>
           </div>
         </div>
-      `,
-          },
-          wronged: {
-            title: "مظلوم؟",
-            isTreasure: true,
-            btn: "نصرٌ من الله",
-            text: `
+      `
+    },
+    wronged: {
+      title: "مظلوم؟",
+      isTreasure: true,
+      btn: "نصرٌ من الله",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1541,13 +1891,13 @@
             <div class="dhikr-text">﴿ <span class="highlight">وَاللَّهُ مَعَ الصَّابِرِينَ</span> ﴾ [سورة البقرة: 249]</div>
           </div>
         </div>
-      `,
-          },
-          seeking_forgiveness: {
-            title: "أثقلتك الذنوب؟",
-            isTreasure: true,
-            btn: "باب التوبة",
-            text: `
+      `
+    },
+    seeking_forgiveness: {
+      title: "أثقلتك الذنوب؟",
+      isTreasure: true,
+      btn: "باب التوبة",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1562,13 +1912,13 @@
             <div class="dhikr-text">﴿ <span class="highlight">وَهُوَ الَّذِي يَقْبَلُ التَّوْبَةَ عَنْ عِبَادِهِ وَيَعْفُو عَنِ السَّيِّئَاتِ</span> ﴾ [سورة الشورى: 25]</div>
           </div>
         </div>
-      `,
-          },
-          lonely: {
-            title: "وحيد؟",
-            isTreasure: true,
-            btn: "أنيس الروح",
-            text: `
+      `
+    },
+    lonely: {
+      title: "وحيد؟",
+      isTreasure: true,
+      btn: "أنيس الروح",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1583,41 +1933,41 @@
             <div class="dhikr-text">﴿ <span class="highlight">فَإِنِّي قَرِيبٌ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ</span> ﴾ [سورة البقرة: 186]</div>
           </div>
         </div>
-      `,
-          },
-        },
-        "prophets-prayers": {
-          illness: {
-            title: "مريض أو متألم؟",
-            isTreasure: true,
-            btn: "دعاء أيوب عليه السلام",
-            text: `
+      `
+    }
+  },
+"prophets-prayers": {
+    illness: {
+      title: "مريض أو متألم؟",
+      isTreasure: true,
+      btn: "دعاء أيوب عليه السلام",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">أَنِّي مَسَّنِيَ الضُّرُّ وَأَنتَ أَرْحَمُ الرَّاحِمِينَ</span> ﴾ [سورة الأنبياء: 83]</div>
           </div>
         </div>
-      `,
-          },
-          distress: {
-            title: "في ضيق أو كرب؟",
-            isTreasure: true,
-            btn: "دعاء يونس عليه السلام",
-            text: `
+      `
+    },
+    distress: {
+      title: "في ضيق أو كرب؟",
+      isTreasure: true,
+      btn: "دعاء يونس عليه السلام",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">لَّا إِلَهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ</span> ﴾ [سورة الأنبياء: 87]</div>
           </div>
         </div>
-      `,
-          },
-          rizq: {
-            title: "تطلب الذرية أو الرزق؟",
-            isTreasure: true,
-            btn: "دعاء زكريا عليه السلام",
-            text: `
+      `
+    },
+    rizq: {
+      title: "تطلب الذرية أو الرزق؟",
+      isTreasure: true,
+      btn: "دعاء زكريا عليه السلام",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
@@ -1628,100 +1978,100 @@
             <div class="dhikr-text">﴿ <span class="highlight">رَبِّ هَبْ لي مِن لَدُنْكَ ذُرِّيَّةً طَيِّبَةً إِنَّكَ سَميعُ الدُّعاء</span> ﴾ [سورة آل عمران: 38]</div>
           </div>
         </div>
-      `,
-          },
-          strength: {
-            title: "مقبل على أمر صعب؟",
-            isTreasure: true,
-            btn: "دعاء موسى عليه السلام",
-            text: `
+      `
+    },
+    strength: {
+      title: "مقبل على أمر صعب؟",
+      isTreasure: true,
+      btn: "دعاء موسى عليه السلام",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">رَبِّ اشْرَحْ لِي صَدْرِي * وَيَسِّرْ لِي أَمْرِي</span> ﴾ [سورة طه: 25-26]</div>
           </div>
         </div>
-      `,
-          },
-          protection: {
-            title: "خائف من كيد أو عدو؟",
-            isTreasure: true,
-            btn: "دعاء نوح عليه السلام",
-            text: `
+      `
+    },
+    protection: {
+      title: "خائف من كيد أو عدو؟",
+      isTreasure: true,
+      btn: "دعاء نوح عليه السلام",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">أَنِّي مَغْلُوبٌ فَانتَصِرْ</span> ﴾ [سورة القمر: 10]</div>
           </div>
         </div>
-      `,
-          },
-          parents: {
-            title: "تريد الدعاء لوالديك؟",
-            isTreasure: true,
-            btn: "دعاء إبراهيم عليه السلام",
-            text: `
+      `
+    },
+    parents: {
+      title: "تريد الدعاء لوالديك؟",
+      isTreasure: true,
+      btn: "دعاء إبراهيم عليه السلام",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ</span> ﴾ [سورة إبراهيم: 41]</div>
           </div>
         </div>
-      `,
-          },
-          guidance: {
-            title: "تطلب الهداية؟",
-            isTreasure: true,
-            btn: "دعاء الراسخين في العلم",
-            text: `
+      `
+    },
+    guidance: {
+      title: "تطلب الهداية؟",
+      isTreasure: true,
+      btn: "دعاء الراسخين في العلم",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً إِنَّكَ أَنتَ الْوَهَّابُ</span> ﴾ [سورة آل عمران: 8]</div>
           </div>
         </div>
-      `,
-          },
-          success: {
-            title: "تبحث عن التوفيق؟",
-            isTreasure: true,
-            btn: "دعاء شعيب عليه السلام",
-            text: `
+      `
+    },
+    success: {
+      title: "تبحث عن التوفيق؟",
+      isTreasure: true,
+      btn: "دعاء شعيب عليه السلام",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ عَلَيْهِ تَوَكَّلْتُ وَإِلَيْهِ أُنِيبُ</span> ﴾ [سورة هود: 88]</div>
           </div>
         </div>
-      `,
-          },
-          repentance: {
-            title: "تطلب قبول التوبة؟",
-            isTreasure: true,
-            btn: "دعاء آدم عليه السلام",
-            text: `
+      `
+    },
+    repentance: {
+      title: "تطلب قبول التوبة؟",
+      isTreasure: true,
+      btn: "دعاء آدم عليه السلام",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ</span> ﴾ [سورة الأعراف: 23]</div>
           </div>
         </div>
-      `,
-          },
-          solomon_rizq: {
-            title: "تطلب ملكاً ورزقاً؟",
-            isTreasure: true,
-            btn: "دعاء سليمان عليه السلام",
-            text: `
+      `
+    },
+    solomon_rizq: {
+      title: "تطلب ملكاً ورزقاً؟",
+      isTreasure: true,
+      btn: "دعاء سليمان عليه السلام",
+      text: `
         <div class="dhikr-container">
           <div class="dhikr-item">
             <div class="num-box">١</div>
             <div class="dhikr-text">﴿ <span class="highlight">رَبِّ اغْفِرْ لِي وَهَبْ لِي مُلْكًا لَّا يَنبَغِي لِأَحَدٍ مِّن بَعْدِي إِنَّكَ أَنتَ الْوَهَّابُ</span> ﴾ [سورة ص: 35]</div>
           </div>
         </div>
-      `,
-          },
-          acceptance: {
+      `
+    },
+   acceptance: {
             title: "تريد قبول عملك؟",
             isTreasure: true,
             btn: "دعاء إبراهيم وإسماعيل",
@@ -1732,12 +2082,13 @@
                   <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ</span> ﴾ [سورة البقرة: 127]</div>
                 </div>
               </div>
-            `,
-          },
+            `
+          }
         }, // هذا القوس سكر prophets-prayers
+
       }; // سكرنا sectionsData الكبير
 
-      let currentSection = "main";
+let currentSection = "main";
       let currentType = "";
       let data = JSON.parse(localStorage.getItem("heavenData")) || {};
 
@@ -1751,9 +2102,7 @@
 
       // دالة الرجوع الموحدة
       function goBack() {
-        if (
-          document.getElementById("settings-page").style.display === "block"
-        ) {
+        if (document.getElementById("settings-page").style.display === "block") {
           toggleSettings();
           return;
         }
@@ -1794,58 +2143,40 @@
         // إضافة حديث أذكار الصباح والمساء
         if (sectionId === "morning-evening") {
           const hadithDiv = document.createElement("div");
-          hadithDiv.style.cssText =
-            "grid-column: 1 / -1; background: #fdf7f7; border-right: 5px solid #4f1a2a; padding: 15px; margin-bottom: 20px; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; color: #4f1a2a;";
-          hadithDiv.innerHTML = `<strong>عن أنس رضي الله عنه قال: قال رسول الله ﷺ:</strong> "لأن أقعد مع قوم يذكرون الله من صلاة الغداة حتى تطلع الشمس أحب إلي من أن أعتق أربعة..."`;
-          grid.appendChild(hadithDiv);
+          hadithDiv.style.cssText = "grid-column: 1 / -1; background: #fdf7f7; border-right: 5px solid #4f1a2a; padding: 15px; margin-bottom: 20px; border-radius: 8px; font-size: 0.95rem; line-height: 1.6; color: #4f1a2a;";
+hadithDiv.innerHTML = `<strong>عن أنس - رضي الله عنه - قال: قال رسول الله ﷺ:</strong> 
+            "لأن أقعد مع قوم يذكرون الله من صلاة الغداة حتى تطلع الشمس أحب إلي من أن أعتق أربعة من ولد إسماعيل، ولأن أقعد مع قوم يذكرون الله من صلاة العصر إلى أن تغرب الشمس أحب إلي من أن أعتق أربعة" 
+            <br><small style="display:block; margin-top:5px; opacity:0.8;">[رواه أبو داود]</small>`;          grid.appendChild(hadithDiv);
         }
 
         const items = sectionsData[sectionId] || {};
         Object.keys(items).forEach((key) => {
           // ميزة العرض الكامل والنجوم لجدول رمضان
           const isTracker = key === "daily_tracker";
-          const cardStyle = isTracker
-            ? "grid-column: 1 / -1; position: relative; overflow: hidden;"
-            : "";
-          const stars = isTracker
-            ? `<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; display: flex; flex-wrap: wrap; justify-content: space-around; padding: 10px;">${"🌙 ⭐ ".repeat(
-                10
-              )}</div>`
-            : "";
+          const cardStyle = isTracker ? "grid-column: 1 / -1; position: relative; overflow: hidden;" : "";
+          const stars = isTracker ? `<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; display: flex; flex-wrap: wrap; justify-content: space-around; padding: 10px;">${'🌙 ⭐ '.repeat(10)}</div>` : "";
 
           grid.innerHTML += `
             <div class="card" onclick="openDhikr('${key}', '${sectionId}')" style="${cardStyle}">
               ${stars}
               <div class="card-title" style="position: relative; z-index: 1;">
-                ${
-                  sectionId === "daily-counters"
-                    ? '"' + (data[key] || 0) + '" '
-                    : ""
-                }${items[key].title}
+                ${sectionId === "daily-counters" ? '"' + (data[key] || 0) + '" ' : ""}${items[key].title}
               </div>
-              <div class="card-action" style="position: relative; z-index: 1;">${
-                items[key].btn
-              }</div>
+              <div class="card-action" style="position: relative; z-index: 1;">${items[key].btn}</div>
             </div>`;
         });
 
         document.getElementById("section-content-page").style.display = "block";
-        document.getElementById("daily-actions").style.display =
-          sectionId === "daily-counters" ? "flex" : "none";
+        document.getElementById("daily-actions").style.display = (sectionId === "daily-counters" ? "flex" : "none");
         document.getElementById("back-icon").style.display = "inline-block";
-
-        const titles = {
-          "daily-counters": "العدادات اليومية",
-          "morning-evening": "الصباح والمساء",
-          treasures: "كنوز الأذكار",
-          duaa: "جوامع الدعاء",
-          "duaa-jumaa": "يوم الجمعة",
-          ramadan: "رمضان",
-          "prophets-prayers": "أدعية الأنبياء",
-          "quran-messages": "رسائل القرآن",
+        
+        const titles = { 
+          "daily-counters": "العدادات اليومية", "morning-evening": "الصباح والمساء", 
+          "treasures": "كنوز الأذكار", "duaa": "جوامع الدعاء", 
+          "duaa-jumaa": "يوم الجمعة", "ramadan": "رمضان",
+          "prophets-prayers": "أدعية الأنبياء", "quran-messages": "رسائل القرآن"
         };
-        document.getElementById("page-title").innerText =
-          titles[sectionId] || "أجر";
+        document.getElementById("page-title").innerText = titles[sectionId] || "أجر";
       }
 
       function openDhikr(type, sectionId) {
@@ -1862,14 +2193,10 @@
         for (let i = 0; i < scripts.length; i++) {
           const newScript = document.createElement("script");
           newScript.text = scripts[i].innerText;
-          document.body
-            .appendChild(newScript)
-            .parentNode.removeChild(newScript);
+          document.body.appendChild(newScript).parentNode.removeChild(newScript);
         }
 
-        document.getElementById("counter-area").style.display = dhikr.isTreasure
-          ? "none"
-          : "flex";
+        document.getElementById("counter-area").style.display = dhikr.isTreasure ? "none" : "flex";
         document.getElementById("counter-display").innerText = data[type] || 0;
         document.getElementById("back-icon").style.display = "inline-block";
         window.history.pushState({ page: "sub-page" }, "", "");
@@ -1880,21 +2207,13 @@
          ========================================= */
       function increment() {
         data[currentType] = (data[currentType] || 0) + 1;
-        document.getElementById("counter-display").innerText =
-          data[currentType];
-        if (document.getElementById("vibrate-toggle").checked)
-          navigator.vibrate(40);
+        document.getElementById("counter-display").innerText = data[currentType];
+        if (document.getElementById("vibrate-toggle").checked) navigator.vibrate(40);
         localStorage.setItem("heavenData", JSON.stringify(data));
       }
 
       function hideAllPages() {
-        [
-          "main-page",
-          "section-content-page",
-          "sub-page",
-          "feedback-page",
-          "settings-page",
-        ].forEach((id) => {
+        ["main-page", "section-content-page", "sub-page", "feedback-page", "settings-page"].forEach(id => {
           document.getElementById(id).style.display = "none";
         });
       }
@@ -1902,28 +2221,25 @@
       function toggleSettings() {
         const settingsPage = document.getElementById("settings-page");
         const icon = document.getElementById("settings-icon");
-
+        
         if (settingsPage.style.display === "block") {
           // لما نسكر الإعدادات: بنخفيها وبنرجع نظهر الصفحة اللي كنا فيها
           settingsPage.style.display = "none";
           icon.innerText = "settings";
-
+          
           if (currentSection === "main") {
             document.getElementById("main-page").style.display = "block";
           } else if (currentSection === "sub-page") {
             document.getElementById("sub-page").style.display = "block";
           } else {
-            document.getElementById("section-content-page").style.display =
-              "block";
+            document.getElementById("section-content-page").style.display = "block";
           }
         } else {
           // لما نفتح الإعدادات: بنخفي كل شي وبنظهرها هي بس
           hideAllPages();
           settingsPage.style.display = "block";
           icon.innerText = "close";
-          document.getElementById("total-sum").innerText = Object.values(
-            data
-          ).reduce((a, b) => a + b, 0);
+          document.getElementById("total-sum").innerText = Object.values(data).reduce((a, b) => a + b, 0);
         }
       }
       function toggleDarkMode() {
@@ -1932,42 +2248,59 @@
         localStorage.setItem("darkMode", isDark);
       }
 
-      function showBalance() {
-        const list = document.getElementById("balance-list");
-        list.innerHTML = "";
-        Object.keys(data).forEach((k) => {
-          let name = "";
-          Object.values(sectionsData).forEach((sec) => {
-            if (sec[k]) name = sec[k].title;
-          });
-          if (data[k] > 0)
-            list.innerHTML += `<div>✅ \${data[k]} \${name}</div>`;
+     function showBalance() {
+    const list = document.getElementById("balance-list");
+    list.innerHTML = "";
+    
+    // منشيك إذا فيه أي داتا أكبر من صفر
+    const hasData = Object.values(data).some(val => val > 0);
+
+    if (!hasData) {
+        // رسالة تشجيعية في حال كان الرصيد صفر
+        list.innerHTML = `
+            <div style="text-align: center; padding: 30px; color: var(--text-color);">
+                <div style="font-size: 3rem; margin-bottom: 10px;">✨</div>
+                <p style="font-weight: bold; font-size: 1.1rem;">رصيدك مشتاق لذكرك..</p>
+                <p style="font-size: 0.9rem; opacity: 0.8;">سارع بزراعة غراسك في الجنة الآن!</p>
+            </div>`;
+    } else {
+        // عرض الأذكار كالمعتاد
+        Object.keys(data).forEach(k => {
+            let name = "";
+            Object.values(sectionsData).forEach(sec => { 
+                if (sec[k]) name = sec[k].title; 
+            });
+            
+            if (data[k] > 0) {
+                list.innerHTML += `
+                    <div style="padding: 10px; border-bottom: 1px solid var(--light-color); display: flex; justify-content: space-between; align-items: center; color: var(--text-color);">
+                        <span style="font-weight: bold;">✅ ${name}</span>
+                        <span style="background: var(--main-color); color: var(--light-color); padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">
+                            ${data[k]}
+                        </span>
+                    </div>`;
+            }
         });
-        document.getElementById("balance-modal").style.display = "flex";
-      }
+    }
+    document.getElementById("balance-modal").style.display = "flex";
+}
 
-      function closeBalance() {
-        document.getElementById("balance-modal").style.display = "none";
-      }
-
+      function closeBalance() { document.getElementById("balance-modal").style.display = "none"; }
+      
       function resetAll() {
-        if (confirm("تصفير العدادات؟")) {
-          data = {};
-          localStorage.setItem("heavenData", JSON.stringify(data));
-          renderSection("daily-counters");
-        }
+        if (confirm("تصفير العدادات؟")) { data = {}; localStorage.setItem("heavenData", JSON.stringify(data)); renderSection("daily-counters"); }
       }
 
       function markStar(rating) {
         document.getElementById("rating-value").value = rating;
         const stars = document.querySelectorAll(".star-label");
-        stars.forEach((s) => s.classList.remove("selected"));
+        stars.forEach(s => s.classList.remove("selected"));
         stars[5 - rating].classList.add("selected");
       }
 
       function openFeedback() {
         const feedbackPage = document.getElementById("feedback-page");
-
+        
         // إذا كانت صفحة "من أنا" مفتوحة أصلاً، بنسكرها وبنرجع للي قبله
         if (feedbackPage.style.display === "block") {
           feedbackPage.style.display = "none";
@@ -1978,8 +2311,7 @@
           } else if (currentSection === "sub-page") {
             document.getElementById("sub-page").style.display = "block";
           } else {
-            document.getElementById("section-content-page").style.display =
-              "block";
+            document.getElementById("section-content-page").style.display = "block";
           }
         } else {
           // إذا كانت مسكرة، بنفتحها وبنخفي كل شي ثاني
