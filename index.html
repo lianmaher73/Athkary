@@ -284,11 +284,39 @@
 }
 
 /* تنسيق الـ checkbox عشان ما يلزق بالحواف */
-.setting-row input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
+/* التعديل الجديد للمربعات ليعمل في الثيمين صح */
+.setting-row input[type="checkbox"],
+#tracker-matrix input[type="checkbox"] {
+    -webkit-appearance: none; /* إلغاء تحكم الموبايل الافتراضي */
+    appearance: none;
+    width: 22px;
+    height: 22px;
     cursor: pointer;
-    accent-color: var(--main-color);
+    border: 2px solid var(--main-color); /* يستخدم العنابي في الفاتح والأبيض في الداكن */
+    border-radius: 5px;
+    background-color: var(--white); /* يستخدم الأبيض في الفاتح والعنابي الفاتح في الداكن */
+    position: relative;
+    transition: 0.2s;
+}
+
+/* شكل علامة الصح عند الضغط */
+.setting-row input[type="checkbox"]:checked,
+#tracker-matrix input[type="checkbox"]:checked {
+    background-color: var(--main-color); /* يقلب اللون الأساسي عند التفعيل */
+}
+
+/* رسم علامة الصح يدوياً لضمان عدم اختفائها */
+.setting-row input[type="checkbox"]:checked::after,
+#tracker-matrix input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--light-color); /* لون الصح يكون لون الخلفية المعاكس */
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
 }
 
 /* تنسيق صندوق المجموع الكلي */
@@ -749,36 +777,39 @@
   isTreasure: true,
   btn: "عرض جدول الـ 30 يوم",
   text: `
-    <div style="direction: rtl; padding: 5px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
-      
-      <div style="background: #fdf7f7; border-right: 5px solid #4f1a2a; padding: 15px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); min-width: 300px; max-width: 100%; color: #4f1a2a; line-height: 1.6;">
+    <div style="direction: rtl; padding: 5px;">
+    
+    <div style="background: #fdf7f7; border-right: 5px solid #4f1a2a; padding: 15px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); color: #4f1a2a; line-height: 1.6;">
         <strong style="font-size: 1.1rem; display: block; margin-bottom: 10px;">فضل السنن والنوافل ✨</strong>
         
         <div style="font-size: 0.95rem;">
-          <strong>عن أبي هريرة رضي الله عنه قال: قال رسول الله ﷺ في الحديث القدسي:</strong>
-          "وما يزالُ عبدي <strong>يتقرَّبُ إليَّ بالنَّوافلِ حتَّى أُحبَّه</strong>، فإذا أحببتُه كنتُ سمعَه الَّذي يسمعُ به، وبصرَه الَّذي يُبصرُ به.."
+            <strong>عن أبي هريرة رضي الله عنه قال: قال رسول الله ﷺ في الحديث القدسي:</strong>
+            "وما يزالُ عبدي <strong>يتقرَّبُ إليَّ بالنَّوافلِ حتَّى أُحبَّه</strong>، فإذا أحببتُه كنتُ سمعَه الَّذي يسمعُ به، وبصرَه الَّذي يُبصرُ به.."
         </div>
 
         <div style="margin-top: 15px; border-top: 1px dashed rgba(79, 26, 42, 0.2); padding-top: 10px; font-size: 0.95rem;">
-          <strong>وعنه رضي الله عنه أن النبي ﷺ قال:</strong>
-          "إنَّ أولَ ما يُحاسبُ بهِ العبدُ يومَ القيامةِ من عملِهِ صلاتُهُ... فإن انتقصَ من فريضتِهِ شيئاً قالَ الربُّ تبارك وتعالى: <strong>انظروا هل لعبدي من تطوُّعٍ فيُكمَّلَ بها ما انتقصَ من الفريضةِ</strong>"
+            <strong>وعنه رضي الله عنه أن النبي ﷺ قال:</strong>
+            "إنَّ أولَ ما يُحاسبُ بهِ العبدُ يومَ القيامةِ من عملِهِ صلاتُهُ... فإن انتقصَ من فريضتِهِ شيئاً قالَ الربُّ تبارك وتعالى: <strong>انظروا هل لعبدي من تطوُّعٍ فيُكمَّلَ بها ما انتقصَ من الفريضةِ</strong>"
         </div>
-      </div>
+    </div>
 
-      <h3 style="color: var(--main-color); text-align: center; margin-bottom: 15px;">لوحة إنجاز رمضان (30 يوم) </h3>
-      
-      <div style="min-width: 4000px; background: var(--white); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+    <h3 style="color: var(--main-color); text-align: center; margin-bottom: 15px;">لوحة إنجاز رمضان (30 يوم)</h3>
+</div>
+
+<div style="direction: rtl; padding: 5px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+    <div style="min-width: 4000px; background: var(--white); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
         <table style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">
-          <thead>
-            <tr style="background: var(--main-color); color: var(--light-color);">
-              <th style="width: 160px; padding: 15px 5px; border: 1px solid rgba(255,255,255,0.2); position: sticky; right: 0; background: var(--main-color); z-index: 10; font-size: 0.85rem;">المهمة والعبادة</th>
-              ${Array.from({length: 30}, (_, i) => `<th style="width: 80px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem;">${i+1}</th>`).join('')}
-            </tr>
-          </thead>
-          <tbody id="tracker-matrix">
-          </tbody>
+            <thead>
+                <tr style="background: var(--main-color); color: var(--light-color);">
+                    <th style="width: 160px; padding: 15px 5px; border: 1px solid rgba(255,255,255,0.2); position: sticky; right: 0; background: var(--main-color); z-index: 10; font-size: 0.85rem;">المهمة والعبادة</th>
+                    ${Array.from({length: 30}, (_, i) => `<th style="width: 80px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem;">${i+1}</th>`).join('')}
+                </tr>
+            </thead>
+            <tbody id="tracker-matrix">
+                </tbody>
         </table>
-      </div>
+    </div>
+</div>
 
       <p style="text-align: center; font-size: 0.9rem; margin-top: 15px; color: var(--main-color); font-weight: bold;">
           اسحب الجدول لليسار لمتابعة باقي الأيام (حتى يوم 30) 
@@ -796,12 +827,11 @@
 
       const defaultTasks = [
         {id: 'fajr_s', n: 'الفجر (سنة + فريضة)'},
-        {id: 'sabah', n: 'أذكار الصباح', section: 'morning-evening', type: 'morning_full'},
+        { id: 'sabah', n: 'أذكار الصباح <br><small style="font-weight:normal; opacity:0.8;">(الأفضل بعد الفجر وقبل الشروق)</small>', section: 'morning-evening', type: 'morning_full'},
         {id: 'doha', n: 'صلاة الضحى (أقلها ركعتين)'},
         {id: 'dhuhr_s', n: 'الظهر (سنة + فريضة)'},
         {id: 'asr_s', n: 'العصر'},   
-        {id: 'masaa', n: 'أذكار المساء', section: 'morning-evening', type: 'evening_full'}, 
-        {id: 'maghrib_s', n: 'المغرب (فريضة + سنة)'},
+        {id: 'masaa', n: 'أذكار المساء <br><small style="font-weight:normal; opacity:0.8;">(الأفضل بعد العصر وقبل المغرب)</small>', section: 'morning-evening', type: 'evening_full'},       {id: 'maghrib_s', n: 'المغرب (فريضة + سنة)'},
         {id: 'isha_s', n: 'العشاء (سنة + وتر)'},
         {id: 'taraweeh', n: 'صلاة التراويح <br><small style="font-weight:normal; opacity:0.8;">(ثمان ركعات أو أكثر)</small>'},
         {id: 'dikr_100', n: 'سبحان الله وبحمده (100)', section: 'daily-counters', type: 'ghofran'},
@@ -1015,7 +1045,7 @@ bukhari_habit: {
   tarawih_break: {
     title: "بين ركعات التراويح",
     isTreasure: true,
-    btn: "ذكر وتبيح",
+    btn: "ذكر مستحب",
     text: "يستحب أن يشغل الصائم وقته بالذكر بين ركعات القيام، ومن ذلك الإكثار من الباقيات الصالحات: <span class='highlight'>سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر، ولا حول ولا قوة إلا بالله العلي العظيم</span>.",
   },
   
