@@ -924,14 +924,22 @@
       renderMatrix();
     })();
 
-    window.goToDhikr = (section, type) => {
-      window.history.back();
-      setTimeout(() => {
-          if (typeof openDhikr === "function") {
-              openDhikr(type, section);
-          }
-      }, 150);
-    };
+   window.goToDhikr = (section, type) => {
+    // 1. إخفاء صفحة الجدول الحالية فوراً بدون أي تأخير بصري
+    document.getElementById("sub-page").style.display = "none";
+    
+    // 2. تحديث الحالة الداخلية للتطبيق ليعرف أين نحن
+    currentSection = section; 
+
+    // 3. فتح صفحة الذكر المطلوبة مباشرة
+    if (typeof openDhikr === "function") {
+        openDhikr(type, section);
+    }
+    
+    // 4. استبدال الحالة في التاريخ بدلاً من العودة للخلف 
+    // لضمان أن المستخدم إذا ضغط "رجوع" يعود لصفحة رمضان وليس للجدول
+    window.history.replaceState({ page: section }, "", "");
+};
     <\/script>`
 },
 "ramadan-duaa": {
