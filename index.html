@@ -1034,6 +1034,11 @@
         height: 56px;
         padding: 0 12px;
       }
+      .grid {
+        /* 🌟 وعدّلي هذا السطر أيضاً ليكون 2 أعمدة أو 3 كحد أقصى حتى لا تصغر البطاقات في الشاشات الأكبر */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 18px;
+      }
 
       .header-center {
         font-size: 1.05rem;
@@ -1405,7 +1410,7 @@
         <div class="about-qr-share"
           style="margin-bottom: 20px; padding: 20px; background: var(--white); border-radius: var(--r-lg); border: 1px solid var(--border); text-align: center;">
           <h4 style="color: var(--teal-deep); font-size: 1.1rem; margin-bottom: 6px;">الدال على الخير كفاعله</h4>
-          <img src="/Athkary-main/img/QR.png" alt="QR Code"
+          <img src="img/QR.png" alt="QR Code"
             style="width: 150px; height: 150px; margin: 10px auto; display: block; border: 3px solid var(--teal-mid); border-radius: 12px; box-shadow: var(--shadow-sm);">
           <p style="font-size: 0.85rem; color: var(--text-muted);">اجعل أحبابك يمسحون الرمز لمشاركتك الأجر</p>
         </div>
@@ -1421,7 +1426,7 @@
       <div class="about-qr-share"
         style="margin-bottom: 20px; padding: 20px; background: var(--white); border-radius: var(--r-lg); border: 1px solid var(--border); text-align: center;">
         <h4 style="color: var(--teal-deep); font-size: 1.1rem; margin-bottom: 6px;">الدال على الخير كفاعله</h4>
-        <img src="/Athkary-main/img/QR.png" alt="QR Code"
+        <img src="img/QR.png" alt="QR Code"
           style="width: 150px; height: 150px; margin: 10px auto; display: block; border: 3px solid var(--teal-mid); border-radius: 12px; box-shadow: var(--shadow-sm);">
         <p style="font-size: 0.85rem; color: var(--text-muted);">اجعل أحبابك يمسحون الرمز لمشاركتك الأجر</p>
       </div>
