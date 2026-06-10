@@ -1,0 +1,2916 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>أجر</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XR0YC1YREJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "G-XR0YC1YREJ");
+  </script>
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function (OneSignal) {
+      await OneSignal.init({ appId: "73735103-3f37-478c-9d5c-f232c70ba8a6" });
+      if (typeof sectionsData !== "undefined") {
+        const counters = Object.values(sectionsData["daily-counters"]);
+        const randomDhikr = counters[Math.floor(Math.random() * counters.length)];
+        OneSignal.Notifications.displaySelfContainedNotification({
+          title: "تذكير بالخير ✨",
+          body: `ما رأيك أن نكسب اليوم: ${randomDhikr.title}؟ - ${randomDhikr.btn}`,
+          icon: "https://lianmaher73.github.io/Athkary/img/Logo.png",
+        });
+      }
+    });
+  </script>
+  <style>
+    /* ═══════════════════════════════════════════
+         DESIGN TOKENS — Modern Islamic Palette
+         ═══════════════════════════════════════════ */
+    :root {
+      /* Core palette */
+      --teal-deep: #0D2B3E;
+      /* primary dark */
+      --teal-mid: #1A4A6B;
+      /* hover/active */
+      --teal-light: #E8F4F8;
+      /* light bg tint */
+      --gold: #C8963E;
+      /* accent gold */
+      --gold-light: #F5E6CC;
+      /* gold wash */
+      --cream: #FAF6F0;
+      /* page background */
+      --white: #FFFFFF;
+      --text-primary: #1A2B38;
+      --text-muted: #5A7384;
+      --border: rgba(13, 43, 62, 0.12);
+
+      /* Semantic aliases */
+      --main-color: var(--teal-deep);
+      --light-color: var(--cream);
+      --dark-color: #0A1E2B;
+
+      /* Spacing scale */
+      --r-sm: 8px;
+      --r-md: 16px;
+      --r-lg: 24px;
+      --r-xl: 32px;
+
+      /* Shadows */
+      --shadow-sm: 0 2px 8px rgba(13, 43, 62, 0.08);
+      --shadow-md: 0 4px 20px rgba(13, 43, 62, 0.12);
+      --shadow-lg: 0 8px 32px rgba(13, 43, 62, 0.16);
+
+      /* Animation */
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Dark theme — same teal/gold identity, deeper values */
+    body.dark-theme {
+      --teal-deep: #4DA8D4;
+      /* teal brightened for dark bg readability */
+      --teal-mid: #6BBEE0;
+      /* lighter teal for hover/gradient on dark */
+      --teal-light: #0B2030;
+      /* dark teal tint for card icons bg */
+      --gold: #D4A44E;
+      /* gold slightly brightened */
+      --gold-light: #1E2D1E;
+      /* very dark gold wash */
+      --cream: #0C1A24;
+      /* deep navy-teal background */
+      --white: #112233;
+      /* card surface */
+      --text-primary: #DCF0F8;
+      /* cool white text */
+      --text-muted: #6E9BB0;
+      --border: rgba(77, 168, 212, 0.15);
+      --main-color: var(--teal-deep);
+      --light-color: var(--cream);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    /* ═══════════════════════════════════════════
+         RESET & BASE
+         ═══════════════════════════════════════════ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      min-height: 100vh;
+      background-color: var(--cream);
+      color: var(--text-primary);
+      transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Cairo', 'Noto Naskh Arabic', Tahoma, sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      /* Subtle Islamic geometric background */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%230D2B3E' stroke-width='0.4' opacity='0.06'%3E%3Cpolygon points='30,5 55,20 55,40 30,55 5,40 5,20'/%3E%3Cpolygon points='30,15 45,23 45,37 30,45 15,37 15,23'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    body.dark-theme {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23C8963E' stroke-width='0.4' opacity='0.08'%3E%3Cpolygon points='30,5 55,20 55,40 30,55 5,40 5,20'/%3E%3Cpolygon points='30,15 45,23 45,37 30,45 15,37 15,23'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* ═══════════════════════════════════════════
+         HEADER
+         ═══════════════════════════════════════════ */
+    .header {
+      background: linear-gradient(135deg, var(--teal-deep) 0%, var(--teal-mid) 100%);
+      color: var(--white);
+      padding: 0 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 2000;
+      box-shadow: 0 2px 16px rgba(13, 43, 62, 0.3);
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .header-side {
+      width: 52px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      border-radius: var(--r-sm);
+      transition: background 0.2s var(--ease);
+    }
+
+    .header-side:active {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .header-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Noto Naskh Arabic', serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.01em;
+    }
+
+    .back-btn {
+      cursor: pointer;
+      font-size: 22px;
+      display: none;
+      padding: 4px;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .header-who {
+      font-size: 0.75rem;
+      opacity: 0.9;
+      cursor: pointer;
+      text-align: center;
+      width: 52px;
+      color: var(--gold-light);
+      font-weight: 500;
+      line-height: 1.3;
+    }
+
+    /* ═══════════════════════════════════════════
+         CONTAINER
+         ═══════════════════════════════════════════ */
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    /* Hero tagline */
+    .hero-tagline {
+      text-align: center;
+      padding: 18px 12px 8px;
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 1.05rem;
+      color: var(--teal-mid);
+      font-weight: 600;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    body.dark-theme .hero-tagline {
+      color: var(--teal-deep);
+    }
+
+    /* Gold divider */
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 4px 16px 16px;
+    }
+
+    .gold-divider::before,
+    .gold-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .gold-divider-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--gold);
+    }
+
+    /* ═══════════════════════════════════════════
+         GRID & CARDS
+         ═══════════════════════════════════════════ */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--gold), var(--teal-mid));
+      opacity: 0;
+      transition: opacity 0.2s var(--ease);
+    }
+
+    .card:active {
+      transform: scale(0.97);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card:active::before {
+      opacity: 1;
+    }
+
+    .card-icon-area {
+      padding: 18px 14px 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--teal-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      color: var(--teal-deep);
+    }
+
+    body.dark-theme .card-icon {
+      background: rgba(77, 168, 212, 0.12);
+      color: var(--teal-deep);
+    }
+
+    .card-title {
+      padding: 6px 14px 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: 'Cairo', sans-serif;
+      line-height: 1.3;
+    }
+
+    .card-action {
+      background: linear-gradient(135deg, var(--teal-deep), var(--teal-mid));
+      color: rgba(255, 255, 255, 0.95);
+      padding: 10px 14px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-action::before {
+      content: '←';
+      font-size: 0.85rem;
+      color: var(--gold);
+    }
+
+    /* Special full-width card (Ramadan) */
+    .card-wide {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--teal-deep) 0%, var(--teal-mid) 100%);
+      border: none;
+    }
+
+    .card-wide .card-title {
+      color: var(--white);
+      padding: 18px 18px 6px;
+      font-size: 1.1rem;
+    }
+
+    .card-wide .card-action {
+      background: rgba(200, 150, 62, 0.25);
+      border-top: 1px solid rgba(200, 150, 62, 0.3);
+      color: var(--gold-light);
+    }
+
+    .card-wide .card-action::before {
+      color: var(--gold);
+    }
+
+    .card-wide .card-icon-area {
+      padding: 18px 18px 0;
+    }
+
+    .card-wide .card-icon {
+      background: rgba(200, 150, 62, 0.2);
+      color: var(--gold);
+    }
+
+    /* Counter value badge on cards */
+    .counter-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--gold);
+      color: var(--teal-deep);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    /* ═══════════════════════════════════════════
+         SETTINGS PAGE
+         ═══════════════════════════════════════════ */
+    #settings-page {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 64px);
+      background: var(--cream);
+      z-index: 1500;
+      overflow-y: auto;
+    }
+
+    #settings-page .container {
+      padding-top: 24px;
+    }
+
+    .settings-title {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      padding-right: 4px;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--white);
+      padding: 16px 20px;
+      border-radius: var(--r-md);
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+    }
+
+    .setting-row span {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    /* Toggle switch */
+    .toggle-wrap {
+      position: relative;
+      width: 48px;
+      height: 26px;
+      flex-shrink: 0;
+    }
+
+    .toggle-wrap input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: var(--border);
+      border-radius: 26px;
+      cursor: pointer;
+      transition: background 0.25s var(--ease);
+      border: 1.5px solid var(--border);
+    }
+
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      right: 2px;
+      top: 1px;
+      background: var(--white);
+      border-radius: 50%;
+      transition: transform 0.25s var(--ease);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .toggle-wrap input:checked+.toggle-slider {
+      background: var(--teal-mid);
+      border-color: var(--teal-mid);
+    }
+
+    .toggle-wrap input:checked+.toggle-slider::before {
+      transform: translateX(-22px);
+    }
+
+    /* Custom checkbox (tracker matrix) */
+    .setting-row input[type="checkbox"],
+    #tracker-matrix input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      cursor: pointer;
+      border: 2px solid var(--teal-mid);
+      border-radius: 6px;
+      background: var(--white);
+      position: relative;
+      transition: all 0.2s var(--ease);
+    }
+
+    .setting-row input[type="checkbox"]:checked,
+    #tracker-matrix input[type="checkbox"]:checked {
+      background: var(--teal-deep);
+      border-color: var(--teal-deep);
+    }
+
+    .setting-row input[type="checkbox"]:checked::after,
+    #tracker-matrix input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 2px;
+      width: 6px;
+      height: 11px;
+      border: solid var(--white);
+      border-width: 0 2.5px 2.5px 0;
+      transform: rotate(45deg);
+    }
+
+    /* Total sum box */
+    .total-sum-box {
+      background: linear-gradient(135deg, var(--teal-deep), var(--teal-mid));
+      color: var(--white);
+      padding: 24px 20px;
+      border-radius: var(--r-lg);
+      margin-top: 20px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    .total-sum-box .sum-label {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      margin-bottom: 6px;
+    }
+
+    .total-sum-box .sum-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      font-family: 'Cairo', sans-serif;
+    }
+
+    .total-sum-box .sum-note {
+      font-size: 0.8rem;
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+
+    /* ═══════════════════════════════════════════
+         DHIKR CONTENT PAGES
+         ═══════════════════════════════════════════ */
+    #section-content-page,
+    #sub-page,
+    #feedback-page {
+      display: none;
+    }
+
+    .hadith-box {
+      background: var(--white);
+      padding: 20px;
+      border-radius: var(--r-lg);
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--text-primary);
+      border-right: 4px solid var(--gold);
+    }
+
+    /* Counter circle */
+    .circle-frame {
+      width: 220px;
+      height: 220px;
+      border: 3px solid transparent;
+      background: linear-gradient(var(--white), var(--white)) padding-box,
+        linear-gradient(135deg, var(--gold), var(--teal-mid)) border-box;
+      border-radius: 50%;
+      margin: 40px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      touch-action: manipulation;
+      box-shadow: var(--shadow-md), 0 0 0 12px var(--teal-light);
+      transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+      position: relative;
+    }
+
+    .circle-frame:active {
+      transform: scale(0.95);
+      box-shadow: var(--shadow-sm), 0 0 0 8px var(--teal-light);
+    }
+
+    /* Dark header stays teal but deeper */
+    body.dark-theme .header {
+      background: linear-gradient(135deg, #071520 0%, #0D2B3E 100%);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    body.dark-theme .circle-frame {
+      box-shadow: var(--shadow-md), 0 0 0 12px rgba(77, 168, 212, 0.08);
+    }
+
+    #counter-display {
+      font-size: 5.5rem;
+      font-weight: 700;
+      color: var(--teal-deep);
+      font-family: 'Cairo', sans-serif;
+      line-height: 1;
+    }
+
+    body.dark-theme #counter-display {
+      color: var(--teal-deep);
+    }
+
+    .counter-tap-hint {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: -20px;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, var(--teal-light), var(--gold-light));
+      color: var(--teal-deep);
+      padding: 2px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin: 2px 1px;
+      font-weight: 600;
+      border: 1px solid rgba(13, 43, 62, 0.1);
+    }
+
+    body.dark-theme .highlight {
+      background: rgba(77, 168, 212, 0.15);
+      color: var(--teal-deep);
+      border-color: rgba(77, 168, 212, 0.2);
+    }
+
+    /* Footer buttons */
+    .footer {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .reset-btn {
+      background: linear-gradient(135deg, var(--teal-deep), var(--teal-mid));
+      color: var(--white);
+      border: none;
+      padding: 12px 24px;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.9rem;
+      font-family: inherit;
+      box-shadow: var(--shadow-sm);
+      transition: opacity 0.2s;
+    }
+
+    .reset-btn:active {
+      opacity: 0.85;
+    }
+
+    .balance-link {
+      color: var(--gold);
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ═══════════════════════════════════════════
+         DHIKR LIST ITEMS (within treasure content)
+         ═══════════════════════════════════════════ */
+    .dhikr-container {
+      direction: rtl;
+      text-align: right;
+      padding: 4px 0;
+    }
+
+    .dhikr-item {
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      opacity: 1;
+    }
+
+    .dhikr-item:last-child {
+      border-bottom: none;
+    }
+
+    .num-box {
+      background: linear-gradient(135deg, var(--teal-deep), var(--teal-mid));
+      color: var(--white);
+      border-radius: 8px;
+      min-width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .dhikr-text {
+      color: var(--text-primary);
+      font-size: 1rem;
+      line-height: 1.8;
+      flex: 1;
+      font-family: 'Noto Naskh Arabic', serif;
+    }
+
+    .title-tag {
+      font-weight: 700;
+      color: var(--teal-deep);
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body.dark-theme .title-tag {
+      color: var(--teal-deep);
+    }
+
+    /* ═══════════════════════════════════════════
+         BALANCE MODAL
+         ═══════════════════════════════════════════ */
+    #balance-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(13, 43, 62, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 3000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: var(--white);
+      padding: 28px;
+      border-radius: var(--r-xl);
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      border-top: 4px solid var(--gold);
+    }
+
+    .modal-box h3 {
+      color: var(--teal-deep);
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+    }
+
+    body.dark-theme .modal-box h3 {
+      color: var(--teal-deep);
+    }
+
+    .modal-close-btn {
+      width: 100%;
+      border: none;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--teal-deep), var(--teal-mid));
+      color: var(--white);
+      padding: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: inherit;
+      margin-top: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ═══════════════════════════════════════════
+         FEEDBACK PAGE
+         ═══════════════════════════════════════════ */
+    .feedback-hero {
+      background: linear-gradient(135deg, var(--teal-deep), var(--teal-mid));
+      border-radius: var(--r-lg);
+      padding: 24px;
+      margin-bottom: 20px;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .feedback-hero h3 {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .feedback-hero p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: var(--r-md);
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s var(--ease);
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--teal-mid);
+    }
+
+    .rating-stars {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      gap: 6px;
+      margin: 12px 0 20px;
+    }
+
+    .star-label {
+      font-size: 36px;
+      color: var(--border);
+      cursor: pointer;
+      transition: color 0.15s var(--ease), transform 0.15s var(--ease);
+    }
+
+    .star-label:hover,
+    .star-label:hover~.star-label {
+      color: var(--gold);
+      transform: scale(1.1);
+    }
+
+    .star-label.selected,
+    .star-label.selected~.star-label {
+      color: var(--gold);
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: none;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--teal-deep), var(--teal-mid));
+      color: var(--white);
+      padding: 16px;
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: inherit;
+      box-shadow: var(--shadow-sm);
+      transition: opacity 0.2s;
+    }
+
+    .submit-btn:active {
+      opacity: 0.85;
+    }
+
+    /* ═══════════════════════════════════════════
+         SECTION HADITH CALLOUT
+         ═══════════════════════════════════════════ */
+    .section-hadith {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--teal-light), var(--gold-light));
+      border-right: 4px solid var(--gold);
+      padding: 16px;
+      border-radius: var(--r-md);
+      margin-bottom: 4px;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-primary);
+      font-family: 'Noto Naskh Arabic', serif;
+    }
+
+    body.dark-theme .section-hadith {
+      background: rgba(77, 168, 212, 0.06);
+      border-right-color: var(--teal-deep);
+    }
+
+    /* Ramadan full-width special card overrides */
+    .ramadan-card {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--teal-deep) 0%, #153D5C 100%);
+      border: none;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ramadan-card::after {
+      content: '🌙';
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.5rem;
+      opacity: 0.15;
+    }
+
+    /* ═══════════════════════════════════════════
+         ANIMATIONS
+         ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse-gold {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(200, 150, 62, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 0 0 12px rgba(200, 150, 62, 0);
+      }
+    }
+
+    .card {
+      animation: fadeUp 0.3s var(--ease) both;
+    }
+
+    .card:nth-child(1) {
+      animation-delay: 0.03s;
+    }
+
+    .card:nth-child(2) {
+      animation-delay: 0.06s;
+    }
+
+    .card:nth-child(3) {
+      animation-delay: 0.09s;
+    }
+
+    .card:nth-child(4) {
+      animation-delay: 0.12s;
+    }
+
+    .card:nth-child(5) {
+      animation-delay: 0.15s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card {
+        animation: none;
+      }
+
+      * {
+        transition: none !important;
+      }
+    }
+
+    /* ═══════════════════════════════════════════
+         NEW BADGE
+         ═══════════════════════════════════════════ */
+    .badge-new {
+      background: #E53935;
+      color: white;
+      font-size: 0.6rem;
+      padding: 2px 7px;
+      border-radius: 20px;
+      margin-right: 8px;
+      vertical-align: middle;
+      font-weight: 700;
+      animation: pulse-new 2s infinite;
+    }
+
+    @keyframes pulse-new {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    /* ═══════════════════════════════════════════
+         RESPONSIVE — all screen sizes
+         ═══════════════════════════════════════════ */
+
+    /* Mobile small (<360px) */
+    @media (max-width: 360px) {
+      .header {
+        height: 56px;
+        padding: 0 12px;
+      }
+
+      .header-center {
+        font-size: 1.05rem;
+      }
+
+      .card-title {
+        font-size: 0.88rem;
+        padding: 8px 10px 10px;
+      }
+
+      .card-action {
+        font-size: 0.72rem;
+        padding: 8px 10px;
+      }
+
+      .card-icon-area {
+        padding: 12px 10px 4px;
+      }
+
+      .card-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 15px;
+        border-radius: 8px;
+      }
+
+      .grid {
+        gap: 8px;
+      }
+
+      .container {
+        padding: 14px 12px 32px;
+      }
+
+      #counter-display {
+        font-size: 4.5rem;
+      }
+
+      .circle-frame {
+        width: 185px;
+        height: 185px;
+      }
+
+      .hero-tagline {
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Mobile standard (360–480px) — default, already designed for this */
+
+    /* Large phones / small tablets (480–640px) */
+    @media (min-width: 480px) {
+      .container {
+        padding: 24px 20px 48px;
+      }
+
+      .grid {
+        gap: 14px;
+      }
+
+      .card-title {
+        font-size: 1.05rem;
+      }
+
+      .header {
+        padding: 0 24px;
+      }
+
+      .circle-frame {
+        width: 240px;
+        height: 240px;
+      }
+
+      #counter-display {
+        font-size: 6rem;
+      }
+    }
+
+    /* Tablets portrait (640–900px) */
+    @media (min-width: 640px) {
+      .container {
+        max-width: 600px;
+        padding: 28px 24px 56px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .card-wide,
+      .ramadan-card {
+        grid-column: 1 / -1;
+      }
+
+      .header {
+        padding: 0 32px;
+        height: 68px;
+      }
+
+      .header-center {
+        font-size: 1.35rem;
+      }
+
+      .hero-tagline {
+        font-size: 1.15rem;
+        padding: 22px 16px 10px;
+      }
+
+      .circle-frame {
+        width: 260px;
+        height: 260px;
+      }
+
+      #counter-display {
+        font-size: 6.5rem;
+      }
+
+      #settings-page {
+        top: 68px;
+        height: calc(100% - 68px);
+      }
+    }
+
+    /* Tablets landscape / small laptops (900–1200px) */
+    @media (min-width: 900px) {
+      .container {
+        max-width: 720px;
+        padding: 32px 28px 64px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+
+      .card-wide,
+      .ramadan-card {
+        grid-column: 1 / -1;
+      }
+
+      /* On wide screens, Ramadan card gets 2 col instead of full */
+      .card-title {
+        font-size: 1rem;
+      }
+
+      .hadith-box {
+        font-size: 1.1rem;
+        padding: 24px;
+      }
+
+      .circle-frame {
+        width: 280px;
+        height: 280px;
+      }
+
+      .total-sum-box .sum-value {
+        font-size: 3rem;
+      }
+    }
+
+    /* Desktop (≥1200px) */
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 860px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+
+      .card {
+        border-radius: 20px;
+      }
+
+      /* Hover states for desktop */
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .card:hover::before {
+        opacity: 1;
+      }
+
+      .circle-frame:hover {
+        box-shadow: var(--shadow-lg), 0 0 0 16px var(--teal-light);
+      }
+    }
+
+    /* Ensure counter area doesn't overflow on any screen */
+    #sub-page .container,
+    #sub-page {
+      max-width: 100%;
+    }
+
+    /* Safe area insets for notched phones */
+    @supports (padding: max(0px)) {
+      .header {
+        padding-left: max(18px, env(safe-area-inset-left));
+        padding-right: max(18px, env(safe-area-inset-right));
+      }
+
+      .container {
+        padding-bottom: max(40px, calc(env(safe-area-inset-bottom) + 20px));
+      }
+    }
+
+    /* Tracker table — horizontal scroll on all sizes */
+    .tracker-scroll-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border-radius: var(--r-md);
+    }
+
+    /* Print */
+    @media print {
+
+      .header,
+      #settings-page,
+      #balance-modal {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-side" onclick="toggleSettings()" style="text-align: right">
+      <span id="settings-icon" class="material-symbols-outlined" style="font-size: 22px;">settings</span>
+    </div>
+    <div class="header-center">
+      <div id="back-icon" class="back-btn" onclick="goBack()">→</div>
+      <span id="page-title">أجر</span>
+    </div>
+    <div class="header-who" onclick="openFeedback()">من<br>أنا؟</div>
+  </div>
+
+  <!-- MAIN PAGE -->
+  <div class="container">
+    <div id="main-page">
+      <p class="hero-tagline">بِقَدْرِ ذِكْرِكَ، يَعْلُو بُنيانك</p>
+      <div class="gold-divider">
+        <div class="gold-divider-dot"></div>
+      </div>
+
+      <div class="grid">
+        <!-- Ramadan card — full width -->
+        <div class="card card-wide ramadan-card" onclick="showSection('ramadan')" hidden> >
+          <div class="card-icon-area">
+            <!-- <div class="card-icon">🌙</div> -->
+          </div>
+          <div class="card-title">رمضان</div>
+          <div class="card-action">العبادات والأدعية</div>
+        </div>
+
+        <div class="card" onclick="showSection('daily-counters')">
+          <!-- <div class="card-icon-area"><div class="card-icon">📿</div></div> -->
+          <div class="card-title">العدادات اليومية</div>
+          <div class="card-action">نخل، قصور، وكنوز</div>
+        </div>
+
+        <div class="card" onclick="showSection('morning-evening')">
+          <!-- <div class="card-icon-area"><div class="card-icon">🌅</div></div> -->
+          <div class="card-title">الصباح والمساء</div>
+          <div class="card-action">كاملة ومختصرة</div>
+        </div>
+
+        <div class="card" onclick="showSection('adhan-sunnan')">
+          <!-- <div class="card-icon-area"><div class="card-icon">🕌</div></div> -->
+          <div class="card-title">الأذان والإقامة</div>
+          <div class="card-action">سنن مستحبة</div>
+        </div>
+
+        <div class="card" onclick="showSection('treasures')">
+          <!-- <div class="card-icon-area"><div class="card-icon">💎</div></div> -->
+          <div class="card-title">كنوز الأذكار</div>
+          <div class="card-action">أحاديث عظيمة الأجر</div>
+        </div>
+
+        <div class="card" onclick="showSection('duaa')">
+          <!-- <div class="card-icon-area"><div class="card-icon">🤲</div></div> -->
+          <div class="card-title">جوامع الدعاء</div>
+          <div class="card-action">أدعية مستجابة</div>
+        </div>
+
+        <div class="card" onclick="showSection('duaa-jumaa')">
+          <!-- <div class="card-icon-area"><div class="card-icon">⭐</div></div> -->
+          <div class="card-title">يوم الجمعة</div>
+          <div class="card-action">أهم الأعمال</div>
+        </div>
+
+        <div class="card" onclick="showSection('prophets-prayers')">
+          <!-- <div class="card-icon-area"><div class="card-icon">📖</div></div> -->
+          <div class="card-title">أدعية الأنبياء</div>
+          <div class="card-action">كما وردت</div>
+        </div>
+
+        <div class="card" onclick="showSection('quran-messages')">
+          <!-- <div class="card-icon-area"><div class="card-icon">🌿</div></div> -->
+          <div class="card-title">رسائل القرآن</div>
+          <div class="card-action">آيات تطمئن قلبك</div>
+        </div>
+
+        <!-- Surah Al-Mulk Card -->
+        <div class="card" onclick="showSection('surah-almulk')">
+          <div class="card-title">سورة الملك</div>
+          <div class="card-action">المنجية من عذاب القبر</div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- SECTION CONTENT PAGE -->
+
+    
+    <div id="section-content-page">
+      <div id="section-items-grid" class="grid"></div>
+      <div id="daily-actions" class="footer" style="display: none">
+        <span class="balance-link" onclick="showBalance()">✨ شاهد رصيدك</span>
+        <button class="reset-btn" onclick="resetAll()">تصفير</button>
+      </div>
+    </div>
+
+    <!-- SUB PAGE (counter) -->
+    <div id="sub-page">
+      <div class="hadith-box">
+        <p id="hadith-content"></p>
+      </div>
+      <div id="counter-area" class="circle-frame" onclick="increment()">
+        <div id="counter-display">0</div>
+      </div>
+      <p class="counter-tap-hint">اضغط للتسبيح</p>
+    </div>
+
+    <!-- SETTINGS PAGE -->
+    <div id="settings-page">
+      <div class="container">
+        <p class="settings-title">الإعدادات</p>
+        <div class="setting-row">
+          <span>الاهتزاز عند العد</span>
+          <label class="toggle-wrap">
+            <input type="checkbox" id="vibrate-toggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <span>الوضع الداكن</span>
+          <label class="toggle-wrap">
+            <input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode()">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="total-sum-box">
+          <div class="sum-label">مجموع تسبيحاتك الكلي</div>
+          <div class="sum-value" id="total-sum">0</div>
+          <div class="sum-note">كل ذكر يُبنى في ميزانك ✨</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEEDBACK PAGE -->
+    <div id="feedback-page" class="container">
+      <div class="feedback-hero">
+        <h3>هذا التطبيق صدقة جارية 🤍<br>لا تنسوني من صالح دعائكم</h3>
+        <p>رأيك يساعدنا على التطوير</p>
+      </div>
+
+      <form id="suggestion-form" action="https://formspree.io/f/mlgrznlk" method="POST">
+        <div class="rating-stars" id="star-container">
+          <span class="star-label" onclick="markStar(5)">★</span>
+          <span class="star-label" onclick="markStar(4)">★</span>
+          <span class="star-label" onclick="markStar(3)">★</span>
+          <span class="star-label" onclick="markStar(2)">★</span>
+          <span class="star-label" onclick="markStar(1)">★</span>
+          <input type="hidden" name="rating" id="rating-value" value="0" />
+        </div>
+        <input type="email" name="email" placeholder="إيميلك (اختياري)" />
+        <textarea name="message" required placeholder="اكتب اقتراحك أو سبب التقييم هنا..."
+          style="height: 120px; resize: none;"></textarea>
+        <button type="submit" class="submit-btn" id="submit-btn">إرسال التقييم</button>
+        <div id="status-msg"
+          style="margin-top: 15px; font-weight: bold; display: none; color: var(--teal-mid); text-align: center;"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- BALANCE MODAL -->
+  <div id="balance-modal"
+    style="display:none; position:fixed; inset:0; background:rgba(13,43,62,0.7); backdrop-filter:blur(4px); z-index:3000; align-items:center; justify-content:center; padding:20px;">
+    <div class="modal-box">
+      <h3>رصيدك من النعيم ✨</h3>
+      <div id="balance-list" style="text-align: right; margin: 16px 0; line-height: 2;"></div>
+      <button onclick="closeBalance()" class="modal-close-btn">تقبل الله</button>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================
+       [مكان الإضافة]: هنا يمكنكِ إضافة أذكار جديدة 
+       =========================================
+    */
+    const sectionsData = {
+
+      "adhan-sunnan": {
+        during_adhan: {
+          title: "ماذا نردد أثناء الأذان",
+          isTreasure: true,
+          btn: "عرض السنّة النبوية",
+          text: `
+            <div class="dhikr-container">
+                <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color);">
+                    <strong>عن أبي سعيد الخدري رضي الله عنه أن رسول الله ﷺ قال:</strong><br>
+                    "إِذَا سَمِعْتُمُ المُؤَذِّنَ، <span class="highlight">فَقُولوا مِثْلَ ما يقولُ</span>" [رواه البخاري ومسلم].
+                </div>
+                
+                <div class="dhikr-item">
+                    <div class="num-box">١</div>
+                    <div class="dhikr-text">تردد خلف المؤذن في كل جملة إلا في <span class="title-tag">"حي على الصلاة"</span> و <span class="title-tag">"حي على الفلاح"</span>، فتقول: <br><span class="highlight">"لا حول ولا قوة إلا بالله"</span>.</div>
+                </div>
+
+                <div class="dhikr-item">
+                    <div class="num-box">٢</div>
+                    <div class="dhikr-text">في صلاة الفجر، عندما يقول المؤذن <span class="title-tag">"الصلاة خير من النوم"</span>، تقول مثله: <br><span class="highlight">"الصلاة خير من النوم"</span>.</div>
+                </div>
+            </div>
+        `
+        },
+        after_adhan: {
+          title: "الأذكار بعد انتهاء الأذان",
+          isTreasure: true,
+          btn: "عرض الأذكار والشفاعة",
+          text: `
+            <div class="dhikr-container">
+                <div class="dhikr-item">
+                    <div class="num-box">١</div>
+                    <div class="dhikr-text"><span class="title-tag">الصلاة على النبي:</span> "اللهم صلِّ على محمد وعلى آل محمد..." (الصلاة الإبراهيمية)، لقوله ﷺ: <span class="highlight">"فإنه من صلى عليَّ صلاة صلى الله عليه بها عشراً"</span>.</div>
+                </div>
+
+                <div class="dhikr-item">
+                    <div class="num-box">٢</div>
+                    <div class="dhikr-text"><span class="title-tag">دعاء الوسيلة:</span> "اللهم رب هذه الدعوة التامة، والصلاة القائمة، آت محمداً <span class="highlight">الوسيلة والفضيلة</span>، وابعثه مقاماً محموداً الذي وعدته".<br><small>(الفضل: حلت له شفاعة النبي ﷺ يوم القيامة).</small></div>
+                </div>
+
+                <div class="dhikr-item">
+                    <div class="num-box">٣</div>
+                    <div class="dhikr-text"><span class="title-tag">الشهادة:</span> "وأنا أشهد أن لا إله إلا الله وحده لا شريك له، وأن محمداً عبده ورسوله، <span class="highlight">رضيت بالله رباً وبالإسلام ديناً وبمحمد رسولاً</span>".<br><small>(الفضل: غُفر له ذنبه).</small></div>
+                </div>
+            </div>
+        `
+        },
+        dua_between: {
+          title: "الدعاء وقت الاستجابة",
+          isTreasure: true,
+          btn: "أجر الدعاء المستجاب",
+          text: `
+            <div class="dhikr-container">
+                <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 15px; border-radius: 12px; margin-bottom: 15px; color: var(--text-color);">
+                    <strong>عن أنس بن مالك رضي الله عنه قال: قال رسول الله ﷺ:</strong><br>
+                    "<span class="highlight">الدُّعاءُ لا يُردُّ بين الأذانِ والإقامةِ</span>" [رواه الترمذي وأبو داود].
+                </div>
+                
+                <div class="dhikr-item">
+                    <div class="dhikr-text">هذا الوقت من أرجى الأوقات لإجابة الدعاء، فاجتهد في <span class="title-tag">سؤال الله العافية</span> في الدنيا والآخرة، ولا تغفل عنه بالانشغال بالناس أو الهاتف.</div>
+                </div>
+            </div>
+        `
+        }
+      },// سكرنا adhan-sunnan
+      // أضيفي أذكار عداد جديدة هنا (تأكدي من وضع فاصلة بين كل ذكر)
+      "ramadan": {
+
+
+        daily_tracker: {
+          title: "جدول المتابعة الرمضاني الشامل",
+          isTreasure: true,
+          btn: "عرض جدول الـ 30 يوم",
+          text: `
+    <div style="direction: rtl; padding: 5px;">
+    
+    <div style="background: #fdf7f7; border-right: 5px solid #4f1a2a; padding: 15px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); color: #4f1a2a; line-height: 1.6;">
+        <strong style="font-size: 1.1rem; display: block; margin-bottom: 10px;">فضل السنن والنوافل ✨</strong>
+        
+        <div style="font-size: 0.95rem;">
+            <strong>عن أبي هريرة رضي الله عنه قال: قال رسول الله ﷺ في الحديث القدسي:</strong>
+            "وما يزالُ عبدي <strong>يتقرَّبُ إليَّ بالنَّوافلِ حتَّى أُحبَّه</strong>، فإذا أحببتُه كنتُ سمعَه الَّذي يسمعُ به، وبصرَه الَّذي يُبصرُ به.."
+        </div>
+
+        <div style="margin-top: 15px; border-top: 1px dashed rgba(79, 26, 42, 0.2); padding-top: 10px; font-size: 0.95rem;">
+            <strong>وعنه رضي الله عنه أن النبي ﷺ قال:</strong>
+            "إنَّ أولَ ما يُحاسبُ بهِ العبدُ يومَ القيامةِ من عملِهِ صلاتُهُ... فإن انتقصَ من فريضتِهِ شيئاً قالَ الربُّ تبارك وتعالى: <strong>انظروا هل لعبدي من تطوُّعٍ فيُكمَّلَ بها ما انتقصَ من الفريضةِ</strong>"
+        </div>
+    </div>
+
+    <h3 style="color: var(--main-color); text-align: center; margin-bottom: 15px;">لوحة إنجاز رمضان (30 يوم)</h3>
+</div>
+
+<div style="direction: rtl; padding: 5px; overflow-x: auto; -webkit-overflow-scrolling: touch;">
+    <div style="min-width: 4000px; background: var(--white); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        <table style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">
+            <thead>
+                <tr style="background: var(--main-color); color: var(--light-color);">
+                    <th style="width: 160px; padding: 15px 5px; border: 1px solid rgba(255,255,255,0.2); position: sticky; right: 0; background: var(--main-color); z-index: 10; font-size: 0.85rem;">المهمة والعبادة</th>
+                    ${Array.from({ length: 30 }, (_, i) => `<th style="width: 80px; padding: 10px; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem;">${i + 1}</th>`).join('')}
+                </tr>
+            </thead>
+            <tbody id="tracker-matrix">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+      <p style="text-align: center; font-size: 0.9rem; margin-top: 15px; color: var(--main-color); font-weight: bold;">
+          اسحب الجدول لليسار لمتابعة باقي الأيام (حتى يوم 30) 
+      </p>
+
+      <button onclick="addNewTask()" style="width: 100%; padding: 12px; margin-top: 10px; background: var(--main-color); color: var(--light-color); border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-family: inherit; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        ➕ إضافة عبادة مخصصة للجدول
+      </button>
+    </div>
+
+    <script>
+    (function() {
+      const matrixBody = document.getElementById('tracker-matrix');
+      if(!matrixBody) return;
+
+      const defaultTasks = [
+        {id: 'fajr_s', n: 'الفجر (سنة + فريضة)'},
+        { id: 'sabah', n: 'أذكار الصباح <br><small style="font-weight:normal; opacity:0.8;">(الأفضل بعد الفجر وقبل الشروق)</small>', section: 'morning-evening', type: 'morning_full'},
+        {id: 'doha', n: 'صلاة الضحى (أقلها ركعتين)'},
+        {id: 'dhuhr_s', n: 'الظهر (سنة + فريضة)'},
+        {id: 'asr_s', n: 'العصر'},   
+        {id: 'masaa', n: 'أذكار المساء <br><small style="font-weight:normal; opacity:0.8;">(الأفضل بعد العصر وقبل المغرب)</small>', section: 'morning-evening', type: 'evening_full'},       {id: 'maghrib_s', n: 'المغرب (فريضة + سنة)'},
+        {id: 'isha_s', n: 'العشاء (سنة + وتر)'},
+        {id: 'taraweeh', n: 'صلاة التراويح <br><small style="font-weight:normal; opacity:0.8;">(ثمان ركعات أو أكثر)</small>'},
+        {id: 'dikr_100', n: 'سبحان الله وبحمده (100)', section: 'daily-counters', type: 'ghofran'},
+        {id: 'nabe_100', n: 'الصلاة على النبي ﷺ (100-1000)', section: 'daily-counters', type: 'salat_1000'},
+        {id: 'esteghfar_100', n: 'الاستغفار (100-1000)', section: 'daily-counters', type: 'istighfar_1000'},
+        {id: 'quran_j', n: 'ورد القرآن (أقله جزء)'},
+        {id: 'qeab_lel', n: 'قيام ليل (ولو ركعتين)'}
+      ];
+
+      window.renderMatrix = () => {
+        let customTasks = JSON.parse(localStorage.getItem('custom_ramadan_tasks')) || [];
+        let ramData = JSON.parse(localStorage.getItem('ramadan_tracker')) || {};
+        let html = '';
+
+        const createRow = (task, isCustom) => {
+          let row = '<tr style="border-bottom: 1px solid var(--light-color);">';
+          let linkAttr = "";
+          let textStyle = "";
+
+          if (task.section && task.type) {
+            linkAttr = 'onclick="goToDhikr(\\'' + task.section + '\\', \\'' + task.type + '\\')"';
+            textStyle = "cursor: pointer; text-decoration: underline;";
+          }
+
+          row += '<td ' + linkAttr + ' style="width: 160px; padding: 10px 5px; font-weight: bold; color: var(--main-color); background: var(--white); position: sticky; right: 0; z-index: 5; text-align: right; font-size: 0.85rem; border-left: 2px solid var(--main-color); white-space: normal; ' + textStyle + '">';      
+          
+          if (isCustom) {
+            row += '<span onclick="deleteTask(\\'' + task.id + '\\')" style="color: #ff4d4d; cursor: pointer; margin-left: 5px; font-size: 0.8rem;" title="حذف">❌</span>';
+            row += '<span onclick="editTask(\\'' + task.id + '\\', \\'' + task.n + '\\')" style="cursor: pointer; margin-left: 8px; font-size: 0.85rem;" title="تعديل">📝</span>';
+          }
+          
+          row += task.n + '</td>';
+          
+          for (let day = 1; day <= 30; day++) {
+            const isChecked = (ramData[day] && ramData[day][task.id]) ? 'checked' : '';
+            row += '<td style="padding: 5px; border: 1px solid var(--light-color); width: 80px;">' +
+                   '<input type="checkbox" style="width: 22px; height: 22px; cursor: pointer; accent-color: var(--main-color);" ' +
+                   'onclick="updateMatrix(' + day + ', \\'' + task.id + '\\', this.checked)" ' + isChecked + '>' +
+                   '</td>';
+          }
+          row += '</tr>';
+          return row;
+        };
+
+        defaultTasks.forEach(t => { html += createRow(t, false); });
+        customTasks.forEach(t => { html += createRow(t, true); });
+        matrixBody.innerHTML = html;
+      };
+
+      window.editTask = (taskId, oldName) => {
+        let newName = prompt("تعديل اسم العبادة:", oldName);
+        if (newName && newName.trim() !== "" && newName !== oldName) {
+          let customTasks = JSON.parse(localStorage.getItem('custom_ramadan_tasks')) || [];
+          let taskIndex = customTasks.findIndex(t => t.id === taskId);
+          if (taskIndex !== -1) {
+            customTasks[taskIndex].n = newName;
+            localStorage.setItem('custom_ramadan_tasks', JSON.stringify(customTasks));
+            renderMatrix();
+          }
+        }
+      };
+
+      window.updateMatrix = (day, taskId, status) => {
+        let data = JSON.parse(localStorage.getItem('ramadan_tracker')) || {};
+        if (!data[day]) data[day] = {};
+        data[day][taskId] = status;
+        localStorage.setItem('ramadan_tracker', JSON.stringify(data));
+        renderMatrix();
+      };
+
+      window.addNewTask = () => {
+        let taskName = prompt("اكتب اسم العبادة الجديدة:");
+        if (taskName && taskName.trim() !== "") {
+          let customTasks = JSON.parse(localStorage.getItem('custom_ramadan_tasks')) || [];
+          customTasks.push({id: 'c_' + Date.now(), n: taskName});
+          localStorage.setItem('custom_ramadan_tasks', JSON.stringify(customTasks));
+          renderMatrix();
+        }
+      };
+
+      window.deleteTask = (taskId) => {
+        if (confirm("هل تريد حذف هذه العبادة؟")) {
+          let customTasks = JSON.parse(localStorage.getItem('custom_ramadan_tasks')) || [];
+          customTasks = customTasks.filter(t => t.id !== taskId);
+          localStorage.setItem('custom_ramadan_tasks', JSON.stringify(customTasks));
+          renderMatrix();
+        }
+      };
+
+      renderMatrix();
+    })();
+
+   window.goToDhikr = (section, type) => {
+    // 1. إخفاء صفحة الجدول الحالية فوراً بدون أي تأخير بصري
+    document.getElementById("sub-page").style.display = "none";
+    
+    // 2. تحديث الحالة الداخلية للتطبيق ليعرف أين نحن
+    currentSection = section; 
+
+    // 3. فتح صفحة الذكر المطلوبة مباشرة
+    if (typeof openDhikr === "function") {
+        openDhikr(type, section);
+    }
+    
+    // 4. استبدال الحالة في التاريخ بدلاً من العودة للخلف 
+    // لضمان أن المستخدم إذا ضغط "رجوع" يعود لصفحة رمضان وليس للجدول
+    window.history.replaceState({ page: section }, "", "");
+};
+    <\/script>`
+        },
+        "ramadan-duaa": {
+          title: "أدعية رمضانية <span style='background: #ff4d4d; color: white; font-size: 0.6rem; padding: 2px 8px; border-radius: 10px; margin-right: 8px; vertical-align: middle; animation: pulse 2s infinite;'>جديد</span>", isTreasure: true, // عشان يفتح كرت فخم بدون عداد
+          btn: "افتح جوامع الدعاء",
+          text: `
+    <div style="direction: rtl; text-align: right; font-size: 0.95rem; line-height: 1.6; color: var(--text-color);">
+        
+        <h4 style="color: var(--main-color); border-bottom: 2px solid var(--main-color); padding-bottom: 5px;"> نفحات رمضانية</h4>
+        
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 12px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+            <strong style="color: var(--main-color);">عند رؤية الهلال:</strong> "اللهم أهله علينا باليمن والإيمان، والسلامة والإسلام، ربي وربك الله".
+        </div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+            <strong style="color: var(--main-color);">عند الإفطار:</strong> "ذهب الظمأ وابتلت العروق، وثبت الأجر إن شاء الله".
+        </div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+            <strong style="color: var(--main-color);">في ليلة القدر:</strong> "اللهم إنك عفو تحب العفو فاعف عني".
+        </div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+            <strong style="color: var(--main-color);">في جوف الليل:</strong> "اللهم لك أسلمت، وبك آمنت، وعليك توكلت، وإليك أنبت.. فاغفر لي ما قدمت وما أخرت".
+        </div>
+
+        <h4 style="color: var(--main-color); border-bottom: 2px solid var(--main-color); padding-bottom: 5px; margin-top: 25px;"> من أنوار القرآن</h4>
+
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"ربنا لا تؤاخذنا إن نسينا أو أخطأنا".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"رب اجعلني مقيم الصلاة ومن ذريتي ربنا وتقبل دعاء".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"ربنا هب لنا من أزواجنا وذرياتنا قرة أعين واجعلنا للمتقين إماما".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"ربنا لا تزغ قلوبنا بعد إذ هديتنا وهب لنا من لدنك رحمة".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"رب اشرح لي صدري ويسر لي أمري".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"رب إني لما أنزلت إلي من خير فقير".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"ربنا آتنا من لدنك رحمة وهيئ لنا من أمرنا رشدا".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"رب هب لي من لدنك ذرية طيبة إنك سميع الدعاء".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"ربنا أفرغ علينا صبرا وثبت أقدامنا وانصرنا على القوم الكافرين".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"ربنا تقبل منا إنك أنت السميع العليم".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"ربنا إننا آمنا فاغفر لنا ذنوبنا وقنا عذاب النار".</div>
+
+        <h4 style="color: var(--main-color); border-bottom: 2px solid var(--main-color); padding-bottom: 5px; margin-top: 25px;"> من جوامع الكلم ﷺ</h4>
+
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم أصلح لي ديني الذي هو عصمة أمري، وأصلح لي دنياي التي فيها معاشي".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك الهدى والتقى والعفاف والغنى".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"يا مقلب القلوب ثبت قلبي على دينك".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من العجز والكسل، والجبن والبخل، والهرم وعذاب القبر".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم آت نفسي تقواها، وزكها أنت خير من زكاها، أنت وليها ومولاها".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من علم لا ينفع، ومن قلب لا يخشع، ومن نفس لا تشبع".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك من الخير كله عاجله وآجله، ما علمت منه وما لم أعلم".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من زوال نعمتك، وتحول عافيتك، وفجاءة نقمتك".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم يا مصرف القلوب صرف قلوبنا على طاعتك".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم اغفر لي خطيئتي وجهلي، وإسرافي في أمري، وما أنت أعلم به مني".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من شر ما عملت، ومن شر ما لم أعمل".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم أكثر مالي وولدي، وبارك لي فيما أعطيتني".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من غلبة الدين، وغلبة العدو، وشماتة الأعداء".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك علما نافعا، ورزقا طيبا، وعملا متقبلا".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم اجعل في قلبي نورا، وفي بصري نورا، وفي سمعي نورا".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم بارك لي في سمعي وبصري، واجعلهما الوارث مني".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك العافية في الدنيا والآخرة".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم استر عوراتي وآمن روعاتي، واحفظني من بين يدي ومن خلفي".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من الهدم والتردي، والغرق والحرق".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم اجعل خير عمري آخره، وخير عملي خواتمه".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من مضلات الفتن، ما ظهر منها وما بطن".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك الجنة وما قرب إليها من قول أو عمل".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من النار وما قرب إليها من قول أو عمل".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من الفقر والقلة والذلة".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم اهدني وسددني، واذكر بالهدى هدايتك الطريق".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من البرص والجنون والجذام وسيئ الأسقام".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم حبب إلينا الإيمان وزينه في قلوبنا وكره إلينا الكفر والفسوق".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم توفنا مسلمين وأحينا مسلمين وألحقنا بالصالحين".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من منكرات الأخلاق والأعمال والأهواء".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم رحمتك أرجو فلا تكلني إلى نفسي طرفة عين".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم اغفر لي ذنبي كله، دقه وجله، وأوله وآخره".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك الثبات في الأمر، والعزيمة على الرشد".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم أحسنت خلقي فأحسن خلقي".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من يوم السوء، ومن ليلة السوء".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك فواتح الخير وخواتمه".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم اكفني بحلالك عن حرامك وأغنني بفضلِك عمن سواك".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم رب السماوات ورب الأرض، اقض عنا الدين وأغننا من الفقر".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من فتنة النار وعذاب النار".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"رب اغفر لي ولوالدي وللمؤمنين يوم يقوم الحساب".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك نفسا بك مطمئنة، تؤمن بلقائك، وترضى بقضائك".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من خليل ماكر، عيناه ترياني وقلبه يرعاني".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم لك أسلمت وبك آمنت وعليك توكلت فاغفر لي ما قدمت وما أخرت".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك العفو والعافية في ديني ودنياي وأهلي ومالي".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"يا حي يا قيوم برحمتك أستغيث أصلح لي شأني كله".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك الثبات عند السؤال وفي القبر".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من الكفر والفقر ومن عذاب القبر".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك قلبا سليما ولسانا صادقا".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم لا مانع لما أعطيت ولا معطي لما منعت".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم أحينا على السنة وتوفنا على الملة".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم بارك لنا في أوقاتنا وأعمالنا وأعمارنا".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم أعنا على ذكرك وشكرك وحسن عبادتك".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك حبك، وحب من يحبك، وحب عمل يقربني إلى حبك".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم اغفر لي ما قدمت وما أخرت وما أسررت وما أعلنت".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أعوذ بك من شر فتنة المسيح الدجال".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم أنت العضد والنصير، بك أحول وبك أصول".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك الفردوس الأعلى من الجنة".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم اهدِ قومي فإنهم لا يعلمون".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم أعز الإسلام والمسلمين وأعلِ بفضلك كلمة الحق والدين".</div>
+        <div style="background: var(--white); border-right: 5px solid var(--main-color); padding: 10px; border-radius: 8px; margin-bottom: 8px;">"اللهم إني أسألك برد العيش بعد الموت، ولذة النظر إلى وجهك الكريم".</div>
+    </div>
+`
+
+        },
+
+        bukhari_habit: {
+          title: "همة الإمام البخاري",
+          isTreasure: true,
+          btn: "قدوة في القرآن",
+          text: "كان الإمام البخاري <span class='highlight'>يختم في النهار كل يوم ختمة</span>، و<span class='highlight'>يختم عند الإفطار كل ليلة ختمة</span>، ويقول: عند كل ختمة دعوة مستجابة. [المصدر: سير أعلام النبلاء]",
+        },
+        tarawih_break: {
+          title: "بين ركعات التراويح",
+          isTreasure: true,
+          btn: "ذكر مستحب",
+          text: "يستحب أن يشغل الصائم وقته بالذكر بين ركعات القيام، ومن ذلك الإكثار من الباقيات الصالحات: <span class='highlight'>سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر، ولا حول ولا قوة إلا بالله العلي العظيم</span>.",
+        },
+
+        fasting_gift: {
+          title: "هدية الصائم",
+          isTreasure: true,
+          btn: "دعوة لا تُرد",
+          text: "قال رسول الله ﷺ: <span class='highlight'>ثلاثة لا تُرد دعوتهم: الإمام العادل، والصائم حتى يُفطر، ودعوة المظلوم</span>. [رواه الترمذي]. فاحرص على الدعاء قبل أذان المغرب بدقائق فإنها لحظات استجابة.",
+        },
+        iftar_dua: {
+          title: "دعاء الإفطار",
+          isTreasure: true,
+          btn: "سنة نبوية",
+          text: "عن معاذ بن زهرة أنه بلغه أن النبي ﷺ كان يقول إذا أفطر: <span class='highlight'>اللهم لك صمت وعلى رزقك أفطرت</span>. [رواه أبو داود]. <br> وعن ابن عمر رضي الله عنهما قال: كان رسول الله ﷺ إذا أفطر قال: <span class='highlight'>ذهب الظمأ وابتلت العروق وثبت الأجر إن شاء الله</span>. [صحيح أبي داود]",
+        },
+
+        lailat_alqadr: {
+          title: "دعاء ليلة القدر",
+          isTreasure: true,
+          btn: "سؤال العفو",
+          text: "عن أم المؤمنين عائشة رضي الله عنها أنها قالت: يا رسول الله، أرأيت إن وافقت ليلة القدر ما أدعو؟ قال: تقولين: <span class='highlight'>اللهم إنك عفو تحب العفو فاعفُ عني</span>. [رواه الترمذي وصححه الألباني]",
+        },
+        sahar_dua: {
+          title: "وقت السحر",
+          isTreasure: true,
+          btn: "ساعة الاستجابة",
+          text: "قال ﷺ: <span class='highlight'>ينزل ربنا تبارك وتعالى كل ليلة إلى السماء الدنيا حين يبقى ثلث الليل الآخر</span> يقول: من يدعوني فأستجيب له؟ من يسألني فأعطيه؟ من يستغفرني فأغفر له؟ [متفق عليه]. وهو وقت السحور المبارك.",
+        },
+        fasting_protection: {
+          title: "خُلُق الصائم",
+          isTreasure: true,
+          btn: "كظم الغيظ",
+          text: "قال رسول الله ﷺ: <span class='highlight'>الصيام جُنة، فلا يرفث ولا يجهل، وإن امرؤ قاتله أو شاتمه فليقل: إني صائم -مرتين-</span>. [رواه البخاري]. ليكون صومك حفظاً لجوارحك كما هو حفظ لبطنك.",
+        },
+        last_ten: {
+          title: "العشر الأواخر",
+          isTreasure: true,
+          btn: "الاجتهاد في العبادة",
+          text: "عن عائشة رضي الله عنها قالت: <span class='highlight'>كان رسول الله ﷺ إذا دخل العشر أحيا الليل، وأيقظ أهله، وجد وشد المئزر</span>. [متفق عليه]. وهي ليالي العتق من النيران والتقرب إلى الرحمن.",
+        },
+
+      },
+
+
+      "daily-counters": {
+        palm: {
+          title: "نخلة",
+          limit: 1,
+          btn: "ازرع نخلة",
+          text: "قال رسول الله ﷺ:<br> من قال: <span class='highlight'>سبحان الله العظيم وبحمده</span>، غرست له نخلة في الجنة",
+        },
+        palace: {
+          title: "قصر",
+          limit: 10,
+          btn: "عمّر قصراً",
+          text: "قال رسول الله ﷺ:<br> من قرأ <span class='highlight'>قُلْ هُوَ اللهُ أَحَدٌ</span> <span class='highlight'>عشرَ مراتٍ</span>، بنى اللهُ له قصراً في الجنَّةِ",
+        },
+        kanz: {
+          title: "كنز",
+          limit: 1,
+          btn: "اجمع كنزاً",
+          text: "قال رسول الله ﷺ:<br><span class='highlight'>لا حول ولا قوة إلا بالله</span> كنز من كنوز الجنة",
+        },
+        ghofran: {
+          title: "غفران",
+          limit: 100,
+          btn: "غفران الخطايا",
+          text: "قال رسول الله ﷺ:<br> من قال <span class='highlight'>سبحان الله وبحمده</span> <span class='highlight'>مائة مرة</span> غفرت خطاياه",
+        },
+        jwa2z: {
+          title: "الخمسُ جوائز",
+          limit: 100,
+          btn: "5 جوائز في ذكر",
+          text: "قال رسول الله ﷺ:<br>من قال: <span class='highlight'>لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير</span> في يوم <span class='highlight'>مائة مرة</span>؛ كانت له عدل عشر رقاب، وكُتبت له مائة حسنة، ومُحيت عنه مائة سيئة، وكانت له حرزاً من الشيطان يومه ذلك حتى يمسي، ولم يأتِ أحدٌ بأفضل مما جاء به إلا رجل عمل أكثر منه.",
+        },
+        tree: {
+          title: "شجر",
+          limit: 1,
+          btn: "ازرع شجر",
+          text: "قال رسول الله ﷺ:<br> قل <span class='highlight'>سبحان الله والحمد لله ولا إله إلا الله والله أكبر</span> يغرس لك بكل واحدة شجرة",
+        },
+        ager: {
+          title: "الذكرُ المضاعف",
+          limit: 3,
+          btn: "ضاعف حسناتك",
+          text: "عن جويرية رضي الله عنها أن النبي ﷺ خرج من عندها بكرة حين صلى الصبح وهي في مسجدها، ثم رجع بعد أن أضحى وهي جالسة، فقال: ما زلتِ على الحالة التي فارقتكِ عليها؟ قالت: نعم، قال ﷺ: لقد قلتُ بعدكِ أربع كلمات <span class='highlight'>ثلاث مرات</span> لو وُزنت بما قلتِ منذ اليوم لوزنتهن: <span class='highlight'>سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته</span>."
+        },
+
+        salat_1000: {
+          title: "كفاية الهم",
+          limit: 1000,
+          btn: "صلِّ على النبي",
+          text: `عن أبي بن كعب رضي الله عنه قال: قلت: يا رسول الله، إني أكثر الصلاة عليك، فكم أجعل لك من صلاتي؟ 
+            فقال: ما شئت. 
+            قلت: الربع؟ قال: ما شئت، فإن زدت فهو خير لك. 
+            قلت: فالنصف؟ قال: ما شئت، فإن زدت فهو خير لك. 
+            قلت: فالثلثين؟ قال: ما شئت، فإن زدت فهو خير لك. 
+            قلت: <span class='highlight'>أجعل لك صلاتي كلها؟</span> 
+            قال: <span class='highlight'>إذن تُكفى همك، ويُغفر لك ذنبك</span>. [رواه الترمذي].`
+        },
+        istighfar_1000: {
+          title: "مفاتيح الرزق",
+          limit: 1000,
+          btn: "استغفر الله",
+          text: "قال ﷺ: <span class='highlight'>من لزم الاستغفار جعل الله له من كل ضيق مخرجاً ومن كل هم فرجاً</span>. (استعن بالعداد لتصل لهدفك اليومي).",
+        },
+      },
+
+      // [مكان إضافة أذكار الصباح والمساء]
+      // "morning-evening": {
+      //   morning_full: {
+      //     title: "أذكار الصباح (كاملة)",
+      //     isTreasure: true,
+      //     btn: "القراءة الوافية",
+      //     text: `
+      //       <div style="text-align: right; line-height: 1.9; font-size: 0.95rem;">
+      //         <p>١. <span class='highlight'>آية الكرسي</span>: (اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ).</p>
+      //         <p>٢. <span class='highlight'>المعوذات</span>: (الإخلاص، الفلق، الناس) [3 مرات].</p>
+      //         <p>٣. <span class='highlight'>أصبحنا وأصبح الملك لله</span> والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذا اليوم وخير ما بعده، وأعوذ بك من شر ما في هذا اليوم وشر ما بعده، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.</p>
+      //         <p>٤. <span class='highlight'>سيد الاستغفار</span>: اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</p>
+      //         <p>٥. <span class='highlight'>اللهم بك أصبحنا</span> وبك أمسينا، وبك نحيا وبك نموت، وإليك النشور.</p>
+      //         <p>٦. <span class='highlight'>اللهم إني أسألك العافية</span> في الدنيا والآخرة، اللهم إني أسألك العفو والعافية في ديني ودنياي وأهلي ومالي، اللهم استر عوراتي وآمن روعاتي، اللهم احفظني من بين يدي ومن خلفي وعن يميني وعن شمالي ومن فوقي، وأعوذ بعظمتك أن أغتال من تحتي.</p>
+      //         <p>٧. <span class='highlight'>اللهم أنت ربي لا إله إلا أنت</span> عليك توكلت وأنت رب العرش العظيم، ما شاء الله كان وما لم يشأ لم يكن، لا حول ولا قوة إلا بالله العلي العظيم، أعلم أن الله على كل شيء قدير، وأن الله قد أحاط بكل شيء علماً، اللهم إني أعوذ بك من شر نفسي، ومن شر كل دابة أنت آخذ بناصيتها، إن ربي على صراط مستقيم.</p>
+      //         <p>٨. <span class='highlight'>اللهم عالم الغيب والشهادة</span> فاطر السموات والأرض، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي، ومن شر الشيطان وشركه، وأن أقترف على نفسي سوءاً، أو أجره إلى مسلم.</p>
+      //         <p>٩. <span class='highlight'>بسم الله الذي لا يضر مع اسمه شيء</span> في الأرض ولا في السماء وهو السميع العليم [3 مرات].</p>
+      //         <p>١٠. <span class='highlight'>رضيت بالله رباً</span> وبالإسلام ديناً وبمحمد ﷺ نبياً [3 مرات].</p>
+      //         <p>١١. <span class='highlight'>يا حي يا قيوم برحمتك أستغيث</span> أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.</p>
+      //         <p>١٢. <span class='highlight'>حسبي الله لا إله إلا هو</span> عليه توكلت وهو رب العرش العظيم [7 مرات].</p>
+      //         <p>١٣. <span class='highlight'>سبحان الله وبحمده</span> [100 مرة].</p>
+      //       </div>
+      //     `,
+      //   },
+      //   morning_short: {
+      //     title: "أذكار الصباح (مختصرة)",
+      //     isTreasure: true,
+      //     btn: "قرا
+      // ءة سريعة",
+      //     text: `
+      //       <div style="text-align: right; line-height: 1.8;">
+      //         <p>بانتظار النص المختصر الذي ستعتمدينه لأضعه لكِ هنا.</p>
+      //       </div>
+      //     `,
+      //   },
+      //   evening_full: {
+      //     title: "أذكار المساء (كاملة)",
+      //     isTreasure: true,
+      //     btn: "القراءة الوافية",
+      //     text: `
+      //       <div style="text-align: right; line-height: 1.9; font-size: 0.95rem;">
+      //         <p>١. <span class='highlight'>آية الكرسي</span>: (اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ).</p>
+      //         <p>٢. <span class='highlight'>المعوذات</span>: (الإخلاص، الفلق، الناس) [3 مرات].</p>
+      //         <p>٣. <span class='highlight'>خواتيم سورة البقرة</span>: (آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِّن رُّسُلِهِ ۚ وَقَالُوا سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ * لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ ۖ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا ۚ أَنتَ مَوْلَانَا فَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ).</p>
+      //         <p>٤. <span class='highlight'>أمسينا وأمسى الملك لله</span> والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذه الليلة وخير ما بعدها، وأعوذ بك من شر ما في هذه الليلة وشر ما بعدها، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.</p>
+      //         <p>٥. <span class='highlight'>سيد الاستغفار</span>: اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</p>
+      //         <p>٦. <span class='highlight'>اللهم بك أمسينا</span> وبك أصبحنا، وبك نحيا وبك نموت، وإليك المصير.</p>
+      //         <p>٧. <span class='highlight'>أعوذ بكلمات الله التامات</span> من شر ما خلق [3 مرات].</p>
+      //         <p>٨. <span class='highlight'>اللهم إني أسألك العفو والعافية</span> في ديني ودنياي وأهلي ومالي...</p>
+      //         <p>٩. <span class='highlight'>بسم الله الذي لا يضر مع اسمه شيء</span> [3 مرات].</p>
+      //         <p>١٠. <span class='highlight'>رضيت بالله رباً</span> وبالإسلام ديناً وبمحمد ﷺ نبياً [3 مرات].</p>
+      //         <p>١١. <span class='highlight'>حسبي الله لا إله إلا هو</span> عليه توكلت وهو رب العرش العظيم [7 مرات].</p>
+      //       </div>
+      //     `,
+      //   },
+      //   evening_short: {
+      //     title: "أذكار المساء (مختصرة)",
+      //     isTreasure: true,
+      //     btn: "قراءة سريعة",
+      //     text: `
+      //       <div style="text-align: right; line-height: 1.8;">
+      //         <p>بانتظار النص المختصر للمساء.</p>
+      //       </div>
+      //     `,
+      //   },
+      // },
+
+      "morning-evening": {
+        morning_full: {
+          title: "أذكار الصباح (كاملة)",
+          isTreasure: true,
+          btn: "القراءة الوافية",
+          text: `
+             
+              <div class="dhikr-container">
+                <div class="dhikr-item"><div class="num-box">١</div><div class="dhikr-text"><span class="title-tag">آية الكرسي:</span> (اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ).</div></div>
+                <div class="dhikr-item"><div class="num-box">٢</div><div class="dhikr-text"><span class="title-tag">سورة الإخلاص:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٣</div><div class="dhikr-text"><span class="title-tag">سورة الفلق:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٤</div><div class="dhikr-text"><span class="title-tag">سورة الناس:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٥</div><div class="dhikr-text"><span class="title-tag">أصبحنا وأصبح الملك لله:</span> أصبحنا وأصبح الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذا اليوم وخير ما بعده، وأعوذ بك من شر ما في هذا اليوم وشر ما بعده، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.</div></div>
+                <div class="dhikr-item"><div class="num-box">٦</div><div class="dhikr-text"><span class="title-tag">سيد الاستغفار:</span> اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</div></div>
+                <div class="dhikr-item"><div class="num-box">٧</div><div class="dhikr-text"><span class="title-tag">رضيت بالله رباً:</span> رضيت بالله رباً وبالإسلام ديناً وبمحمد ﷺ نبياً [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">٨</span><div class="dhikr-text"><span class="title-tag">دعاء العافية:</span> اللهم إني أسألك العافية في الدنيا والآخرة، اللهم إني أسألك العفو والعافية في ديني ودنياي وأهلي ومالي، اللهم استر عوراتي وآمن روعاتي، اللهم احفظني من بين يدي ومن خلفي وعن يميني وعن شمالي ومن فوقي، وأعوذ بعظمتك أن أغتال من تحتي.</div></div>
+                <div class="dhikr-item"><span class="num-box">٩</span><div class="dhikr-text"><span class="title-tag">دعاء الحماية:</span> بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٠</span><div class="dhikr-text"><span class="title-tag">يا حي يا قيوم:</span> يا حي يا قيوم برحمتك أستغيث أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.</div></div>
+                <div class="dhikr-item"><span class="num-box">١١</span><div class="dhikr-text"><span class="title-tag">فطرة الإسلام:</span> أصبحنا على فطرة الإسلام وعلى كلمة الإخلاص وعلى دين نبينا محمد ﷺ وعلى ملة أبينا إبراهيم حنيفاً مسلماً وما كان من المشركين.</div></div>
+                <div class="dhikr-item"><span class="num-box">١٢</span><div class="dhikr-text"><span class="title-tag">سبحان الله وبحمده:</span> سبحان الله وبحمده، عدد خلقه، ورضا نفسه، وزنة عرشه، ومداد كلماته [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٣</span><div class="dhikr-text"><span class="title-tag">اللهم عافني:</span> اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري، لا إله إلا أنت [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٤</span><div class="dhikr-text"><span class="title-tag">الاستعاذة:</span> اللهم إني أعوذ بك من الكفر والفقر، وأعوذ بك من عذاب القبر، لا إله إلا أنت [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٥</span><div class="dhikr-text"><span class="title-tag">عالم الغيب:</span> اللهم عالم الغيب والشهادة فاطر السموات والأرض، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي، ومن شر الشيطان وشركه، وأن أقترف على نفسي سوءاً، أو أجره إلى مسلم.</div></div>
+                <div class="dhikr-item"><span class="num-box">١٦</span><div class="dhikr-text"><span class="title-tag">كلمات الله:</span> أعوذ بكلمات الله التامات من شر ما خلق [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٧</span><div class="dhikr-text"><span class="title-tag">الصلاة على النبي:</span> اللهم صل وسلم وبارك على نبينا محمد [10 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٨</span><div class="dhikr-text"><span class="title-tag">التوحيد:</span> لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير [100 مرة].</div></div>
+                <div class="dhikr-item"><span class="num-box">١٩</span><div class="dhikr-text"><span class="title-tag">التسبيح:</span> سبحان الله وبحمده [100 مرة].</div></div>
+                <div class="dhikr-item"><span class="num-box">٢٠</span><div class="dhikr-text"><span class="title-tag">الاستغفار:</span> أستغفر الله وأتوب إليه [100 مرة].</div></div>
+                <div class="dhikr-item"><span class="num-box">٢١</span><div class="dhikr-text"><span class="title-tag">حسبي الله:</span> حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم [7 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">٢٢</span><div class="dhikr-text"><span class="title-tag">شهادة الخلق:</span> اللهم إني أصبحت أشهدك وأشهد حملة عرشك وملائكتك وجميع خلقك، أنك أنت الله لا إله إلا أنت وحدك لا شريك لك، وأن محمداً عبدك ورسولك [4 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">٢٣</span><div class="dhikr-text"><span class="title-tag">شكر النعمة:</span> اللهم ما أصبح بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.</div></div>
+              </div>
+            `,
+        },
+        morning_short: {
+          title: "أذكار الصباح (مختصرة)",
+          isTreasure: true,
+          btn: "قراءة سريعة",
+          text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item"><div class="num-box">١</div><div class="dhikr-text"><span class="title-tag">آية الكرسي:</span> (اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ).</div></div>
+                <div class="dhikr-item"><div class="num-box">٢</div><div class="dhikr-text"><span class="title-tag">سورة الإخلاص:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٣</div><div class="dhikr-text"><span class="title-tag">سورة الفلق:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٤</div><div class="dhikr-text"><span class="title-tag">سورة الناس:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٥</div><div class="dhikr-text"><span class="title-tag">أصبحنا وأصبح الملك لله:</span> أصبحنا وأصبح الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذا اليوم وخير ما بعده، وأعوذ بك من شر ما في هذا اليوم وشر ما بعده، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.</div></div>
+                <div class="dhikr-item"><div class="num-box">٦</div><div class="dhikr-text"><span class="title-tag">سيد الاستغفار:</span> اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</div></div>
+                <div class="dhikr-item"><span class="num-box">٧</span><div class="dhikr-text"><span class="title-tag">دعاء الحماية:</span> بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">٨</span><div class="dhikr-text"><span class="title-tag">الصلاة على النبي:</span> اللهم صل وسلم وبارك على نبينا محمد [10 مرات].</div></div>
+ 
+                </div>
+            `,
+        },
+        evening_full: {
+          title: "أذكار المساء (كاملة)",
+          isTreasure: true,
+          btn: "القراءة الوافية",
+          text: `
+          
+              <div class="dhikr-container">
+                <div class="dhikr-item"><div class="num-box">١</div><div class="dhikr-text"><span class="title-tag">آية الكرسي:</span> (اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ).</div></div>
+                <div class="dhikr-item"><div class="num-box">٢</div><div class="dhikr-text"><span class="title-tag">سورة الإخلاص:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٣</div><div class="dhikr-text"><span class="title-tag">سورة الفلق:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٤</div><div class="dhikr-text"><span class="title-tag">سورة الناس:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٥</div><div class="dhikr-text"><span class="title-tag">خواتيم سورة البقرة:</span> (آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا نُفَرِّقُ بَيْنَ أَحَدٍ مِّن رُّسُلِهِ ۚ وَقَالُوا سَمِعْنَا وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ * لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ ۖ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا ۚ أَنتَ مَوْلَانَا فَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ).</div></div>
+                <div class="dhikr-item"><div class="num-box">٦</div><div class="dhikr-text"><span class="title-tag">أمسينا وأمسى الملك لله:</span> أمسينا وأمسى الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذه الليلة وخير ما بعدها، وأعوذ بك من شر ما في هذه الليلة وشر ما بعدها، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.</div></div>
+                <div class="dhikr-item"><div class="num-box">٧</div><div class="dhikr-text"><span class="title-tag">سيد الاستغفار:</span> اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</div></div>
+                <div class="dhikr-item"><div class="num-box">٨</div><div class="dhikr-text"><span class="title-tag">رضيت بالله رباً:</span> رضيت بالله رباً وبالإسلام ديناً وبمحمد ﷺ نبياً [3 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">٩</div><div class="dhikr-text"><span class="title-tag">اللهم بك أمسينا:</span> اللهم بك أمسينا، وبك أصبحنا، وبك نحيا وبك نموت، وإليك المصير.</div></div>
+                <div class="dhikr-item"><div class="num-box">١٠</div><div class="dhikr-text"><span class="title-tag">كلمات الله التامات:</span> أعوذ بكلمات الله التامات من شر ما خلق [3 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">١١</div><div class="dhikr-text"><span class="title-tag">دعاء العافية:</span> اللهم إني أسألك العافية في الدنيا والآخرة، اللهم إني أسألك العفو والعافية في ديني ودنيااي وأهلي ومالي، اللهم استر عوراتي وآمن روعاتي، اللهم احفظني من بين يدي ومن خلفي وعن يميني وعن شمالي ومن فوقي، وأعوذ بعظمتك أن أغتال من تحتي.</div></div>
+                <div class="dhikr-item"><div class="num-box">١٢</div><div class="dhikr-text"><span class="title-tag">دعاء الحماية:</span> بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم [3 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">١٣</div><div class="dhikr-text"><span class="title-tag">يا حي يا قيوم:</span> يا حي يا قيوم برحمتك أستغيث أصلح لي شأني كله ولا تكلني إلى نفسي طرفة عين.</div></div>
+                <div class="dhikr-item"><div class="num-box">١٤</div><div class="dhikr-text"><span class="title-tag">حسبي الله:</span> حسبي الله لا إله إلا هو عليه توكلت وهو رب العرش العظيم [7 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">١٥</div><div class="dhikr-text"><span class="title-tag">عالم الغيب:</span> اللهم عالم الغيب والشهادة فاطر السموات والأرض، رب كل شيء ومليكه، أشهد أن لا إله إلا أنت، أعوذ بك من شر نفسي، ومن شر الشيطان وشركه، وأن أقترف على نفسي سوءاً، أو أجره إلى مسلم.</div></div>
+                <div class="dhikr-item"><div class="num-box">١٦</div><div class="dhikr-text"><span class="title-tag">اللهم عافني:</span> اللهم عافني في بدني، اللهم عافني في سمعي، اللهم عافني في بصري، لا إله إلا أنت [3 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">١٧</div><div class="dhikr-text"><span class="title-tag">الاستعاذة:</span> اللهم إني أعوذ بك من الكفر والفقر، وأعوذ بك من عذاب القبر، لا إله إلا أنت [3 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">١٨</div><div class="dhikr-text"><span class="title-tag">فطرة الإسلام:</span> أمسينا على فطرة الإسلام وعلى كلمة الإخلاص وعلى دين نبينا محمد ﷺ وعلى ملة أبينا إبراهيم حنيفاً مسلماً وما كان من المشركين.</div></div>
+                <div class="dhikr-item"><div class="num-box">١٩</div><div class="dhikr-text"><span class="title-tag">التوحيد/التسبيح:</span> لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير [100 مرة أو 10 مرات]، وسُبْحَانَ اللهِ وَبِحَمْدِهِ [100 مرة].</div></div>
+                <div class="dhikr-item"><div class="num-box">٢٠</div><div class="dhikr-text"><span class="title-tag">شهادة الخلق:</span> اللهم إني أمسيت أشهدك وأشهد حملة عرشك وملائكتك وجميع خلقك، أنك أنت الله لا إله إلا أنت وحدك لا شريك لك، وأن محمداً عبدك ورسولك [4 مرات].</div></div>
+                <div class="dhikr-item"><div class="num-box">٢١</div><div class="dhikr-text"><span class="title-tag">شكر النعمة :</span> اللهم ما أمسى بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.</div></div>
+                              <div class="dhikr-item"><span class="num-box">٢٢</span><div class="dhikr-text"><span class="title-tag">الصلاة على النبي:</span> اللهم صل وسلم وبارك على نبينا محمد [10 مرات].</div></div>
+
+                </div>
+            `,
+        },
+        evening_short: {
+          title: "أذكار المساء (مختصرة)",
+          isTreasure: true,
+          btn: "قراءة سريعة",
+          text: `
+              <div class="dhikr-container">
+                 <div class="dhikr-item"><div class="num-box">١</div><div class="dhikr-text"><span class="title-tag">آية الكرسي:</span> (اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ وَلَا يَئُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ).</div></div>
+                <div class="dhikr-item"><div class="num-box">٢</div><div class="dhikr-text"><span class="title-tag">سورة الإخلاص:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٣</div><div class="dhikr-text"><span class="title-tag">سورة الفلق:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٤</div><div class="dhikr-text"><span class="title-tag">سورة الناس:</span> [3 مرات]</div></div>
+                <div class="dhikr-item"><div class="num-box">٥</div><div class="dhikr-text"><span class="title-tag">أمسينا وأمسى الملك لله:</span> أمسينا وأمسى الملك لله والحمد لله، لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير، رب أسألك خير ما في هذه الليلة وخير ما بعدها، وأعوذ بك من شر ما في هذه الليلة وشر ما بعدها، رب أعوذ بك من الكسل وسوء الكبر، رب أعوذ بك من عذاب في النار وعذاب في القبر.</div></div>
+                <div class="dhikr-item"><div class="num-box">٦</div><div class="dhikr-text"><span class="title-tag">سيد الاستغفار:</span> اللهم أنت ربي لا إله إلا أنت، خلقتني وأنا عبدك، وأنا على عهدك ووعدك ما استطعت، أعوذ بك من شر ما صنعت، أبوء لك بنعمتك علي، وأبوء بذنبي فاغفر لي فإنه لا يغفر الذنوب إلا أنت.</div></div>
+                <div class="dhikr-item"><span class="num-box">٧</span><div class="dhikr-text"><span class="title-tag">دعاء الحماية:</span> بسم الله الذي لا يضر مع اسمه شيء في الأرض ولا في السماء وهو السميع العليم [3 مرات].</div></div>
+                <div class="dhikr-item"><span class="num-box">٨</span><div class="dhikr-text"><span class="title-tag">الصلاة على النبي:</span> اللهم صل وسلم وبارك على نبينا محمد [10 مرات].</div></div>
+                </div>
+            `,
+        },
+      },
+      treasures: {
+        // أضيفي أحاديث طويلة (بدون عداد) هنا
+        daily: {
+          title: "خصلتان",
+          isTreasure: true,
+          btn: "أتريد الجنة؟",
+          text: "عن النبي صلى الله عليه وسلم قال خصلتان أو خلتان لا يحافظ عليهما عبد مسلم إلا دخل الجنة هما يسير ومن يعمل بهما قليل <span class='highlight'>يسبح</span> في دبر كل صلاة <span class='highlight'>عشرا</span> <span class='highlight'>ويحمد عشرا</span> <span class='highlight'>ويكبر عشرا</span> فذلك خمسون ومائة باللسان وألف وخمس مائة في الميزان <span class='highlight'>ويكبر أربعا وثلاثين إذا أخذ مضجعه</span> <span class='highlight'>ويحمد ثلاثا وثلاثين</span> <span class='highlight'>ويسبح ثلاثا وثلاثين</span> فذلك مائة باللسان وألف في الميزان فلقد رأيت رسول الله صلى الله عليه وسلم يعقدها بيده قالوا يا رسول الله كيف هما يسير ومن يعمل بهما قليل قال يأتي أحدكم يعني الشيطان في منامه فينومه قبل أن يقوله ويأتيه في صلاته فيذكره حاجة قبل أن يقولها",
+        },
+        treasure_2: {
+          title: "وجبت له الجنة",
+          isTreasure: true,
+          btn: "كلمات توجب الجنة",
+          text: "قال رسول الله ﷺ: من قال إذا أصبح وإذا أمسى: <span class='highlight'>رضيت بالله رباً وبالإسلام ديناً وبمحمد ﷺ نبياً</span>، كان حقاً على الله أن يرضيه يوم القيامة.",
+        },
+        treasure_3: {
+          title: "قنطار من الأجر",
+          isTreasure: true,
+          btn: "أتريد قنطاراً في الجنة؟",
+          text: `قال رسول الله ﷺ: من قام بـ <span class='highlight'>عشر</span> آيات <span class='highlight'>لم يُكتب من الغافلين</span>، ومن قام بـ <span class='highlight'>مائة</span> آية كُتب من <span class='highlight'>القانتين</span>، ومن قام بـ <span class='highlight'>ألف</span> آية كُتب من <span class='highlight'>المقنطرين</span>.
+            <div style="margin-top: 20px; padding: 15px; background: var(--white); border-radius: 12px; border: 1px dashed var(--main-color); text-align: center;">
+                <p style="margin: 5px 0;"> <strong>ملخص الأجر:</strong></p>
+                <p style="margin: 5px 0;">١٠ آيات ← <span class="highlight">براءة من الغفلة</span></p>
+                <p style="margin: 5px 0;">١٠٠ آية ← <span class="highlight">يكتب من القانتين</span></p>
+                <p style="margin: 5px 0;">١٠٠٠ آية ← <span class="highlight">يكتب من المقنطرين</span></p>
+            </div>  
+          
+          <div style="margin-top: 15px; font-size: 0.95rem; text-align: right; border-top: 1px solid var(--main-color); padding-top: 10px; opacity: 0.9;">
+                <p style="margin: 5px 0;"> <strong>معاني الكلمات:</strong></p>
+                <p style="margin: 3px 0;">• <strong>القانتين:</strong> المطيعون المداومون على العبادة والقيام.</p>
+                <p style="margin: 3px 0;">• <strong>المقنطرين:</strong> الذين يُعطون قنطاراً من الأجر (أجرٌ عظيم لا يعلمه إلا الله).</p>
+            </div>`},
+      },
+      duaa: {
+        duaa_1: {
+          title: "دعاء الكرب والفرج",
+          isTreasure: true,
+          btn: "الدعاء وفضله",
+          text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">١</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "لا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ".<br>
+                     <span class="title-tag">الفضل:</span> قال ﷺ: "لم يَدْعُ بها رجل مسلم في شيء قط إلا استجاب الله له".
+                  </div>
+                </div>
+              </div>
+            `,
+        },
+        duaa_2: {
+          title: "اسم الله الأعظم",
+          isTreasure: true,
+          btn: "الدعاء وفضله",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">
+              <span class="title-tag">الدعاء:</span> "اللَّهُمَّ إِنِّي أَسْأَلُكَ بِأَنِّي أَشْهَدُ أَنَّكَ أَنْتَ اللَّهُ لَا إِلَهَ إِلَّا أَنْتَ، الأَحَدُ الصَّمَدُ، الَّذِي لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ".<br>
+              <span class="title-tag">الفضل:</span> قال ﷺ: "لقد سأل الله باسمه الأعظم، الذي إذا دُعي به أجاب، وإذا سُئل به أعطى".
+            </div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">
+              <span class="title-tag">الدعاء:</span> "اللَّهُمَّ إِنِّي أَسْأَلُكَ بِأَنَّ لَكَ الْحَمْدَ، لَا إِلَهَ إِلَّا أَنْتَ الْمَنَّانُ، بَدِيعُ السَّمَاوَاتِ وَالْأَرْضِ، يَا ذَا الْجَلَالِ وَالْإِكْرَامِ، يَا حَيُّ يَا قَيُّومُ".<br>
+              <span class="title-tag">الفضل:</span> قال ﷺ: "لقد دعا الله باسمه العظيم، الذي إذا دُعي به أجاب، وإذا سُئل به أعطى" [رواه أحمد وأصحاب السنن].
+            </div>
+          </div>
+        </div>
+      `,
+        },
+        duaa_3: {
+          title: "دعاء تفريج الهم",
+          isTreasure: true,
+          btn: "الدعاء وفضله",
+          text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٣</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "اللَّهُمَّ إِنِّي عَبْدُكَ، وَابْنُ عَبْدِكَ، وَابْنُ أَمَتِكَ، نَاصِيَتِي بِيَدِكَ، مَاضٍ فِيَّ حُكْمُكَ، عَدْلٌ فِيَّ قَضَاؤُكَ، أَسْأَلُكَ بِكُلِّ اسْمٍ هُوَ لَكَ... أَنْ تَجْعَلَ الْقُرْآنَ رَبِيعَ قَلْبِي، وَنُورَ صَدْرِي، وَجِلَاءَ حُزْنِي، وَذَهَابَ هَمِّي".<br>
+                    <span class="title-tag">الفضل:</span> قال ﷺ: "ما أصاب أحداً قط هم ولا حزن فقالها إلا أذهب الله همه، وأبدله مكانه فرحاً" [رواه أحمد].
+                  </div>
+                </div>
+              </div>
+            `,
+        },
+        duaa_4: {
+          title: "سيد الاستغفار",
+          isTreasure: true,
+          btn: "الدعاء وفضله",
+          text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٤</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ... أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي فَاغْفِرْ لِي؛ فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ".<br>
+                    <span class="title-tag">الفضل:</span> قال ﷺ: "من قالها من النهار موقناً بها فمات من يومه قبل أن يمسي فهو من أهل الجنة" [رواه البخاري].
+                  </div>
+                </div>
+              </div>
+            `,
+        },
+        duaa_5: {
+          title: "دعاء الحفظ من المصائب",
+          isTreasure: true,
+          btn: "الدعاء وفضله",
+          text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٥</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ".<br>
+                    <span class="title-tag">الفضل:</span> وصية النبي ﷺ لابنته فاطمة رضي الله عنها بالمداومة عليه كل صباح ومساء.
+                  </div>
+                </div>
+              </div>
+            `,
+        },
+        duaa_6: {
+          title: "دعاء الاستعاذة من الهم والعجز",
+          isTreasure: true,
+          btn: "الدعاء وفضله",
+          text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٦</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْجُبْنِ وَالْبُخْلِ، وَضَلَعِ الدَّيْنِ، وَغَلَبَةِ الرِّجَالِ".<br>
+                    <span class="title-tag">الفضل:</span>كان النبي ﷺ يكثر من هذا الدعاء؛ لما فيه من استعاذة من كل ما يقعد العبد عن مصالحه
+                  </div>
+                </div>
+              </div>
+            `,
+        },
+        duaa_7: {
+          title: "العفو والعافية",
+          isTreasure: true,
+          btn: "الدعاء وفضله",
+          text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٧</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ".<br>
+                    <span class="title-tag">الفضل:</span>الفضل: قال ﷺ: "سلوا الله العفو والعافية؛ فإن أحداً لم يُعطَ بعد اليقين خيراً من العافية" [رواه الترمذي]
+                  </div>
+                </div>
+              </div>
+            `,
+        },
+        duaa_8: {
+          title: "دعاء الهدى والتقى",
+          isTreasure: true,
+          btn: "الدعاء وفضله",
+          text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٨</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى".<br>
+                    <span class="title-tag">المصدر:</span> رواه مسلم، وهو من أجمع الأدعية التي تجمع خير الدنيا والآخرة.
+                  </div>
+                </div>
+              </div>
+            `,
+        },
+        duaa_9: {
+          title: "دعاء الثبات على الدين",
+          isTreasure: true,
+          btn: "الدعاء وفضله",
+          text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">٩</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ".<br>
+                    <span class="title-tag">الفضل:</span> قالت أم سلمة رضي الله عنها: كان أكثر دعاء النبي ﷺ؛ لشدة حاجة العبد للثبات.
+                  </div>
+                </div>
+              </div>
+            `,
+        },
+        duaa_10: {
+          title: "الدعاء الجامع لكل خير",
+          isTreasure: true,
+          btn: "الدعاء وفضله",
+          text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">١٠</div>
+                  <div class="dhikr-text">
+                    <span class="title-tag">الدعاء:</span> "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ".<br>
+                    <span class="title-tag">الفضل:</span> كان أكثر دعاء النبي ﷺ، حيث يجمع كل مطالب الدنيا والآخرة في كلمات يسيرة.</span>
+                  </div>
+                </div>
+              </div>
+            `,
+        },
+
+      },
+      "duaa-jumaa": {
+        alkahf: {
+          title: "سورة الكهف",
+          isTreasure: true,
+          btn: "نورٌ ما بين الجمعتين",
+          text: "قال رسول الله ﷺ: <span class='highlight'>من قرأ سورة الكهف في يوم الجمعة أضاء له من النور ما بين الجمعتين</span>. [رواه الحاكم]",
+        },
+        salat_nabi: {
+          title: "الصلاة على النبي",
+          limit: 100, // مفتوح، بس حطينا 100 كهدف
+          btn: "يُرد عليك السلام",
+          text: "قال رسول الله ﷺ: <span class='highlight'>أكثروا الصلاة علي يوم الجمعة وليلة الجمعة</span>، فمن صلى علي صلاة صلى الله عليه بها عشراً. [رواه البيهقي]",
+        },
+        dua_hour: {
+          title: "ساعة الاستجابة",
+          isTreasure: true,
+          btn: "لا يرد فيها سائل",
+          text: "قال رسول الله ﷺ عن يوم الجمعة: <span class='highlight'>فيه ساعة لا يوافقها عبد مسلم وهو قائم يصلي يسأل الله تعالى شيئاً إلا أعطاه إياه</span>. [متفق عليه] (تحرّها آخر ساعة قبل المغرب).",
+        },
+        tabkeer: {
+          title: "التبكير للمسجد",
+          isTreasure: true,
+          btn: "أجر تقريب بدنة",
+          text: "قال رسول الله ﷺ: <span class='highlight'>من اغتسل يوم الجمعة... ثم راح في الساعة الأولى فكأنما قرب بدنة</span> (ناقة)، ومن راح في الساعة الثانية فكأنما قرب بقرة... [متفق عليه]",
+        },
+        ghusl: {
+          title: "الاغتسال والتطيب",
+          isTreasure: true,
+          btn: "سُنة مؤكدة",
+          text: "قال رسول الله ﷺ: <span class='highlight'>غُسل يوم الجمعة واجب على كل محتلم</span>، وأن يستنّ (يستاك) ويمسّ من الطيب ما قدر عليه. [رواه مسلم]",
+        },
+      },
+      "quran-messages": {
+        sad: {
+          title: "حزين؟",
+          isTreasure: true,
+          btn: "طبُّ القلوب",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا</span> ﴾ [سورة التوبة: 40]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">فَإِنَّ مَعَ الْعُسْرِ يُسْرًا * إِنَّ مَعَ الْعُسْرِ يُسْرًا</span> ﴾ [سورة الشرح: 5-6]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ</span> ﴾ [سورة الزمر: 53]</div>
+          </div>
+        </div>
+      `
+        },
+        tired: {
+          title: "متعب؟",
+          isTreasure: true,
+          btn: "رسالة جبر",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَبَشِّرِ الصَّابِرِينَ</span> ﴾ [سورة البقرة: 155]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا</span> ﴾ [سورة البقرة: 286]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَاصْبِرْ لِحُكْمِ رَبِّكَ فَإِنَّكَ بِأَعْيُنِنَا</span> ﴾ [سورة الطور: 48]</div>
+          </div>
+        </div>
+      `
+        },
+        anxious: {
+          title: "خائف أو قلق؟",
+          isTreasure: true,
+          btn: "سكينة",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ</span> ﴾ [سورة الرعد: 28]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ</span> ﴾ [سورة الطلاق: 3]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا</span> ﴾ [سورة التوبة: 51]</div>
+          </div>
+        </div>
+      `
+        },
+        lost: {
+          title: "تائه؟",
+          isTreasure: true,
+          btn: "نور الهداية",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَوَجَدَكَ ضَالًّا فَهَدَى</span> ﴾ [سورة الضحى: 7]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">يَهْدِي اللَّهُ لِنُورِهِ مَن يَشَاءُ</span> ﴾ [سورة النور: 35]</div>
+          </div>
+        </div>
+      `
+
+        },
+        waiting: {
+          title: "تنتظر فرجاً؟",
+          isTreasure: true,
+          btn: "رسالة الاستبشار",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">لَا تَدْرِي لَعَلَّ اللَّهَ يُحْدِثُ بَعْدَ ذَلِكَ أَمْرًا</span> ﴾ [سورة الطلاق: 1]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَى</span> ﴾ [سورة الضحى: 5]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">يَأْتِ بِهَا اللَّهُ إِنَّ اللَّهَ لَطِيفٌ خَبِيرٌ</span> ﴾ [سورة لقمان: 16]</div>
+          </div>
+        </div>
+      `
+        },
+        wronged: {
+          title: "مظلوم؟",
+          isTreasure: true,
+          btn: "نصرٌ من الله",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">أَنِّي مَغْلُوبٌ فَانتَصِرْ</span> ﴾ [سورة القمر: 10]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ</span> ﴾ [سورة الطلاق: 3]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَاللَّهُ مَعَ الصَّابِرِينَ</span> ﴾ [سورة البقرة: 249]</div>
+          </div>
+        </div>
+      `
+        },
+        seeking_forgiveness: {
+          title: "أثقلتك الذنوب؟",
+          isTreasure: true,
+          btn: "باب التوبة",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">نَبِّئْ عِبَادِي أَنِّي أَنَا الْغَفُورُ الرَّحِيمُ</span> ﴾ [سورة الحجر: 49]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَإِنِّي لَغَفَّارٌ لِّمَن تَابَ وَآمَنَ وَعَمِلَ صَالِحًا ثُمَّ اهْتَدَى</span> ﴾ [سورة طه: 82]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَهُوَ الَّذِي يَقْبَلُ التَّوْبَةَ عَنْ عِبَادِهِ وَيَعْفُو عَنِ السَّيِّئَاتِ</span> ﴾ [سورة الشورى: 25]</div>
+          </div>
+        </div>
+      `
+        },
+        lonely: {
+          title: "وحيد؟",
+          isTreasure: true,
+          btn: "أنيس الروح",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ</span> ﴾ [سورة الحديد: 4]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ الْوَرِيدِ</span> ﴾ [سورة ق: 16]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٣</div>
+            <div class="dhikr-text">﴿ <span class="highlight">فَإِنِّي قَرِيبٌ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ</span> ﴾ [سورة البقرة: 186]</div>
+          </div>
+        </div>
+      `
+        }
+      },
+      "prophets-prayers": {
+        illness: {
+          title: "مريض أو متألم؟",
+          isTreasure: true,
+          btn: "دعاء أيوب عليه السلام",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">أَنِّي مَسَّنِيَ الضُّرُّ وَأَنتَ أَرْحَمُ الرَّاحِمِينَ</span> ﴾ [سورة الأنبياء: 83]</div>
+          </div>
+        </div>
+      `
+        },
+        distress: {
+          title: "في ضيق أو كرب؟",
+          isTreasure: true,
+          btn: "دعاء يونس عليه السلام",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">لَّا إِلَهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ</span> ﴾ [سورة الأنبياء: 87]</div>
+          </div>
+        </div>
+      `
+        },
+        rizq: {
+          title: "تطلب الذرية أو الرزق؟",
+          isTreasure: true,
+          btn: "دعاء زكريا عليه السلام",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبِّ لَا تَذَرْنِي فَرْدًا وَأَنتَ خَيْرُ الْوَارِثِينَ</span> ﴾ [سورة الأنبياء: 89]</div>
+          </div>
+          <div class="dhikr-item">
+            <div class="num-box">٢</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبِّ هَبْ لي مِن لَدُنْكَ ذُرِّيَّةً طَيِّبَةً إِنَّكَ سَميعُ الدُّعاء</span> ﴾ [سورة آل عمران: 38]</div>
+          </div>
+        </div>
+      `
+        },
+        strength: {
+          title: "مقبل على أمر صعب؟",
+          isTreasure: true,
+          btn: "دعاء موسى عليه السلام",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبِّ اشْرَحْ لِي صَدْرِي * وَيَسِّرْ لِي أَمْرِي</span> ﴾ [سورة طه: 25-26]</div>
+          </div>
+        </div>
+      `
+        },
+        protection: {
+          title: "خائف من كيد أو عدو؟",
+          isTreasure: true,
+          btn: "دعاء نوح عليه السلام",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">أَنِّي مَغْلُوبٌ فَانتَصِرْ</span> ﴾ [سورة القمر: 10]</div>
+          </div>
+        </div>
+      `
+        },
+        parents: {
+          title: "تريد الدعاء لوالديك؟",
+          isTreasure: true,
+          btn: "دعاء إبراهيم عليه السلام",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ</span> ﴾ [سورة إبراهيم: 41]</div>
+          </div>
+        </div>
+      `
+        },
+        guidance: {
+          title: "تطلب الهداية؟",
+          isTreasure: true,
+          btn: "دعاء الراسخين في العلم",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِن لَّدُنكَ رَحْمَةً إِنَّكَ أَنتَ الْوَهَّابُ</span> ﴾ [سورة آل عمران: 8]</div>
+          </div>
+        </div>
+      `
+        },
+        success: {
+          title: "تبحث عن التوفيق؟",
+          isTreasure: true,
+          btn: "دعاء شعيب عليه السلام",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">وَمَا تَوْفِيقِي إِلَّا بِاللَّهِ عَلَيْهِ تَوَكَّلْتُ وَإِلَيْهِ أُنِيبُ</span> ﴾ [سورة هود: 88]</div>
+          </div>
+        </div>
+      `
+        },
+        repentance: {
+          title: "تطلب قبول التوبة؟",
+          isTreasure: true,
+          btn: "دعاء آدم عليه السلام",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ</span> ﴾ [سورة الأعراف: 23]</div>
+          </div>
+        </div>
+      `
+        },
+        solomon_rizq: {
+          title: "تطلب ملكاً ورزقاً؟",
+          isTreasure: true,
+          btn: "دعاء سليمان عليه السلام",
+          text: `
+        <div class="dhikr-container">
+          <div class="dhikr-item">
+            <div class="num-box">١</div>
+            <div class="dhikr-text">﴿ <span class="highlight">رَبِّ اغْفِرْ لِي وَهَبْ لِي مُلْكًا لَّا يَنبَغِي لِأَحَدٍ مِّن بَعْدِي إِنَّكَ أَنتَ الْوَهَّابُ</span> ﴾ [سورة ص: 35]</div>
+          </div>
+        </div>
+      `
+        },
+        acceptance: {
+          title: "تريد قبول عملك؟",
+          isTreasure: true,
+          btn: "دعاء إبراهيم وإسماعيل",
+          text: `
+              <div class="dhikr-container">
+                <div class="dhikr-item">
+                  <div class="num-box">١</div>
+                  <div class="dhikr-text">﴿ <span class="highlight">رَبَّنَا تَقَبَّلْ مِنَّا إِنَّكَ أَنتَ السَّمِيعُ الْعَلِيمُ</span> ﴾ [سورة البقرة: 127]</div>
+                </div>
+              </div>
+            `
+        },
+        
+
+        
+      },
+      "surah-almulk": {
+        mulk_text: {
+          title: "سورة الملك",
+          isTreasure: true,
+          btn: "قراءة",
+          text: `
+        <div class="quran-page-container" style="max-height: 75vh; overflow-y: auto; padding: 20px; font-family: 'Amiri', 'Traditional Arabic', serif; text-align: justify; direction: rtl; background-color: #fcfbf7; border-radius: 8px; color: #1a202c; box-shadow: inset 0 0 10px rgba(0,0,0,0.02);">
+          
+          <p style="text-align: center; font-weight: bold; color: #2c5282; font-size: 1.6rem; margin-bottom: 25px; border-bottom: 2px solid #2c5282; padding-bottom: 10px; letter-spacing: 1px;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+          
+          <p style="font-size: 1.45rem; line-height: 2.4; word-spacing: 2px; margin: 0;">
+            تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ <span style="color: #2c5282; font-weight: bold;">﴿١﴾</span> 
+            الَّذِي خَلَقَ الْمَوْتَ وَالْحَيَاةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا ۚ وَهُوَ الْعَزِيزُ الْغَفُورُ <span style="color: #2c5282; font-weight: bold;">﴿٢﴾</span> 
+            الَّذِي خَلَقَ سَبْعَ سَمَاوَاتٍ طِبَاقًا ۖ مَّا تَرَىٰ فِي خَلْقِ الرَّحْمَٰنِ مِن تَفَاوُتٍ ۖ فَارْجِعِ الْبَصَرَ هَلْ تَرَىٰ مِن فُطُورٍ <span style="color: #2c5282; font-weight: bold;">﴿٣﴾</span> 
+            ثُمَّ ارْجِعِ الْبَصَرَ كَرَّتَيْنِ يَنقَلِبْ إِلَيْكَ الْبَصَرُ خَاسِئًا وَهُوَ حَسِيرٌ <span style="color: #2c5282; font-weight: bold;">﴿٤﴾</span> 
+            وَلَقَدْ زَيَّنَّا السَّمَاءَ الدُّنْيَا بِمَصَابِيحَ وَجَعَلْنَاهَا رُجُومًا لِّالشَّيَاطِينِ ۖ وَأَعْتَدْنَا لَهُمْ عَذَابَ السَّعِيرِ <span style="color: #2c5282; font-weight: bold;">﴿٥﴾</span> 
+            وَلِلَّذِينَ كَفَرُوا بِرَبِّهِمْ عَذَابُ جَهَنَّمَ ۖ وَبِئْسَ الْمَصِيرُ <span style="color: #2c5282; font-weight: bold;">﴿٦﴾</span> 
+            إِذَا أُلْقُوا فِيهَا سَمِعُوا لَهَا شَهِيقًا وَهِيَ تَفُورُ <span style="color: #2c5282; font-weight: bold;">﴿٧﴾</span> 
+            تَكَادُ تَمَيَّزُ مِنَ الْغَيْظِ ۖ كُلَّمَا أُلْقِيَ فِيهَا فَوْجٌ سَأَلَهُمْ خَزَنَتُهَا أَلَمْ يَأْتِكُمْ نَذِيرٌ <span style="color: #2c5282; font-weight: bold;">﴿٨﴾</span> 
+            قَالُوا بَلَىٰ قَدْ جَاءَنَا نَذِيرٌ فَكَذَّبْنَا وَقُلْنَا مَا نَزَّلَ اللَّهُ مِن شَيْءٍ إِنْ أَنتُمْ إِلَّا فِي ضَلَالٍ كَبِيرٍ <span style="color: #2c5282; font-weight: bold;">﴿٩﴾</span> 
+            وَقَالُوا لَوْ كُنَّا نَسْمَعُ أَوْ نَعْقِلُ مَا كُنَّا فِي أَصْحَابِ السَّعِيرِ <span style="color: #2c5282; font-weight: bold;">﴿١٠﴾</span> 
+            فَاعْتَرَفُوا بِذَنبِهِمْ فَسُحْقًا لِّأَصْحَابِ السَّعِيرِ <span style="color: #2c5282; font-weight: bold;">﴿١١﴾</span> 
+            إِنَّ الَّذِينَ يَخْشَوْنَ رَبَّهُم بِالْغَيْبِ لَهُم مَّغْفِرَةٌ وَأَجْرٌ كَبِيرٌ <span style="color: #2c5282; font-weight: bold;">﴿١٢﴾</span> 
+            وَأَسِرُّوا قَوْلَكُمْ أَوِ اجْهَرُوا بِهِ ۖ إِنَّهُ عَلِيمٌ بِذَاتِ الصُّدُورِ <span style="color: #2c5282; font-weight: bold;">﴿١٣﴾</span> 
+            أَلَا يَعْلَمُ مَنْ خَلَقَ وَهُوَ اللَّطِيفُ الْخَبِيرُ <span style="color: #2c5282; font-weight: bold;">﴿١٤﴾</span> 
+            هُوَ الَّذِي جَعَلَ لَكُمُ الْأَرْضَ ذَلُولًا فَامْشُوا فِي مَنَاكِبِهَا وَكُلُوا مِن رِّزْقِهِ ۖ وَإِلَيْهِ النُّشُورُ <span style="color: #2c5282; font-weight: bold;">﴿١٥﴾</span> 
+            أَأَمِنتُم مَّن فِي السَّمَاءِ أَن يَخْسِفَ بِكُمُ الْأَرْضَ فَإِذَا هِيَ تَمُورُ <span style="color: #2c5282; font-weight: bold;">﴿١٦﴾</span> 
+            أَمْ أَمِنتُم مَّن فِي السَّمَاءِ أَن يُرْسِلَ عَلَيْكُمْ حَاصِبًا ۖ فَسَتَعْلَمُونَ كَيْفَ نَذِيرِ <span style="color: #2c5282; font-weight: bold;">﴿١٧﴾</span> 
+            وَلَقَدْ كَذَّبَ الَّذِينَ مِن قَبْلِهِمْ فَكَيْفَ كَانَ نَكِيرِ <span style="color: #2c5282; font-weight: bold;">﴿١٨﴾</span> 
+            أَوَلَمْ يَرَوْا إِلَى الطَّيْرِ فَوْقَهُمْ صَافَّاتٍ وَيَقْبِضْنَ ۚ مَا يُمْسِكُهُنَّ إِلَّا الرَّحْمَٰنُ ۚ إِنَّهُ بِكُلِّ شَيْءٍ بَصِيرٌ <span style="color: #2c5282; font-weight: bold;">﴿١٩﴾</span> 
+            أَمَّنْ هَٰذَا الَّذِي هُوَ جُندٌ لَّكُمْ يَنصُرُكُم مِّن دُونِ الرَّحْمَٰنِ ۚ إِنِ الْكَافِرُونَ إِلَّا فِي غُرُورٍ <span style="color: #2c5282; font-weight: bold;">﴿٢٠﴾</span> 
+            أَمَّنْ هَٰذَا الَّذِي يَرْزُقُكُمْ إِنْ أَمْسَكَ رِزْقَهُ ۚ بَل لَّجُّوا فِي عُتُوٍّ وَنُفُورٍ <span style="color: #2c5282; font-weight: bold;">﴿٢١﴾</span> 
+            أَفَمَن يَمْشِي مُكِبًّا عَلَىٰ وَجْهِهِ أَهْدَىٰ أَمَّن يَمْشِي سَوِيًّا عَلَىٰ صِرَاطٍ مُّسْتَقِيمٍ <span style="color: #2c5282; font-weight: bold;">﴿٢٢﴾</span> 
+            قُلْ هُوَ الَّذِي أَنشَأَكُمْ وَجَعَلَ لَكُمُ السَّمْعَ وَالْأَبْصَارَ وَالْأَفْئِدَةَ ۖ قَلِيلًا مَّا تَشْكُرُونَ <span style="color: #2c5282; font-weight: bold;">﴿٢٣﴾</span> 
+            قُلْ هُوَ الَّذِي ذَرَأَكُمْ فِي الْأَرْضِ وَإِلَيْهِ تُحْشَرُونَ <span style="color: #2c5282; font-weight: bold;">﴿٢٤﴾</span> 
+            وَيَقُولُونَ مَتَىٰ هَٰذَا الْوَعْدُ إِن كُنتُمْ صَادِقِينَ <span style="color: #2c5282; font-weight: bold;">﴿٢٥﴾</span> 
+            قُلْ إِنَّمَا الْعِلْمُ عِندَ اللَّهِ وَإِنَّمَا أَنَا نَذِيرٌ مُّبِينٌ <span style="color: #2c5282; font-weight: bold;">﴿٢٦﴾</span> 
+            فَلَمَّا رَأَوْهُ زُلْفَةً سِيئَتْ وُجُوهُ الَّذِينَ كَفَرُوا وَقِيلَ هَٰذَا الَّذِي كُنتُم بِهِ تَدَّعُونَ <span style="color: #2c5282; font-weight: bold;">﴿٢٧﴾</span> 
+            قُلْ أَرَأَيْتُمْ إِنْ أَهْلَكَنِيَ اللَّهُ وَمَن مَّعِيَ أَوْ رَحِمَنَا فَمَن يُجِيرُ الْكَافِرِينَ مِنْ عَذَابٍ أَلِيمٍ <span style="color: #2c5282; font-weight: bold;">﴿٢٨﴾</span> 
+            قُلْ هُوَ الرَّحْمَٰنُ آمَنَّا بِهِ وَعَلَيْهِ تَوَكَّلْنَا ۖ فَسَتَعْلَمُونَ مَنْ هُوَ فِي ضَلَالٍ مُّمِينٍ <span style="color: #2c5282; font-weight: bold;">﴿٢٩﴾</span> 
+            قُلْ أَرَأَيْتُمْ إِنْ أَصْبَحَ مَاؤُكُمْ غَوْرًا فَمَن يَأْتِيكُم بِمَاءٍ مَّعِينٍ <span style="color: #2c5282; font-weight: bold;">﴿٣٠﴾</span>
+          </p>
+          
+        </div>
+      `
+        }
+      },
+      
+// هذا القوس سكر prophets-prayers
+
+      
+    }; // سكرنا sectionsData الكبير
+
+    let currentSection = "main";
+    let currentType = "";
+    let data = JSON.parse(localStorage.getItem("heavenData")) || {};
+
+    window.addEventListener("load", () => {
+      window.history.replaceState({ page: "main" }, "", "");
+      if (localStorage.getItem("darkMode") === "true") {
+        document.getElementById("dark-mode-toggle").checked = true;
+        document.body.classList.add("dark-theme");
+      }
+    });
+
+    // دالة الرجوع الموحدة
+    function goBack() {
+      if (document.getElementById("settings-page").style.display === "block") {
+        toggleSettings();
+        return;
+      }
+      window.history.back();
+    }
+
+    // المحرك الرئيسي للتنقل الخلفي
+    window.onpopstate = function (event) {
+      if (event.state && event.state.page === "main") {
+        renderMain();
+      } else if (event.state && sectionsData[event.state.page]) {
+        renderSection(event.state.page);
+      } else {
+        renderMain();
+      }
+    };
+
+    // الدخول للقسم
+    function showSection(sectionId) {
+      renderSection(sectionId);
+      window.history.pushState({ page: sectionId }, "", "");
+    }
+
+    function renderMain() {
+      currentSection = "main";
+      hideAllPages();
+      document.getElementById("main-page").style.display = "block";
+      document.getElementById("back-icon").style.display = "none";
+      document.getElementById("page-title").innerText = "أجر";
+    }
+
+    function renderSection(sectionId) {
+      currentSection = sectionId;
+      hideAllPages();
+      const grid = document.getElementById("section-items-grid");
+      grid.innerHTML = "";
+
+      // إضافة حديث أذكار الصباح والمساء
+      if (sectionId === "morning-evening") {
+        const hadithDiv = document.createElement("div");
+        hadithDiv.className = "section-hadith";
+        hadithDiv.innerHTML = `<strong>عن أنس - رضي الله عنه - قال: قال رسول الله ﷺ:</strong> 
+            "لأن أقعد مع قوم يذكرون الله من صلاة الغداة حتى تطلع الشمس أحب إلي من أن أعتق أربعة من ولد إسماعيل، ولأن أقعد مع قوم يذكرون الله من صلاة العصر إلى أن تغرب الشمس أحب إلي من أن أعتق أربعة" 
+            <br><small style="display:block; margin-top:5px; opacity:0.8;">[رواه أبو داود]</small>`; grid.appendChild(hadithDiv);
+      }
+
+      const items = sectionsData[sectionId] || {};
+      Object.keys(items).forEach((key) => {
+        // ميزة العرض الكامل والنجوم لجدول رمضان
+        const isTracker = key === "daily_tracker";
+        const cardStyle = isTracker ? "grid-column: 1 / -1;" : "";
+        const stars = "";
+
+        const counterVal = sectionId === "daily-counters" && data[key] ? data[key] : 0;
+        grid.innerHTML += `
+            <div class="card${isTracker ? ' card-wide' : ''}" onclick="openDhikr('${key}', '${sectionId}')">
+              ${counterVal > 0 ? `<div class="counter-badge">${counterVal}</div>` : ''}
+              <div class="card-title" style="padding-top: 16px;">
+                ${items[key].title}
+              </div>
+              <div class="card-action">${items[key].btn}</div>
+            </div>`;
+      });
+
+      document.getElementById("section-content-page").style.display = "block";
+      document.getElementById("daily-actions").style.display = (sectionId === "daily-counters" ? "flex" : "none");
+      document.getElementById("back-icon").style.display = "inline-block";
+
+      const titles = {
+        "daily-counters": "العدادات اليومية", "morning-evening": "الصباح والمساء",
+        "treasures": "كنوز الأذكار", "duaa": "جوامع الدعاء",
+        "duaa-jumaa": "يوم الجمعة", "ramadan": "رمضان",
+        "prophets-prayers": "أدعية الأنبياء", "quran-messages": "رسائل القرآن",
+        "surah-almulk": "سورة الملك" // أضيفي هذا السطر هنا
+      };
+      document.getElementById("page-title").innerText = titles[sectionId] || "أجر";
+    }
+
+    function openDhikr(type, sectionId) {
+      currentSection = "sub-page";
+      currentType = type;
+      hideAllPages();
+      const dhikr = sectionsData[sectionId][type];
+      const contentArea = document.getElementById("hadith-content");
+      document.getElementById("sub-page").style.display = "block";
+      contentArea.innerHTML = dhikr.text;
+
+      // تنفيذ السكريبتات (مهم لجدول رمضان)
+      const scripts = contentArea.getElementsByTagName("script");
+      for (let i = 0; i < scripts.length; i++) {
+        const newScript = document.createElement("script");
+        newScript.text = scripts[i].innerText;
+        document.body.appendChild(newScript).parentNode.removeChild(newScript);
+      }
+
+      document.getElementById("counter-area").style.display = dhikr.isTreasure ? "none" : "flex";
+      document.getElementById("counter-display").innerText = data[type] || 0;
+      document.getElementById("back-icon").style.display = "inline-block";
+      window.history.pushState({ page: "sub-page" }, "", "");
+    }
+
+    /* =========================================
+       [3] وظائف عامة (عداد، إعدادات، تقييم)
+       ========================================= */
+    function increment() {
+      data[currentType] = (data[currentType] || 0) + 1;
+      document.getElementById("counter-display").innerText = data[currentType];
+      if (document.getElementById("vibrate-toggle").checked) navigator.vibrate(40);
+      localStorage.setItem("heavenData", JSON.stringify(data));
+    }
+
+    function hideAllPages() {
+      ["main-page", "section-content-page", "sub-page", "feedback-page", "settings-page"].forEach(id => {
+        document.getElementById(id).style.display = "none";
+      });
+    }
+
+    function toggleSettings() {
+      const settingsPage = document.getElementById("settings-page");
+      const icon = document.getElementById("settings-icon");
+
+      if (settingsPage.style.display === "block") {
+        // لما نسكر الإعدادات: بنخفيها وبنرجع نظهر الصفحة اللي كنا فيها
+        settingsPage.style.display = "none";
+        icon.innerText = "settings";
+
+        if (currentSection === "main") {
+          document.getElementById("main-page").style.display = "block";
+        } else if (currentSection === "sub-page") {
+          document.getElementById("sub-page").style.display = "block";
+        } else {
+          document.getElementById("section-content-page").style.display = "block";
+        }
+      } else {
+        // لما نفتح الإعدادات: بنخفي كل شي وبنظهرها هي بس
+        hideAllPages();
+        settingsPage.style.display = "block";
+        icon.innerText = "close";
+        document.getElementById("total-sum").innerText = Object.values(data).reduce((a, b) => a + b, 0);
+      }
+    }
+    function toggleDarkMode() {
+      const isDark = document.getElementById("dark-mode-toggle").checked;
+      document.body.classList.toggle("dark-theme", isDark);
+      localStorage.setItem("darkMode", isDark);
+    }
+
+    function showBalance() {
+      const list = document.getElementById("balance-list");
+      list.innerHTML = "";
+
+      // منشيك إذا فيه أي داتا أكبر من صفر
+      const hasData = Object.values(data).some(val => val > 0);
+
+      if (!hasData) {
+        // رسالة تشجيعية في حال كان الرصيد صفر
+        list.innerHTML = `
+            <div style="text-align: center; padding: 30px; color: var(--text-color);">
+                <div style="font-size: 3rem; margin-bottom: 10px;">✨</div>
+                <p style="font-weight: bold; font-size: 1.1rem;">رصيدك مشتاق لذكرك..</p>
+                <p style="font-size: 0.9rem; opacity: 0.8;">سارع بزراعة غراسك في الجنة الآن!</p>
+            </div>`;
+      } else {
+        // عرض الأذكار كالمعتاد
+        Object.keys(data).forEach(k => {
+          let name = "";
+          Object.values(sectionsData).forEach(sec => {
+            if (sec[k]) name = sec[k].title;
+          });
+
+          if (data[k] > 0) {
+            list.innerHTML += `
+                    <div style="padding: 10px; border-bottom: 1px solid var(--light-color); display: flex; justify-content: space-between; align-items: center; color: var(--text-color);">
+                        <span style="font-weight: bold;">✅ ${name}</span>
+                        <span style="background: var(--main-color); color: var(--light-color); padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: bold;">
+                            ${data[k]}
+                        </span>
+                    </div>`;
+          }
+        });
+      }
+      document.getElementById("balance-modal").style.display = "flex";
+    }
+
+    function closeBalance() { document.getElementById("balance-modal").style.display = "none"; }
+
+    function resetAll() {
+      if (confirm("تصفير العدادات؟")) { data = {}; localStorage.setItem("heavenData", JSON.stringify(data)); renderSection("daily-counters"); }
+    }
+
+    function markStar(rating) {
+      document.getElementById("rating-value").value = rating;
+      const stars = document.querySelectorAll(".star-label");
+      stars.forEach(s => s.classList.remove("selected"));
+      stars[5 - rating].classList.add("selected");
+    }
+
+    function openFeedback() {
+      const feedbackPage = document.getElementById("feedback-page");
+
+      // إذا كانت صفحة "من أنا" مفتوحة أصلاً، بنسكرها وبنرجع للي قبله
+      if (feedbackPage.style.display === "block") {
+        feedbackPage.style.display = "none";
+        // نرجع نظهر الصفحة اللي كنا فيها حسب الـ currentSection
+        if (currentSection === "main") {
+          document.getElementById("main-page").style.display = "block";
+          document.getElementById("back-icon").style.display = "none";
+        } else if (currentSection === "sub-page") {
+          document.getElementById("sub-page").style.display = "block";
+        } else {
+          document.getElementById("section-content-page").style.display = "block";
+        }
+      } else {
+        // إذا كانت مسكرة، بنفتحها وبنخفي كل شي ثاني
+        hideAllPages();
+        feedbackPage.style.display = "block";
+        document.getElementById("back-icon").style.display = "inline-block";
+        window.history.pushState({ page: "feedback-page" }, "", "");
+      }
+    }
+  </script>
+</body>
+
+</html>
