@@ -90,7 +90,7 @@
       /* dark teal tint for card icons bg */
       --gold: #D4A44E;
       /* gold slightly brightened */
-      --gold-light: #1E2D1E;
+      --gold-light: #F5E6CC;
       /* very dark gold wash */
       --cream: #0C1A24;
       /* deep navy-teal background */
@@ -104,6 +104,13 @@
       --light-color: var(--cream);
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
       --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    body.dark-theme .header-side span, 
+    body.dark-theme .back-btn {
+      color: var(--gold) !important; /* يجعل أيقونة الإعدادات والرجوع ذهبية واضحة */
+    }
+    body.dark-theme .header-who {
+      color: var(--gold-light) !important; /* يجعل زر من أنا واضحاً بدلاً من الاختفاء */
     }
 
     /* ═══════════════════════════════════════════
@@ -1340,7 +1347,7 @@
         </div>
 
         <!-- Surah Al-Mulk Card -->
-        <div class="card" onclick="showSection('surah-almulk')">
+        <div class="card" onclick="openDhikr('mulk_text', 'surah-almulk')">
           <div class="card-title">سورة الملك</div>
           <div class="card-action">المنجية من عذاب القبر</div>
         </div>
@@ -1351,7 +1358,7 @@
 
     <!-- SECTION CONTENT PAGE -->
 
-    
+
     <div id="section-content-page">
       <div id="section-items-grid" class="grid"></div>
       <div id="daily-actions" class="footer" style="display: none">
@@ -1394,15 +1401,37 @@
           <div class="sum-value" id="total-sum">0</div>
           <div class="sum-note">كل ذكر يُبنى في ميزانك ✨</div>
         </div>
+
+        <div class="about-qr-share"
+          style="margin-bottom: 20px; padding: 20px; background: var(--white); border-radius: var(--r-lg); border: 1px solid var(--border); text-align: center;">
+          <h4 style="color: var(--teal-deep); font-size: 1.1rem; margin-bottom: 6px;">الدال على الخير كفاعله</h4>
+          <img src="/Athkary-main/img/QR.png" alt="QR Code"
+            style="width: 150px; height: 150px; margin: 10px auto; display: block; border: 3px solid var(--teal-mid); border-radius: 12px; box-shadow: var(--shadow-sm);">
+          <p style="font-size: 0.85rem; color: var(--text-muted);">اجعل أحبابك يمسحون الرمز لمشاركتك الأجر</p>
+        </div>
       </div>
+
     </div>
 
     <!-- FEEDBACK PAGE -->
+
+
     <div id="feedback-page" class="container">
+
+      <div class="about-qr-share"
+        style="margin-bottom: 20px; padding: 20px; background: var(--white); border-radius: var(--r-lg); border: 1px solid var(--border); text-align: center;">
+        <h4 style="color: var(--teal-deep); font-size: 1.1rem; margin-bottom: 6px;">الدال على الخير كفاعله</h4>
+        <img src="/Athkary-main/img/QR.png" alt="QR Code"
+          style="width: 150px; height: 150px; margin: 10px auto; display: block; border: 3px solid var(--teal-mid); border-radius: 12px; box-shadow: var(--shadow-sm);">
+        <p style="font-size: 0.85rem; color: var(--text-muted);">اجعل أحبابك يمسحون الرمز لمشاركتك الأجر</p>
+      </div>
+
       <div class="feedback-hero">
         <h3>هذا التطبيق صدقة جارية 🤍<br>لا تنسوني من صالح دعائكم</h3>
         <p>رأيك يساعدنا على التطوير</p>
       </div>
+
+
 
       <form id="suggestion-form" action="https://formspree.io/f/mlgrznlk" method="POST">
         <div class="rating-stars" id="star-container">
@@ -1413,7 +1442,7 @@
           <span class="star-label" onclick="markStar(1)">★</span>
           <input type="hidden" name="rating" id="rating-value" value="0" />
         </div>
-        <input type="email" name="email" placeholder="إيميلك (اختياري)" />
+        <input type="message" name="email" placeholder="إيميلك (اختياري)" />
         <textarea name="message" required placeholder="اكتب اقتراحك أو سبب التقييم هنا..."
           style="height: 120px; resize: none;"></textarea>
         <button type="submit" class="submit-btn" id="submit-btn">إرسال التقييم</button>
@@ -2618,22 +2647,23 @@
               </div>
             `
         },
-        
 
-        
+
+
       },
-      "surah-almulk": {
+    "surah-almulk": {
         mulk_text: {
           title: "سورة الملك",
           isTreasure: true,
           btn: "قراءة",
           text: `
-        <div class="quran-page-container" style="max-height: 75vh; overflow-y: auto; padding: 20px; font-family: 'Amiri', 'Traditional Arabic', serif; text-align: justify; direction: rtl; background-color: #fcfbf7; border-radius: 8px; color: #1a202c; box-shadow: inset 0 0 10px rgba(0,0,0,0.02);">
+        <!-- الحاوية الآن تعتمد على متغيرات الواجهة لتتحول تلقائياً في الوضع الداكن -->
+        <div class="quran-page-container" style="max-height: 75vh; overflow-y: auto; padding: 20px; font-family: 'Amiri', 'Traditional Arabic', serif; text-align: justify; direction: rtl; background-color: var(--white); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); box-shadow: inset 0 0 10px rgba(0,0,0,0.02); transition: background-color 0.3s, color 0.3s;">
           
-          <p style="text-align: center; font-weight: bold; color: #2c5282; font-size: 1.6rem; margin-bottom: 25px; border-bottom: 2px solid #2c5282; padding-bottom: 10px; letter-spacing: 1px;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+          <p style="text-align: center; font-weight: bold; color: var(--teal-deep); font-size: 1.6rem; margin-bottom: 25px; border-bottom: 2px solid var(--gold); padding-bottom: 10px; letter-spacing: 1px;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
           
           <p style="font-size: 1.45rem; line-height: 2.4; word-spacing: 2px; margin: 0;">
-            تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ <span style="color: #2c5282; font-weight: bold;">﴿١﴾</span> 
+             تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ <span style="color: #2c5282; font-weight: bold;">﴿١﴾</span> 
             الَّذِي خَلَقَ الْمَوْتَ وَالْحَيَاةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا ۚ وَهُوَ الْعَزِيزُ الْغَفُورُ <span style="color: #2c5282; font-weight: bold;">﴿٢﴾</span> 
             الَّذِي خَلَقَ سَبْعَ سَمَاوَاتٍ طِبَاقًا ۖ مَّا تَرَىٰ فِي خَلْقِ الرَّحْمَٰنِ مِن تَفَاوُتٍ ۖ فَارْجِعِ الْبَصَرَ هَلْ تَرَىٰ مِن فُطُورٍ <span style="color: #2c5282; font-weight: bold;">﴿٣﴾</span> 
             ثُمَّ ارْجِعِ الْبَصَرَ كَرَّتَيْنِ يَنقَلِبْ إِلَيْكَ الْبَصَرُ خَاسِئًا وَهُوَ حَسِيرٌ <span style="color: #2c5282; font-weight: bold;">﴿٤﴾</span> 
@@ -2665,14 +2695,14 @@
             قُلْ أَرَأَيْتُمْ إِنْ أَصْبَحَ مَاؤُكُمْ غَوْرًا فَمَن يَأْتِيكُم بِمَاءٍ مَّعِينٍ <span style="color: #2c5282; font-weight: bold;">﴿٣٠﴾</span>
           </p>
           
+          
         </div>
       `
         }
       },
-      
-// هذا القوس سكر prophets-prayers
+      // هذا القوس سكر prophets-prayers
 
-      
+
     }; // سكرنا sectionsData الكبير
 
     let currentSection = "main";
