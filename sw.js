@@ -2,6 +2,7 @@ self.addEventListener("notificationclick", function (event) {
   event.notification.close();
   const type = event.notification.data.type;
   const targetUrl = `./index.html?type=${type}`;
+  const CACHE_NAME = "ajr-cache-v2"; // غيّر الرقم كل مرة تحدّث
 
   event.waitUntil(
     clients
