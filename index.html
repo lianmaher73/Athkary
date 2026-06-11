@@ -36,6 +36,58 @@
         });
       }
     });
+    let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  // أظهر الـ banner
+  document.getElementById("install-banner").style.display = "flex";
+});
+
+function installApp() {
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(() => {
+    document.getElementById("install-banner").style.display = "none";
+    deferredPrompt = null;
+  });
+}<div id="ios-banner" style="
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--teal-deep);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  z-index: 9999;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Cairo', sans-serif;
+  text-align: center;
+  max-width: 300px;
+  border-top: 2px solid var(--gold);
+">
+  <span style="font-weight: 700;">ثبّت التطبيق على iPhone</span>
+  <span style="font-size: 0.85rem; opacity: 0.85;">
+    اضغط على 
+    <span style="font-size: 1.1rem;">⎙</span> 
+    ثم "إضافة إلى الشاشة الرئيسية"
+  </span>
+  <button onclick="document.getElementById('ios-banner').style.display='none'" style="
+    background: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-family: inherit;
+    cursor: pointer;
+  ">حسناً</button>
+</div>
   </script>
   <style>
     /* ═══════════════════════════════════════════
@@ -104,8 +156,9 @@
       --light-color: var(--cream);
       --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.5);
       --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.6);
+      
     }
-
+     
     /* ═══════════════════════════════════════════
          RESET & BASE
          ═══════════════════════════════════════════ */
@@ -1509,6 +1562,81 @@
 
 <body>
 
+  <div id="ios-banner" style="
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--teal-deep);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  z-index: 9999;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Cairo', sans-serif;
+  text-align: center;
+  max-width: 300px;
+  border-top: 2px solid var(--gold);
+">
+  <span style="font-weight: 700;">ثبّت التطبيق على iPhone</span>
+  <span style="font-size: 0.85rem; opacity: 0.85;">
+    اضغط على 
+    <span style="font-size: 1.1rem;">⎙</span> 
+    ثم "إضافة إلى الشاشة الرئيسية"
+  </span>
+  <button onclick="document.getElementById('ios-banner').style.display='none'" style="
+    background: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-family: inherit;
+    cursor: pointer;
+  ">حسناً</button>
+</div>
+<div id="install-banner" style="
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--teal-deep);
+  color: white;
+  padding: 14px 24px;
+  border-radius: 30px;
+  box-shadow: var(--shadow-lg);
+  z-index: 9999;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+  border-top: 2px solid var(--gold);
+">
+  <span>ثبّت التطبيق على هاتفك</span>
+  <button onclick="installApp()" style="
+    background: var(--gold);
+    color: var(--teal-deep);
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+  ">تثبيت</button>
+  <button onclick="document.getElementById('install-banner').style.display='none'" style="
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+  ">×</button>
+</div>
   <!-- HEADER -->
   <div class="header">
     <div class="header-side" onclick="toggleSettings()" style="text-align: right">
