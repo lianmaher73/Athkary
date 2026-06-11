@@ -3,17 +3,17 @@
   "short_name": "أجر",
   "start_url": "/Athkary/",
   "display": "standalone",
-  "background_color": "#fceffc",
+   "background_color": "#4f1a2a",
   "theme_color": "#4f1a2a",
   "icons": [
     {
-      "src": "img/Logo.png",
+      "src": "img/logo.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "img/Logo.png",
+      "src": "img/logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
