@@ -3514,6 +3514,14 @@ function installApp() {
 
     </script>
     <div id="app-toast" class="toast"></div>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/Athkary/sw.js")
+          .then(() => console.log("SW registered"))
+          .catch(err => console.log("SW error:", err));
+      }
+    </script>
 </body>
 
 </html>
