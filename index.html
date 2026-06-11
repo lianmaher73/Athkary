@@ -52,42 +52,7 @@ function installApp() {
     document.getElementById("install-banner").style.display = "none";
     deferredPrompt = null;
   });
-}<div id="ios-banner" style="
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--teal-deep);
-  color: white;
-  padding: 14px 20px;
-  border-radius: 16px;
-  box-shadow: var(--shadow-lg);
-  z-index: 9999;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  font-family: 'Cairo', sans-serif;
-  text-align: center;
-  max-width: 300px;
-  border-top: 2px solid var(--gold);
-">
-  <span style="font-weight: 700;">ثبّت التطبيق على iPhone</span>
-  <span style="font-size: 0.85rem; opacity: 0.85;">
-    اضغط على 
-    <span style="font-size: 1.1rem;">⎙</span> 
-    ثم "إضافة إلى الشاشة الرئيسية"
-  </span>
-  <button onclick="document.getElementById('ios-banner').style.display='none'" style="
-    background: none;
-    border: 1px solid rgba(255,255,255,0.3);
-    color: white;
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-family: inherit;
-    cursor: pointer;
-  ">حسناً</button>
-</div>
+}
   </script>
   <style>
     /* ═══════════════════════════════════════════
