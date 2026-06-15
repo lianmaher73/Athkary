@@ -3,8 +3,8 @@
   "short_name": "أجر",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#0D2B3E",
-  "theme_color": "#0D2B3E",
+  "background_color": "#FAF6F0;",
+  "theme_color": "#FAF6F0;",
 
   "icons": [
     {
@@ -18,4 +18,5 @@
       "type": "image/png"
     }
   ]
+
 }
