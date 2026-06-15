@@ -1,22 +1,21 @@
 {
   "name": "أجر",
   "short_name": "أجر",
-  "start_url": "/Athkary/",
+  "start_url": "index.html",
   "display": "standalone",
-     "background_color": "#F5E6CC",
-  "theme_color": "#F5E6CC",
+  "background_color": "#0D2B3E",
+  "theme_color": "#0D2B3E",
+
   "icons": [
     {
-      "src": "img/logo.jpeg",
+      "src": "img/Logo.png",
       "sizes": "192x192",
-      "type": "image/jpeg",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
-      "src": "img/logo.jpeg",
+      "src": "img/Logo.png",
       "sizes": "512x512",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
